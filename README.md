@@ -1,8 +1,23 @@
-# Nidalee &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+# Nidalee
 
-> Additional information or tag line
+[![Build Status][build-badge]][build]
+[![Version Status][version-badge]][version]
+[![Coverage Status][coverage-badge]][coverage]
+[![Dependencies Status][dependencies-badge]][dependencies]
+[![Styled with prettier][prettier-badge]][prettier]
 
-A brief description of your project, what it is used for.
+[version-badge]: https://img.shields.io/npm/v/nidalee.svg?style=flat-square
+[version]: https://www.npmjs.com/package/nidalee
+[build-badge]: https://img.shields.io/travis/xiaofan2406/nidalee.svg?style=flat-square
+[build]: https://travis-ci.org/xiaofan2406/nidalee
+[coverage-badge]: https://img.shields.io/codecov/c/github/xiaofan2406/nidalee.svg?style=flat-square
+[coverage]: https://codecov.io/gh/xiaofan2406/nidalee
+[dependencies-badge]: https://img.shields.io/david/xiaofan2406/nidalee.svg?style=flat-square
+[dependencies]: https://david-dm.org/xiaofan2406/nidalee
+[prettier-badge]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square
+[prettier]: https://github.com/prettier/prettier
+
+React UI components
 
 ## Installing / Getting started
 
