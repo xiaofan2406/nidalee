@@ -44,13 +44,11 @@ export const ripple = css`
   background-position: center;
   transition: background 0.6s;
   &:hover {
-    border-color: ${theme.primaryColor};
-    color: ${theme.primaryColor};
-    background: radial-gradient(circle, transparent 1%, #dcdcdc 1%)
+    background: #f5f5f5 radial-gradient(circle, transparent 1%, #dcdcdc 1%)
       center/15000%;
   }
   &:active {
-    background-color: #e8e8e8;
+    background-color: #f1f1f1;
     background-size: 100%;
     transition: background 0s;
   }

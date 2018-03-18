@@ -38,7 +38,7 @@ const cssButton = css`
   }
 
   color: ${theme.color};
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   &.primary {
     color: #ffffff;
     background-color: ${theme.primaryColor};
