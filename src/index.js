@@ -1,5 +1,9 @@
+/* @flow */
 import Button from './Button';
+import Icon from './Icon';
+import Spinner from './Spinner';
+import MoonSpinner from './MoonSpinner';
 
-export { Button };
+export { Button, Icon, MoonSpinner, Spinner };
 
-export default { Button };
+export default { Button, Icon, MoonSpinner, Spinner };

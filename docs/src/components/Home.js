@@ -2,7 +2,7 @@
 import React from 'react';
 import { css } from 'react-emotion';
 import { spacing } from 'styles';
-import { Button } from 'nidalee';
+import { Button, Icon, MoonSpinner, Spinner } from 'nidalee';
 
 const cssHome = css`
   & > .title {
@@ -15,7 +15,53 @@ const cssHome = css`
 const Home = () => (
   <div className={cssHome}>
     <div className="title">Hello world!</div>
-    <Button />
+    <Button primary showSpinner>
+      Sign Up
+    </Button>
+
+    <Button primary showSpinner>
+      <Icon name="camera" type="solid" />
+    </Button>
+
+    <Button primary>
+      <Icon name="camera" type="solid" />
+    </Button>
+    <Button>Authenticate</Button>
+
+    <Button>
+      <Icon className="fab fa-affiliatetheme" />
+      Help
+    </Button>
+
+    <Button showSpinner>
+      <Icon className="far fa-calendar-times" />
+      Coming up
+    </Button>
+
+    <Button showSpinner>
+      <Icon className="far fa-calendar-times" />
+      <Icon className="far fa-calendar-times" />
+      Coming up
+    </Button>
+
+    <Button showSpinner>
+      <Icon className="far fa-calendar-times" />
+      <Icon className="far fa-calendar-times" />
+      Coming up
+      <Icon className="far fa-calendar-times" />
+      <Icon className="far fa-calendar-times" />
+    </Button>
+
+    <Spinner size={24} />
+    <MoonSpinner size={64} />
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <Icon className="far fa-question-circle" size={17} />
+    <Icon className="far fa-question-circle" size={19} />
+    <Icon className="far fa-question-circle" size={24} />
   </div>
 );
 
