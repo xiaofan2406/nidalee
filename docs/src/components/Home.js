@@ -19,7 +19,13 @@ const Home = () => (
       Sign Up
     </Button>
 
-    <Button primary showSpinner>
+    <Button
+      primary
+      showSpinner
+      onClick={() => {
+        console.log('screenshot taken!');
+      }}
+    >
       <Icon name="camera" type="solid" />
     </Button>
 
@@ -29,8 +35,8 @@ const Home = () => (
     <Button>Authenticate</Button>
 
     <Button color="pink">
-      <Icon className="fab fa-affiliatetheme" />
       Help
+      <Icon className="fab fa-affiliatetheme" />
     </Button>
 
     <Button showSpinner color="purple">

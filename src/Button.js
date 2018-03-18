@@ -1,13 +1,13 @@
 /* @flow */
 import * as React from 'react';
-import styled, { cx } from 'react-emotion';
+import styled from 'react-emotion';
 import Color from 'color';
-import { theme } from './styles';
+import { theme, colors, defaultFont } from './styles';
 import { I } from './Icon';
 import Spinner from './Spinner';
 
-const getContentColor = color =>
-  color === '#f5f5f5' ? theme.color : '#ffffff';
+const getContentColor = colorProp =>
+  colorProp === colors.grey ? theme.color : colors.white;
 
 const ButtonE = styled.button`
   display: inline-flex;
@@ -17,11 +17,10 @@ const ButtonE = styled.button`
   cursor: pointer;
   user-select: none;
 
+  ${defaultFont};
+  min-height: 36px;
   padding: 8px 12px;
   margin: 0px 8px 8px 0px;
-
-  font-size: 14px;
-  min-height: 36px;
 
   border: none;
   border-radius: 2px;
@@ -41,12 +40,7 @@ const ButtonE = styled.button`
   }
 
   color: ${({ color }) => getContentColor(color)};
-
   background-color: ${({ color }) => color};
-  &.primary {
-    color: #ffffff;
-    background-color: ${theme.primaryColor};
-  }
 
   background-position: center;
   transition: background 0.6s;
@@ -80,10 +74,11 @@ type ButtonProp = {
   showSpinner: boolean,
 };
 
+// TODO button size
 class Button extends React.Component<ButtonProp> {
   static defaultProps = {
     primary: false,
-    color: '#f5f5f5',
+    color: colors.grey,
     showSpinner: false,
   };
 
@@ -104,18 +99,19 @@ class Button extends React.Component<ButtonProp> {
     ) : null;
   };
 
-  render() {
-    const { children, primary, ...rest } = this.props;
-    const wrappedChildren = React.Children.map(
-      children,
+  renderChildren = () =>
+    React.Children.map(
+      this.props.children,
       child => (typeof child === 'string' ? <span>{child}</span> : child)
     );
-    const classNames = cx([primary && 'primary']);
+
+  render() {
+    const { primary, color, showSpinner, ...rest } = this.props;
 
     return (
-      <ButtonE className={classNames} {...rest} color={this.color}>
+      <ButtonE color={this.color} {...rest}>
         {this.renderSpinner()}
-        {wrappedChildren}
+        {this.renderChildren()}
       </ButtonE>
     );
   }

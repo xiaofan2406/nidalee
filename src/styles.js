@@ -25,11 +25,15 @@ export const spacing = {
 export const theme = {
   primaryColor: colors.blue,
   borderColor: colors.grey,
-  fontFamily: '"Segoe UI", Helvetica, Arial, sans-serif',
+  fontFamily: '"Open Sans", sans-serif',
   fontSize: fontSizes.regular,
-  textColor: colors.black,
-  color: 'rgba(0, 0, 0, 0.8)',
+  color: 'rgba(0, 0, 0, 0.75)',
 };
+
+export const defaultFont = css`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+`;
 
 export const spinAnimation = keyframes`
   0% {
@@ -37,32 +41,6 @@ export const spinAnimation = keyframes`
   }
   100% {
     transform: rotate(360deg)
-  }
-`;
-
-export const ripple = css`
-  background-position: center;
-  transition: background 0.6s;
-  &:hover {
-    background: #f5f5f5 radial-gradient(circle, transparent 1%, #dcdcdc 1%)
-      center/15000%;
-  }
-  &:active {
-    background-color: #f1f1f1;
-    background-size: 100%;
-    transition: background 0s;
-  }
-
-  &.primary {
-    &:hover {
-      background: #40a9ff radial-gradient(circle, transparent 1%, #40a9ff 1%)
-        center/15000%;
-    }
-    &:active {
-      background-color: #6eb9f7;
-      background-size: 100%;
-      transition: background 0s;
-    }
   }
 `;
 
