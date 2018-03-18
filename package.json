@@ -47,6 +47,7 @@
     "Edge >= 15"
   ],
   "dependencies": {
+    "color": "^3.0.0",
     "emotion": "^9.0.2",
     "react-emotion": "^9.0.2"
   },

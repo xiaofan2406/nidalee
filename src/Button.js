@@ -1,15 +1,19 @@
 /* @flow */
 import * as React from 'react';
-import { css, cx } from 'react-emotion';
-import { theme, ripple } from './styles';
+import styled, { cx } from 'react-emotion';
+import Color from 'color';
+import { theme } from './styles';
+import { I } from './Icon';
 import Spinner from './Spinner';
 
-const cssButton = css`
+const getContentColor = color =>
+  color === '#f5f5f5' ? theme.color : '#ffffff';
+
+const ButtonE = styled.button`
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
 
-  ${ripple};
   cursor: pointer;
   user-select: none;
 
@@ -24,45 +28,77 @@ const cssButton = css`
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
     0px 2px 2px 0px rgba(0, 0, 0, 0.08), 0px 3px 1px -2px rgba(0, 0, 0, 0.04);
 
-  & > * {
+  & > *,
+  & > ${I} {
     margin-left: 0px;
     margin-right: 6px;
-
     &:last-child {
       margin-right: 0px;
     }
-
     &:first-child {
       margin-left: 0px;
     }
   }
 
-  color: ${theme.color};
-  background-color: #f5f5f5;
+  color: ${({ color }) => getContentColor(color)};
+
+  background-color: ${({ color }) => color};
   &.primary {
     color: #ffffff;
     background-color: ${theme.primaryColor};
+  }
+
+  background-position: center;
+  transition: background 0.6s;
+  &:hover {
+    background: ${({ color }) => color}
+      radial-gradient(
+        circle,
+        transparent 1%,
+        ${({ color }) =>
+            Color(color)
+              .darken(0.1)
+              .string()}
+          1%
+      )
+      center/15000%;
+  }
+  &:active {
+    background-color: ${({ color }) =>
+      Color(color)
+        .lighten(0.2)
+        .string()};
+    background-size: 100%;
+    transition: background 0s;
   }
 `;
 
 type ButtonProp = {
   children: React.Node,
   primary: boolean,
+  color: string,
   showSpinner: boolean,
 };
 
 class Button extends React.Component<ButtonProp> {
   static defaultProps = {
     primary: false,
+    color: '#f5f5f5',
     showSpinner: false,
   };
 
+  get color(): string {
+    const { primary, color } = this.props;
+    return primary ? theme.primaryColor : color;
+  }
+
   renderSpinner = () => {
-    const { primary, showSpinner } = this.props;
+    const { showSpinner } = this.props;
+
     return showSpinner ? (
       <Spinner
         size={16}
-        color={primary ? '#ffffff' : theme.color}
+        color={getContentColor(this.color)}
         className="spinner"
       />
     ) : null;
@@ -74,12 +110,13 @@ class Button extends React.Component<ButtonProp> {
       children,
       child => (typeof child === 'string' ? <span>{child}</span> : child)
     );
-    const classNames = cx([cssButton, primary && 'primary']);
+    const classNames = cx([primary && 'primary']);
+
     return (
-      <button className={classNames} {...rest}>
+      <ButtonE className={classNames} {...rest} color={this.color}>
         {this.renderSpinner()}
         {wrappedChildren}
-      </button>
+      </ButtonE>
     );
   }
 }

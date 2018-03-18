@@ -28,17 +28,17 @@ const Home = () => (
     </Button>
     <Button>Authenticate</Button>
 
-    <Button>
+    <Button color="pink">
       <Icon className="fab fa-affiliatetheme" />
       Help
     </Button>
 
-    <Button showSpinner>
+    <Button showSpinner color="purple">
       <Icon className="far fa-calendar-times" />
       Coming up
     </Button>
 
-    <Button showSpinner>
+    <Button showSpinner color="green">
       <Icon className="far fa-calendar-times" />
       <Icon className="far fa-calendar-times" />
       Coming up
