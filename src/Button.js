@@ -7,12 +7,12 @@ import { I } from './Icon';
 import Spinner from './Spinner';
 
 const getContentColor = colorProp =>
-  colorProp === colors.grey ? theme.color : colors.white;
+  colorProp === theme.eleBgColor ? theme.color : colors.white;
 
 const ButtonE = styled.button`
   display: inline-flex;
   align-items: center;
-  vertical-align: middle;
+  vertical-align: top;
 
   cursor: pointer;
   user-select: none;
@@ -20,7 +20,7 @@ const ButtonE = styled.button`
   ${defaultFont};
   min-height: 36px;
   padding: 8px 12px;
-  margin: 0px 8px 8px 0px;
+  margin: 0px 8px 0px 0px;
 
   border: none;
   border-radius: 2px;
@@ -78,7 +78,7 @@ type ButtonProp = {
 class Button extends React.Component<ButtonProp> {
   static defaultProps = {
     primary: false,
-    color: colors.grey,
+    color: theme.eleBgColor,
     showSpinner: false,
   };
 

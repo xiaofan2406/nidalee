@@ -6,7 +6,6 @@ export const I = styled.i`
   font-size: ${({ size }) => size}px;
   color: ${({ color }) => color};
   margin: 0px 2px;
-  vertical-align: baseline;
 `;
 
 type IconProp = {

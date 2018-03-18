@@ -5,6 +5,7 @@ import styled from 'react-emotion';
 import { theme, spinAnimation } from './styles';
 
 const MoonSpinnerDiv = styled.div`
+  display: inline-block;
   width: ${({ size }) => size}px;
   height: ${({ size }) => size}px;
 

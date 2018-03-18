@@ -5,7 +5,8 @@ export const colors = {
   blue: '#349ef1',
   black: '#242729',
   white: '#ffffff',
-  grey: '#f5f5f5',
+  grey1: '#f5f5f5',
+  grey2: '#e8e8e8',
 };
 
 export const fontSizes = {
@@ -24,7 +25,8 @@ export const spacing = {
 
 export const theme = {
   primaryColor: colors.blue,
-  borderColor: colors.grey,
+  eleBgColor: colors.grey1,
+  borderColor: colors.grey2,
   fontFamily: '"Open Sans", sans-serif',
   fontSize: fontSizes.regular,
   color: 'rgba(0, 0, 0, 0.75)',
@@ -33,6 +35,11 @@ export const theme = {
 export const defaultFont = css`
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+  line-height: 1.4;
+`;
+
+export const outline = css`
+  outline: 1px solid ${theme.primaryColor};
 `;
 
 export const spinAnimation = keyframes`

@@ -3,7 +3,8 @@ import React from 'react';
 import styled from 'react-emotion';
 import { theme, spinAnimation } from './styles';
 
-const SpinnerDiv = styled.span`
+const SpinnerDiv = styled.div`
+  display: inline-block;
   & > div {
     width: ${({ size }) => size}px;
     height: ${({ size }) => size}px;

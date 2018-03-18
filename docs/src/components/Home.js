@@ -2,7 +2,15 @@
 import React from 'react';
 import { css } from 'react-emotion';
 import { spacing } from 'styles';
-import { Button, Icon, MoonSpinner, Spinner } from 'nidalee';
+import {
+  Box,
+  Button,
+  FormField,
+  Icon,
+  MoonSpinner,
+  Spinner,
+  Input,
+} from 'nidalee';
 
 const cssHome = css`
   & > .title {
@@ -15,42 +23,52 @@ const cssHome = css`
 const Home = () => (
   <div className={cssHome}>
     <div className="title">Hello world!</div>
-    <Button primary showSpinner>
-      Sign Up
-    </Button>
 
-    <Button
-      primary
-      showSpinner
-      onClick={() => {
-        console.log('screenshot taken!');
-      }}
-    >
-      <Icon name="camera" type="solid" />
-    </Button>
+    <Box>
+      <Button primary showSpinner>
+        Sign Up
+      </Button>
 
-    <Button primary>
-      <Icon name="camera" type="solid" />
-    </Button>
-    <Button>Authenticate</Button>
+      <Button primary>
+        <Icon name="camera" type="solid" />
+      </Button>
+      <Button>
+        <Icon name="camera" type="solid" />Authenticate
+      </Button>
+
+      <Button
+        primary
+        showSpinner
+        onClick={() => {
+          console.log('screenshot taken!');
+        }}
+      >
+        <Icon name="camera" type="solid" />
+      </Button>
+    </Box>
+
+    <Input />
 
     <Button color="pink">
       Help
       <Icon className="fab fa-affiliatetheme" />
     </Button>
+    <Box>
+      <FormField error="SOmwthing went wrong" />
+      <FormField />
 
-    <Button showSpinner color="purple">
-      <Icon className="far fa-calendar-times" />
-      Coming up
-    </Button>
-
+      <Button showSpinner color="purple">
+        <Icon className="far fa-calendar-times" />
+        Coming up
+      </Button>
+    </Box>
     <Button showSpinner color="green">
       <Icon className="far fa-calendar-times" />
       <Icon className="far fa-calendar-times" />
       Coming up
     </Button>
 
-    <Button showSpinner>
+    <Button>
       <Icon className="far fa-calendar-times" />
       <Icon className="far fa-calendar-times" />
       Coming up
