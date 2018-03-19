@@ -7,6 +7,9 @@ export const colors = {
   white: '#ffffff',
   grey1: '#f5f5f5',
   grey2: '#e8e8e8',
+  red1: '#fd3030',
+  orange1: '#faad14',
+  green1: '#23d160',
 };
 
 export const fontSizes = {
@@ -30,6 +33,9 @@ export const theme = {
   fontFamily: '"Open Sans", sans-serif',
   fontSize: fontSizes.regular,
   color: 'rgba(0, 0, 0, 0.75)',
+  colorDanger: colors.red1,
+  colorWarning: colors.orange1,
+  colorSuccess: colors.green1,
 };
 
 export const defaultFont = css`

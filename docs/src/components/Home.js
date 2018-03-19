@@ -53,10 +53,30 @@ const Home = () => (
       Help
       <Icon className="fab fa-affiliatetheme" />
     </Button>
-    <Box>
-      <FormField error="SOmwthing went wrong" />
-      <FormField />
-
+    <Box width={480}>
+      <FormField
+        name="username"
+        label="Username"
+        status="error"
+        helperText="SOmwthing went wrong"
+      />
+      <FormField
+        name="password"
+        label="password"
+        status="warning"
+        helperText="sometheing creazy saldkfj asdfl;kj sadf saldkfj; asdfsdalf;kj salkd  sdkl;fj sadf saldk;fjsad lf  sadl;kf jssa dfljs adlkfjas;dlf  sla;dkf jlk asdf sda fs safs df sadf fsda sd sdfsd a sad sdf"
+      />
+      <FormField
+        name="lol"
+        label="sadlj;kfsadlk;f sadlfk;jsadjkl; fkjasl;d sdalkj;f sadlk;fj  sdafkljs adl;kf  ;jlk;asdjf l;kasdjf"
+        status="success"
+        helperText="what"
+      />
+      <FormField
+        name="another"
+        label="something"
+        helperText="hum tak, asdf  asdf"
+      />
       <Button showSpinner color="purple">
         <Icon className="far fa-calendar-times" />
         Coming up

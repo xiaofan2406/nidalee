@@ -5,8 +5,8 @@ import { theme, defaultFont } from './styles';
 const Input = styled.input`
   ${defaultFont};
 
-  padding: 8px 12px;
-  max-height: 36px;
+  padding: 6px 12px;
+  height: 34px;
   color: ${theme.color};
 
   outline: none;
