@@ -69,6 +69,7 @@ const ButtonE = styled.button`
 
 type ButtonProp = {
   children: React.Node,
+  type: string,
   primary: boolean,
   color: string,
   showSpinner: boolean,
@@ -77,6 +78,7 @@ type ButtonProp = {
 // TODO button size
 class Button extends React.Component<ButtonProp> {
   static defaultProps = {
+    type: 'button',
     primary: false,
     color: theme.eleBgColor,
     showSpinner: false,

@@ -1,7 +1,8 @@
 /* @flow */
 import React from 'react';
 import { css } from 'react-emotion';
-import { Loader } from 'widgets';
+import UncontrolledFormDemo from './UncontrolledFormDemo';
+import ControlledFormDemo from './ControlledFormDemo';
 
 const cssContact = css`
   text-align: center;
@@ -9,7 +10,10 @@ const cssContact = css`
 
 const Contact = () => (
   <div className={cssContact}>
-    <Loader size={120} />
+    <h2>Uncontrolled:</h2>
+    <UncontrolledFormDemo />
+    <h2>Controlled:</h2>
+    <ControlledFormDemo />
   </div>
 );
 

@@ -6,7 +6,7 @@ import Input from './Input';
 
 const cssFormField = css`
   margin-bottom: 24px;
-  min-height: 48px;
+  min-height: 52px;
 
   & .field-control {
     display: flex;
@@ -53,35 +53,50 @@ const cssFormField = css`
   }
 `;
 
+// TODO fix status enum optional
 type FormFieldProps = {
   name: string,
-  label: string | React.Node,
   status: 'error' | 'warning' | 'success' | 'none',
+  label?: string | React.Node,
   helperText?: string,
   className?: string,
+  inputRef?: (?HTMLInputElement) => void,
+  value?: ?string | number,
 };
 
 class FormField extends React.Component<FormFieldProps> {
   static defaultProps = {
-    status: 'none',
     helperText: '',
   };
 
-  renderHelperContent = () => {
-    const { helperText } = this.props;
-    return <div className="helper-text">{helperText}</div>;
-  };
+  // TODO flow enum?
+  get isStatusValid(): boolean {
+    return ['error', 'warning', 'success'].includes(this.props.status);
+  }
 
   render() {
-    const { name, label, status, helperText, className, ...rest } = this.props;
-    const classNames = cx([cssFormField, className, status]);
+    const {
+      name,
+      label,
+      status,
+      helperText,
+      inputRef,
+      value,
+      className,
+      ...rest
+    } = this.props;
+    const classNames = cx([
+      cssFormField,
+      className,
+      this.isStatusValid && status,
+    ]);
     return (
       <div className={classNames}>
         <div className="field-control">
-          <label htmlFor={name}>{label}:</label>
-          <Input name={name} {...rest} />
+          <label htmlFor={name}>{label ? <>{label}:</> : null}</label>
+          <Input name={name} {...rest} innerRef={inputRef} value={value} />
         </div>
-        {this.renderHelperContent()}
+        <div className="helper-text">{helperText}</div>
       </div>
     );
   }
