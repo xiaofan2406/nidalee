@@ -58,19 +58,22 @@ const cssFormField = css`
 `;
 
 // TODO fix status enum optional
-type FormFieldProps = {
+type FormFieldProps = {|
+  children: React.Node,
   name: string,
-  status: 'error' | 'warning' | 'success' | 'none',
-  label?: string | React.Node,
-  helperText?: string,
-  className?: string,
-  inputRef?: (?HTMLInputElement) => void,
-  value?: ?string | number,
-};
+  status: 'error' | 'warning' | 'success' | '',
+  label: string | React.Node,
+  helperText: string,
+  className: string,
+|};
 
 class FormField extends React.Component<FormFieldProps> {
   static defaultProps = {
+    name: '',
+    status: '',
+    label: '',
     helperText: '',
+    className: '',
   };
 
   // TODO flow enum?
@@ -78,17 +81,19 @@ class FormField extends React.Component<FormFieldProps> {
     return ['error', 'warning', 'success'].includes(this.props.status);
   }
 
+  renderChildren = () =>
+    React.Children.map(
+      this.props.children,
+      child =>
+        child.props.name
+          ? child
+          : React.cloneElement(child, {
+              name: this.props.name,
+            })
+    );
+
   render() {
-    const {
-      name,
-      label,
-      status,
-      helperText,
-      inputRef,
-      value,
-      className,
-      ...rest
-    } = this.props;
+    const { name, label, status, helperText, className } = this.props;
     const classNames = cx([
       cssFormField,
       className,
@@ -97,8 +102,8 @@ class FormField extends React.Component<FormFieldProps> {
     return (
       <div className={classNames}>
         <div className="field-control">
-          <label htmlFor={name}>{label ? <>{label}:</> : null}</label>
-          <Input name={name} {...rest} innerRef={inputRef} value={value} />
+          <label htmlFor={name}>{label}</label>
+          {this.renderChildren()}
         </div>
         <div className="helper-text">{helperText}</div>
       </div>

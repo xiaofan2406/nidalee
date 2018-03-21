@@ -1,27 +1,27 @@
 /* @flow */
 import React from 'react';
-import { Box, FormField, Button } from 'nidalee';
+import { Box, FormField, Button, Input } from 'nidalee';
 
 type State = {
-  usernameStatus: 'error' | 'warning' | 'success' | 'none',
+  usernameStatus: 'error' | 'warning' | 'success' | '',
   usernameHelper: string,
-  passwordStatus: 'error' | 'warning' | 'success' | 'none',
+  passwordStatus: 'error' | 'warning' | 'success' | '',
   passwordHelper: string,
-  creditStatus: 'error' | 'warning' | 'success' | 'none',
+  creditStatus: 'error' | 'warning' | 'success' | '',
   creditHelper: string,
-  roleStatus: 'error' | 'warning' | 'success' | 'none',
+  roleStatus: 'error' | 'warning' | 'success' | '',
   roleHelper: string,
 };
 
 class UncontrolledFormDemo extends React.Component<{}, State> {
   state: State = {
-    usernameStatus: 'none',
+    usernameStatus: '',
     usernameHelper: '',
-    passwordStatus: 'none',
+    passwordStatus: '',
     passwordHelper: '',
-    creditStatus: 'none',
+    creditStatus: '',
     creditHelper: '',
-    roleStatus: 'none',
+    roleStatus: '',
     roleHelper: '',
   };
 
@@ -37,51 +37,57 @@ class UncontrolledFormDemo extends React.Component<{}, State> {
           <FormField
             name="username"
             label="Username"
-            inputRef={input => {
-              this.username = input;
-            }}
             status={this.state.usernameStatus}
             helperText={this.state.usernameHelper}
-            onChange={event => {
-              console.log('username is now: ', event.target.value);
-            }}
-          />
+          >
+            <Input
+              name="username"
+              inputRef={input => {
+                this.username = input;
+              }}
+            />
+          </FormField>
           <FormField
             name="password"
             label="Password"
-            inputRef={input => {
-              this.password = input;
-            }}
             status={this.state.passwordStatus}
             helperText={this.state.passwordHelper}
-            onChange={event => {
-              console.log('password is now: ', event.target.value);
-            }}
-          />
+          >
+            <Input
+              name="password"
+              inputRef={input => {
+                this.password = input;
+              }}
+            />
+          </FormField>
           <FormField
             name="credit"
             label="Credit"
-            inputRef={input => {
-              this.credit = input;
-            }}
             status={this.state.creditStatus}
             helperText={this.state.creditHelper}
-            onChange={event => {
-              console.log('credit is now: ', event.target.value);
-            }}
-          />
+          >
+            <Input
+              name="credit"
+              type="number"
+              inputRef={input => {
+                this.credit = input;
+              }}
+            />
+          </FormField>
           <FormField
             name="role"
             label="Role"
-            inputRef={input => {
-              this.role = input;
-            }}
             status={this.state.roleStatus}
             helperText={this.state.roleHelper}
-            onChange={event => {
-              console.log('role is now: ', event.target.value);
-            }}
-          />
+          >
+            <Input
+              name="role"
+              type="number"
+              inputRef={input => {
+                this.role = input;
+              }}
+            />
+          </FormField>
           <Button
             onClick={() => {
               this.setState({

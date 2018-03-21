@@ -1,35 +1,35 @@
 /* @flow */
 import React from 'react';
-import { Box, FormField, Button } from 'nidalee';
+import { Box, FormField, Button, Input } from 'nidalee';
 
 type State = {
   username: string,
-  usernameStatus: 'error' | 'warning' | 'success' | 'none',
+  usernameStatus: 'error' | 'warning' | 'success' | '',
   usernameHelper: string,
   password: string,
-  passwordStatus: 'error' | 'warning' | 'success' | 'none',
+  passwordStatus: 'error' | 'warning' | 'success' | '',
   passwordHelper: string,
   credit: string,
-  creditStatus: 'error' | 'warning' | 'success' | 'none',
+  creditStatus: 'error' | 'warning' | 'success' | '',
   creditHelper: string,
   role: string,
-  roleStatus: 'error' | 'warning' | 'success' | 'none',
+  roleStatus: 'error' | 'warning' | 'success' | '',
   roleHelper: string,
 };
 
 class ControlledFormDemo extends React.Component<{}, State> {
   state: State = {
     username: '',
-    usernameStatus: 'none',
+    usernameStatus: '',
     usernameHelper: '',
     password: '',
-    passwordStatus: 'none',
+    passwordStatus: '',
     passwordHelper: '',
     credit: '',
-    creditStatus: 'none',
+    creditStatus: '',
     creditHelper: '',
     role: '',
-    roleStatus: 'none',
+    roleStatus: '',
     roleHelper: '',
   };
 
@@ -48,35 +48,49 @@ class ControlledFormDemo extends React.Component<{}, State> {
           <FormField
             name="username"
             label="Username"
-            value={this.state.username}
             status={this.state.usernameStatus}
             helperText={this.state.usernameHelper}
-            onChange={this.handleChange('username')}
-          />
+          >
+            <Input
+              value={this.state.username}
+              onChange={this.handleChange('username')}
+            />
+          </FormField>
           <FormField
             name="password"
             label="Password"
-            value={this.state.password}
             status={this.state.passwordStatus}
             helperText={this.state.passwordHelper}
-            onChange={this.handleChange('password')}
-          />
+          >
+            <Input
+              value={this.state.password}
+              onChange={this.handleChange('password')}
+            />
+          </FormField>
           <FormField
             name="credit"
             label="Credit"
-            value={this.state.credit}
             status={this.state.creditStatus}
             helperText={this.state.creditHelper}
-            onChange={this.handleChange('credit')}
-          />
+          >
+            <Input
+              type="number"
+              value={this.state.credit}
+              onChange={this.handleChange('credit')}
+            />
+          </FormField>
           <FormField
             name="role"
             label="Role"
-            value={this.state.role}
             status={this.state.roleStatus}
             helperText={this.state.roleHelper}
-            onChange={this.handleChange('role')}
-          />
+          >
+            <Input
+              type="number"
+              value={this.state.role}
+              onChange={this.handleChange('role')}
+            />
+          </FormField>
           <Button
             onClick={() => {
               this.setState({
