@@ -2,30 +2,34 @@
 import * as React from 'react';
 import styled from 'react-emotion';
 import Color from 'color';
-import { theme, colors, defaultFont } from './styles';
+import { theme, defaultText } from './styles';
 import { I } from './Icon';
 import Spinner from './Spinner';
-
-const getContentColor = colorProp =>
-  colorProp === theme.eleBgColor ? theme.color : colors.white;
 
 const ButtonE = styled.button`
   display: inline-flex;
   align-items: center;
   vertical-align: top;
 
+  outline: none;
   cursor: pointer;
   user-select: none;
+  &:focus {
+    background-color: ${({ color }) =>
+      Color(color)
+        .darken(0.2)
+        .string()};
+  }
 
-  ${defaultFont};
+  ${defaultText};
   min-height: 36px;
   padding: 8px 12px;
   margin: 0px 8px 0px 0px;
 
-  border: none;
+  border: 1px solid transparent;
   border-radius: 2px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.08), 0px 3px 1px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
 
   & > *,
   & > ${I} {
@@ -39,7 +43,7 @@ const ButtonE = styled.button`
     }
   }
 
-  color: ${({ color }) => getContentColor(color)};
+  color: ${theme.textColor};
   background-color: ${({ color }) => color};
 
   background-position: center;
@@ -51,7 +55,7 @@ const ButtonE = styled.button`
         transparent 1%,
         ${({ color }) =>
             Color(color)
-              .darken(0.1)
+              .lighten(0.2)
               .string()}
           1%
       )
@@ -60,7 +64,7 @@ const ButtonE = styled.button`
   &:active {
     background-color: ${({ color }) =>
       Color(color)
-        .lighten(0.2)
+        .darken(0.2)
         .string()};
     background-size: 100%;
     transition: background 0s;
@@ -93,11 +97,7 @@ class Button extends React.Component<ButtonProp> {
     const { showSpinner } = this.props;
 
     return showSpinner ? (
-      <Spinner
-        size={16}
-        color={getContentColor(this.color)}
-        className="spinner"
-      />
+      <Spinner size={16} color={theme.textColor} className="spinner" />
     ) : null;
   };
 

@@ -8,6 +8,7 @@ const cssLayout = css`
   font-family: ${theme.fontFamily};
   font-size: ${theme.fontSize}px;
   color: ${theme.textColor};
+  background-color: #131313;
   & p {
     margin: 0px 0px 1em 0px;
   }

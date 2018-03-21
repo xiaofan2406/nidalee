@@ -1,12 +1,14 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import { theme } from './styles';
+import { theme, defaultText } from './styles';
 import Input from './Input';
 
+// by default if the helperText is >1 line, it will cause layout change
 const cssFormField = css`
-  margin-bottom: 24px;
-  min-height: 52px;
+  ${defaultText};
+  margin-bottom: 18px;
+  min-height: 56px;
 
   & .field-control {
     display: flex;
@@ -24,8 +26,9 @@ const cssFormField = css`
   }
 
   & > .helper-text {
-    margin: 4px 0px 0px 136px;
+    margin: 2px 0px 0px 136px;
     font-size: 12px;
+    line-height: 1.4;
   }
 
   &.error {

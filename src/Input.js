@@ -1,13 +1,14 @@
 /* @flow */
 import styled from 'react-emotion';
-import { theme, defaultFont } from './styles';
+import { theme, defaultText } from './styles';
 
 const Input = styled.input`
-  ${defaultFont};
+  ${defaultText};
 
   padding: 6px 12px;
   height: 34px;
-  color: ${theme.color};
+  color: ${theme.textColor};
+  background-color: ${theme.eleBgColor};
 
   outline: none;
   &:focus,

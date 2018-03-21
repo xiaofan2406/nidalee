@@ -2,11 +2,12 @@
 import { css, keyframes } from 'react-emotion';
 
 export const colors = {
-  blue: '#349ef1',
-  black: '#242729',
-  white: '#ffffff',
-  grey1: '#f5f5f5',
-  grey2: '#e8e8e8',
+  blue1: '#349ef1',
+  blue2: '#008fff',
+  black1: '#131313',
+  black2: '#232323',
+  black3: '#434343',
+  black4: '#4f4f4f',
   red1: '#fd3030',
   orange1: '#faad14',
   green1: '#23d160',
@@ -27,20 +28,27 @@ export const spacing = {
 };
 
 export const theme = {
-  primaryColor: colors.blue,
-  eleBgColor: colors.grey1,
-  borderColor: colors.grey2,
-  fontFamily: '"Open Sans", sans-serif',
+  textColor: '#ffffff',
+  subTextColor: 'rgba(255, 255, 255, 0.6)',
   fontSize: fontSizes.regular,
-  color: 'rgba(0, 0, 0, 0.75)',
+  fontFamily: '"Open Sans", sans-serif',
+
+  bgColor: colors.black1,
+  boxBgColor: colors.black2,
+  eleBgColor: colors.black3,
+
+  borderColor: colors.black4,
+
+  primaryColor: colors.blue2,
   colorDanger: colors.red1,
   colorWarning: colors.orange1,
   colorSuccess: colors.green1,
 };
 
-export const defaultFont = css`
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+export const defaultText = css`
+  font-family: ${theme.fontFamily};
+  font-size: ${theme.fontSize}px;
+  color: ${theme.textColor};
   line-height: 1.4;
 `;
 
