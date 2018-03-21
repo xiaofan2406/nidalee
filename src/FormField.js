@@ -9,8 +9,9 @@ const cssFormField = css`
   ${defaultText};
   margin-bottom: 18px;
   min-height: 56px;
+  color: ${theme.subTextColor};
 
-  & .field-control {
+  & > .field-control {
     display: flex;
     align-items: center;
 
@@ -33,7 +34,7 @@ const cssFormField = css`
 
   &.error {
     color: ${theme.colorDanger};
-    & ${Input} {
+    & > .field-control > ${Input} {
       color: ${theme.colorDanger};
       border-color: ${theme.colorDanger};
     }
@@ -41,7 +42,7 @@ const cssFormField = css`
 
   &.warning {
     color: ${theme.colorWarning};
-    & ${Input} {
+    & > .field-control > ${Input} {
       color: ${theme.colorWarning};
       border-color: ${theme.colorWarning};
     }
@@ -49,7 +50,7 @@ const cssFormField = css`
 
   &.success {
     color: ${theme.colorSuccess};
-    & ${Input} {
+    & > .field-control > ${Input} {
       color: ${theme.colorSuccess};
       border-color: ${theme.colorSuccess};
     }
