@@ -31,7 +31,7 @@ const Spinner = (props: SpinnerProps) => (
 
 Spinner.defaultProps = {
   size: 60,
-  color: theme.primaryColor,
+  color: theme.textColor,
 };
 
 export default Spinner;

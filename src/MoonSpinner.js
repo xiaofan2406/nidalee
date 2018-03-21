@@ -53,7 +53,7 @@ const MoonSpinner = (props: MoonSpinnerProps) => (
 
 MoonSpinner.defaultProps = {
   size: 60,
-  color: theme.primaryColor,
+  color: theme.textColor,
 };
 
 export default MoonSpinner;
