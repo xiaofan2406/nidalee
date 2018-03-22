@@ -42,7 +42,7 @@ class UncontrolledFormDemo extends React.Component<{}, State> {
           >
             <Input
               name="username"
-              inputRef={input => {
+              innerRef={input => {
                 this.username = input;
               }}
             />
@@ -55,7 +55,7 @@ class UncontrolledFormDemo extends React.Component<{}, State> {
           >
             <Input
               name="password"
-              inputRef={input => {
+              innerRef={input => {
                 this.password = input;
               }}
             />
@@ -69,7 +69,7 @@ class UncontrolledFormDemo extends React.Component<{}, State> {
             <Input
               name="credit"
               type="number"
-              inputRef={input => {
+              innerRef={input => {
                 this.credit = input;
               }}
             />
@@ -83,7 +83,7 @@ class UncontrolledFormDemo extends React.Component<{}, State> {
             <Input
               name="role"
               type="number"
-              inputRef={input => {
+              innerRef={input => {
                 this.role = input;
               }}
             />
