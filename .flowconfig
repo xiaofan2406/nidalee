@@ -24,3 +24,4 @@ module.name_mapper='^nidalee' -> '<PROJECT_ROOT>/src'
 module.name_mapper='^styles' -> '<PROJECT_ROOT>/docs/src/styles'
 module.name_mapper='^utils' -> '<PROJECT_ROOT>/docs/src/utils'
 module.name_mapper='^widgets' -> '<PROJECT_ROOT>/docs/src/widgets'
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

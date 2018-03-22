@@ -36,7 +36,7 @@ export const theme = {
   bgColor: colors.black1,
   boxBgColor: colors.black2,
   eleBgColor: colors.black3,
-
+  subBgColor: colors.black4,
   borderColor: colors.black4,
 
   primaryColor: colors.blue2,

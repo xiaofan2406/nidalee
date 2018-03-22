@@ -10,6 +10,7 @@ import {
   MoonSpinner,
   Spinner,
   Input,
+  Popover,
 } from 'nidalee';
 
 const cssHome = css`
@@ -48,6 +49,23 @@ const Home = () => (
     </Box>
 
     <Input />
+
+    <Popover
+      align="left"
+      direction="bottom"
+      label={<span className="whoknows">Click into me</span>}
+    >
+      now you see mesdafasdfasdfas sad fasd fasdf
+    </Popover>
+    <Popover label="Click into me">
+      <Button
+        onClick={() => {
+          console.log('hihihi');
+        }}
+      >
+        now you see me
+      </Button>
+    </Popover>
 
     <Button color="pink">
       Help
