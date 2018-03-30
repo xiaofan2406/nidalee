@@ -28,6 +28,10 @@ const cssEditable = css`
     color: ${theme.subTextColor};
   }
   &.inline {
+    display: inline-block;
+    max-width: 100%;
+  }
+  &.ellipsis {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -185,7 +189,8 @@ class Editable extends React.Component<EditableProps, EditableState> {
     } = this.props;
     const classNames = cx([
       cssEditable,
-      { inline: inline && !isEditing },
+      { inline },
+      { ellipsis: inline && !isEditing },
       { isEditing },
       className,
     ]);
