@@ -1,6 +1,8 @@
 # Nidalee
 
-[![Build Status][build-badge]][build]
+React UI components
+
+[![CI Status][ci-badge]][ci]
 [![Version Status][version-badge]][version]
 [![Coverage Status][coverage-badge]][coverage]
 [![Dependencies Status][dependencies-badge]][dependencies]
@@ -8,16 +10,14 @@
 
 [version-badge]: https://img.shields.io/npm/v/nidalee.svg?style=flat-square
 [version]: https://www.npmjs.com/package/nidalee
-[build-badge]: https://img.shields.io/travis/xiaofan2406/nidalee.svg?style=flat-square
-[build]: https://travis-ci.org/xiaofan2406/nidalee
+[ci-badge]: https://img.shields.io/travis/xiaofan2406/nidalee.svg?style=flat-square
+[ci]: https://travis-ci.org/xiaofan2406/nidalee
 [coverage-badge]: https://img.shields.io/codecov/c/github/xiaofan2406/nidalee.svg?style=flat-square
 [coverage]: https://codecov.io/gh/xiaofan2406/nidalee
 [dependencies-badge]: https://img.shields.io/david/xiaofan2406/nidalee.svg?style=flat-square
 [dependencies]: https://david-dm.org/xiaofan2406/nidalee
 [prettier-badge]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square
 [prettier]: https://github.com/prettier/prettier
-
-React UI components
 
 ## Installing / Getting started
 

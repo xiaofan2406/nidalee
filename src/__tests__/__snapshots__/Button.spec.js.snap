@@ -1,7 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button component matches snapshot 1`] = `
-<button>
-  Button
-</button>
+<ButtonE
+  color="#434343"
+  type="button"
+>
+  <span
+    key=".0"
+  >
+    Hi
+  </span>
+</ButtonE>
 `;
