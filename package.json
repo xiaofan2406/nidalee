@@ -33,7 +33,8 @@
     "predocs": "rm -rf ./docs/dist",
     "docs": "NODE_ENV=production webpack --config ./config/webpack.prod.js",
     "start": "node ./config/serveDocs.js",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "postpublish": "git push --follow-tags"
   },
   "lint-staged": {
     "*.{js,mjs,json,css,md}": ["prettier --write", "git add"]
