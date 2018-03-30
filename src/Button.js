@@ -28,8 +28,6 @@ const ButtonE = styled.button`
 
   border: 1px solid transparent;
   border-radius: 2px;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
 
   & > *,
   & > ${I} {
@@ -44,7 +42,12 @@ const ButtonE = styled.button`
   }
 
   color: ${theme.textColor};
-  background-color: ${({ color }) => color};
+  background-color: ${({ color }) =>
+    color !== theme.eleBgColor ? color : 'transparent'};
+  box-shadow: ${({ color }) =>
+    color !== theme.eleBgColor
+      ? '0px 1px 3px 0px rgba(0, 0, 0, 0.5), 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 0px 0px rgba(0, 0, 0, 0.1)'
+      : 'unset'};
 
   background-position: center;
   transition: background 0.6s;
