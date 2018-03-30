@@ -44,6 +44,7 @@
   "jest": {
     "preset": "<rootDir>/config/jest/jest.config.json"
   },
+  "sideEffects": false,
   "browserslist": [
     "Chrome >= 60",
     "Safari >= 10.1",
