@@ -1,7 +1,13 @@
 /* @flow */
 export const APP_TITLE = 'Nidalee';
 
-type NavLinkName = 'HOME' | 'ABOUT' | 'CONTACT' | 'FORM' | 'EDITABLE';
+type NavLinkName =
+  | 'HOME'
+  | 'ABOUT'
+  | 'CONTACT'
+  | 'FORM'
+  | 'EDITABLE'
+  | 'POPOVER';
 type NavLinkConfig = {
   to: string,
   name: string,
@@ -22,11 +28,15 @@ export const NAV_LINKS: { [key: NavLinkName]: NavLinkConfig } = {
     name: 'Contact',
   },
   FORM: {
-    to: 'form',
+    to: '/form',
     name: 'Form',
   },
   EDITABLE: {
-    to: 'editable',
+    to: '/editable',
     name: 'Editable',
+  },
+  POPOVER: {
+    to: '/popover',
+    name: 'Popover',
   },
 };

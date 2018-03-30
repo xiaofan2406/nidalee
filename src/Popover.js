@@ -34,32 +34,29 @@ const cssPopover = css`
   }
 `;
 
-type PopoverProps = {|
-  label: string | React.Node,
-  children: React.Node,
-  align: 'left' | 'right',
-  direction: 'top' | 'bottom',
-  zIndex: number,
-  className?: string,
-|};
-
-type PopoverState = {|
-  isVisible: boolean,
-|};
-
 class Popover extends React.Component<PopoverProps, PopoverState> {
   static defaultProps = {
+    trigger: 'onClick',
     align: 'right',
     direction: 'top',
     zIndex: 2,
   };
 
+  static getDerivedStateFromProps(nextProps: PopoverProps) {
+    if (typeof nextProps.open === 'boolean') {
+      return {
+        isVisible: nextProps.open,
+      };
+    }
+    return null;
+  }
+
   state = {
-    isVisible: false,
+    isVisible: this.props.open || false,
   };
 
   componentDidUpdate() {
-    if (this.state.isVisible) {
+    if (this.state.isVisible && !this.isControlled) {
       document.addEventListener('click', this.handleOutsideClick);
     } else {
       document.removeEventListener('click', this.handleOutsideClick);
@@ -68,6 +65,10 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
 
   componentWillUnmount() {
     document.removeEventListener('click', this.handleOutsideClick);
+  }
+
+  get isControlled(): boolean {
+    return typeof this.props.open === 'boolean';
   }
 
   get styles(): {} {
@@ -99,6 +100,7 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
   handleOutsideClick = (event: MouseEvent) => {
     if (
       this.label &&
+      !this.isControlled &&
       event.currentTarget instanceof Node &&
       !this.label.contains(event.currentTarget)
     ) {
@@ -111,7 +113,7 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
     this.label = ref;
   };
 
-  handleClick = () => {
+  handleOpen = () => {
     if (this.label && this.state.isVisible) {
       this.label.blur();
       this.hide();
@@ -121,23 +123,20 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
   };
 
   renderLabel = () => {
-    const { label } = this.props;
+    const { label, trigger } = this.props;
 
     return typeof label === 'string' ? (
-      // $FlowFixMe
       <Button
-        onClick={this.handleClick}
+        onClick={this.handleOpen}
         innerRef={this.labelRef}
         className="label"
       >
         {label}
       </Button>
     ) : (
-      // $FlowFixMe
       React.cloneElement(label, {
-        // $FlowFixMe
         className: cx([label.props.className, 'label']),
-        onClick: this.handleClick,
+        [trigger]: !this.isControlled ? this.handleOpen : () => {},
         ref: this.labelRef,
       })
     );

@@ -2,7 +2,7 @@
 /* @flow */
 import React from 'react';
 import { css, cx } from 'react-emotion';
-import { isEnter, isEsc } from './keyboard';
+import { isEnter, isEsc } from './helpers';
 import { theme, defaultText } from './styles';
 
 const cssEditable = css`

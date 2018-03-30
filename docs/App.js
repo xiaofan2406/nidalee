@@ -27,6 +27,13 @@ const App = () => (
               import(/* webpackChunkName: "EditableDemo" */ './components/EditableDemo'),
           })}
         />
+        <Route
+          path="/popover"
+          component={asyncLoad({
+            importer: () =>
+              import(/* webpackChunkName: "PopoverDemo" */ './components/PopoverDemo'),
+          })}
+        />
       </Switch>
       <Navigation />
     </Layout>

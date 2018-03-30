@@ -17,6 +17,24 @@ export type EditableProps = {
   onDoubleClick?: (event: MouseEvent) => void,
 };
 
+export type PopoverTrigger = 'onClick' | 'onDoubleClick' | 'onMouseOver';
+export type PopoverProps = {|
+  label: string | React.Node,
+  children: React.Node,
+
+  trigger: PopoverTrigger,
+  align: 'left' | 'right',
+  direction: 'top' | 'bottom',
+  zIndex: number,
+
+  open?: boolean,
+  className?: string,
+|};
+
+export type PopoverState = {|
+  isVisible: boolean,
+|};
+
 export type EditableState = {
   isEditing: boolean,
 };
@@ -33,6 +51,18 @@ declare module 'nidalee' {
       autoTrim: boolean,
       blurAction: EditableAction,
       escAction: EditableAction,
+    };
+  }
+
+  declare export class Popover extends React$Component<
+    PopoverProps,
+    PopoverState
+  > {
+    static defaultProps: {
+      trigger: PopoverTrigger,
+      align: string,
+      direction: string,
+      zIndex: boolean,
     };
   }
 }

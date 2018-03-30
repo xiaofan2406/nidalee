@@ -2,15 +2,7 @@
 import React from 'react';
 import { css } from 'react-emotion';
 import { spacing } from 'styles';
-import {
-  Box,
-  Button,
-  Icon,
-  MoonSpinner,
-  Spinner,
-  Input,
-  Popover,
-} from 'nidalee';
+import { Box, Button, Icon, MoonSpinner, Spinner, Input } from 'nidalee';
 
 const cssHome = css`
   & > .title {
@@ -48,23 +40,6 @@ const Home = () => (
     </Box>
 
     <Input />
-
-    <Popover
-      align="left"
-      direction="bottom"
-      label={<span className="whoknows">Click into me</span>}
-    >
-      now you see mesdafasdfasdfas sad fasd fasdf
-    </Popover>
-    <Popover label="Click into me">
-      <Button
-        onClick={() => {
-          console.log('hihihi');
-        }}
-      >
-        now you see me
-      </Button>
-    </Popover>
 
     <Button color="pink">
       Help
