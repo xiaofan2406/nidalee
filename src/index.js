@@ -1,4 +1,5 @@
 /* @flow */
+import Dialog from './Dialog';
 import Box from './Box';
 import Button from './Button';
 import Editable from './Editable';
@@ -10,6 +11,7 @@ import Popover from './Popover';
 import Spinner from './Spinner';
 
 export {
+  Dialog,
   Box,
   Button,
   Editable,
@@ -22,6 +24,7 @@ export {
 };
 
 export default {
+  Dialog,
   Box,
   Button,
   Editable,

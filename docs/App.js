@@ -14,13 +14,6 @@ const App = () => (
         <Route path="/" exact component={Home} />
         <Route path="/form" component={Form} />
         <Route
-          path="/about"
-          component={asyncLoad({
-            importer: () =>
-              import(/* webpackChunkName: "About" */ './components/About'),
-          })}
-        />
-        <Route
           path="/editable"
           component={asyncLoad({
             importer: () =>
@@ -32,6 +25,20 @@ const App = () => (
           component={asyncLoad({
             importer: () =>
               import(/* webpackChunkName: "PopoverDemo" */ './components/PopoverDemo'),
+          })}
+        />
+        <Route
+          path="/dialog"
+          component={asyncLoad({
+            importer: () =>
+              import(/* webpackChunkName: "DialogDemo" */ './components/DialogDemo'),
+          })}
+        />
+        <Route
+          path="/about"
+          component={asyncLoad({
+            importer: () =>
+              import(/* webpackChunkName: "About" */ './components/About'),
           })}
         />
       </Switch>

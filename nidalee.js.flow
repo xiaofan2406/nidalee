@@ -1,6 +1,16 @@
 /* @flow */
-export type EditableAction = 'save' | 'cancel';
+export type Opener = string | React.Node;
+export type DialogProps = {
+  opener: Opener,
+  children: React.Node,
 
+  open?: boolean,
+};
+export type DialogState = {
+  isVisible: boolean,
+};
+
+export type EditableAction = 'save' | 'cancel';
 export type EditableProps = {
   value: string,
   onSave: (content: string) => void,
@@ -16,30 +26,37 @@ export type EditableProps = {
   onBlur?: (event: FocusEvent) => void,
   onDoubleClick?: (event: MouseEvent) => void,
 };
-
-export type PopoverTrigger = 'onClick' | 'onDoubleClick' | 'onMouseOver';
-export type PopoverProps = {|
-  label: string | React.Node,
-  children: React.Node,
-
-  trigger: PopoverTrigger,
-  align: 'left' | 'right',
-  direction: 'top' | 'bottom',
-  zIndex: number,
-
-  open?: boolean,
-  className?: string,
-|};
-
-export type PopoverState = {|
-  isVisible: boolean,
-|};
-
 export type EditableState = {
   isEditing: boolean,
 };
 
+export type PopoverTrigger = 'onClick' | 'onDoubleClick';
+export type PopoverAlign = 'left' | 'right';
+export type PopoverDirection = 'top' | 'bottom';
+export type PopoverProps = {
+  opener: Opener,
+  children: React.Node,
+
+  trigger: PopoverTrigger,
+  align: PopoverAlign,
+  direction: PopoverDirection,
+  zIndex: number,
+
+  open?: boolean,
+  className?: string,
+};
+export type PopoverState = {|
+  isVisible: boolean,
+|};
+
 declare module 'nidalee' {
+  declare export class Dialog extends React$Component<
+    DialogProps,
+    DialogState
+  > {
+    static defaultProps: {};
+  }
+
   declare export class Editable extends React$Component<
     EditableProps,
     EditableState
@@ -60,9 +77,9 @@ declare module 'nidalee' {
   > {
     static defaultProps: {
       trigger: PopoverTrigger,
-      align: string,
-      direction: string,
-      zIndex: boolean,
+      align: PopoverAlign,
+      direction: PopoverDirection,
+      zIndex: number,
     };
   }
 }

@@ -17,7 +17,7 @@ const cssPopover = css`
     padding: 8px;
   }
 
-  & > .label {
+  & > .opener {
     margin: 0px;
   }
 
@@ -73,23 +73,15 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
 
   get styles(): {} {
     const { direction, zIndex } = this.props;
-    if (!this.label) return {};
+    if (!this.opener) return {};
     return direction === 'bottom'
-      ? { top: this.label.offsetHeight, zIndex }
-      : { bottom: this.label.offsetHeight, zIndex };
+      ? { top: this.opener.offsetHeight, zIndex }
+      : { bottom: this.opener.offsetHeight, zIndex };
   }
 
-  label: ?HTMLElement;
+  opener: ?HTMLElement;
 
-  hide = () => {
-    if (this.state.isVisible) {
-      this.setState({
-        isVisible: false,
-      });
-    }
-  };
-
-  show = () => {
+  open = () => {
     if (!this.state.isVisible) {
       this.setState({
         isVisible: true,
@@ -97,46 +89,53 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
     }
   };
 
-  handleOutsideClick = (event: MouseEvent) => {
-    if (
-      this.label &&
-      !this.isControlled &&
-      event.currentTarget instanceof Node &&
-      !this.label.contains(event.currentTarget)
-    ) {
-      console.log('outside');
-      this.hide();
+  close = () => {
+    if (this.state.isVisible) {
+      this.setState({
+        isVisible: false,
+      });
     }
   };
 
-  labelRef = (ref: HTMLElement) => {
-    this.label = ref;
+  handleOutsideClick = (event: MouseEvent) => {
+    if (
+      this.opener &&
+      !this.isControlled &&
+      event.currentTarget instanceof Node &&
+      !this.opener.contains(event.currentTarget)
+    ) {
+      this.close();
+    }
+  };
+
+  openerRef = (ref: HTMLElement) => {
+    this.opener = ref;
   };
 
   handleOpen = () => {
-    if (this.label && this.state.isVisible) {
-      this.label.blur();
-      this.hide();
+    if (this.opener && this.state.isVisible) {
+      this.opener.blur();
+      this.close();
     } else {
-      this.show();
+      this.open();
     }
   };
 
-  renderLabel = () => {
-    const { label, trigger } = this.props;
+  renderOpener = () => {
+    const { opener, trigger } = this.props;
 
     const triggerProp = {
       [trigger]: !this.isControlled ? this.handleOpen : () => {},
     };
 
-    return typeof label === 'string' ? (
-      <Button innerRef={this.labelRef} className="label" {...triggerProp}>
-        {label}
+    return typeof opener === 'string' ? (
+      <Button innerRef={this.openerRef} className="opener" {...triggerProp}>
+        {opener}
       </Button>
     ) : (
-      React.cloneElement(label, {
-        className: cx([label.props.className, 'label']),
-        ref: this.labelRef,
+      React.cloneElement(opener, {
+        className: cx([opener.props.className, 'opener']),
+        ref: this.openerRef,
         ...triggerProp,
       })
     );
@@ -150,7 +149,7 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
 
     return (
       <div className={classNames}>
-        {this.renderLabel()}
+        {this.renderOpener()}
         {isVisible ? (
           <div className={`expand ${align}`} style={this.styles}>
             {children}

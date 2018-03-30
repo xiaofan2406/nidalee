@@ -7,7 +7,8 @@ type NavLinkName =
   | 'CONTACT'
   | 'FORM'
   | 'EDITABLE'
-  | 'POPOVER';
+  | 'POPOVER'
+  | 'DIALOG';
 type NavLinkConfig = {
   to: string,
   name: string,
@@ -38,5 +39,9 @@ export const NAV_LINKS: { [key: NavLinkName]: NavLinkConfig } = {
   POPOVER: {
     to: '/popover',
     name: 'Popover',
+  },
+  DIALOG: {
+    to: '/dialog',
+    name: 'Dialog',
   },
 };
