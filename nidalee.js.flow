@@ -1,16 +1,17 @@
 /* @flow */
-
 export type EditableAction = 'save' | 'cancel';
 
 export type EditableProps = {
   value: string,
+  onSave: (content: string) => void,
+
   placeholder: string,
   className: string,
   inline: boolean,
   autoTrim: boolean,
   blurAction: EditableAction,
   escAction: EditableAction,
-  onSave: (content: string) => void,
+
   onKeyDown?: (event: KeyboardEvent) => void,
   onBlur?: (event: FocusEvent) => void,
   onDoubleClick?: (event: MouseEvent) => void,
@@ -21,6 +22,17 @@ export type EditableState = {
 };
 
 declare module 'nidalee' {
-  // prettier-ignore
-  declare export var Editable: React$ComponentType<EditableProps, EditableState>;
+  declare export class Editable extends React$Component<
+    EditableProps,
+    EditableState
+  > {
+    static defaultProps: {
+      placeholder: string,
+      className: string,
+      inline: boolean,
+      autoTrim: boolean,
+      blurAction: EditableAction,
+      escAction: EditableAction,
+    };
+  }
 }

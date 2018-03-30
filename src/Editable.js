@@ -39,7 +39,6 @@ const cssEditable = css`
 
 class Editable extends React.Component<EditableProps, EditableState> {
   static defaultProps = {
-    value: '',
     placeholder: '',
     className: '',
     inline: false,
@@ -54,19 +53,17 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   componentDidMount() {
     this.validateProps();
+    this.syncInnerHTML();
     if (this.state.isEditing) {
       this.putCursorAtTheEnd();
     }
   }
 
   componentDidUpdate() {
+    this.syncInnerHTML();
     if (this.state.isEditing) {
       this.putCursorAtTheEnd();
     }
-  }
-
-  get displayValue(): string {
-    return this.props.value.replace(/(?:\r\n|\r|\n)/g, '<br />');
   }
 
   // $FlowFixMe
@@ -88,6 +85,13 @@ class Editable extends React.Component<EditableProps, EditableState> {
         'At least one of [`escAction`, `blurAction`] should be `save`.'
       );
     }
+  };
+
+  syncInnerHTML = () => {
+    this.container.current.innerHTML = this.props.value.replace(
+      /(?:\r\n|\r|\n)/g,
+      '<br />'
+    );
   };
 
   putCursorAtTheEnd = () => {
@@ -169,10 +173,11 @@ class Editable extends React.Component<EditableProps, EditableState> {
   render() {
     const { isEditing } = this.state;
     const {
-      inline,
-      className,
       value,
       onSave,
+      placeholder,
+      className,
+      inline,
       autoTrim,
       blurAction,
       escAction,
@@ -184,11 +189,13 @@ class Editable extends React.Component<EditableProps, EditableState> {
       { isEditing },
       className,
     ]);
+    console.log('render with', value);
     return (
       <div
         {...rest}
         tabIndex={0}
         role="textbox"
+        placeholder={placeholder}
         className={classNames}
         contentEditable={isEditing}
         onDoubleClick={this.handleDoubleClick}
@@ -196,7 +203,6 @@ class Editable extends React.Component<EditableProps, EditableState> {
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
         ref={this.container}
-        dangerouslySetInnerHTML={{ __html: this.displayValue }}
       />
     );
   }

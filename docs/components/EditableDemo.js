@@ -47,7 +47,11 @@ class EditableDemo extends React.Component<
           }}
         />
         <h2>With placeholder</h2>
-        <Editable placeholder="Please leave your comment" onSave={() => {}} />
+        <Editable
+          value=""
+          placeholder="Please leave your comment"
+          onSave={() => {}}
+        />
         <div>some toehr jibsdfljk loreansd isadf </div>
       </Box>
     );
