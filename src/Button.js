@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styled from 'react-emotion';
 import Color from 'color';
-import { theme, defaultText } from './styles';
+import { theme } from './styles';
 import { I } from './Icon';
 import Spinner from './Spinner';
 
@@ -21,9 +21,12 @@ const ButtonE = styled.button`
         .string()};
   }
 
-  ${defaultText};
-  min-height: 36px;
-  padding: 8px 12px;
+  font-family: ${theme.fontFamily};
+  font-size: ${({ size }) => size}px;
+  line-height: 1.2em;
+
+  height: ${({ height }) => height}px;
+  padding: 0.6em 0.8em;
   margin: 0px 8px 0px 0px;
 
   border: 1px solid transparent;
@@ -46,7 +49,7 @@ const ButtonE = styled.button`
     color !== theme.eleBgColor ? color : 'transparent'};
   box-shadow: ${({ color }) =>
     color !== theme.eleBgColor
-      ? '0px 1px 3px 0px rgba(0, 0, 0, 0.5), 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 0px 0px rgba(0, 0, 0, 0.1)'
+      ? '0px 1px 3px 0px rgba(0, 0, 0, 0.4), 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 0px 0px rgba(0, 0, 0, 0.1)'
       : 'unset'};
 
   background-position: center;
@@ -74,22 +77,25 @@ const ButtonE = styled.button`
   }
 `;
 
-type ButtonProp = {
-  children: React.Node,
-  type: string,
-  primary: boolean,
-  color: string,
-  showSpinner: boolean,
-};
-
-// TODO button size
-class Button extends React.Component<ButtonProp> {
-  static defaultProps = {
-    type: 'button',
+class Button extends React.Component<ButtonProps> {
+  static defaultProps: ButtonDefaultProps = {
     primary: false,
+    size: 'regular',
     color: theme.eleBgColor,
     showSpinner: false,
   };
+
+  get size(): number {
+    return ({ small: 12, regular: 14, large: 18 }: {
+      [key: Size]: number,
+    })[this.props.size];
+  }
+
+  get height(): number {
+    return ({ small: 30, regular: 36, large: 46 }: {
+      [key: Size]: number,
+    })[this.props.size];
+  }
 
   get color(): string {
     const { primary, color } = this.props;
@@ -100,23 +106,29 @@ class Button extends React.Component<ButtonProp> {
     const { showSpinner } = this.props;
 
     return showSpinner ? (
-      <Spinner size={16} color={theme.textColor} className="spinner" />
+      <Spinner
+        size={this.size + 2}
+        color={theme.textColor}
+        className="spinner"
+      />
     ) : null;
   };
 
-  renderChildren = () =>
-    React.Children.map(
-      this.props.children,
-      child => (typeof child === 'string' ? <span>{child}</span> : child)
-    );
-
   render() {
-    const { primary, color, showSpinner, ...rest } = this.props;
+    const { children, primary, color, showSpinner, ...rest } = this.props;
 
     return (
-      <ButtonE color={this.color} {...rest}>
+      <ButtonE
+        {...rest}
+        color={this.color}
+        size={this.size}
+        height={this.height}
+      >
         {this.renderSpinner()}
-        {this.renderChildren()}
+        {React.Children.map(
+          children,
+          child => (typeof child === 'string' ? <span>{child}</span> : child)
+        )}
       </ButtonE>
     );
   }

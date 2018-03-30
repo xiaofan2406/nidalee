@@ -50,7 +50,7 @@ export const defaultText = css`
   font-family: ${theme.fontFamily};
   font-size: ${theme.fontSize}px;
   color: ${theme.textColor};
-  line-height: 1.4;
+  line-height: 1.4em;
 `;
 
 export const outline = css`

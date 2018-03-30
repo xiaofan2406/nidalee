@@ -1,8 +1,27 @@
 /* @flow */
+// all HTML button attributes are supported
+export type Size = 'small' | 'regular' | 'large';
+export type ButtonProps = {
+  +children: React$Node,
+
+  +primary: boolean,
+  +size: Size,
+  +color: string,
+  +showSpinner: boolean,
+
+  +innerRef?: (ref: ?HTMLButtonElement) => void,
+};
+export type ButtonDefaultProps = {|
+  +primary: boolean,
+  +size: Size,
+  +color: string,
+  +showSpinner: boolean,
+|};
+
 export type DialogPosition = 'top' | 'middle' | 'bottom';
 export type DialogProps = {
-  +opener: string | React.Node,
-  +children: React.Node,
+  +opener: string | React$Node,
+  +children: React$Node,
 
   +showOverlay: boolean,
   +position: DialogPosition,
@@ -37,8 +56,8 @@ export type PopoverTrigger = 'onClick' | 'onDoubleClick';
 export type PopoverAlign = 'left' | 'right';
 export type PopoverDirection = 'top' | 'bottom';
 export type PopoverProps = {
-  +opener: string | React.Node,
-  +children: React.Node,
+  +opener: string | React$Node,
+  +children: React$Node,
 
   +trigger: PopoverTrigger,
   +align: PopoverAlign,
@@ -53,11 +72,15 @@ export type PopoverState = {|
 |};
 
 export type PortalProps = {|
-  +children: React.Node,
+  +children: React$Node,
   +className?: string,
 |};
 
 declare module 'nidalee' {
+  declare export class Button extends React$Component<ButtonProps> {
+    static defaultProps: ButtonDefaultProps;
+  }
+
   declare export class Dialog extends React$Component<
     DialogProps,
     DialogState

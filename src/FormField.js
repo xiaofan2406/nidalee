@@ -29,7 +29,7 @@ const cssFormField = css`
   & > .helper-text {
     margin: 2px 0px 0px 136px;
     font-size: 12px;
-    line-height: 1.4;
+    line-height: 1.4em;
   }
 
   &.error {

@@ -11,7 +11,7 @@ const cssHome = css`
     margin-bottom: ${spacing.breath}px;
   }
 `;
-
+let camera;
 const Home = () => (
   <div className={cssHome}>
     <div className="title">Hello world!</div>
@@ -21,21 +21,34 @@ const Home = () => (
         Sign Up
       </Button>
 
-      <Button primary>
-        <Icon name="camera" type="solid" />
-      </Button>
       <Button>
         <Icon name="camera" type="solid" />Authenticate
       </Button>
 
       <Button
         primary
-        showSpinner
-        onClick={() => {
-          console.log('screenshot taken!');
+        innerRef={ref => {
+          camera = ref;
         }}
       >
-        <Icon name="camera" type="solid" />
+        <Icon name="camera" type="solid" size={18} />
+      </Button>
+      <Button primary size="small">
+        Small
+      </Button>
+      <Button
+        primary
+        showSpinner
+        size="large"
+        onClick={() => {
+          console.log('screenshot taken!');
+          console.log(camera);
+        }}
+      >
+        <Icon name="camera" type="solid" size={18} />
+      </Button>
+      <Button primary size="large">
+        Large
       </Button>
     </Box>
 
