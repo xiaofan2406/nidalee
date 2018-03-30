@@ -19,11 +19,15 @@ class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
         <Popover
           align="left"
           direction="bottom"
+          trigger="onMouseOver"
           label={<span className="whoknows">Click into me</span>}
         >
           now you see mesdafasdfasdfas sad fasd fasdf
         </Popover>
-        <Popover label="Click into me">
+        <Popover
+          label="I am controlled by others"
+          open={this.state.controlledOpen}
+        >
           <Button
             onClick={() => {
               console.log('clicked');

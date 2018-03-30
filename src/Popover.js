@@ -125,19 +125,19 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
   renderLabel = () => {
     const { label, trigger } = this.props;
 
+    const triggerProp = {
+      [trigger]: !this.isControlled ? this.handleOpen : () => {},
+    };
+
     return typeof label === 'string' ? (
-      <Button
-        onClick={this.handleOpen}
-        innerRef={this.labelRef}
-        className="label"
-      >
+      <Button innerRef={this.labelRef} className="label" {...triggerProp}>
         {label}
       </Button>
     ) : (
       React.cloneElement(label, {
         className: cx([label.props.className, 'label']),
-        [trigger]: !this.isControlled ? this.handleOpen : () => {},
         ref: this.labelRef,
+        ...triggerProp,
       })
     );
   };
