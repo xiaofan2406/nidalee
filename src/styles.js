@@ -20,17 +20,9 @@ export const fontSizes = {
   large: 18,
 };
 
-export const spacing = {
-  unit: 6,
-  internal: 8,
-  external: 12,
-  breath: 24,
-  break: 36,
-};
-
 export const theme = {
   textColor: '#ffffff',
-  subTextColor: 'rgba(255, 255, 255, 0.6)',
+  subTextColor: 'rgba(255, 255, 255, 0.72)',
   fontSize: fontSizes.regular,
   fontFamily: '"Open Sans", sans-serif',
 

@@ -6,7 +6,7 @@ import { theme } from './styles';
 import { I } from './Icon';
 import Spinner from './Spinner';
 
-const ButtonE = styled.button`
+const EButton = styled.button`
   display: inline-flex;
   align-items: center;
   vertical-align: top;
@@ -118,7 +118,7 @@ class Button extends React.Component<ButtonProps> {
     const { children, primary, color, showSpinner, ...rest } = this.props;
 
     return (
-      <ButtonE
+      <EButton
         {...rest}
         color={this.color}
         size={this.size}
@@ -129,7 +129,7 @@ class Button extends React.Component<ButtonProps> {
           children,
           child => (typeof child === 'string' ? <span>{child}</span> : child)
         )}
-      </ButtonE>
+      </EButton>
     );
   }
 }
