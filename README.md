@@ -19,6 +19,11 @@ React UI components
 [prettier-badge]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square
 [prettier]: https://github.com/prettier/prettier
 
+## TODO
+
+* [ ] wanring solution
+* [ ] flow defs
+
 ## Installing / Getting started
 
 A quick introduction of the minimal setup you need to get a hello world up &

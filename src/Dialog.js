@@ -1,8 +1,8 @@
 /* @flow */
 import * as React from 'react';
 import { cx } from 'react-emotion';
-import DialogOverlay from './DialogOverlay';
-import Button from '../Button';
+import Portal from './Portal';
+import Button from './Button';
 
 class Dialog extends React.Component<DialogProps, DialogState> {
   static getDerivedStateFromProps(nextProps: PopoverProps) {
@@ -62,8 +62,6 @@ class Dialog extends React.Component<DialogProps, DialogState> {
   renderOpener = () => {
     const { opener } = this.props;
 
-    console.log('2');
-
     if (!this.isControlled) {
       return typeof opener === 'string' ? (
         <Button onClick={this.open}>{opener}</Button>
@@ -74,7 +72,6 @@ class Dialog extends React.Component<DialogProps, DialogState> {
         })
       );
     }
-    console.log('3');
 
     if (typeof opener === 'string') {
       return console.warn(
@@ -82,7 +79,6 @@ class Dialog extends React.Component<DialogProps, DialogState> {
         'Uncontolled, you need to render a node that does the opening'
       );
     }
-    console.log('4');
 
     return React.cloneElement(opener, {
       className: cx([opener.props.className, 'opener']),
@@ -96,9 +92,9 @@ class Dialog extends React.Component<DialogProps, DialogState> {
         {this.renderOpener()}
 
         {this.state.isVisible ? (
-          <DialogOverlay>
+          <Portal>
             <div ref={this.container}>{children}</div>
-          </DialogOverlay>
+          </Portal>
         ) : null}
       </>
     );

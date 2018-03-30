@@ -1,31 +1,24 @@
 /* @flow */
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { css } from 'react-emotion';
 
-type DialogOverlayProps = {
-  children: React.Node,
-};
+class Portal extends React.Component<PortalProps> {
+  static defaultProps = {
+    className: '',
+  };
 
-const cssDialogOverlay = css`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-class DialogOverlay extends React.Component<DialogOverlayProps> {
-  constructor(props: DialogOverlayProps) {
+  constructor(props: PortalProps) {
     super(props);
 
     this.overlay = document.createElement('div');
-    this.overlay.className = cssDialogOverlay;
+    this.overlay.className = this.props.className;
   }
 
   componentDidMount() {
     if (document.body) {
       document.body.appendChild(this.overlay);
     } else {
-      console.warn('DialogOverlay', 'NO BODY');
+      console.warn('Portal', 'NO BODY');
     }
   }
 
@@ -33,7 +26,7 @@ class DialogOverlay extends React.Component<DialogOverlayProps> {
     if (document.body) {
       document.body.removeChild(this.overlay);
     } else {
-      console.warn('DialogOverlay', 'NO BODY');
+      console.warn('Portal', 'NO BODY');
     }
   }
 
@@ -44,4 +37,4 @@ class DialogOverlay extends React.Component<DialogOverlayProps> {
   }
 }
 
-export default DialogOverlay;
+export default Portal;
