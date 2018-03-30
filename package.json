@@ -32,7 +32,8 @@
       "NODE_ENV=development webpack-dev-server --config ./config/webpack.dev.js",
     "predocs": "rm -rf ./docs/dist",
     "docs": "NODE_ENV=production webpack --config ./config/webpack.prod.js",
-    "start": "node ./config/serveDocs.js"
+    "start": "node ./config/serveDocs.js",
+    "prepublish": "yarn build"
   },
   "lint-staged": {
     "*.{js,mjs,json,css,md}": ["prettier --write", "git add"]
