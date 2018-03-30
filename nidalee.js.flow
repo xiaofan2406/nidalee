@@ -1,49 +1,48 @@
 /* @flow */
-export type Opener = string | React.Node;
 export type DialogProps = {
-  opener: Opener,
-  children: React.Node,
+  +opener: string | React.Node,
+  +children: React.Node,
 
-  open?: boolean,
+  +open?: boolean,
 };
-export type DialogState = {
+export type DialogState = {|
   isVisible: boolean,
-};
+|};
 
 export type EditableAction = 'save' | 'cancel';
 export type EditableProps = {
-  value: string,
-  onSave: (content: string) => void,
+  +value: string,
+  +onSave: (content: string) => void,
 
-  placeholder: string,
-  className: string,
-  inline: boolean,
-  autoTrim: boolean,
-  blurAction: EditableAction,
-  escAction: EditableAction,
+  +placeholder: string,
+  +className: string,
+  +inline: boolean,
+  +autoTrim: boolean,
+  +blurAction: EditableAction,
+  +escAction: EditableAction,
 
-  onKeyDown?: (event: KeyboardEvent) => void,
-  onBlur?: (event: FocusEvent) => void,
-  onDoubleClick?: (event: MouseEvent) => void,
+  +onKeyDown?: (event: KeyboardEvent) => void,
+  +onBlur?: (event: FocusEvent) => void,
+  +onDoubleClick?: (event: MouseEvent) => void,
 };
-export type EditableState = {
+export type EditableState = {|
   isEditing: boolean,
-};
+|};
 
 export type PopoverTrigger = 'onClick' | 'onDoubleClick';
 export type PopoverAlign = 'left' | 'right';
 export type PopoverDirection = 'top' | 'bottom';
 export type PopoverProps = {
-  opener: Opener,
-  children: React.Node,
+  +opener: string | React.Node,
+  +children: React.Node,
 
-  trigger: PopoverTrigger,
-  align: PopoverAlign,
-  direction: PopoverDirection,
-  zIndex: number,
+  +trigger: PopoverTrigger,
+  +align: PopoverAlign,
+  +direction: PopoverDirection,
+  +zIndex: number,
 
-  open?: boolean,
-  className?: string,
+  +open?: boolean,
+  +className?: string,
 };
 export type PopoverState = {|
   isVisible: boolean,
@@ -61,25 +60,25 @@ declare module 'nidalee' {
     EditableProps,
     EditableState
   > {
-    static defaultProps: {
-      placeholder: string,
-      className: string,
-      inline: boolean,
-      autoTrim: boolean,
-      blurAction: EditableAction,
-      escAction: EditableAction,
-    };
+    static defaultProps: {|
+      +placeholder: string,
+      +className: string,
+      +inline: boolean,
+      +autoTrim: boolean,
+      +blurAction: EditableAction,
+      +escAction: EditableAction,
+    |};
   }
 
   declare export class Popover extends React$Component<
     PopoverProps,
     PopoverState
   > {
-    static defaultProps: {
-      trigger: PopoverTrigger,
-      align: PopoverAlign,
-      direction: PopoverDirection,
-      zIndex: number,
-    };
+    static defaultProps: {|
+      +trigger: PopoverTrigger,
+      +align: PopoverAlign,
+      +direction: PopoverDirection,
+      +zIndex: number,
+    |};
   }
 }

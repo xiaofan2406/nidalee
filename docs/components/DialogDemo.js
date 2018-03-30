@@ -27,9 +27,9 @@ class DialogDemo extends React.Component<DialogDemoProps, DialogDemoState> {
   };
 
   render() {
-    // <Dialog opener="Open">Hi TRhere</Dialog>
     return (
       <div>
+        <Dialog opener="Open">Hi TRhere</Dialog>
         <h2>Controlled Demo</h2>
         <Dialog
           open={this.state.controlledOpen}
