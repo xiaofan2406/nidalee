@@ -30,7 +30,6 @@ class EditableDemo extends React.Component<
         <h2>Multi line editable</h2>
         <Editable
           value={multiLineValue}
-          blurAction="cancel"
           onSave={content => {
             this.setState({
               multiLineValue: content,
@@ -46,7 +45,6 @@ class EditableDemo extends React.Component<
               inlineValue: content,
             });
           }}
-          onBlur={() => {}}
         />
         <h2>With placeholder</h2>
         <Editable placeholder="Please leave your comment" onSave={() => {}} />

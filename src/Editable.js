@@ -99,7 +99,6 @@ class Editable extends React.Component<EditableProps, EditableState> {
         'Most of the `div` attributes are supported. Except [`onBlur`, `onKeyDown`, `onDoubleClick`]'
       );
     }
-
     if (
       this.props.escAction === 'cancel' &&
       this.props.blurAction === 'cancel'
@@ -112,16 +111,13 @@ class Editable extends React.Component<EditableProps, EditableState> {
   };
 
   putCursorAtTheEnd = () => {
-    if (this.container) {
-      this.container.focus();
-      const range = document.createRange();
-      // $FlowFixMe flow pls
-      range.selectNodeContents(this.container);
-      range.collapse(false);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }
+    this.container.current.focus();
+    const range = document.createRange();
+    range.selectNodeContents(this.container.current);
+    range.collapse(false);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
   };
 
   startEditing = () => {
@@ -133,8 +129,8 @@ class Editable extends React.Component<EditableProps, EditableState> {
   finishEditing = () => {
     const { autoTrim, onSave } = this.props;
     const result = autoTrim
-      ? this.container.innerText.replace(/(?:\r\n|\r|\n)/g, ' ').trim()
-      : this.container.innerText || '';
+      ? this.container.current.innerText.replace(/(?:\r\n|\r|\n)/g, ' ').trim()
+      : this.container.current.innerText || '';
     onSave(result);
     this.setState({
       isEditing: false,
@@ -142,16 +138,18 @@ class Editable extends React.Component<EditableProps, EditableState> {
   };
 
   cancelEditing = () => {
-    if (this.container) {
-      const { value } = this.props;
-      this.container.innerText = value;
-    }
+    const { value } = this.props;
+    this.container.current.innerText = value;
+    this.setState({
+      isEditing: false,
+    });
+    this.container.current.blur();
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
     event.stopPropagation();
     const { isEditing } = this.state;
-    const { inline, onKeyDown, escAction } = this.props;
+    const { inline, escAction } = this.props;
 
     if (!isEditing && isEnter(event)) {
       event.preventDefault();
@@ -161,51 +159,30 @@ class Editable extends React.Component<EditableProps, EditableState> {
       event.preventDefault();
       this.finishEditing();
     }
-    if (isEditing && isEsc(event)) {
-      switch (escAction) {
-        case 'save':
-          this.finishEditing();
-          break;
-        case 'cancel':
-          this.cancelEditing();
-          break;
-        default:
-          break;
-      }
-    }
-    if (onKeyDown) {
-      onKeyDown(event);
+
+    if (isEsc(event)) {
+      this.handleAction(escAction);
     }
   };
 
   handleBlur = (event: FocusEvent) => {
     event.stopPropagation();
-    const { isEditing } = this.state;
-    const { blurAction, onBlur } = this.props;
-    if (isEditing) {
-      switch (blurAction) {
-        case 'save':
-          this.finishEditing();
-          break;
-        case 'cancel':
-          this.cancelEditing();
-          break;
-        default:
-          break;
+    this.handleAction(this.props.blurAction);
+  };
+
+  handleAction = (action: Action) => {
+    if (this.state.isEditing) {
+      if (action === 'save') {
+        this.finishEditing();
+      } else {
+        this.cancelEditing();
       }
-    }
-    if (onBlur) {
-      onBlur(event);
     }
   };
 
-  handleDoubleClick = (event: MouseEvent) => {
-    event.stopPropagation();
-    const { onDoubleClick } = this.props;
-    this.startEditing();
-
-    if (onDoubleClick) {
-      onDoubleClick(event);
+  handleDoubleClick = () => {
+    if (!this.state.isEditing) {
+      this.startEditing();
     }
   };
 
@@ -230,7 +207,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
     return (
       <div
         {...rest}
-        tabIndex={-1}
+        tabIndex={0}
         role="textbox"
         className={classNames}
         contentEditable={isEditing}
