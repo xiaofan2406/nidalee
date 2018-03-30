@@ -11,6 +11,8 @@
   "engines": {
     "node": ">=8"
   },
+  "main": "dist/commonjs",
+  "module": "dist/es6",
   "scripts": {
     "precommit": "lint-staged",
     "lint:eslint": "eslint src config docs/src",
@@ -21,8 +23,11 @@
     "test": "NODE_ENV=test jest --watch",
     "coverage": "NODE_ENV=test jest --coverage",
     "prebuild": "yarn lint && yarn flow && rm -rf dist",
-    "build":
-      "NODE_ENV=production babel src --out-dir dist --ignore 'src/**/__tests__/'",
+    "build:commonjs":
+      "NODE_ENV=production babel src --out-dir dist/commonjs --ignore 'src/**/__tests__/'",
+    "build:es6":
+      "NODE_ENV=production MODULE=es6 babel src --out-dir dist/es6 --ignore 'src/**/__tests__/'",
+    "build": "npm run build:commonjs && npm run build:es6",
     "dev":
       "NODE_ENV=development webpack-dev-server --config ./config/webpack.dev.js",
     "predocs": "rm -rf ./docs/dist",
