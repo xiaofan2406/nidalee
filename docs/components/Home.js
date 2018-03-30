@@ -31,7 +31,7 @@ const Home = () => (
           camera = ref;
         }}
       >
-        <Icon name="camera" type="solid" size={18} />
+        <Icon name="camera" type="solid" size="large" />
       </Button>
       <Button primary size="small">
         Small
@@ -45,7 +45,7 @@ const Home = () => (
           console.log(camera);
         }}
       >
-        <Icon name="camera" type="solid" size={18} />
+        <Icon name="camera" type="solid" size="large" />
       </Button>
       <Button primary size="large">
         Large
@@ -80,9 +80,9 @@ const Home = () => (
     <br />
     <br />
     <br />
-    <Icon className="far fa-question-circle" size={17} />
-    <Icon className="far fa-question-circle" size={19} />
-    <Icon className="far fa-question-circle" size={24} />
+    <Icon className="far fa-question-circle" size="small" />
+    <Icon className="far fa-question-circle" />
+    <Icon className="far fa-question-circle" size="large" />
   </div>
 );
 

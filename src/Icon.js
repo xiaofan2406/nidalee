@@ -8,30 +8,24 @@ export const I = styled.i`
   margin: 0px 2px;
 `;
 
-type IconProp = {
-  name: string,
-  type: 'regular' | 'solid' | 'light' | 'brands',
-  size: number,
-  className: string,
-};
+const sizeMap = size =>
+  ({ small: 14, regular: 16, large: 20 }: {
+    [key: Size]: number,
+  })[size];
 
-/**
- * Font Awesome Icon Component
- */
-class Icon extends React.PureComponent<IconProp> {
-  static defaultProps = {
-    name: '',
-    type: 'regular',
-    size: 16,
-    className: '',
-  };
+const Icon = ({ color, size, type, name, className, ...rest }: IconProps) => (
+  <I
+    color={color}
+    size={sizeMap(size)}
+    className={cx([name && type && `fa${type[0]} fa-${name}`, className])}
+    {...rest}
+  />
+);
 
-  render() {
-    const { name, type, className, ...rest } = this.props;
-    const faClassName = `fa${type[0]} fa-${name}`;
-    const classNames = cx([name && type && faClassName, className]);
-    return <I className={classNames} {...rest} />;
-  }
-}
+Icon.defaultProps = ({
+  type: 'regular',
+  name: '',
+  size: 'regular',
+}: IconDefaultProps);
 
 export default Icon;

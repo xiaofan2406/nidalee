@@ -1,5 +1,4 @@
 /* @flow */
-// all HTML button attributes are supported
 export type Size = 'small' | 'regular' | 'large';
 export type ButtonProps = {
   +children: React$Node,
@@ -10,7 +9,7 @@ export type ButtonProps = {
   +showSpinner: boolean,
 
   +innerRef?: (ref: ?HTMLButtonElement) => void,
-};
+}; // all other HTML button attributes are supported
 export type ButtonDefaultProps = {|
   +primary: boolean,
   +size: Size,
@@ -64,6 +63,21 @@ export type EditableState = {|
   isEditing: boolean,
 |};
 
+export type FAIconType = 'regular' | 'solid' | 'light' | 'brands';
+export type IconProps = {
+  +type: FAIconType,
+  +name: string,
+  +size: Size,
+
+  +color?: string,
+  +className?: string,
+}; // all other HTML i attributes are supported
+export type IconDefaultProps = {|
+  +type: FAIconType,
+  +name: string,
+  +size: Size,
+|};
+
 export type PopoverTrigger = 'onClick' | 'onDoubleClick';
 export type PopoverAlign = 'left' | 'right';
 export type PopoverDirection = 'top' | 'bottom';
@@ -91,6 +105,7 @@ export type PopoverState = {|
 
 export type PortalProps = {|
   +children: React$Node,
+
   +className?: string,
 |};
 
@@ -111,6 +126,10 @@ declare module 'nidalee' {
     EditableState
   > {
     static defaultProps: EditableDefaultProps;
+  }
+
+  declare export class Icon extends React$Component<IconProps> {
+    static defaultProps: IconDefaultProps;
   }
 
   declare export class Popover extends React$Component<
