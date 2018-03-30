@@ -4,6 +4,9 @@ export type DialogProps = {
   +opener: string | React.Node,
   +children: React.Node,
 
+  +showOverlay: boolean,
+  +position: DialogPosition,
+
   +open?: boolean,
 };
 export type DialogState = {|
@@ -51,7 +54,7 @@ export type PopoverState = {|
 
 export type PortalProps = {|
   +children: React.Node,
-  +className: string,
+  +className?: string,
 |};
 
 declare module 'nidalee' {
@@ -59,7 +62,10 @@ declare module 'nidalee' {
     DialogProps,
     DialogState
   > {
-    static defaultProps: {};
+    static defaultProps: {|
+      +showOverlay: boolean,
+      +position: DialogPosition,
+    |};
   }
 
   declare export class Editable extends React$Component<
@@ -88,9 +94,5 @@ declare module 'nidalee' {
     |};
   }
 
-  declare export class Portal extends React$Component<PortalProps> {
-    static defaultProps: {|
-      +className: string,
-    |};
-  }
+  declare export class Portal extends React$Component<PortalProps> {}
 }

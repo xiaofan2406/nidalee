@@ -3,15 +3,13 @@ import * as React from 'react';
 import { createPortal } from 'react-dom';
 
 class Portal extends React.Component<PortalProps> {
-  static defaultProps = {
-    className: '',
-  };
-
   constructor(props: PortalProps) {
     super(props);
 
     this.overlay = document.createElement('div');
-    this.overlay.className = this.props.className;
+    if (this.props.className) {
+      this.overlay.className = this.props.className;
+    }
   }
 
   componentDidMount() {

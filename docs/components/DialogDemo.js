@@ -29,15 +29,47 @@ class DialogDemo extends React.Component<DialogDemoProps, DialogDemoState> {
   render() {
     return (
       <div>
-        <Dialog opener="Open">Hi TRhere</Dialog>
+        <Dialog opener="Going Middle">Going Middle</Dialog>
+        <Dialog opener="Going Top" position="top">
+          Going Top
+        </Dialog>
         <h2>Controlled Demo</h2>
         <Dialog
           open={this.state.controlledOpen}
           opener={<Button onClick={this.openControlled}>Open Me</Button>}
+          showOverlay
+          position="bottom"
         >
           yoyo
           <Button onClick={this.closeControlled}>CLose</Button>
         </Dialog>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

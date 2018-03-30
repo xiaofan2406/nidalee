@@ -1,10 +1,44 @@
 /* @flow */
 import * as React from 'react';
-import { cx } from 'react-emotion';
+import { css, cx } from 'react-emotion';
 import Portal from './Portal';
+import Box from './Box';
 import Button from './Button';
 
+const cssDialogPortal = css`
+  width: 100vw;
+  height: 100vh;
+  padding: 24px;
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+
+  &.top {
+    align-items: flex-start;
+  }
+  &.middle {
+    align-items: center;
+  }
+  &.bottom {
+    align-items: flex-end;
+  }
+
+  &.showOverlay {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  & > .content {
+  }
+`;
+
 class Dialog extends React.Component<DialogProps, DialogState> {
+  static defaultProps = {
+    showOverlay: false,
+    position: 'middle',
+  };
+
   static getDerivedStateFromProps(nextProps: PopoverProps) {
     if (typeof nextProps.open === 'boolean') {
       return {
@@ -86,14 +120,16 @@ class Dialog extends React.Component<DialogProps, DialogState> {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, showOverlay, position } = this.props;
+    const classNames = cx([cssDialogPortal, { showOverlay }, position]);
     return (
       <>
         {this.renderOpener()}
-
         {this.state.isVisible ? (
-          <Portal>
-            <div ref={this.container}>{children}</div>
+          <Portal className={classNames}>
+            <Box level={2} className="content" innerRef={this.container}>
+              {children}
+            </Box>
           </Portal>
         ) : null}
       </>

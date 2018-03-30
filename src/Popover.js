@@ -73,13 +73,13 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
 
   get styles(): {} {
     const { direction, zIndex } = this.props;
-    if (!this.opener) return {};
     return direction === 'bottom'
-      ? { top: this.opener.offsetHeight, zIndex }
-      : { bottom: this.opener.offsetHeight, zIndex };
+      ? { top: this.openerRef.current.offsetHeight, zIndex }
+      : { bottom: this.openerRef.current.offsetHeight, zIndex };
   }
 
-  opener: ?HTMLElement;
+  // $FlowFixMe
+  openerRef = React.createRef();
 
   open = () => {
     if (!this.state.isVisible) {
@@ -99,22 +99,17 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
 
   handleOutsideClick = (event: MouseEvent) => {
     if (
-      this.opener &&
       !this.isControlled &&
       event.currentTarget instanceof Node &&
-      !this.opener.contains(event.currentTarget)
+      !this.openerRef.current.contains(event.currentTarget)
     ) {
       this.close();
     }
   };
 
-  openerRef = (ref: HTMLElement) => {
-    this.opener = ref;
-  };
-
   handleOpen = () => {
-    if (this.opener && this.state.isVisible) {
-      this.opener.blur();
+    if (this.state.isVisible) {
+      this.openerRef.current.blur();
       this.close();
     } else {
       this.open();

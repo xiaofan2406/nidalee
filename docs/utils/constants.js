@@ -4,7 +4,6 @@ export const APP_TITLE = 'Nidalee';
 type NavLinkName =
   | 'HOME'
   | 'ABOUT'
-  | 'CONTACT'
   | 'FORM'
   | 'EDITABLE'
   | 'POPOVER'
@@ -23,10 +22,6 @@ export const NAV_LINKS: { [key: NavLinkName]: NavLinkConfig } = {
   ABOUT: {
     to: '/about',
     name: 'About',
-  },
-  CONTACT: {
-    to: '/contact',
-    name: 'Contact',
   },
   FORM: {
     to: '/form',

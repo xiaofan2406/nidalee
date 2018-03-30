@@ -26,7 +26,7 @@ class EditableDemo extends React.Component<
   render() {
     const { multiLineValue, inlineValue } = this.state;
     return (
-      <Box width={360}>
+      <Box width={360} level={3}>
         <h2>Multi line editable</h2>
         <Editable
           value={multiLineValue}
@@ -49,7 +49,7 @@ class EditableDemo extends React.Component<
         <h2>With placeholder</h2>
         <Editable
           value=""
-          placeholder="Please leave your comment"
+          placeholder="You cant save me lol"
           onSave={() => {}}
         />
         <div>some toehr jibsdfljk loreansd isadf </div>

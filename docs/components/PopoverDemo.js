@@ -43,7 +43,7 @@ class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
                 this.setState({ controlledOpen: true });
               }}
             >
-              Click into me
+              Double Click into me
             </span>
           }
           open={this.state.controlledOpen}

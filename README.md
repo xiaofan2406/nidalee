@@ -23,6 +23,9 @@ React UI components
 
 * [ ] wanring solution
 * [ ] flow defs
+* [ ] re-do button ripple affect
+* [ ] empty classname check
+* [ ] simple CSS animations
 
 ## Installing / Getting started
 
