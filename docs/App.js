@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import { Layout, Home, Navigation } from 'components';
+import { Form, Layout, Home, Navigation } from 'components';
 import { asyncLoad } from 'factories';
 import 'styles/reset.css';
 import 'styles/animation.css';
@@ -12,6 +12,7 @@ const App = () => (
     <Layout>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/form" component={Form} />
         <Route
           path="/about"
           component={asyncLoad({
@@ -20,10 +21,10 @@ const App = () => (
           })}
         />
         <Route
-          path="/contact"
+          path="/editable"
           component={asyncLoad({
             importer: () =>
-              import(/* webpackChunkName: "Contact" */ './components/Contact'),
+              import(/* webpackChunkName: "EditableDemo" */ './components/EditableDemo'),
           })}
         />
       </Switch>

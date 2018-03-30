@@ -1,7 +1,7 @@
 /* @flow */
 export const APP_TITLE = 'Nidalee';
 
-type NavLinkName = 'HOME' | 'ABOUT' | 'CONTACT';
+type NavLinkName = 'HOME' | 'ABOUT' | 'CONTACT' | 'FORM' | 'EDITABLE';
 type NavLinkConfig = {
   to: string,
   name: string,
@@ -20,5 +20,13 @@ export const NAV_LINKS: { [key: NavLinkName]: NavLinkConfig } = {
   CONTACT: {
     to: '/contact',
     name: 'Contact',
+  },
+  FORM: {
+    to: 'form',
+    name: 'Form',
+  },
+  EDITABLE: {
+    to: 'editable',
+    name: 'Editable',
   },
 };
