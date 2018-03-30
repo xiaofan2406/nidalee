@@ -37,26 +37,6 @@ const cssEditable = css`
   }
 `;
 
-type Action = 'save' | 'cancel';
-
-type EditableProps = {
-  value: string,
-  placeholder: string,
-  className: string,
-  inline: boolean,
-  autoTrim: boolean,
-  blurAction: Action,
-  escAction: Action,
-  onSave: (content: string) => void,
-  onKeyDown?: (event: KeyboardEvent) => void,
-  onBlur?: (event: FocusEvent) => void,
-  onDoubleClick?: (event: MouseEvent) => void,
-};
-
-type EditableState = {
-  isEditing: boolean,
-};
-
 class Editable extends React.Component<EditableProps, EditableState> {
   static defaultProps = {
     value: '',
@@ -170,7 +150,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
     this.handleAction(this.props.blurAction);
   };
 
-  handleAction = (action: Action) => {
+  handleAction = (action: EditableAction) => {
     if (this.state.isEditing) {
       if (action === 'save') {
         this.finishEditing();
