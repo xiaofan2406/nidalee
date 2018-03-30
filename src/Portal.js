@@ -9,6 +9,7 @@ class Portal extends React.Component<PortalProps> {
     this.overlay = document.createElement('div');
     if (this.props.className) {
       this.overlay.className = this.props.className;
+      this.overlay.style.zIndex = '999';
     }
   }
 

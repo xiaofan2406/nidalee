@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 /* @flow */
 import React from 'react';
 import { css, cx } from 'react-emotion';
@@ -42,7 +41,7 @@ const cssEditable = css`
 `;
 
 class Editable extends React.Component<EditableProps, EditableState> {
-  static defaultProps = {
+  static defaultProps: EditableDefaultProps = {
     placeholder: '',
     className: '',
     inline: false,

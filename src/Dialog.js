@@ -34,7 +34,7 @@ const cssDialogPortal = css`
 `;
 
 class Dialog extends React.Component<DialogProps, DialogState> {
-  static defaultProps = {
+  static defaultProps: DialogDefaultProps = {
     showOverlay: false,
     position: 'middle',
   };

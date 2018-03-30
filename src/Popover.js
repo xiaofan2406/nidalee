@@ -35,7 +35,7 @@ const cssPopover = css`
 `;
 
 class Popover extends React.Component<PopoverProps, PopoverState> {
-  static defaultProps = {
+  static defaultProps: PopoverDefaultProps = {
     trigger: 'onClick',
     align: 'right',
     direction: 'top',

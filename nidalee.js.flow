@@ -28,6 +28,10 @@ export type DialogProps = {
 
   +open?: boolean,
 };
+export type DialogDefaultProps = {|
+  +showOverlay: boolean,
+  +position: DialogPosition,
+|};
 export type DialogState = {|
   isVisible: boolean,
 |};
@@ -48,6 +52,14 @@ export type EditableProps = {
   +onBlur?: (event: FocusEvent) => void,
   +onDoubleClick?: (event: MouseEvent) => void,
 };
+export type EditableDefaultProps = {|
+  +placeholder: string,
+  +className: string,
+  +inline: boolean,
+  +autoTrim: boolean,
+  +blurAction: EditableAction,
+  +escAction: EditableAction,
+|};
 export type EditableState = {|
   isEditing: boolean,
 |};
@@ -67,6 +79,12 @@ export type PopoverProps = {
   +open?: boolean,
   +className?: string,
 };
+export type PopoverDefaultProps = {|
+  +trigger: PopoverTrigger,
+  +align: PopoverAlign,
+  +direction: PopoverDirection,
+  +zIndex: number,
+|};
 export type PopoverState = {|
   isVisible: boolean,
 |};
@@ -85,36 +103,21 @@ declare module 'nidalee' {
     DialogProps,
     DialogState
   > {
-    static defaultProps: {|
-      +showOverlay: boolean,
-      +position: DialogPosition,
-    |};
+    static defaultProps: DialogDefaultProps;
   }
 
   declare export class Editable extends React$Component<
     EditableProps,
     EditableState
   > {
-    static defaultProps: {|
-      +placeholder: string,
-      +className: string,
-      +inline: boolean,
-      +autoTrim: boolean,
-      +blurAction: EditableAction,
-      +escAction: EditableAction,
-    |};
+    static defaultProps: EditableDefaultProps;
   }
 
   declare export class Popover extends React$Component<
     PopoverProps,
     PopoverState
   > {
-    static defaultProps: {|
-      +trigger: PopoverTrigger,
-      +align: PopoverAlign,
-      +direction: PopoverDirection,
-      +zIndex: number,
-    |};
+    static defaultProps: PopoverDefaultProps;
   }
 
   declare export class Portal extends React$Component<PortalProps> {}
