@@ -5,4 +5,8 @@ src/
 .babelrc.js
 .eslintrc.js
 .flowconfig
+.gitignore
+.npmignore
+.travis.yml
+yarn-error.log
 yarn.lock
