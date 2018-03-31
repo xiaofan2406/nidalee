@@ -2,7 +2,7 @@
 import React from 'react';
 import { css } from 'react-emotion';
 import { spacing } from 'styles';
-import { Box, Button, Icon, MoonSpinner, Spinner, Input } from 'nidalee';
+import { Box, Button, Icon, MoonSpinner, Spinner, Input, Area } from 'nidalee';
 
 const cssHome = css`
   & > .title {
@@ -51,6 +51,8 @@ const Home = () => (
         Large
       </Button>
     </Box>
+
+    <Area tag="main">HEYEYEYEYEYEYEYE</Area>
 
     <Input />
 

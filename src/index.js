@@ -1,4 +1,5 @@
 /* @flow */
+import Area from './layout/Area';
 import Aside from './layout/Aside';
 import Box from './layout/Box';
 import Footer from './layout/Footer';
@@ -7,6 +8,7 @@ import Main from './layout/Main';
 import Nav from './layout/Nav';
 import Nidalee from './layout/Nidalee';
 import Section from './layout/Section';
+import StickyHeader from './layout/StickyHeader';
 
 import Dialog from './Dialog';
 import Button from './Button';
@@ -19,6 +21,7 @@ import Popover from './Popover';
 import Spinner from './Spinner';
 
 export {
+  Area,
   Aside,
   Box,
   Footer,
@@ -27,6 +30,7 @@ export {
   Nav,
   Nidalee,
   Section,
+  StickyHeader,
   Dialog,
   Button,
   Editable,
@@ -39,6 +43,7 @@ export {
 };
 
 export default {
+  Area,
   Aside,
   Box,
   Footer,
@@ -47,6 +52,7 @@ export default {
   Nav,
   Nidalee,
   Section,
+  StickyHeader,
   Dialog,
   Button,
   Editable,

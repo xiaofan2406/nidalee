@@ -10,3 +10,11 @@ export const isEsc = (event: KeyboardEvent) => event.which === ESC;
 
 export const isRemove = (event: KeyboardEvent) =>
   event.which === BACKSPACE || event.which === DELETE;
+
+export const validCssValue = (value: any): boolean %checks =>
+  typeof value === 'string' || typeof value === 'number';
+
+export const getPixelProperty = (property: any) =>
+  typeof property === 'string'
+    ? property
+    : typeof property === 'number' ? `${property}px` : 'auto';

@@ -34,6 +34,13 @@ const App = () => (
           })}
         />
         <Route
+          path="/layout"
+          component={asyncLoad({
+            importer: () =>
+              import(/* webpackChunkName: "LayoutDemo" */ './components/LayoutDemo'),
+          })}
+        />
+        <Route
           path="/about"
           component={asyncLoad({
             importer: () =>

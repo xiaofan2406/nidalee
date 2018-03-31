@@ -7,6 +7,7 @@ type NavLinkName =
   | 'FORM'
   | 'EDITABLE'
   | 'POPOVER'
+  | 'LAYOUT'
   | 'DIALOG';
 type NavLinkConfig = {
   to: string,
@@ -38,5 +39,9 @@ export const NAV_LINKS: { [key: NavLinkName]: NavLinkConfig } = {
   DIALOG: {
     to: '/dialog',
     name: 'Dialog',
+  },
+  LAYOUT: {
+    to: '/layout',
+    name: 'Layout',
   },
 };

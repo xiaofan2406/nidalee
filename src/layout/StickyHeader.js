@@ -3,7 +3,7 @@ import * as React from 'react';
 import { css, cx } from 'react-emotion';
 import { theme } from '../styles';
 
-const cssHeader = css`
+const cssStickyHeader = css`
   background-color: ${theme.areaBgColor};
   padding: 12px 16px;
   display: flex;
@@ -11,13 +11,13 @@ const cssHeader = css`
     position: fixed;
     top: 0;
     width: 100%;
-    & + section {
-      margin-top: 60px; /* this is Header height + section padding */
+    & + main {
+      margin-top: 60px; /* this is StickyHeader height + main padding */
     }
   }
 `;
 
-class Header extends React.Component<HeaderProps> {
+class StickyHeader extends React.Component<StickyHeaderProps> {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
     this.setOffset();
@@ -47,7 +47,7 @@ class Header extends React.Component<HeaderProps> {
     const { children, className, ...rest } = this.props;
     return (
       <header
-        className={cx([cssHeader, className])}
+        className={cx([cssStickyHeader, className])}
         {...rest}
         ref={this.header}
       >
@@ -57,4 +57,4 @@ class Header extends React.Component<HeaderProps> {
   }
 }
 
-export default Header;
+export default StickyHeader;
