@@ -1,4 +1,48 @@
 /* @flow */
+/** ================ layouts ================ */
+export type AsideProps = {
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `aside` attributes are supported
+
+export type FooterProps = {
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `footer` attributes are supported
+
+export type HeaderProps = {
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `header` attributes are supported
+
+export type MainProps = {
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `main` attributes are supported
+
+export type NavProps = {
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `nav` attributes are supported
+
+export type NidaleeProps = {
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `section` attributes are supported
+
+export type SectionProps = {
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `section` attributes are supported
+
+/** ================ components ================ */
 export type Size = 'small' | 'regular' | 'large';
 export type ButtonProps = {
   +children: React$Node,
@@ -9,14 +53,13 @@ export type ButtonProps = {
   +showSpinner: boolean,
 
   +innerRef?: (ref: ?HTMLButtonElement) => void,
-}; // all other HTML button attributes are supported
+}; // all other HTML `button` attributes are supported
 export type ButtonDefaultProps = {|
   +primary: boolean,
   +size: Size,
   +color: string,
   +showSpinner: boolean,
 |};
-
 export type DialogPosition = 'top' | 'middle' | 'bottom';
 export type DialogProps = {
   +opener: string | React$Node,
@@ -71,7 +114,7 @@ export type IconProps = {
 
   +color?: string,
   +className?: string,
-}; // all other HTML i attributes are supported
+}; // all other HTML `i` attributes are supported
 export type IconDefaultProps = {|
   +type: FAIconType,
   +name: string,
@@ -103,13 +146,21 @@ export type PopoverState = {|
   isVisible: boolean,
 |};
 
-export type PortalProps = {|
+export type PortalProps = {
   +children: React$Node,
 
   +className?: string,
-|};
+};
 
 declare module 'nidalee' {
+  declare export var Aside: React$StatelessFunctionalComponent<AsideProps>;
+  declare export var Footer: React$StatelessFunctionalComponent<FooterProps>;
+  declare export var Header: React$StatelessFunctionalComponent<HeaderProps>;
+  declare export var Main: React$StatelessFunctionalComponent<MainProps>;
+  declare export var Nav: React$StatelessFunctionalComponent<NavProps>;
+  declare export var Nidalee: React$StatelessFunctionalComponent<NidaleeProps>;
+  declare export var Section: React$StatelessFunctionalComponent<SectionProps>;
+
   declare export class Button extends React$Component<ButtonProps> {
     static defaultProps: ButtonDefaultProps;
   }

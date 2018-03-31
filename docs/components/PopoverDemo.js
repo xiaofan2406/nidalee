@@ -47,6 +47,8 @@ class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
             </span>
           }
           open={this.state.controlledOpen}
+          align="right"
+          direction="bottom"
         >
           <Button
             onClick={() => {

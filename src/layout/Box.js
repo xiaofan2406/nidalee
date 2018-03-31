@@ -1,11 +1,12 @@
 /* @flow */
 // import React from 'react';
 import styled from 'react-emotion';
-import { theme, colors } from './styles';
+import { theme, colors } from '../styles';
 
 const Box = styled.div`
-  padding: ${({ padding }) => padding || '12px 16px'};
-  width: ${({ width }) => (width ? `${width}px` : 'auto')};
+  padding: ${({ padding }) => padding || '0'};
+  width: ${({ width }) => (width ? `${width}` : 'auto')};
+  height: ${({ height }) => (height ? `${height}` : 'auto')};
   background-color: ${({ backgroundColor, level }) =>
     backgroundColor || (level ? colors[`black${level}`] : 'transparent')};
   color: ${({ color }) => color || theme.textColor};

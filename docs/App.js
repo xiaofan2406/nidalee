@@ -2,9 +2,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import { Form, Layout, Home, Navigation } from 'components';
+import { Form, Layout, Home } from 'components';
 import { asyncLoad } from 'factories';
-import 'styles/reset.css';
 import 'styles/animation.css';
 
 const App = () => (
@@ -42,7 +41,6 @@ const App = () => (
           })}
         />
       </Switch>
-      <Navigation />
     </Layout>
   </BrowserRouter>
 );

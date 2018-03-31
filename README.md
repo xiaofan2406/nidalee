@@ -25,8 +25,10 @@ React UI components
 * [ ] flow defs
 * [x] re-do button ripple affect
 * [ ] empty classname check
+* [ ] utilize accessibility attributes
 * [ ] check component types
 * [ ] simple CSS animations
+* [ ] maybe a smart way to handle darkness level
 * [ ] API documentation
 
 ## Installing / Getting started

@@ -27,6 +27,7 @@ export const theme = {
   fontFamily: '"Open Sans", sans-serif',
 
   bgColor: colors.black1,
+  areaBgColor: colors.black2,
   boxBgColor: colors.black3,
   eleBgColor: colors.black4,
   subBgColor: colors.black5,
@@ -37,6 +38,20 @@ export const theme = {
   colorWarning: colors.orange1,
   colorSuccess: colors.green1,
 };
+
+export const baseLayout = css`
+  padding: 12px 16px;
+  display: flex;
+`;
+
+export const baseArea = css`
+  padding: 8px 12px;
+  display: flex;
+`;
+
+export const areaBackground = css`
+  background-color: ${theme.areaBgColor};
+`;
 
 export const defaultText = css`
   font-family: ${theme.fontFamily};

@@ -1,6 +1,14 @@
 /* @flow */
+import Aside from './layout/Aside';
+import Box from './layout/Box';
+import Footer from './layout/Footer';
+import Header from './layout/Header';
+import Main from './layout/Main';
+import Nav from './layout/Nav';
+import Nidalee from './layout/Nidalee';
+import Section from './layout/Section';
+
 import Dialog from './Dialog';
-import Box from './Box';
 import Button from './Button';
 import Editable from './Editable';
 import FormField from './FormField';
@@ -11,8 +19,15 @@ import Popover from './Popover';
 import Spinner from './Spinner';
 
 export {
-  Dialog,
+  Aside,
   Box,
+  Footer,
+  Header,
+  Main,
+  Nav,
+  Nidalee,
+  Section,
+  Dialog,
   Button,
   Editable,
   FormField,
@@ -24,8 +39,15 @@ export {
 };
 
 export default {
-  Dialog,
+  Aside,
   Box,
+  Footer,
+  Header,
+  Main,
+  Nav,
+  Nidalee,
+  Section,
+  Dialog,
   Button,
   Editable,
   FormField,

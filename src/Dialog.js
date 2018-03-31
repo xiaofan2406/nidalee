@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
 import Portal from './Portal';
-import Box from './Box';
+import Box from './layout/Box';
 import Button from './Button';
 
 const cssDialogPortal = css`

@@ -100,7 +100,6 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
   handleOutsideClick = (event: MouseEvent) => {
     if (
       !this.isControlled &&
-      event.currentTarget instanceof Node &&
       !this.openerRef.current.contains(event.currentTarget)
     ) {
       this.close();

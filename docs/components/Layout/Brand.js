@@ -2,14 +2,13 @@
 import React from 'react';
 import { css } from 'react-emotion';
 import { Box } from 'nidalee';
-import { fontSizes, spacing } from 'styles';
+import { fontSizes } from 'styles';
 import { APP_TITLE } from 'utils/constants';
 import logo from 'assets/logo.svg';
 
 const cssBrand = css`
   display: flex;
   align-items: center;
-  padding: ${spacing.internal}px;
   & > .logo {
     animation: spin infinite 10s linear;
     height: 36px;
@@ -27,7 +26,7 @@ class Brand extends React.Component<{}> {
 
   render() {
     return (
-      <Box className={cssBrand} level={1}>
+      <Box className={cssBrand} padding="0px">
         <img src={logo} alt="logo" className="logo" />
         <span className="title">{APP_TITLE}</span>
       </Box>
