@@ -14,7 +14,7 @@ export const colors = {
   green1: '#23d160',
 };
 
-export const fontSizes = {
+export const fontSizes: { [key: Size]: number } = {
   small: 12,
   regular: 14,
   large: 18,
@@ -57,7 +57,7 @@ export const defaultText = css`
   font-family: ${theme.fontFamily};
   font-size: ${theme.fontSize}px;
   color: ${theme.textColor};
-  line-height: 1.4em;
+  line-height: 1.4;
 `;
 
 export const outline = css`

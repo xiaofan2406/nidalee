@@ -2,7 +2,7 @@
 import * as React from 'react';
 import styled from 'react-emotion';
 import Color from 'color';
-import { theme } from './styles';
+import { theme, fontSizes } from './styles';
 import { I } from './Icon';
 import Spinner from './Spinner';
 
@@ -23,7 +23,7 @@ const EButton = styled.button`
 
   font-family: ${theme.fontFamily};
   font-size: ${({ size }) => size}px;
-  line-height: 1.2em;
+  line-height: 1.2;
 
   height: ${({ height }) => height}px;
   padding: 0.6em 0.8em;
@@ -86,9 +86,7 @@ class Button extends React.Component<ButtonProps> {
   };
 
   get size(): number {
-    return ({ small: 12, regular: 14, large: 18 }: {
-      [key: Size]: number,
-    })[this.props.size];
+    return fontSizes[this.props.size];
   }
 
   get height(): number {

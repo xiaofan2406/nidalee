@@ -37,15 +37,18 @@ class EditableDemo extends React.Component<
           }}
         />
         <h2>Single line editable</h2>
-        <Editable
-          value={inlineValue}
-          inline
-          onSave={content => {
-            this.setState({
-              inlineValue: content,
-            });
-          }}
-        />
+        <div>
+          <Editable
+            value={inlineValue}
+            inline
+            onSave={content => {
+              this.setState({
+                inlineValue: content,
+              });
+            }}
+          />
+          <span>and hey</span>
+        </div>
         <h2>With placeholder</h2>
         <Editable
           value=""
