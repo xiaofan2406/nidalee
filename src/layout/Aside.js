@@ -1,13 +1,26 @@
 /* @flow */
 import * as React from 'react';
-import { cx } from 'react-emotion';
-import { baseContainer } from '../styles';
+import { css } from 'react-emotion';
 
-// TODO make this expandable side bar
-const Aside = ({ children, className, ...rest }: AsideProps) => (
-  <aside className={cx([baseContainer, className])} {...rest}>
-    {children}
-  </aside>
-);
+const cssAside = css`
+  position: absolute;
+  height: 100vh;
+  padding-top: 62px; /* Header height */
+`;
+
+type AsideProps = {
+  children?: React.Node,
+};
+
+type AsideState = {};
+
+class Aside extends React.Component<AsideProps, AsideState> {
+  state = {};
+
+  render() {
+    const { children } = this.props;
+    return <aside className={cssAside}>{children}</aside>;
+  }
+}
 
 export default Aside;

@@ -7,6 +7,7 @@ import { Box, Button, Icon, MoonSpinner, Spinner, Input } from 'nidalee';
 const cssHome = css`
   & > .title {
     font-size: 48px;
+    line-height: 1.15;
     text-align: center;
     margin-bottom: ${spacing.breath}px;
   }

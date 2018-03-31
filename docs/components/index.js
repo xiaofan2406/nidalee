@@ -1,8 +1,9 @@
 /* @flow */
-import Form from './Form';
-import Layout from './Layout';
+import Brand from './Brand';
 import Home from './Home';
+import Navigation from './Navigation';
+import Router from './Router';
 
-export { Form, Layout, Home };
+export { Brand, Home, Navigation, Router };
 
-export default { Form, Layout, Home };
+export default { Brand, Home, Navigation, Router };

@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { injectGlobal, css } from 'react-emotion';
-import { theme, defaultText } from '../styles';
+import Section from './Section';
 
 // eslint-disable-next-line
 injectGlobal`
@@ -24,18 +24,14 @@ injectGlobal`
 `;
 
 const cssNidalee = css`
-  ${defaultText};
   display: flex;
   flex-direction: column;
-  background-color: ${theme.bgColor};
   min-height: 100vh;
   height: 100%;
-  padding: 0;
-  margin: 0;
 `;
 
 const Nidalee = (props: NidaleeProps) => (
-  <section className={cssNidalee} {...props} />
+  <Section className={cssNidalee} {...props} />
 );
 
 export default Nidalee;
