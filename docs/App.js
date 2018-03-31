@@ -2,9 +2,10 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
-import { Nidalee, Header, Main, Footer } from 'nidalee';
+import { Nidalee, Header, Section, Main, Footer } from 'nidalee';
 import { Navigation, Brand, Router } from 'components';
 import 'styles/animation.css';
+import Aside from '../src/layout/Aside';
 
 const App = () => (
   <BrowserRouter>
@@ -12,9 +13,12 @@ const App = () => (
       <Header>
         <Brand />
       </Header>
-      <Main>
-        <Router />
-      </Main>
+      <Section appMain>
+        <Aside>Hi I am aside</Aside>
+        <Main>
+          <Router />
+        </Main>
+      </Section>
       <Footer>
         <Navigation />
       </Footer>

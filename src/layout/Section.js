@@ -8,10 +8,15 @@ const cssSection = css`
   background-color: ${theme.bgColor};
   padding: 0;
   margin: 0;
+
+  &.appMain {
+    flex: 1;
+    display: flex;
+  }
 `;
 
-const Section = ({ children, className, ...rest }: SectionProps) => (
-  <section className={cx([cssSection, className])} {...rest}>
+const Section = ({ children, className, appMain, ...rest }: SectionProps) => (
+  <section className={cx([cssSection, className, { appMain }])} {...rest}>
     {children}
   </section>
 );

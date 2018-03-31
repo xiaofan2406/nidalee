@@ -1,11 +1,12 @@
 /* @flow */
 import * as React from 'react';
 import { css } from 'react-emotion';
+import { baseContainer, areaBackground } from '../styles';
 
 const cssAside = css`
-  position: absolute;
-  height: 100vh;
-  padding-top: 62px; /* Header height */
+  ${baseContainer};
+  ${areaBackground};
+  min-width: 200px;
 `;
 
 type AsideProps = {

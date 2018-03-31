@@ -37,6 +37,7 @@ export type NidaleeProps = {
 }; // all other HTML `section` attributes are supported
 
 export type SectionProps = {
+  +appMain?: boolean,
   +children: React.Node,
 
   +className?: string,
