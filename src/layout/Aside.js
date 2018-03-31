@@ -1,10 +1,11 @@
 /* @flow */
 import * as React from 'react';
 import { cx } from 'react-emotion';
-import { baseLayout } from '../styles';
+import { baseContainer } from '../styles';
 
+// TODO make this expandable side bar
 const Aside = ({ children, className, ...rest }: AsideProps) => (
-  <aside className={cx([baseLayout, className])} {...rest}>
+  <aside className={cx([baseContainer, className])} {...rest}>
     {children}
   </aside>
 );

@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from 'react';
-import { Area, Header, Main, Footer } from 'nidalee';
+import { Section, Header, Main, Footer } from 'nidalee';
 import { css } from 'react-emotion';
 
 const mainOverwrite = css`
@@ -18,7 +18,7 @@ class LayoutDemo extends React.Component<LayoutDemoProps, LayoutDemoState> {
     return (
       <div>
         <h2>LayoutDemo</h2>
-        <Area height="420px" width={400}>
+        <Section height="420px" width={400}>
           <div>
             huge banner<br />
             <br />
@@ -71,7 +71,7 @@ class LayoutDemo extends React.Component<LayoutDemoProps, LayoutDemoState> {
             </article>
           </Main>
           <Footer>I am footer</Footer>
-        </Area>
+        </Section>
       </div>
     );
   }

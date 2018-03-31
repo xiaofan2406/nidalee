@@ -1,5 +1,4 @@
 /* @flow */
-import Area from './layout/Area';
 import Aside from './layout/Aside';
 import Box from './layout/Box';
 import Footer from './layout/Footer';
@@ -21,7 +20,6 @@ import Popover from './Popover';
 import Spinner from './Spinner';
 
 export {
-  Area,
   Aside,
   Box,
   Footer,
@@ -43,7 +41,6 @@ export {
 };
 
 export default {
-  Area,
   Aside,
   Box,
   Footer,

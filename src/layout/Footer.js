@@ -1,10 +1,10 @@
 /* @flow */
 import * as React from 'react';
 import { cx } from 'react-emotion';
-import { baseLayout } from '../styles';
+import { baseContainer } from '../styles';
 
 const Footer = ({ children, className, ...rest }: FooterProps) => (
-  <footer className={cx([baseLayout, className])} {...rest}>
+  <footer className={cx([baseContainer, className])} {...rest}>
     {children}
   </footer>
 );

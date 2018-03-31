@@ -1,6 +1,6 @@
 /* @flow */
 import * as React from 'react';
-import { Nidalee, Header, Section, Main, Footer } from 'nidalee';
+import { Nidalee, Header, Main, Footer } from 'nidalee';
 import Brand from './Brand';
 import Navigation from './Navigation';
 
@@ -13,9 +13,7 @@ const Layout = ({ children }: LayoutProps) => (
     <Header>
       <Brand />
     </Header>
-    <Section>
-      <Main>{children}</Main>
-    </Section>
+    <Main>{children}</Main>
     <Footer>
       <Navigation />
     </Footer>

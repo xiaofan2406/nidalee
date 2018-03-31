@@ -39,7 +39,7 @@ export const theme = {
   colorSuccess: colors.green1,
 };
 
-export const baseLayout = css`
+export const baseContainer = css`
   padding: 12px 16px;
   display: flex;
 `;

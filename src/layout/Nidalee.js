@@ -1,7 +1,6 @@
 /* @flow */
 import * as React from 'react';
 import { injectGlobal, css } from 'react-emotion';
-import Section from './Section';
 import { theme, defaultText } from '../styles';
 
 // eslint-disable-next-line
@@ -35,8 +34,8 @@ const cssNidalee = css`
   margin: 0;
 `;
 
-const Nidalee = (props: SectionProps) => (
-  <Section className={cssNidalee} {...props} />
+const Nidalee = (props: NidaleeProps) => (
+  <section className={cssNidalee} {...props} />
 );
 
 export default Nidalee;
