@@ -17,7 +17,7 @@ const cssStickyHeader = css`
   }
 `;
 
-class StickyHeader extends React.Component<StickyHeaderProps> {
+class StickyHeader extends React.Component<HeaderProps> {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
     this.setOffset();
