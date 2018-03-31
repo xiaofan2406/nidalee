@@ -77,59 +77,45 @@ const EButton = styled.button`
   }
 `;
 
-class Button extends React.Component<ButtonProps> {
-  static defaultProps: ButtonDefaultProps = {
-    primary: false,
-    size: 'regular',
-    color: theme.eleBgColor,
-    showSpinner: false,
-  };
+const Button = ({
+  children,
+  primary,
+  color,
+  size,
+  showSpinner,
+  ...rest
+}: ButtonProps) => {
+  const buttonHeight = ({ small: 30, regular: 36, large: 46 }: {
+    [key: Size]: number,
+  })[size];
 
-  get size(): number {
-    return fontSizes[this.props.size];
-  }
+  return (
+    <EButton
+      {...rest}
+      color={primary ? theme.primaryColor : color}
+      size={fontSizes[size]}
+      height={buttonHeight}
+    >
+      {showSpinner ? (
+        <Spinner
+          size={fontSizes[size] + 2}
+          color={theme.textColor}
+          className="spinner"
+        />
+      ) : null}
+      {React.Children.map(
+        children,
+        child => (typeof child === 'string' ? <span>{child}</span> : child)
+      )}
+    </EButton>
+  );
+};
 
-  get height(): number {
-    return ({ small: 30, regular: 36, large: 46 }: {
-      [key: Size]: number,
-    })[this.props.size];
-  }
-
-  get color(): string {
-    const { primary, color } = this.props;
-    return primary ? theme.primaryColor : color;
-  }
-
-  renderSpinner = () => {
-    const { showSpinner } = this.props;
-
-    return showSpinner ? (
-      <Spinner
-        size={this.size + 2}
-        color={theme.textColor}
-        className="spinner"
-      />
-    ) : null;
-  };
-
-  render() {
-    const { children, primary, color, showSpinner, ...rest } = this.props;
-
-    return (
-      <EButton
-        {...rest}
-        color={this.color}
-        size={this.size}
-        height={this.height}
-      >
-        {this.renderSpinner()}
-        {React.Children.map(
-          children,
-          child => (typeof child === 'string' ? <span>{child}</span> : child)
-        )}
-      </EButton>
-    );
-  }
-}
+Button.defaultProps = ({
+  primary: false,
+  size: 'regular',
+  color: theme.eleBgColor,
+  showSpinner: false,
+}: ButtonDefaultProps);
 
 export default Button;
