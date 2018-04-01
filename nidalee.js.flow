@@ -146,6 +146,29 @@ export type IconDefaultProps = {|
   +size: Size,
 |};
 
+export type InlineEditRender = (value: string) => React$Node;
+export type InlineEditProps = {
+  +value: string,
+  +onSave: (value: string) => void,
+
+  +className?: string,
+  +render?: InlineEditRender,
+  +onDoubleClick?: (event: SyntheticMouseEvent<HTMLSpanElement>) => void,
+}; // all other HTML `span` attributes are supported
+export type InlineEditState = {|
+  isEditing: boolean,
+|};
+
+export type InlineEditInputProps = {
+  +defaultValue: string,
+  +onSave: (value: string) => void,
+  +onCancel: () => void,
+
+  +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => void,
+  +onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => void,
+  +className?: string,
+};
+
 export type PortalProps = {
   +children: React$Node,
 

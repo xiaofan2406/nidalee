@@ -11,16 +11,6 @@ const cssInlineEditInput = css`
   outline: none;
 `;
 
-export type InlineEditInputProps = {
-  +defaultValue: string,
-  +onSave: (value: string) => void,
-  +onCancel: () => void,
-
-  +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => void,
-  +onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => void,
-  +className?: string,
-};
-
 class InlineEditInput extends React.Component<InlineEditInputProps> {
   componentDidMount() {
     // put cursor to the beginning

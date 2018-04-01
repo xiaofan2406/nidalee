@@ -7,6 +7,7 @@ type EditableDemoProps = {};
 type EditableDemoState = {
   editableValue: string,
   editableInlineValue: string,
+  imgInlineEditValue: string,
   inlineEditValue: string,
 };
 
@@ -22,21 +23,26 @@ class EditableDemo extends React.Component<
       Curabitur quis lorem ultricies, hendrerit justo id
     `,
     editableInlineValue: 'Sed lacinia tincidunt nibh tincidunt diam',
-    inlineEditValue:
+    imgInlineEditValue:
       'http://ddragon.leagueoflegends.com/cdn/7.14.1/img/champion/Aatrox.png',
+    inlineEditValue: 'what todo',
   };
 
   render() {
-    const { editableValue, editableInlineValue, inlineEditValue } = this.state;
+    const {
+      editableValue,
+      editableInlineValue,
+      imgInlineEditValue,
+    } = this.state;
     return (
       <Box display="flex" justifyContent="space-around" width="100%">
         <Box width="360px" level={3}>
           <h2>Multi line editable</h2>
           <Editable
             value={editableValue}
-            onSave={content => {
+            onSave={value => {
               this.setState({
-                editableValue: content,
+                editableValue: value,
               });
             }}
           />
@@ -44,9 +50,9 @@ class EditableDemo extends React.Component<
           <div>
             <Editable
               value={editableInlineValue}
-              onSave={content => {
+              onSave={value => {
                 this.setState({
-                  editableInlineValue: content,
+                  editableInlineValue: value,
                 });
               }}
             />
@@ -63,15 +69,23 @@ class EditableDemo extends React.Component<
         <Box width="360px" level={3}>
           <h2>Inline Edit Demo</h2>
           <InlineEdit
-            defaultValue={inlineEditValue}
+            value={imgInlineEditValue}
             render={value => (
               <>
                 <img src={value} />MYAVARTAR
               </>
             )}
-            onSave={content => {
+            onSave={value => {
               this.setState({
-                inlineEditValue: content,
+                imgInlineEditValue: value,
+              });
+            }}
+          />
+          <InlineEdit
+            value={this.state.inlineEditValue}
+            onSave={value => {
+              this.setState({
+                inlineEditValue: value,
               });
             }}
           />

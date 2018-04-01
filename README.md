@@ -25,6 +25,7 @@ React UI components
 * [ ] flow defs
 * [x] re-do button ripple affect
 * [ ] empty classname check
+* [ ] `style` merge
 * [ ] utilize accessibility attributes
 * [ ] check component types
 * [ ] simple CSS animations
