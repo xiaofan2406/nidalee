@@ -136,13 +136,23 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
   };
 
   render() {
-    const { children, align, className } = this.props;
+    const {
+      opener,
+      children,
+      trigger,
+      align,
+      direction,
+      zIndex,
+      open,
+      className,
+      ...rest
+    } = this.props;
     const { isVisible } = this.state;
 
     const classNames = cx([cssPopover, className]);
 
     return (
-      <div className={classNames}>
+      <div className={classNames} {...rest}>
         {this.renderOpener()}
         {isVisible ? (
           <div className={`expand ${align}`} style={this.styles}>

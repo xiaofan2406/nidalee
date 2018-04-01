@@ -133,7 +133,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
     this.container.current.blur();
   };
 
-  handleKeyDown = (event: KeyboardEvent) => {
+  handleKeyDown = (event: SyntheticKeyboardEvent<>) => {
     event.stopPropagation();
     const { isEditing } = this.state;
     const { inline, escAction } = this.props;
@@ -152,7 +152,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
     }
   };
 
-  handleBlur = (event: FocusEvent) => {
+  handleBlur = (event: SyntheticFocusEvent<>) => {
     event.stopPropagation();
     this.handleAction(this.props.blurAction);
   };

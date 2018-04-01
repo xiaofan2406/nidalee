@@ -26,6 +26,7 @@ class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
         <Popover
           opener="I am controlled by others"
           open={this.state.controlledOpen}
+          direction="bottom"
         >
           <Button
             onClick={() => {

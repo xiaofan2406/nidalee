@@ -14,6 +14,7 @@ import Button from './Button';
 import Editable from './Editable';
 import FormField from './FormField';
 import Icon from './Icon';
+import InlineEdit from './InlineEdit';
 import Input from './Input';
 import MoonSpinner from './MoonSpinner';
 import Popover from './Popover';
@@ -34,6 +35,7 @@ export {
   Editable,
   FormField,
   Icon,
+  InlineEdit,
   Input,
   MoonSpinner,
   Popover,
@@ -55,6 +57,7 @@ export default {
   Editable,
   FormField,
   Icon,
+  InlineEdit,
   Input,
   MoonSpinner,
   Popover,

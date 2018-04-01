@@ -1,12 +1,13 @@
 /* @flow */
 import React from 'react';
-import { Box, Editable } from 'nidalee';
+import { Box, Editable, InlineEdit } from 'nidalee';
 
 type EditableDemoProps = {};
 
 type EditableDemoState = {
-  multiLineValue: string,
-  inlineValue: string,
+  editableValue: string,
+  editableInlineValue: string,
+  inlineEditValue: string,
 };
 
 class EditableDemo extends React.Component<
@@ -14,48 +15,63 @@ class EditableDemo extends React.Component<
   EditableDemoState
 > {
   state = {
-    multiLineValue: `Ut nisi justo, aliquet id feugiat vel.
+    editableValue: `Ut nisi justo, aliquet id feugiat vel.
       Proin tempus vitae ipsum eget sagittis. Donec ut nunc nisl.
       Nunc a enim interdum, tincidunt massa quis, fermentum massa.
       Donec tincidunt diam id turpis porta, vel ultrices quam mattis.
       Curabitur quis lorem ultricies, hendrerit justo id
     `,
-    inlineValue: 'Sed lacinia tincidunt nibh tincidunt diam',
+    editableInlineValue: 'Sed lacinia tincidunt nibh tincidunt diam',
+    inlineEditValue: 'Sed lacinia tincidun',
   };
 
   render() {
-    const { multiLineValue, inlineValue } = this.state;
+    const { editableValue, editableInlineValue, inlineEditValue } = this.state;
     return (
-      <Box width={360} level={3}>
-        <h2>Multi line editable</h2>
-        <Editable
-          value={multiLineValue}
-          onSave={content => {
-            this.setState({
-              multiLineValue: content,
-            });
-          }}
-        />
-        <h2>Single line editable</h2>
-        <div>
+      <Box display="flex" justifyContent="space-around" width="100%">
+        <Box width="360px" level={3}>
+          <h2>Multi line editable</h2>
           <Editable
-            value={inlineValue}
-            inline
+            value={editableValue}
             onSave={content => {
               this.setState({
-                inlineValue: content,
+                editableValue: content,
               });
             }}
           />
-          <span>and hey</span>
-        </div>
-        <h2>With placeholder</h2>
-        <Editable
-          value=""
-          placeholder="You cant save me lol"
-          onSave={() => {}}
-        />
-        <div>some toehr jibsdfljk loreansd isadf </div>
+          <h2>Single line editable</h2>
+          <div>
+            <Editable
+              value={editableInlineValue}
+              inline
+              onSave={content => {
+                this.setState({
+                  editableInlineValue: content,
+                });
+              }}
+            />
+            <span>and hey</span>
+          </div>
+          <h2>With placeholder</h2>
+          <Editable
+            value=""
+            placeholder="You cant save me lol"
+            onSave={() => {}}
+          />
+        </Box>
+
+        <Box width="360px" level={3}>
+          <h2>Inline Edit Demo</h2>
+          <InlineEdit
+            defaultValue={inlineEditValue}
+            onSave={content => {
+              this.setState({
+                inlineEditValue: content,
+              });
+            }}
+          />
+          BREAKsome toehr jibsdfljk loreansd isadd
+        </Box>
       </Box>
     );
   }

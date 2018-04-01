@@ -12,6 +12,9 @@ const cssSection = css`
   &.appMain {
     flex: 1;
     display: flex;
+    & > main {
+      width: 100%;
+    }
   }
 `;
 

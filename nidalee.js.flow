@@ -107,6 +107,17 @@ export type EditableState = {|
   isEditing: boolean,
 |};
 
+export type InlineEditProps = {|
+  +defaultValue: string,
+  +onSave: (content: string) => void,
+
+  +className?: string,
+|};
+export type InlineEditDefaultProps = {};
+export type InlineEditState = {|
+  isEditing: boolean,
+|};
+
 export type FAIconType = 'regular' | 'solid' | 'light' | 'brands';
 export type IconProps = {
   +type: FAIconType,
@@ -182,6 +193,13 @@ declare module 'nidalee' {
 
   declare export class Icon extends React$Component<IconProps> {
     static defaultProps: IconDefaultProps;
+  }
+
+  declare export class InlineEdit extends React$Component<
+    InlineEditProps,
+    InlineEditState
+  > {
+    static defaultProps: InlineEditDefaultProps;
   }
 
   declare export class Popover extends React$Component<
