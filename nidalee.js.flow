@@ -63,7 +63,7 @@ export type ButtonDefaultProps = {|
 |};
 export type DialogPosition = 'top' | 'middle' | 'bottom';
 export type DialogProps = {
-  +opener: string | React$Node,
+  +opener: React$Node,
   +children: React$Node,
 
   +showOverlay: boolean,
@@ -83,7 +83,7 @@ export type DropdownTrigger = 'onClick' | 'onDoubleClick';
 export type DropdownAlign = 'left' | 'right';
 export type DropdownDirection = 'top' | 'bottom';
 export type DropdownProps = {
-  +opener: string | React$Node,
+  +opener: React$Node,
   +children: React$Node,
 
   +trigger: DropdownTrigger,
@@ -101,7 +101,7 @@ export type DropdownDefaultProps = {|
   +zIndex: number,
 |};
 export type DropdownState = {|
-  isVisible: boolean,
+  isExpanded: boolean,
 |};
 
 export type EditableAction = 'save' | 'cancel';

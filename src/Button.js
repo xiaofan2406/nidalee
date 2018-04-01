@@ -9,7 +9,7 @@ import Spinner from './Spinner';
 const EButton = styled.button`
   display: inline-flex;
   align-items: center;
-  vertical-align: top;
+  vertical-align: bottom;
 
   outline: none;
   cursor: pointer;

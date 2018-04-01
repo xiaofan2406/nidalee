@@ -1,36 +1,39 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import { theme } from './styles';
+import { theme, focusableElement } from './styles';
 import Button from './Button';
 
+// TODO some style with Button can be extracted
 const cssDropdown = css`
   position: relative;
-  outline: none;
   display: inline-flex;
-  color: ${theme.textColor};
-  margin: 0px 8px;
+  outline: none;
+  vertical-align: bottom;
 
-  & > .expand {
+  & > .dropdown {
     background-color: ${theme.subBgColor};
-    color: ${theme.textColor};
-    padding: 8px;
+    padding: 6px 10px;
+    min-width: 100%;
+    position: absolute;
   }
 
   & > .opener {
-    margin: 0px;
+    margin: 0px; /* reset dynamic nodes margin */
+    min-height: 36px;
+    ${focusableElement};
+    padding: 6px 10px;
+    cursor: default;
   }
 
   & > .right {
     right: 0;
     left: auto;
-    position: absolute;
   }
 
   & > .left {
     left: 0;
     right: auto;
-    position: absolute;
   }
 `;
 
@@ -38,25 +41,25 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   static defaultProps: DropdownDefaultProps = {
     trigger: 'onClick',
     align: 'right',
-    direction: 'top',
+    direction: 'bottom',
     zIndex: 2,
   };
 
   static getDerivedStateFromProps(nextProps: DropdownProps) {
     if (typeof nextProps.open === 'boolean') {
       return {
-        isVisible: nextProps.open,
+        isExpanded: nextProps.open,
       };
     }
     return null;
   }
 
   state = {
-    isVisible: this.props.open || false,
+    isExpanded: this.props.open || false,
   };
 
   componentDidUpdate() {
-    if (this.state.isVisible && !this.isControlled) {
+    if (this.state.isExpanded && !this.isControlled) {
       document.addEventListener('click', this.handleOutsideClick);
     } else {
       document.removeEventListener('click', this.handleOutsideClick);
@@ -80,35 +83,37 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
   // $FlowFixMe
   openerRef = React.createRef();
+  // $FlowFixMe
+  dropdownRef = React.createRef();
 
   open = () => {
-    if (!this.state.isVisible) {
+    if (!this.state.isExpanded) {
       this.setState({
-        isVisible: true,
+        isExpanded: true,
       });
     }
   };
 
   close = () => {
-    if (this.state.isVisible) {
+    if (this.state.isExpanded) {
       this.setState({
-        isVisible: false,
+        isExpanded: false,
       });
     }
   };
 
   handleOutsideClick = (event: MouseEvent) => {
+    // Native event event.target!
     if (
       !this.isControlled &&
-      !this.openerRef.current.contains(event.currentTarget)
+      !this.dropdownRef.current.contains(event.target)
     ) {
       this.close();
     }
   };
 
   handleOpen = () => {
-    if (this.state.isVisible) {
-      this.openerRef.current.blur();
+    if (this.state.isExpanded) {
       this.close();
     } else {
       this.open();
@@ -119,7 +124,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     const { opener, trigger } = this.props;
 
     const triggerProp = {
-      [trigger]: !this.isControlled ? this.handleOpen : () => {},
+      [trigger]: !this.isControlled ? this.handleOpen : undefined,
     };
 
     return typeof opener === 'string' ? (
@@ -130,6 +135,8 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       React.cloneElement(opener, {
         className: cx([opener.props.className, 'opener']),
         ref: this.openerRef,
+        tabIndex: 0,
+        role: 'button',
         ...triggerProp,
       })
     );
@@ -147,15 +154,16 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       className,
       ...rest
     } = this.props;
-    const { isVisible } = this.state;
-
-    const classNames = cx([cssDropdown, className]);
-
+    const { isExpanded } = this.state;
     return (
-      <div className={classNames} {...rest}>
+      <div {...rest} tabIndex={-1} className={cx([cssDropdown, className])}>
         {this.renderOpener()}
-        {isVisible ? (
-          <div className={`expand ${align}`} style={this.styles}>
+        {isExpanded ? (
+          <div
+            className={`dropdown ${align}`}
+            style={this.styles}
+            ref={this.dropdownRef}
+          >
             {children}
           </div>
         ) : null}

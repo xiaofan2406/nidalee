@@ -60,7 +60,7 @@ export const defaultFont = css`
   line-height: 1.4;
 `;
 
-export const baseInputElement = css`
+export const focusableElement = css`
   background-color: ${theme.eleBgColor};
   border: 1px solid ${theme.borderColor};
   outline: none;

@@ -26,6 +26,18 @@ class DropdownDemo extends React.Component<
         >
           now you see mesdafasdfasdfas sad fasd fasdf
         </Dropdown>
+        | |
+        <Dropdown
+          align="right"
+          direction="top"
+          trigger="onDoubleClick"
+          opener={<span className="whoknows">Double Click into me</span>}
+        >
+          now
+        </Dropdown>
+        | |
+        <Button color="red">Imjustabutton</Button>
+        <h2>Fully controlled</h2>
         <Dropdown
           opener="I am controlled by others"
           open={this.state.controlledOpen}
@@ -39,7 +51,6 @@ class DropdownDemo extends React.Component<
             now you see me
           </Button>
         </Dropdown>
-        <h2>Fully controlled</h2>
         <Dropdown
           opener={
             <span
@@ -63,6 +74,7 @@ class DropdownDemo extends React.Component<
           >
             close
           </Button>
+          and alot other stuff to make this reazallly long
         </Dropdown>
       </div>
     );

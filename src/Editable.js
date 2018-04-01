@@ -2,11 +2,11 @@
 import React from 'react';
 import { css, cx } from 'react-emotion';
 import { isEnter, isEsc } from './helpers';
-import { theme, defaultFont, baseInputElement } from './styles';
+import { theme, defaultFont, focusableElement } from './styles';
 
 const cssEditable = css`
   ${defaultFont};
-  ${baseInputElement};
+  ${focusableElement};
 
   padding: 12px 16px;
   min-height: 46px;
