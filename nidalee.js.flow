@@ -82,7 +82,7 @@ export type DialogState = {|
 export type EditableAction = 'save' | 'cancel';
 export type EditableProps = {
   +value: string,
-  +onSave: (content: string) => void,
+  +onSave: (value: string) => void,
 
   +placeholder: string,
   +className: string,
@@ -90,10 +90,11 @@ export type EditableProps = {
   +blurAction: EditableAction,
   +escAction: EditableAction,
 
+  +onCancel?: () => void,
   +onKeyDown?: (event: KeyboardEvent) => void,
   +onBlur?: (event: FocusEvent) => void,
   +onDoubleClick?: (event: MouseEvent) => void,
-};
+}; // all other HTML `div` attributes are supported
 export type EditableDefaultProps = {|
   +placeholder: string,
   +className: string,
