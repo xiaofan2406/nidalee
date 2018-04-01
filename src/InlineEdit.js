@@ -1,115 +1,111 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import { defaultText } from './styles';
+import InlineEditInput from './InlineEditInput';
 import { isEnter, isEsc } from './helpers';
 
 const cssInlineEdit = css`
-  ${defaultText};
-  -webkit-appearance: none;
-  border: 0;
-  background-color: transparent;
-  outline: none;
-  display: inline;
-  &[readonly] {
-    cursor: default;
-  }
+  display: inline-flex;
+  position: relative;
 `;
 
-// TODO behave same as Editable
+const cssInlineEditInput = css`
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: inline-flex;
+  background-color: black;
+`;
+
+type InlineEditProps = {};
+
+type InlineEditState = {|
+  isEditing: boolean,
+|};
+
 class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
   state = {
     isEditing: false,
   };
 
-  // $FlowFixMe
-  input = React.createRef();
-
+  get inputStyle(): Object {
+    return { width: this.span.current.getBoundingClientRect().width };
+  }
   startEditing = () => {
-    if (!this.state.isEditing) {
+    const { isEditing } = this.state;
+    if (!isEditing) {
       this.setState({
         isEditing: true,
       });
-      // put cursor to the end
-      const { value } = this.input.current;
-      this.input.current.value = '';
-      this.input.current.value = value;
     }
   };
 
-  finishEditing = () => {
-    const { isEditing } = this.state;
+  handleSave = value => {
     const { onSave } = this.props;
-    if (isEditing) {
-      onSave(this.input.current.value);
-      this.setState({
-        isEditing: false,
-      });
-    }
-  };
-
-  cancelEditing = () => {
     const { isEditing } = this.state;
-    const { defaultValue } = this.props;
     if (isEditing) {
-      this.input.current.value = defaultValue;
+      onSave(value);
       this.setState({
         isEditing: false,
       });
-      this.input.current.blur();
     }
   };
 
-  handleDoubleClick = () => {
+  handleCancel = () => {
+    const { isEditing } = this.state;
+    if (isEditing) {
+      this.setState({
+        isEditing: false,
+      });
+    }
+  };
+
+  // $FlowFixMe
+  span = React.createRef();
+
+  handleSpanDoubleClick = (event: SyntheticEvent<HTMLSpanElement>) => {
+    const { onDoubleClick } = this.props;
     this.startEditing();
-  };
 
-  handleBlur = (event: SyntheticEvent<HTMLInputElement>) => {
-    const { isEditing } = this.state;
-    const { onSave } = this.props;
-    if (isEditing) {
-      onSave(event.currentTarget.value);
-    }
-    this.setState({
-      isEditing: false,
-    });
-  };
-
-  handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
-    const { isEditing } = this.state;
-    if (!isEditing && isEnter(event)) {
-      event.preventDefault();
-      this.startEditing();
-    }
-    if (isEditing && isEnter(event)) {
-      event.preventDefault();
-      this.finishEditing();
-    }
-
-    if (isEditing && isEsc(event)) {
-      this.cancelEditing();
+    if (onDoubleClick) {
+      onDoubleClick(event);
     }
   };
 
-  handleFocus = (event: SyntheticEvent<HTMLInputElement>) => {
-    // prevent all data from selected when focused
-    event.currentTarget.setSelectionRange(0, 0);
+  renderValue = () => {
+    const { defaultValue, render } = this.props;
+    return render ? render(defaultValue) : defaultValue;
   };
 
   render() {
+    const {
+      defaultValue,
+      onDoubleClick,
+      onSave,
+      render,
+      className,
+      ...rest
+    } = this.props;
     const { isEditing } = this.state;
-    const { defaultValue, className } = this.props;
     return (
-      <input
-        defaultValue={defaultValue}
+      <span
+        {...rest}
         className={cx([cssInlineEdit, className])}
-        readOnly={!isEditing}
-        onDoubleClick={this.handleDoubleClick}
-        onKeyDown={this.handleKeyDown}
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
-        ref={this.input}
-      />
+        ref={this.span}
+        onDoubleClick={this.handleSpanDoubleClick}
+      >
+        {this.renderValue()}
+        {isEditing ? (
+          <InlineEditInput
+            style={this.inputStyle}
+            className={cssInlineEditInput}
+            defaultValue={defaultValue}
+            onSave={this.handleSave}
+            onCancel={this.handleCancel}
+          />
+        ) : null}
+      </span>
     );
   }
 }

@@ -193,7 +193,6 @@ class Editable extends React.Component<EditableProps, EditableState> {
       { isEditing },
       className,
     ]);
-    console.log('render with', value);
     return (
       <div
         {...rest}

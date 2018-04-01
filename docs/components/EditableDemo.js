@@ -22,7 +22,8 @@ class EditableDemo extends React.Component<
       Curabitur quis lorem ultricies, hendrerit justo id
     `,
     editableInlineValue: 'Sed lacinia tincidunt nibh tincidunt diam',
-    inlineEditValue: 'Sed lacinia tincidun',
+    inlineEditValue:
+      'http://ddragon.leagueoflegends.com/cdn/7.14.1/img/champion/Aatrox.png',
   };
 
   render() {
@@ -64,13 +65,18 @@ class EditableDemo extends React.Component<
           <h2>Inline Edit Demo</h2>
           <InlineEdit
             defaultValue={inlineEditValue}
+            render={value => (
+              <>
+                <img src={value} />MYAVARTAR
+              </>
+            )}
             onSave={content => {
               this.setState({
                 inlineEditValue: content,
               });
             }}
           />
-          BREAKsome toehr jibsdfljk loreansd isadd
+          |||toehr jibsdfljk loreansd isadd
         </Box>
       </Box>
     );
