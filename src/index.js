@@ -9,15 +9,15 @@ import Nidalee from './layout/Nidalee';
 import Section from './layout/Section';
 import StickyHeader from './layout/StickyHeader';
 
-import Dialog from './Dialog';
 import Button from './Button';
+import Dialog from './Dialog';
+import Dropdown from './Dropdown';
 import Editable from './Editable';
 import FormField from './FormField';
 import Icon from './Icon';
 import InlineEdit from './InlineEdit';
 import Input from './Input';
 import MoonSpinner from './MoonSpinner';
-import Popover from './Popover';
 import Spinner from './Spinner';
 
 export {
@@ -30,15 +30,15 @@ export {
   Nidalee,
   Section,
   StickyHeader,
-  Dialog,
   Button,
+  Dialog,
+  Dropdown,
   Editable,
   FormField,
   Icon,
   InlineEdit,
   Input,
   MoonSpinner,
-  Popover,
   Spinner,
 };
 
@@ -52,14 +52,14 @@ export default {
   Nidalee,
   Section,
   StickyHeader,
-  Dialog,
   Button,
+  Dialog,
+  Dropdown,
   Editable,
   FormField,
   Icon,
   InlineEdit,
   Input,
   MoonSpinner,
-  Popover,
   Spinner,
 };

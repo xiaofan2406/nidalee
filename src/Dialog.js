@@ -39,7 +39,7 @@ class Dialog extends React.Component<DialogProps, DialogState> {
     position: 'middle',
   };
 
-  static getDerivedStateFromProps(nextProps: PopoverProps) {
+  static getDerivedStateFromProps(nextProps: DialogProps) {
     if (typeof nextProps.open === 'boolean') {
       return {
         isVisible: nextProps.open,

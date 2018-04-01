@@ -21,10 +21,10 @@ const Router = () => (
       })}
     />
     <Route
-      path="/popover"
+      path="/dropdown"
       component={asyncLoad({
         importer: () =>
-          import(/* webpackChunkName: "PopoverDemo" */ './PopoverDemo'),
+          import(/* webpackChunkName: "DropdownDemo" */ './DropdownDemo'),
       })}
     />
     <Route

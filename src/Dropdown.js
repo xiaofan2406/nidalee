@@ -4,7 +4,7 @@ import { css, cx } from 'react-emotion';
 import { theme } from './styles';
 import Button from './Button';
 
-const cssPopover = css`
+const cssDropdown = css`
   position: relative;
   outline: none;
   display: inline-flex;
@@ -34,15 +34,15 @@ const cssPopover = css`
   }
 `;
 
-class Popover extends React.Component<PopoverProps, PopoverState> {
-  static defaultProps: PopoverDefaultProps = {
+class Dropdown extends React.Component<DropdownProps, DropdownState> {
+  static defaultProps: DropdownDefaultProps = {
     trigger: 'onClick',
     align: 'right',
     direction: 'top',
     zIndex: 2,
   };
 
-  static getDerivedStateFromProps(nextProps: PopoverProps) {
+  static getDerivedStateFromProps(nextProps: DropdownProps) {
     if (typeof nextProps.open === 'boolean') {
       return {
         isVisible: nextProps.open,
@@ -149,7 +149,7 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
     } = this.props;
     const { isVisible } = this.state;
 
-    const classNames = cx([cssPopover, className]);
+    const classNames = cx([cssDropdown, className]);
 
     return (
       <div className={classNames} {...rest}>
@@ -164,4 +164,4 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
   }
 }
 
-export default Popover;
+export default Dropdown;

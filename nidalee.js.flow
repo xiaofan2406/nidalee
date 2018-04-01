@@ -79,6 +79,31 @@ export type DialogState = {|
   isVisible: boolean,
 |};
 
+export type DropdownTrigger = 'onClick' | 'onDoubleClick';
+export type DropdownAlign = 'left' | 'right';
+export type DropdownDirection = 'top' | 'bottom';
+export type DropdownProps = {
+  +opener: string | React$Node,
+  +children: React$Node,
+
+  +trigger: DropdownTrigger,
+  +align: DropdownAlign,
+  +direction: DropdownDirection,
+  +zIndex: number,
+
+  +open?: boolean,
+  +className?: string,
+};
+export type DropdownDefaultProps = {|
+  +trigger: DropdownTrigger,
+  +align: DropdownAlign,
+  +direction: DropdownDirection,
+  +zIndex: number,
+|};
+export type DropdownState = {|
+  isVisible: boolean,
+|};
+
 export type EditableAction = 'save' | 'cancel';
 export type EditableProps = {
   +value: string,
@@ -119,31 +144,6 @@ export type IconDefaultProps = {|
   +type: FAIconType,
   +name: string,
   +size: Size,
-|};
-
-export type PopoverTrigger = 'onClick' | 'onDoubleClick';
-export type PopoverAlign = 'left' | 'right';
-export type PopoverDirection = 'top' | 'bottom';
-export type PopoverProps = {
-  +opener: string | React$Node,
-  +children: React$Node,
-
-  +trigger: PopoverTrigger,
-  +align: PopoverAlign,
-  +direction: PopoverDirection,
-  +zIndex: number,
-
-  +open?: boolean,
-  +className?: string,
-};
-export type PopoverDefaultProps = {|
-  +trigger: PopoverTrigger,
-  +align: PopoverAlign,
-  +direction: PopoverDirection,
-  +zIndex: number,
-|};
-export type PopoverState = {|
-  isVisible: boolean,
 |};
 
 export type PortalProps = {
@@ -190,11 +190,11 @@ declare module 'nidalee' {
     static defaultProps: InlineEditDefaultProps;
   }
 
-  declare export class Popover extends React$Component<
-    PopoverProps,
-    PopoverState
+  declare export class Dropdown extends React$Component<
+    DropdownProps,
+    DropdownState
   > {
-    static defaultProps: PopoverDefaultProps;
+    static defaultProps: DropdownDefaultProps;
   }
 
   declare export class Portal extends React$Component<PortalProps> {}

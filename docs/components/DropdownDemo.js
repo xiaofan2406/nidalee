@@ -1,14 +1,17 @@
 /* @flow */
 import React from 'react';
-import { Popover, Button } from 'nidalee';
+import { Dropdown, Button } from 'nidalee';
 
-type PopoverDemoProps = {};
+type DropdownDemoProps = {};
 
-type PopoverDemoState = {
+type DropdownDemoState = {
   controlledOpen: boolean,
 };
 
-class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
+class DropdownDemo extends React.Component<
+  DropdownDemoProps,
+  DropdownDemoState
+> {
   state = {
     controlledOpen: false,
   };
@@ -16,14 +19,14 @@ class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
   render() {
     return (
       <div>
-        <Popover
+        <Dropdown
           align="left"
           direction="bottom"
           opener={<span className="whoknows">Click into me</span>}
         >
           now you see mesdafasdfasdfas sad fasd fasdf
-        </Popover>
-        <Popover
+        </Dropdown>
+        <Dropdown
           opener="I am controlled by others"
           open={this.state.controlledOpen}
           direction="bottom"
@@ -35,9 +38,9 @@ class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
           >
             now you see me
           </Button>
-        </Popover>
+        </Dropdown>
         <h2>Fully controlled</h2>
-        <Popover
+        <Dropdown
           opener={
             <span
               onDoubleClick={() => {
@@ -60,10 +63,10 @@ class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
           >
             close
           </Button>
-        </Popover>
+        </Dropdown>
       </div>
     );
   }
 }
 
-export default PopoverDemo;
+export default DropdownDemo;
