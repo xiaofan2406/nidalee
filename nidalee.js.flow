@@ -86,7 +86,6 @@ export type EditableProps = {
 
   +placeholder: string,
   +className: string,
-  +inline: boolean,
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,
@@ -98,7 +97,6 @@ export type EditableProps = {
 export type EditableDefaultProps = {|
   +placeholder: string,
   +className: string,
-  +inline: boolean,
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,

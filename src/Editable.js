@@ -2,38 +2,21 @@
 import React from 'react';
 import { css, cx } from 'react-emotion';
 import { isEnter, isEsc } from './helpers';
-import { theme, defaultText } from './styles';
+import { theme, defaultFont, baseInputElement } from './styles';
 
 const cssEditable = css`
-  ${defaultText};
+  ${defaultFont};
+  ${baseInputElement};
 
-  padding: 8px 12px;
-  min-height: 38px;
-  color: ${theme.textColor};
-  background-color: ${theme.eleBgColor};
-  border: 1px solid ${theme.borderColor};
+  padding: 12px 16px;
+  min-height: 46px;
 
   cursor: default;
-  outline: none;
-  &:focus,
-  &:active {
-    border-color: ${theme.primaryColor};
-  }
 
   &:empty:before {
     content: attr(placeholder);
-    display: block;
     font-style: italic;
     color: ${theme.subTextColor};
-  }
-  &.inline {
-    display: inline-block;
-    max-width: 100%;
-  }
-  &.ellipsis {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
   }
   &.isEditing {
     cursor: text;
@@ -44,7 +27,6 @@ class Editable extends React.Component<EditableProps, EditableState> {
   static defaultProps: EditableDefaultProps = {
     placeholder: '',
     className: '',
-    inline: false,
     autoTrim: false,
     blurAction: 'save',
     escAction: 'cancel',
@@ -108,9 +90,12 @@ class Editable extends React.Component<EditableProps, EditableState> {
   };
 
   startEditing = () => {
-    this.setState({
-      isEditing: true,
-    });
+    const { isEditing } = this.state;
+    if (!isEditing) {
+      this.setState({
+        isEditing: true,
+      });
+    }
   };
 
   finishEditing = () => {
@@ -133,18 +118,12 @@ class Editable extends React.Component<EditableProps, EditableState> {
     this.container.current.blur();
   };
 
-  handleKeyDown = (event: SyntheticKeyboardEvent<>) => {
+  handleKeyDown = (event: SyntheticKeyboardEvent<HTMLDivElement>) => {
     event.stopPropagation();
-    const { isEditing } = this.state;
-    const { inline, escAction } = this.props;
+    const { escAction } = this.props;
 
-    if (!isEditing && isEnter(event)) {
-      event.preventDefault();
+    if (isEnter(event)) {
       this.startEditing();
-    }
-    if (isEditing && inline && isEnter(event)) {
-      event.preventDefault();
-      this.finishEditing();
     }
 
     if (isEsc(event)) {
@@ -152,7 +131,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
     }
   };
 
-  handleBlur = (event: SyntheticFocusEvent<>) => {
+  handleBlur = (event: SyntheticFocusEvent<HTMLDivElement>) => {
     event.stopPropagation();
     this.handleAction(this.props.blurAction);
   };
@@ -180,19 +159,12 @@ class Editable extends React.Component<EditableProps, EditableState> {
       onSave,
       placeholder,
       className,
-      inline,
       autoTrim,
       blurAction,
       escAction,
       ...rest
     } = this.props;
-    const classNames = cx([
-      cssEditable,
-      { inline },
-      { ellipsis: inline && !isEditing },
-      { isEditing },
-      className,
-    ]);
+    const classNames = cx([cssEditable, { isEditing }, className]);
     return (
       <div
         {...rest}

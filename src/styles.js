@@ -53,11 +53,21 @@ export const areaBackground = css`
   background-color: ${theme.areaBgColor};
 `;
 
-export const defaultText = css`
+export const defaultFont = css`
   font-family: ${theme.fontFamily};
   font-size: ${theme.fontSize}px;
   color: ${theme.textColor};
   line-height: 1.4;
+`;
+
+export const baseInputElement = css`
+  background-color: ${theme.eleBgColor};
+  border: 1px solid ${theme.borderColor};
+  outline: none;
+  &:focus,
+  &:active {
+    border-color: ${theme.primaryColor};
+  }
 `;
 
 export const outline = css`

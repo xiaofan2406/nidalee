@@ -1,11 +1,11 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import { defaultText } from './styles';
+import { defaultFont } from './styles';
 import { isEnter, isEsc } from './helpers';
 
 const cssInlineEditInput = css`
-  ${defaultText};
+  ${defaultFont};
   border: 0;
   background-color: transparent;
   outline: none;

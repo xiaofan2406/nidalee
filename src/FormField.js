@@ -1,12 +1,12 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import { theme, defaultText } from './styles';
+import { theme, defaultFont } from './styles';
 import Input from './Input';
 
 // by default if the helperText is >1 line, it will cause layout change
 const cssFormField = css`
-  ${defaultText};
+  ${defaultFont};
   margin-bottom: 18px;
   min-height: 56px;
   color: ${theme.subTextColor};

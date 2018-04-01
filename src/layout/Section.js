@@ -1,10 +1,10 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import { defaultText, theme } from '../styles';
+import { defaultFont, theme } from '../styles';
 
 const cssSection = css`
-  ${defaultText};
+  ${defaultFont};
   background-color: ${theme.bgColor};
   padding: 0;
   margin: 0;

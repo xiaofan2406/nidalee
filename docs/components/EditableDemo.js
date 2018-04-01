@@ -44,7 +44,6 @@ class EditableDemo extends React.Component<
           <div>
             <Editable
               value={editableInlineValue}
-              inline
               onSave={content => {
                 this.setState({
                   editableInlineValue: content,
