@@ -13,13 +13,20 @@ const cssInlineEditInput = css`
 
 class InlineEditInput extends React.Component<InlineEditInputProps> {
   componentDidMount() {
-    // put cursor to the beginning
-    this.input.current.setSelectionRange(0, 0);
-    this.input.current.focus();
+    this.setCursorAtTheStart();
   }
 
+  componentDidUpdate() {
+    this.setCursorAtTheStart();
+  }
+
+  setCursorAtTheStart = () => {
+    this.inputRef.current.setSelectionRange(0, 0);
+    this.inputRef.current.focus();
+  };
+
   // $FlowFixMe
-  input = React.createRef();
+  inputRef = React.createRef();
 
   handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
     const { onSave, onCancel, onKeyDown } = this.props;
@@ -53,7 +60,7 @@ class InlineEditInput extends React.Component<InlineEditInputProps> {
         className={cx([cssInlineEditInput, className])}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
-        ref={this.input}
+        ref={this.inputRef}
       />
     );
   }

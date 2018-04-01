@@ -151,8 +151,8 @@ export type InlineEditProps = {
   +value: string,
   +onSave: (value: string) => void,
 
-  +className?: string,
   +render?: InlineEditRender,
+  +className?: string,
   +onDoubleClick?: (event: SyntheticMouseEvent<HTMLSpanElement>) => void,
 }; // all other HTML `span` attributes are supported
 export type InlineEditState = {|
@@ -167,7 +167,7 @@ export type InlineEditInputProps = {
   +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => void,
   +onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => void,
   +className?: string,
-};
+}; // all other HTML `input` attributes are supported
 
 export type PortalProps = {
   +children: React$Node,
@@ -209,9 +209,7 @@ declare module 'nidalee' {
   declare export class InlineEdit extends React$Component<
     InlineEditProps,
     InlineEditState
-  > {
-    static defaultProps: InlineEditDefaultProps;
-  }
+  > {}
 
   declare export class Dropdown extends React$Component<
     DropdownProps,

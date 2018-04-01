@@ -70,11 +70,7 @@ class EditableDemo extends React.Component<
           <h2>Inline Edit Demo</h2>
           <InlineEdit
             value={imgInlineEditValue}
-            render={value => (
-              <>
-                <img src={value} />MYAVARTAR
-              </>
-            )}
+            render={value => <img src={value} alt="demo" />}
             onSave={value => {
               this.setState({
                 imgInlineEditValue: value,

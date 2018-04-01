@@ -69,7 +69,7 @@ class Dialog extends React.Component<DialogProps, DialogState> {
   }
 
   // $FlowFixMe
-  container = React.createRef();
+  containerRef = React.createRef();
 
   open = () => {
     this.setState({
@@ -87,7 +87,7 @@ class Dialog extends React.Component<DialogProps, DialogState> {
     if (
       !this.isControlled &&
       event.currentTarget instanceof Node &&
-      !this.container.current.contains(event.currentTarget)
+      !this.containerRef.current.contains(event.currentTarget)
     ) {
       this.close();
     }
@@ -127,7 +127,7 @@ class Dialog extends React.Component<DialogProps, DialogState> {
         {this.renderOpener()}
         {this.state.isVisible ? (
           <Portal className={classNames}>
-            <Box level={2} className="content" innerRef={this.container}>
+            <Box level={2} className="content" innerRef={this.containerRef}>
               {children}
             </Box>
           </Portal>
