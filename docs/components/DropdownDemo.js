@@ -51,17 +51,21 @@ class DropdownDemo extends React.Component<
             now you see me
           </Button>
         </Dropdown>
+        | |
         <Dropdown
-          opener={
-            <span
-              onDoubleClick={() => {
-                this.setState({ controlledOpen: true });
-              }}
-            >
-              Double Click into me
-            </span>
-          }
+          opener="Double Click into me"
+          trigger="onDoubleClick"
           open={this.state.controlledOpen}
+          onOpen={() => {
+            this.setState({
+              controlledOpen: true,
+            });
+          }}
+          onClose={() => {
+            this.setState({
+              controlledOpen: false,
+            });
+          }}
           align="right"
           direction="bottom"
         >
@@ -74,6 +78,7 @@ class DropdownDemo extends React.Component<
           >
             close
           </Button>
+          <Button>I Do nothin</Button>
           and alot other stuff to make this reazallly long
         </Dropdown>
       </div>

@@ -59,7 +59,8 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   };
 
   componentDidUpdate() {
-    if (this.state.isExpanded && !this.isControlled) {
+    const { isExpanded } = this.state;
+    if (isExpanded) {
       document.addEventListener('click', this.handleOutsideClick);
     } else {
       document.removeEventListener('click', this.handleOutsideClick);
@@ -86,37 +87,39 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   // $FlowFixMe
   dropdownRef = React.createRef();
 
-  open = () => {
-    if (!this.state.isExpanded) {
-      this.setState({
-        isExpanded: true,
-      });
+  handleOpen = () => {
+    const { onOpen } = this.props;
+    const { isExpanded } = this.state;
+
+    if (!isExpanded) {
+      if (!this.isControlled) {
+        this.setState({
+          isExpanded: true,
+        });
+      }
+
+      if (onOpen) onOpen();
     }
   };
 
-  close = () => {
-    if (this.state.isExpanded) {
-      this.setState({
-        isExpanded: false,
-      });
+  handleClose = () => {
+    const { onClose } = this.props;
+    const { isExpanded } = this.state;
+    if (isExpanded) {
+      if (!this.isControlled) {
+        this.setState({
+          isExpanded: false,
+        });
+      }
+
+      if (onClose) onClose();
     }
   };
 
   handleOutsideClick = (event: MouseEvent) => {
     // Native event event.target!
-    if (
-      !this.isControlled &&
-      !this.dropdownRef.current.contains(event.target)
-    ) {
-      this.close();
-    }
-  };
-
-  handleOpen = () => {
-    if (this.state.isExpanded) {
-      this.close();
-    } else {
-      this.open();
+    if (!this.dropdownRef.current.contains(event.target)) {
+      this.handleClose();
     }
   };
 
@@ -124,7 +127,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     const { opener, trigger } = this.props;
 
     const triggerProp = {
-      [trigger]: !this.isControlled ? this.handleOpen : undefined,
+      [trigger]: this.handleOpen,
     };
 
     return typeof opener === 'string' ? (
