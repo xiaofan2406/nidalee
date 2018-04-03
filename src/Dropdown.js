@@ -133,11 +133,12 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       </Button>
     ) : (
       React.cloneElement(opener, {
-        className: cx([opener.props.className, 'opener']),
-        ref: this.openerRef,
         tabIndex: 0,
         role: 'button',
         ...triggerProp,
+        ...opener.props,
+        className: cx([opener.props.className, 'opener']),
+        ref: this.openerRef,
       })
     );
   };
