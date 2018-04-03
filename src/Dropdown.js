@@ -139,6 +139,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         tabIndex: 0,
         role: 'button',
         ...triggerProp,
+        // TODO if opener is a element with `on${trigger}`, it will overwrite
         ...opener.props,
         className: cx([opener.props.className, 'opener']),
         ref: this.openerRef,

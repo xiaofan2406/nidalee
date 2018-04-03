@@ -61,32 +61,39 @@ export type ButtonDefaultProps = {|
   +color: string,
   +showSpinner: boolean,
 |};
+
+// TODO list of all events
+export type StandardEvent = 'onClick' | 'onDoubleClick';
+
 export type DialogPosition = 'top' | 'middle' | 'bottom';
 export type DialogProps = {
   +opener: React$Node,
   +children: React$Node,
 
   +showOverlay: boolean,
+  +trigger: StandardEvent,
   +position: DialogPosition,
 
   +open?: boolean,
+  +onOpen?: () => void,
+  +onClose?: () => void,
 };
 export type DialogDefaultProps = {|
+  +trigger: StandardEvent,
   +showOverlay: boolean,
   +position: DialogPosition,
 |};
 export type DialogState = {|
-  isVisible: boolean,
+  isOpen: boolean,
 |};
 
-export type DropdownTrigger = 'onClick' | 'onDoubleClick';
 export type DropdownAlign = 'left' | 'right';
 export type DropdownDirection = 'top' | 'bottom';
 export type DropdownProps = {
   +opener: React$Node,
   +children: React$Node,
 
-  +trigger: DropdownTrigger,
+  +trigger: StandardEvent,
   +align: DropdownAlign,
   +direction: DropdownDirection,
   +zIndex: number,
@@ -97,7 +104,7 @@ export type DropdownProps = {
   +className?: string,
 };
 export type DropdownDefaultProps = {|
-  +trigger: DropdownTrigger,
+  +trigger: StandardEvent,
   +align: DropdownAlign,
   +direction: DropdownDirection,
   +zIndex: number,

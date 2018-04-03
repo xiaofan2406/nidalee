@@ -4,6 +4,7 @@ import { css, cx } from 'react-emotion';
 import Portal from './Portal';
 import Box from './layout/Box';
 import Button from './Button';
+import WithOutsideClick from './internal/WithOutsideClick';
 
 const cssDialogPortal = css`
   width: 100vw;
@@ -33,8 +34,10 @@ const cssDialogPortal = css`
   }
 `;
 
+// TODO almost same as Dropdown, maybe something can be extracted
 class Dialog extends React.Component<DialogProps, DialogState> {
   static defaultProps: DialogDefaultProps = {
+    trigger: 'onClick',
     showOverlay: false,
     position: 'middle',
   };
@@ -42,94 +45,85 @@ class Dialog extends React.Component<DialogProps, DialogState> {
   static getDerivedStateFromProps(nextProps: DialogProps) {
     if (typeof nextProps.open === 'boolean') {
       return {
-        isVisible: nextProps.open,
+        isOpen: nextProps.open,
       };
     }
     return null;
   }
 
   state = {
-    isVisible: false,
+    isOpen: this.props.open || false,
   };
-
-  componentDidUpdate() {
-    if (this.state.isVisible && !this.isControlled) {
-      document.addEventListener('click', this.handleOutsideClick);
-    } else {
-      document.removeEventListener('click', this.handleOutsideClick);
-    }
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
-  }
 
   get isControlled(): boolean {
     return typeof this.props.open === 'boolean';
   }
 
   // $FlowFixMe
-  containerRef = React.createRef();
+  dialogRef = React.createRef();
 
-  open = () => {
-    this.setState({
-      isVisible: true,
-    });
+  handleOpen = () => {
+    const { onOpen } = this.props;
+    const { isOpen } = this.state;
+    if (!isOpen) {
+      if (!this.isControlled) {
+        this.setState({
+          isOpen: true,
+        });
+      }
+
+      if (onOpen) onOpen();
+    }
   };
 
-  close = () => {
-    this.setState({
-      isVisible: false,
-    });
-  };
+  handleClose = () => {
+    const { onClose } = this.props;
+    const { isOpen } = this.state;
+    if (isOpen) {
+      if (!this.isControlled) {
+        this.setState({
+          isOpen: false,
+        });
+      }
 
-  handleOutsideClick = (event: MouseEvent) => {
-    if (
-      !this.isControlled &&
-      event.currentTarget instanceof Node &&
-      !this.containerRef.current.contains(event.currentTarget)
-    ) {
-      this.close();
+      if (onClose) onClose();
     }
   };
 
   renderOpener = () => {
-    const { opener } = this.props;
+    const { opener, trigger } = this.props;
 
-    if (!this.isControlled) {
-      return typeof opener === 'string' ? (
-        <Button onClick={this.open}>{opener}</Button>
-      ) : (
-        React.cloneElement(opener, {
-          className: cx([opener.props.className, 'opener']),
-          onClick: this.open,
-        })
-      );
-    }
+    const triggerProp = {
+      [trigger]: this.handleOpen,
+    };
 
-    if (typeof opener === 'string') {
-      return console.warn(
-        'Dialog',
-        'Uncontolled, you need to render a node that does the opening'
-      );
-    }
-
-    return React.cloneElement(opener, {
-      className: cx([opener.props.className, 'opener']),
-    });
+    return typeof opener === 'string' ? (
+      <Button {...triggerProp}>{opener}</Button>
+    ) : (
+      // TODO if opener is a element with `on${trigger}`, it will overwrite
+      React.cloneElement(opener, {
+        ...triggerProp,
+        ...opener.props,
+      })
+    );
   };
 
   render() {
     const { children, showOverlay, position } = this.props;
-    const classNames = cx([cssDialogPortal, { showOverlay }, position]);
+    const { isOpen } = this.state;
     return (
       <>
         {this.renderOpener()}
-        {this.state.isVisible ? (
-          <Portal className={classNames}>
-            <Box level={2} className="content" innerRef={this.containerRef}>
-              {children}
-            </Box>
+        {isOpen ? (
+          <Portal className={cx([cssDialogPortal, { showOverlay }, position])}>
+            <WithOutsideClick
+              onOutsideClick={this.handleClose}
+              nodeRef={this.dialogRef}
+            >
+              <Box level={2} className="content" innerRef={this.dialogRef}>
+                {children}
+              </Box>
+            </WithOutsideClick>
           </Portal>
         ) : null}
       </>
