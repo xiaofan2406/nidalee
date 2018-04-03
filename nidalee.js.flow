@@ -63,7 +63,7 @@ export type ButtonDefaultProps = {|
 |};
 
 // TODO list of all events
-export type StandardEvent = 'onClick' | 'onDoubleClick';
+export type StandardEvent = string;
 
 export type DialogPosition = 'top' | 'middle' | 'bottom';
 export type DialogProps = {
@@ -90,7 +90,7 @@ export type DialogState = {|
 export type DropdownAlign = 'left' | 'right';
 export type DropdownDirection = 'top' | 'bottom';
 export type DropdownProps = {
-  +opener: React$Node,
+  +expander: React$Node,
   +children: React$Node,
 
   +trigger: StandardEvent,
@@ -98,11 +98,11 @@ export type DropdownProps = {
   +direction: DropdownDirection,
   +zIndex: number,
 
-  +open?: boolean,
-  +onOpen?: () => void,
-  +onClose?: () => void,
+  +expand?: boolean,
+  +onExpand?: () => void,
+  +onCollapse?: () => void,
   +className?: string,
-};
+}; // all other HTML `div` attributes are supported
 export type DropdownDefaultProps = {|
   +trigger: StandardEvent,
   +align: DropdownAlign,
@@ -204,6 +204,13 @@ declare module 'nidalee' {
     static defaultProps: DialogDefaultProps;
   }
 
+  declare export class Dropdown extends React$Component<
+    DropdownProps,
+    DropdownState
+  > {
+    static defaultProps: DropdownDefaultProps;
+  }
+
   declare export class Editable extends React$Component<
     EditableProps,
     EditableState
@@ -219,13 +226,6 @@ declare module 'nidalee' {
     InlineEditProps,
     InlineEditState
   > {}
-
-  declare export class Dropdown extends React$Component<
-    DropdownProps,
-    DropdownState
-  > {
-    static defaultProps: DropdownDefaultProps;
-  }
 
   declare export class Portal extends React$Component<PortalProps> {}
 }

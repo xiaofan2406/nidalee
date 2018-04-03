@@ -22,7 +22,7 @@ class DropdownDemo extends React.Component<
         <Dropdown
           align="left"
           direction="bottom"
-          opener={<span className="whoknows">Click into me</span>}
+          expander={<span className="whoknows">Click into me</span>}
         >
           now you see mesdafasdfasdfas sad fasd fasdf
         </Dropdown>
@@ -31,7 +31,7 @@ class DropdownDemo extends React.Component<
           align="right"
           direction="top"
           trigger="onDoubleClick"
-          opener={<span className="whoknows">Double Click into me</span>}
+          expander={<span className="whoknows">Double Click into me</span>}
         >
           now
         </Dropdown>
@@ -39,8 +39,8 @@ class DropdownDemo extends React.Component<
         <Button color="red">Imjustabutton</Button>
         <h2>Fully controlled</h2>
         <Dropdown
-          opener="I am controlled by others"
-          open={this.state.controlledOpen}
+          expander="I am controlled by others"
+          expand={this.state.controlledOpen}
           direction="bottom"
         >
           <Button
@@ -53,15 +53,15 @@ class DropdownDemo extends React.Component<
         </Dropdown>
         | |
         <Dropdown
-          opener="Double Click into me"
+          expander="Double Click into me"
           trigger="onDoubleClick"
-          open={this.state.controlledOpen}
-          onOpen={() => {
+          expand={this.state.controlledOpen}
+          onExpand={() => {
             this.setState({
               controlledOpen: true,
             });
           }}
-          onClose={() => {
+          onCollapse={() => {
             this.setState({
               controlledOpen: false,
             });

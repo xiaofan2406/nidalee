@@ -19,7 +19,7 @@ const cssDropdown = css`
     position: absolute;
   }
 
-  & > .opener {
+  & > .expander {
     margin: 0px; /* reset dynamic nodes margin */
     min-height: 36px;
     ${focusableElement};
@@ -47,36 +47,36 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   };
 
   static getDerivedStateFromProps(nextProps: DropdownProps) {
-    if (typeof nextProps.open === 'boolean') {
+    if (typeof nextProps.expand === 'boolean') {
       return {
-        isExpanded: nextProps.open,
+        isExpanded: nextProps.expand,
       };
     }
     return null;
   }
 
   state = {
-    isExpanded: this.props.open || false,
+    isExpanded: this.props.expand || false,
   };
 
   get isControlled(): boolean {
-    return typeof this.props.open === 'boolean';
+    return typeof this.props.expand === 'boolean';
   }
 
   get styles(): {} {
     const { direction, zIndex } = this.props;
     return direction === 'bottom'
-      ? { top: this.openerRef.current.offsetHeight, zIndex }
-      : { bottom: this.openerRef.current.offsetHeight, zIndex };
+      ? { top: this.expanderRef.current.offsetHeight, zIndex }
+      : { bottom: this.expanderRef.current.offsetHeight, zIndex };
   }
 
   // $FlowFixMe
-  openerRef = React.createRef();
+  expanderRef = React.createRef();
   // $FlowFixMe
   dropdownRef = React.createRef();
 
-  handleOpen = () => {
-    const { onOpen } = this.props;
+  handleExpand = () => {
+    const { onExpand } = this.props;
     const { isExpanded } = this.state;
 
     if (!isExpanded) {
@@ -86,12 +86,12 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
       }
 
-      if (onOpen) onOpen();
+      if (onExpand) onExpand();
     }
   };
 
-  handleClose = () => {
-    const { onClose } = this.props;
+  handleCollapse = () => {
+    const { onCollapse } = this.props;
     const { isExpanded } = this.state;
     if (isExpanded) {
       if (!this.isControlled) {
@@ -100,43 +100,45 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         });
       }
 
-      if (onClose) onClose();
+      if (onCollapse) onCollapse();
     }
   };
 
   renderOpener = () => {
-    const { opener, trigger } = this.props;
+    const { expander, trigger } = this.props;
 
     const triggerProp = {
-      [trigger]: this.handleOpen,
+      [trigger]: this.handleExpand,
     };
 
-    return typeof opener === 'string' ? (
-      <Button innerRef={this.openerRef} className="opener" {...triggerProp}>
-        {opener}
+    return typeof expander === 'string' ? (
+      <Button innerRef={this.expanderRef} className="expander" {...triggerProp}>
+        {expander}
       </Button>
     ) : (
-      React.cloneElement(opener, {
+      React.cloneElement(expander, {
         tabIndex: 0,
         role: 'button',
         ...triggerProp,
-        // TODO if opener is a element with `on${trigger}`, it will overwrite
-        ...opener.props,
-        className: cx([opener.props.className, 'opener']),
-        ref: this.openerRef,
+        // TODO if expander is a element with `on${trigger}`, it will overwrite
+        ...expander.props,
+        className: cx([expander.props.className, 'expander']),
+        ref: this.expanderRef,
       })
     );
   };
 
   render() {
     const {
-      opener,
+      expander,
       children,
       trigger,
       align,
       direction,
       zIndex,
-      open,
+      expand,
+      onExpand,
+      onCollapse,
       className,
       ...rest
     } = this.props;
@@ -146,7 +148,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         {this.renderOpener()}
         {isExpanded ? (
           <WithOutsideClick
-            onOutsideClick={this.handleClose}
+            onOutsideClick={this.handleCollapse}
             nodeRef={this.dropdownRef}
           >
             <div
