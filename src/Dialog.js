@@ -116,14 +116,13 @@ class Dialog extends React.Component<DialogProps, DialogState> {
         {this.renderOpener()}
         {isOpen ? (
           <Portal className={cx([cssDialogPortal, { showOverlay }, position])}>
+            <Box level={2} className="content" innerRef={this.dialogRef}>
+              {children}
+            </Box>
             <WithOutsideClick
               onOutsideClick={this.handleClose}
               nodeRef={this.dialogRef}
-            >
-              <Box level={2} className="content" innerRef={this.dialogRef}>
-                {children}
-              </Box>
-            </WithOutsideClick>
+            />
           </Portal>
         ) : null}
       </>

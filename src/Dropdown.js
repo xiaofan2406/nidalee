@@ -3,6 +3,7 @@ import * as React from 'react';
 import { css, cx } from 'react-emotion';
 import { theme, focusableElement } from './styles';
 import Button from './Button';
+import WithOutsideClick from './internal/WithOutsideClick';
 
 // TODO some style with Button can be extracted
 const cssDropdown = css`
@@ -58,19 +59,6 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     isExpanded: this.props.open || false,
   };
 
-  componentDidUpdate() {
-    const { isExpanded } = this.state;
-    if (isExpanded) {
-      document.addEventListener('click', this.handleOutsideClick);
-    } else {
-      document.removeEventListener('click', this.handleOutsideClick);
-    }
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
-  }
-
   get isControlled(): boolean {
     return typeof this.props.open === 'boolean';
   }
@@ -116,13 +104,6 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }
   };
 
-  handleOutsideClick = (event: MouseEvent) => {
-    // Native event event.target!
-    if (!this.dropdownRef.current.contains(event.target)) {
-      this.handleClose();
-    }
-  };
-
   renderOpener = () => {
     const { opener, trigger } = this.props;
 
@@ -164,13 +145,18 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       <div {...rest} tabIndex={-1} className={cx([cssDropdown, className])}>
         {this.renderOpener()}
         {isExpanded ? (
-          <div
-            className={`dropdown ${align}`}
-            style={this.styles}
-            ref={this.dropdownRef}
+          <WithOutsideClick
+            onOutsideClick={this.handleClose}
+            nodeRef={this.dropdownRef}
           >
-            {children}
-          </div>
+            <div
+              className={`dropdown ${align}`}
+              style={this.styles}
+              ref={this.dropdownRef}
+            >
+              {children}
+            </div>
+          </WithOutsideClick>
         ) : null}
       </div>
     );
