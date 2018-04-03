@@ -1,6 +1,13 @@
-import React from 'react';
+/* @flow */
+import * as React from 'react';
 
-class WithOutsideClick extends React.Component<> {
+type WithOutsideClickProps = {
+  +onOutsideClick: () => void,
+  // $FlowFixMe
+  +children: (ref: { current: HTMLElement }) => React.Element<any>,
+};
+
+class WithOutsideClick extends React.Component<WithOutsideClickProps> {
   componentDidMount() {
     document.addEventListener('click', this.handleOutsideClick);
   }
@@ -13,16 +20,19 @@ class WithOutsideClick extends React.Component<> {
     document.removeEventListener('click', this.handleOutsideClick);
   }
 
-  handleOutsideClick = event => {
-    const { onOutsideClick, nodeRef } = this.props;
+  // $FlowFixMe
+  nodeRef = React.createRef();
+
+  handleOutsideClick = (event: MouseEvent) => {
+    const { onOutsideClick } = this.props;
     // Native event event.target!
-    if (!nodeRef.current.contains(event.target)) {
+    if (!this.nodeRef.current.contains(event.target)) {
       onOutsideClick();
     }
   };
 
   render() {
-    return this.props.children;
+    return this.props.children(this.nodeRef);
   }
 }
 

@@ -59,9 +59,6 @@ class Dialog extends React.Component<DialogProps, DialogState> {
     return typeof this.props.open === 'boolean';
   }
 
-  // $FlowFixMe
-  dialogRef = React.createRef();
-
   handleOpen = () => {
     const { onOpen } = this.props;
     const { isOpen } = this.state;
@@ -116,13 +113,13 @@ class Dialog extends React.Component<DialogProps, DialogState> {
         {this.renderOpener()}
         {isOpen ? (
           <Portal className={cx([cssDialogPortal, { showOverlay }, position])}>
-            <Box level={2} className="content" innerRef={this.dialogRef}>
-              {children}
-            </Box>
-            <WithOutsideClick
-              onOutsideClick={this.handleClose}
-              nodeRef={this.dialogRef}
-            />
+            <WithOutsideClick onOutsideClick={this.handleClose}>
+              {nodeRef => (
+                <Box level={2} className="content" innerRef={nodeRef}>
+                  {children}
+                </Box>
+              )}
+            </WithOutsideClick>
           </Portal>
         ) : null}
       </>

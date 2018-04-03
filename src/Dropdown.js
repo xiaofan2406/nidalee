@@ -72,8 +72,6 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
   // $FlowFixMe
   expanderRef = React.createRef();
-  // $FlowFixMe
-  dropdownRef = React.createRef();
 
   handleExpand = () => {
     const { onExpand } = this.props;
@@ -147,17 +145,16 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       <div {...rest} tabIndex={-1} className={cx([cssDropdown, className])}>
         {this.renderOpener()}
         {isExpanded ? (
-          <WithOutsideClick
-            onOutsideClick={this.handleCollapse}
-            nodeRef={this.dropdownRef}
-          >
-            <div
-              className={`dropdown ${align}`}
-              style={this.styles}
-              ref={this.dropdownRef}
-            >
-              {children}
-            </div>
+          <WithOutsideClick onOutsideClick={this.handleCollapse}>
+            {nodeRef => (
+              <div
+                className={`dropdown ${align}`}
+                style={this.styles}
+                ref={nodeRef}
+              >
+                {children}
+              </div>
+            )}
           </WithOutsideClick>
         ) : null}
       </div>
