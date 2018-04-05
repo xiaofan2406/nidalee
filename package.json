@@ -56,12 +56,12 @@
   ],
   "dependencies": {
     "color": "^3.0.0",
-    "emotion": "^9.1.0",
-    "react-emotion": "^9.1.0"
+    "emotion": "^9.1.1",
+    "react-emotion": "^9.1.1"
   },
   "peerDependencies": {
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.44",
@@ -99,21 +99,21 @@
     "jest": "^22.4.3",
     "jest-emotion": "^9.0.0",
     "json-loader": "^0.5.7",
-    "lint-staged": "^7.0.2",
+    "lint-staged": "^7.0.4",
     "mini-css-extract-plugin": "^0.4.0",
     "prettier": "^1.11.1",
     "prettier-check": "^2.0.0",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
     "react-hot-loader": "^4.0.1",
     "react-router-dom": "^4.2.2",
-    "react-test-renderer": "^16.3.0",
+    "react-test-renderer": "^16.3.1",
     "serve": "^6.5.3",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^1.0.1",
-    "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
     "webpack-dev-server": "^3.1.1"
   }
 }

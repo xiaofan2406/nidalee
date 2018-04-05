@@ -49,7 +49,9 @@ class Controlled extends React.Component<{}, ControlledState> {
           showOverlay
         >
           Hi there. You can click the button or just the overlay
-          <Button>Click outside</Button>
+          <Button onClick={this.makeToggle('betterControlledOpen', false)}>
+            Click outside
+          </Button>
         </Dialog>
 
         <h2>Half controlled</h2>

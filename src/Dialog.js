@@ -1,10 +1,10 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import Portal from './Portal';
 import Box from './layout/Box';
 import Button from './Button';
 import WithOutsideClick from './internal/WithOutsideClick';
+import Portal from './internal/Portal';
 
 const cssDialogPortal = css`
   width: 100vw;

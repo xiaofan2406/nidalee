@@ -178,12 +178,6 @@ export type InlineEditInputProps = {
   +className?: string,
 }; // all other HTML `input` attributes are supported
 
-export type PortalProps = {
-  +children: React$Node,
-
-  +className?: string,
-};
-
 declare module 'nidalee' {
   declare export var Aside: React$StatelessFunctionalComponent<AsideProps>;
   declare export var Footer: React$StatelessFunctionalComponent<FooterProps>;
@@ -226,6 +220,4 @@ declare module 'nidalee' {
     InlineEditProps,
     InlineEditState
   > {}
-
-  declare export class Portal extends React$Component<PortalProps> {}
 }

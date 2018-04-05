@@ -2,34 +2,35 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 
-class Portal extends React.Component<PortalProps> {
-  constructor(props: PortalProps) {
-    super(props);
+type PortalProps = {
+  +children: React$Node,
+  +zIndex: number,
+  +className?: string,
+};
 
-    this.overlay = document.createElement('div');
-    if (this.props.className) {
-      this.overlay.className = this.props.className;
-      this.overlay.style.zIndex = '999';
-    }
-  }
+class Portal extends React.Component<PortalProps> {
+  static defaultProps = {
+    zIndex: 100,
+  };
 
   componentDidMount() {
     if (document.body) {
+      const { zIndex, className } = this.props;
+      if (className) {
+        this.overlay.className = className;
+      }
+      this.overlay.style.zIndex = `${zIndex}`;
       document.body.appendChild(this.overlay);
-    } else {
-      console.warn('Portal', 'NO BODY');
     }
   }
 
   componentWillUnmount() {
     if (document.body) {
       document.body.removeChild(this.overlay);
-    } else {
-      console.warn('Portal', 'NO BODY');
     }
   }
 
-  overlay: HTMLDivElement;
+  overlay = document.createElement('div');
 
   render() {
     return createPortal(this.props.children, this.overlay);
