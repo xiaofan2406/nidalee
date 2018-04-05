@@ -24,15 +24,15 @@ const cssNavigation = css`
 
 const Navigation = () => (
   <Nav className={cssNavigation}>
-    {Object.keys(NAV_LINKS).map(routeName => (
+    {NAV_LINKS.map(link => (
       <NavLink
         className="link"
         activeClassName="active"
-        key={NAV_LINKS[routeName].to}
-        exact={NAV_LINKS[routeName].exact}
-        to={NAV_LINKS[routeName].to}
+        key={link.to}
+        exact={link.exact}
+        to={link.to}
       >
-        {NAV_LINKS[routeName].name}
+        {link.name}
       </NavLink>
     ))}
   </Nav>

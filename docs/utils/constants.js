@@ -2,46 +2,37 @@
 export const APP_TITLE = 'Nidalee';
 
 type NavLinkName =
-  | 'HOME'
-  | 'ABOUT'
-  | 'FORM'
-  | 'EDITABLE'
-  | 'DROPDOWN'
-  | 'LAYOUT'
-  | 'DIALOG';
+  | 'Home'
+  | 'Form'
+  | 'Editable'
+  | 'Dropdown'
+  | 'Layout'
+  | 'Card'
+  | 'Dialog';
+
 type NavLinkConfig = {
   to: string,
   name: string,
   exact?: boolean,
 };
-export const NAV_LINKS: { [key: NavLinkName]: NavLinkConfig } = {
-  HOME: {
+
+const demos: NavLinkName[] = [
+  'Form',
+  'Editable',
+  'Dropdown',
+  'Layout',
+  'Card',
+  'Dialog',
+];
+
+export const NAV_LINKS: NavLinkConfig[] = [
+  {
     to: '/',
     name: 'Home',
     exact: true,
   },
-  ABOUT: {
-    to: '/about',
-    name: 'About',
-  },
-  FORM: {
-    to: '/form',
-    name: 'Form',
-  },
-  EDITABLE: {
-    to: '/editable',
-    name: 'Editable',
-  },
-  DROPDOWN: {
-    to: '/dropdown',
-    name: 'Dropdown',
-  },
-  DIALOG: {
-    to: '/dialog',
-    name: 'Dialog',
-  },
-  LAYOUT: {
-    to: '/layout',
-    name: 'Layout',
-  },
-};
+  ...demos.map(name => ({
+    to: `/${name.toLocaleLowerCase()}`,
+    name,
+  })),
+];

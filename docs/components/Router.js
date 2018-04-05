@@ -35,16 +35,16 @@ const Router = () => (
       })}
     />
     <Route
+      path="/card"
+      component={asyncLoad({
+        importer: () => import(/* webpackChunkName: "CardDemo" */ './CardDemo'),
+      })}
+    />
+    <Route
       path="/layout"
       component={asyncLoad({
         importer: () =>
           import(/* webpackChunkName: "LayoutDemo" */ './LayoutDemo'),
-      })}
-    />
-    <Route
-      path="/about"
-      component={asyncLoad({
-        importer: () => import(/* webpackChunkName: "About" */ './About'),
       })}
     />
   </Switch>

@@ -9,6 +9,7 @@ import Nidalee from './layout/Nidalee';
 import Section from './layout/Section';
 import StickyHeader from './layout/StickyHeader';
 
+import Card from './Card';
 import Button from './Button';
 import Dialog from './Dialog';
 import Dropdown from './Dropdown';
@@ -30,6 +31,7 @@ export {
   Nidalee,
   Section,
   StickyHeader,
+  Card,
   Button,
   Dialog,
   Dropdown,
@@ -52,6 +54,7 @@ export default {
   Nidalee,
   Section,
   StickyHeader,
+  Card,
   Button,
   Dialog,
   Dropdown,
