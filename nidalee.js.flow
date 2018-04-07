@@ -87,15 +87,15 @@ export type DialogState = {|
   isOpen: boolean,
 |};
 
-export type DropdownAlign = 'left' | 'right';
-export type DropdownDirection = 'top' | 'bottom';
-export type DropdownProps = {
+export type PopoverAlign = 'left' | 'right';
+export type PopoverDirection = 'top' | 'bottom';
+export type PopoverProps = {
   +expander: React$Node,
   +children: React$Node,
 
   +trigger: StandardEvent,
-  +align: DropdownAlign,
-  +direction: DropdownDirection,
+  +align: PopoverAlign,
+  +direction: PopoverDirection,
   +zIndex: number,
 
   +expand?: boolean,
@@ -103,13 +103,13 @@ export type DropdownProps = {
   +onCollapse?: () => void,
   +className?: string,
 }; // all other HTML `div` attributes are supported
-export type DropdownDefaultProps = {|
+export type PopoverDefaultProps = {|
   +trigger: StandardEvent,
-  +align: DropdownAlign,
-  +direction: DropdownDirection,
+  +align: PopoverAlign,
+  +direction: PopoverDirection,
   +zIndex: number,
 |};
-export type DropdownState = {|
+export type PopoverState = {|
   isExpanded: boolean,
 |};
 
@@ -198,13 +198,6 @@ declare module 'nidalee' {
     static defaultProps: DialogDefaultProps;
   }
 
-  declare export class Dropdown extends React$Component<
-    DropdownProps,
-    DropdownState
-  > {
-    static defaultProps: DropdownDefaultProps;
-  }
-
   declare export class Editable extends React$Component<
     EditableProps,
     EditableState
@@ -220,4 +213,11 @@ declare module 'nidalee' {
     InlineEditProps,
     InlineEditState
   > {}
+
+  declare export class Popover extends React$Component<
+    PopoverProps,
+    PopoverState
+  > {
+    static defaultProps: PopoverDefaultProps;
+  }
 }

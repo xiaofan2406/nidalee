@@ -1,17 +1,14 @@
 /* @flow */
 import React from 'react';
-import { Dropdown, Button } from 'nidalee';
+import { Popover, Button } from 'nidalee';
 
-type DropdownDemoProps = {};
+type PopoverDemoProps = {};
 
-type DropdownDemoState = {
+type PopoverDemoState = {
   controlledOpen: boolean,
 };
 
-class DropdownDemo extends React.Component<
-  DropdownDemoProps,
-  DropdownDemoState
-> {
+class PopoverDemo extends React.Component<PopoverDemoProps, PopoverDemoState> {
   state = {
     controlledOpen: false,
   };
@@ -19,26 +16,26 @@ class DropdownDemo extends React.Component<
   render() {
     return (
       <div>
-        <Dropdown
+        <Popover
           align="left"
           direction="bottom"
           expander={<span className="whoknows">Click into me</span>}
         >
           now you see mesdafasdfasdfas sad fasd fasdf
-        </Dropdown>
+        </Popover>
         | |
-        <Dropdown
+        <Popover
           align="right"
           direction="top"
           trigger="onDoubleClick"
           expander={<span className="whoknows">Double Click into me</span>}
         >
           now
-        </Dropdown>
+        </Popover>
         | |
         <Button color="red">Imjustabutton</Button>
         <h2>Fully controlled</h2>
-        <Dropdown
+        <Popover
           expander="I am controlled by others"
           expand={this.state.controlledOpen}
           direction="bottom"
@@ -50,9 +47,9 @@ class DropdownDemo extends React.Component<
           >
             now you see me
           </Button>
-        </Dropdown>
+        </Popover>
         | |
-        <Dropdown
+        <Popover
           expander="Double Click into me"
           trigger="onDoubleClick"
           expand={this.state.controlledOpen}
@@ -80,10 +77,10 @@ class DropdownDemo extends React.Component<
           </Button>
           <Button>I Do nothin</Button>
           and alot other stuff to make this reazallly long
-        </Dropdown>
+        </Popover>
       </div>
     );
   }
 }
 
-export default DropdownDemo;
+export default PopoverDemo;

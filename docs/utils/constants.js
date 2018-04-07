@@ -5,7 +5,7 @@ type NavLinkName =
   | 'Home'
   | 'Form'
   | 'Editable'
-  | 'Dropdown'
+  | 'Popover'
   | 'Layout'
   | 'Card'
   | 'Dialog';
@@ -19,7 +19,7 @@ type NavLinkConfig = {
 const demos: NavLinkName[] = [
   'Form',
   'Editable',
-  'Dropdown',
+  'Popover',
   'Layout',
   'Card',
   'Dialog',

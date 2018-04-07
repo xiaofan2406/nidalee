@@ -12,13 +12,13 @@ import StickyHeader from './layout/StickyHeader';
 import Card from './Card';
 import Button from './Button';
 import Dialog from './Dialog';
-import Dropdown from './Dropdown';
 import Editable from './Editable';
 import FormField from './FormField';
 import Icon from './Icon';
 import InlineEdit from './InlineEdit';
 import Input from './Input';
 import MoonSpinner from './MoonSpinner';
+import Popover from './Popover';
 import Spinner from './Spinner';
 
 export {
@@ -34,13 +34,13 @@ export {
   Card,
   Button,
   Dialog,
-  Dropdown,
   Editable,
   FormField,
   Icon,
   InlineEdit,
   Input,
   MoonSpinner,
+  Popover,
   Spinner,
 };
 
@@ -57,12 +57,12 @@ export default {
   Card,
   Button,
   Dialog,
-  Dropdown,
   Editable,
   FormField,
   Icon,
   InlineEdit,
   Input,
   MoonSpinner,
+  Popover,
   Spinner,
 };

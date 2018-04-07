@@ -34,7 +34,7 @@ const cssDialogPortal = css`
   }
 `;
 
-// TODO almost same as Dropdown, maybe something can be extracted
+// TODO almost same as Popover, maybe something can be extracted
 class Dialog extends React.Component<DialogProps, DialogState> {
   static defaultProps: DialogDefaultProps = {
     trigger: 'onClick',

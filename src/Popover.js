@@ -6,13 +6,13 @@ import Button from './Button';
 import WithOutsideClick from './internal/WithOutsideClick';
 
 // TODO some style with Button can be extracted
-const cssDropdown = css`
+const cssPopover = css`
   position: relative;
   display: inline-flex;
   outline: none;
   vertical-align: bottom;
 
-  & > .dropdown {
+  & > .content {
     background-color: ${theme.subBgColor};
     padding: 6px 10px;
     min-width: 100%;
@@ -38,15 +38,15 @@ const cssDropdown = css`
   }
 `;
 
-class Dropdown extends React.Component<DropdownProps, DropdownState> {
-  static defaultProps: DropdownDefaultProps = {
+class Popover extends React.Component<PopoverProps, PopoverState> {
+  static defaultProps: PopoverDefaultProps = {
     trigger: 'onClick',
     align: 'right',
     direction: 'bottom',
     zIndex: 2,
   };
 
-  static getDerivedStateFromProps(nextProps: DropdownProps) {
+  static getDerivedStateFromProps(nextProps: PopoverProps) {
     if (typeof nextProps.expand === 'boolean') {
       return {
         isExpanded: nextProps.expand,
@@ -142,13 +142,13 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     } = this.props;
     const { isExpanded } = this.state;
     return (
-      <div {...rest} tabIndex={-1} className={cx([cssDropdown, className])}>
+      <div {...rest} tabIndex={-1} className={cx([cssPopover, className])}>
         {this.renderOpener()}
         {isExpanded ? (
           <WithOutsideClick onOutsideClick={this.handleCollapse}>
             {nodeRef => (
               <div
-                className={`dropdown ${align}`}
+                className={`content ${align}`}
                 style={this.styles}
                 ref={nodeRef}
               >
@@ -162,4 +162,4 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 }
 
-export default Dropdown;
+export default Popover;
