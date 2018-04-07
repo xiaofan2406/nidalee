@@ -14,14 +14,14 @@ const App = () => (
         <Brand />
       </Header>
       <Section appMain>
-        <Aside>Hi I am aside</Aside>
+        <Aside>
+          <Navigation />
+        </Aside>
         <Main>
           <Router />
         </Main>
       </Section>
-      <Footer>
-        <Navigation />
-      </Footer>
+      <Footer>some copyright stuff</Footer>
     </Nidalee>
   </BrowserRouter>
 );

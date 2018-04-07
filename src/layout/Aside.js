@@ -1,10 +1,9 @@
 /* @flow */
 import * as React from 'react';
 import { css } from 'react-emotion';
-import { baseContainer, areaBackground } from '../styles';
+import { areaBackground } from '../styles';
 
 const cssAside = css`
-  ${baseContainer};
   ${areaBackground};
   min-width: 200px;
 `;

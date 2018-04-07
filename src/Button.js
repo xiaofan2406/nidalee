@@ -72,7 +72,7 @@ const EButton = styled.button`
       Color(color)
         .darken(0.2)
         .string()};
-    background-size: 100%;
+    background-size: 0%;
     transition: background 0s;
   }
 `;

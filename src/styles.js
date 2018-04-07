@@ -83,6 +83,20 @@ export const spinAnimation = keyframes`
   }
 `;
 
+export const defaultRipple = css`
+  background-position: center;
+  transition: background 0.6s;
+  &:hover {
+    background: ${theme.eleBgColor}
+      radial-gradient(circle, transparent 1%, ${colors.black5} 1%) center/15000%;
+  }
+  &:active {
+    background-color: ${colors.black4};
+    background-size: 5%;
+    transition: background 0s;
+  }
+`;
+
 export const tooltip = css`
   [data-nidalee-tt] {
     position: relative;

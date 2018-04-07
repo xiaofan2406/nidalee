@@ -41,6 +41,12 @@ const Router = () => (
       })}
     />
     <Route
+      path="/menu"
+      component={asyncLoad({
+        importer: () => import(/* webpackChunkName: "MenuDemo" */ './MenuDemo'),
+      })}
+    />
+    <Route
       path="/layout"
       component={asyncLoad({
         importer: () =>

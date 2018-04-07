@@ -44,6 +44,31 @@ export type SectionProps = {
 }; // all other HTML `section` attributes are supported
 
 /** ================ components ================ */
+export type MenuDirection = 'vertical' | 'horizontal';
+export type MenuProps = {
+  +direction: MenuDirection,
+  +children: React.Node,
+
+  +className?: string,
+}; // all other HTML `ul` attributes are supported
+export type MenuDefaultProps = {|
+  direction: MenuDirection,
+|};
+export type MenuState = {|
+  activeItem: string,
+|};
+
+export type MenuItemProps = {
+  +onActivate: (itemkey?: string) => void,
+  +active: boolean,
+
+  +itemKey?: string,
+  +children?: React.Node,
+  +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLUListElement>) => void,
+  +onClick?: (event: SyntheticMouseEvent<HTMLUListElement>) => void,
+  +className?: string,
+}; // all other HTML `li` attributes are supported
+
 export type Size = 'small' | 'regular' | 'large';
 export type ButtonProps = {
   +children: React$Node,
@@ -199,6 +224,12 @@ declare module 'nidalee' {
   declare export var Nav: React$StatelessFunctionalComponent<NavProps>;
   declare export var Nidalee: React$StatelessFunctionalComponent<NidaleeProps>;
   declare export var Section: React$StatelessFunctionalComponent<SectionProps>;
+
+  declare class MenuItem extends React$PureComponent<MenuItemProps> {}
+  declare export class Menu extends React$Component<MenuProps, MenuState> {
+    static defaultProps: MenuDefaultProps;
+    static Item: MenuItem;
+  }
 
   declare export class Button extends React$Component<ButtonProps> {
     static defaultProps: ButtonDefaultProps;

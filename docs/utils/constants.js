@@ -8,6 +8,7 @@ type NavLinkName =
   | 'Popover'
   | 'Layout'
   | 'Card'
+  | 'Menu'
   | 'Dialog';
 
 type NavLinkConfig = {
@@ -22,6 +23,7 @@ const demos: NavLinkName[] = [
   'Popover',
   'Layout',
   'Card',
+  'Menu',
   'Dialog',
 ];
 
