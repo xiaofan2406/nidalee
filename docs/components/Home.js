@@ -2,7 +2,15 @@
 import React from 'react';
 import { css } from 'react-emotion';
 import { spacing } from 'styles';
-import { Box, Button, Icon, MoonSpinner, Spinner, Input } from 'nidalee';
+import {
+  Box,
+  Button,
+  Icon,
+  MoonSpinner,
+  Spinner,
+  Input,
+  Tooltip,
+} from 'nidalee';
 
 const cssHome = css`
   & > .title {
@@ -15,11 +23,25 @@ const cssHome = css`
 let camera;
 const Home = () => (
   <div className={cssHome}>
-    <div className="title">Hello world!</div>
+    <div
+      className="title"
+      data-nidalee-tt="hello world so does is gos on for forever? without wraping the line?"
+      data-nidalee-ttp="bottom"
+    >
+      Hello world!
+    </div>
 
     <Box>
+      <Tooltip content="click to sign up!" position="top">
+        <Button primary showSpinner>
+          SignUp
+        </Button>
+      </Tooltip>
+
       <Button primary showSpinner>
-        Sign Up
+        <Tooltip content="text tooltip" position="bottom">
+          SignUp
+        </Tooltip>
       </Button>
 
       <Button>
@@ -53,7 +75,9 @@ const Home = () => (
       </Button>
     </Box>
 
-    <Input />
+    <Tooltip content="im input" position="right">
+      <Input />
+    </Tooltip>
 
     <Button color="pink">
       Help
@@ -83,7 +107,9 @@ const Home = () => (
     <br />
     <Icon className="far fa-question-circle" size="small" />
     <Icon className="far fa-question-circle" />
-    <Icon className="far fa-question-circle" size="large" />
+    <Tooltip content="i can help you" position="left">
+      <Icon className="far fa-question-circle" size="large" />
+    </Tooltip>
   </div>
 );
 

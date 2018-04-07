@@ -178,6 +178,19 @@ export type InlineEditInputProps = {
   +className?: string,
 }; // all other HTML `input` attributes are supported
 
+export type Tag = string; // TODO all valid html tag?
+export type TooltipPosition = 'top' | 'left' | 'right' | 'bottom';
+export type TooltipProps = {
+  +content: string,
+  +position: TooltipPosition,
+  +tag: Tag,
+  +children?: React.Node,
+}; // all other HTML ${tag} attributes are supported
+export type TooltipDefaultProps = {|
+  position: TooltipPosition,
+  tag: Tag,
+|};
+
 declare module 'nidalee' {
   declare export var Aside: React$StatelessFunctionalComponent<AsideProps>;
   declare export var Footer: React$StatelessFunctionalComponent<FooterProps>;
@@ -219,5 +232,9 @@ declare module 'nidalee' {
     PopoverState
   > {
     static defaultProps: PopoverDefaultProps;
+  }
+
+  declare export class Tooltip extends React$Component<TooltipProps> {
+    static defaultProps: TooltipDefaultProps;
   }
 }

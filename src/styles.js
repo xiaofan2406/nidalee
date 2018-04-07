@@ -83,6 +83,56 @@ export const spinAnimation = keyframes`
   }
 `;
 
+export const tooltip = css`
+  [data-nidalee-tt] {
+    position: relative;
+    display: inline-block;
+  }
+  [data-nidalee-tt]::after {
+    content: attr(data-nidalee-tt);
+    background: ${theme.eleBgColor};
+    font-size: ${fontSizes.small}px;
+    color: ${theme.textColor};
+    line-height: 1.4;
+    text-align: center;
+
+    position: absolute;
+    left: 50%;
+    top: -6px;
+    transform: translateX(-50%) translateY(-100%);
+
+    border-radius: 2px;
+    pointer-events: none;
+    padding: 6px 12px;
+    white-space: nowrap;
+    z-index: 99;
+    opacity: 0;
+  }
+  [data-nidalee-ttp='left']::after {
+    left: 0%;
+    top: 50%;
+    margin-left: -8px;
+    transform: translateX(-100%) translateY(-50%);
+  }
+  [data-nidalee-ttp='top']::after {
+    left: 50%;
+  }
+  [data-nidalee-ttp='bottom']::after {
+    top: 100%;
+    margin-top: 8px;
+    transform: translateX(-50%) translateY(0%);
+  }
+  [data-nidalee-ttp='right']::after {
+    left: 100%;
+    top: 50%;
+    margin-left: 8px;
+    transform: translateX(0%) translateY(-50%);
+  }
+  [data-nidalee-tt]:hover::after {
+    opacity: 1;
+  }
+`;
+
 export const verticalScroll = css`
   overflow-y: scroll;
   &::-webkit-scrollbar {

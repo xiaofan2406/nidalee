@@ -35,6 +35,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0, // allow import devDependencies
     'react/jsx-filename-extension': 0, // enfore all .js extension
     'react/prefer-stateless-function': 0,
+    'react/default-props-match-prop-types': 0, // flows got it
     'jsx-a11y/label-has-for': [2, { required: { every: ['name'] } }],
   },
 };

@@ -20,6 +20,7 @@ import Input from './Input';
 import MoonSpinner from './MoonSpinner';
 import Popover from './Popover';
 import Spinner from './Spinner';
+import Tooltip from './Tooltip';
 
 export {
   Aside,
@@ -42,6 +43,7 @@ export {
   MoonSpinner,
   Popover,
   Spinner,
+  Tooltip,
 };
 
 export default {
@@ -65,4 +67,5 @@ export default {
   MoonSpinner,
   Popover,
   Spinner,
+  Tooltip,
 };

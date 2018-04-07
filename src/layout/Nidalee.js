@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from 'react';
 import { injectGlobal, css } from 'react-emotion';
+import { tooltip } from '../styles';
 import Section from './Section';
 
 // eslint-disable-next-line
@@ -21,6 +22,7 @@ injectGlobal`
   body {
     margin: 0;
   }
+  ${tooltip};
 `;
 
 const cssNidalee = css`

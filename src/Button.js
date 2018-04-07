@@ -111,11 +111,11 @@ const Button = ({
   );
 };
 
-Button.defaultProps = ({
+Button.defaultProps = {
   primary: false,
   size: 'regular',
   color: theme.eleBgColor,
   showSpinner: false,
-}: ButtonDefaultProps);
+};
 
 export default Button;
