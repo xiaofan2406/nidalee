@@ -19,7 +19,7 @@ module.exports = {
   entry: `${paths.appSrc}/index.js`,
   resolve: common.resolve,
   output: {
-    filename: 'bundle.js',
+    filename: 'js/bundle.js',
     chunkFilename: 'js/[name].chunk.js',
     // Necessary for HMR to know where to load the hot update chunks
     publicPath: '/',
@@ -58,16 +58,14 @@ module.exports = {
       template: `${paths.appSrc}/assets/index.html`,
       favicon: `${paths.appSrc}/assets/favicon.ico`,
     }),
-    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"',
     }),
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
   node: common.node,
-  performance: {
-    hints: false,
-  },
+  performance: false,
   devServer: {
     compress: true,
     historyApiFallback: {

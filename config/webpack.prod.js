@@ -3,15 +3,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const common = require('./webpack.common');
 const { paths } = require('./configs');
-
-// const vendorEntries = {
-//   'vendor-react': ['react', 'react-dom', 'prop-types'],
-//   'vendor-emotion': ['emotion', 'react-emotion'],
-//   'vendor-other': ['react-router-dom'],
-// };
 
 module.exports = {
   mode: 'production',
@@ -82,6 +77,7 @@ module.exports = {
           },
         },
       }),
+      new OptimizeCSSAssetsPlugin(),
     ],
     splitChunks: {
       chunks: 'all',
@@ -89,19 +85,6 @@ module.exports = {
     runtimeChunk: true,
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
-    }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NamedModulesPlugin(),
-    // TODO re-visit
-    // new webpack.NamedChunksPlugin(
-    //   chunk =>
-    //     chunk.name ||
-    //     Array.from(chunk.modulesIterable, m =>
-    //       path.basename(m.request, '.js')
-    //     ).join('_')
-    // ),
     new HtmlWebpackPlugin({
       inject: true,
       template: `${paths.appSrc}/assets/index.html`,
@@ -119,9 +102,13 @@ module.exports = {
         minifyURLs: true,
       },
     }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"',
+    }),
+    new webpack.NamedModulesPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[chunkhash:8].css',
-      chunkFilename: 'css/[name].[chunkhash:8].chunk.css',
+      filename: 'css/[name].[contenthash:8].css',
+      chunkFilename: 'css/[name].[contenthash:8].chunk.css',
     }),
     new FileManagerPlugin({
       onEnd: {
@@ -135,8 +122,6 @@ module.exports = {
       },
     }),
   ],
-  performance: {
-    hints: false,
-  },
   node: common.node,
+  performance: false,
 };
