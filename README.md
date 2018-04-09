@@ -19,6 +19,12 @@ React UI components
 [prettier-badge]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square
 [prettier]: https://github.com/prettier/prettier
 
+## Built With
+
+* [React](https://reactjs.org)
+* [Emotion](https://github.com/tkh44/emotion)
+* [Flow](https://flow.org/en)
+
 ## TODO
 
 * [ ] wanring solution
@@ -27,27 +33,42 @@ React UI components
 * [ ] simple CSS animations
 * [ ] maybe a smart way to handle darkness level
 * [ ] API documentation
+* [ ] browser list check
 
 ## Installing / Getting started
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+* Install with `npm`
 
 ```shell
-commands here
+npm install --save nidalee
 ```
 
-Here you should say what actually happens when you execute the code above.
+* Install with `yarn`
+
+```shell
+yarn add nidalee
+```
+
+It will add `nidalee` to your project's dependency.
+
+You will also need to ensure that the correct `peerDependencies` are installed. Use
+
+```shell
+npm info nidalee peerDependencies
+```
+
+to list the required `peerDependencies`.
 
 ## Developing
 
-### Built With
-
-List main libraries, frameworks used including versions (React, Angular etc...)
-
 ### Prerequisites
 
-What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
+* [Install `yarn`](https://yarnpkg.com/lang/en/docs/install/)
+
+* Add `flow-typed`
+  ```shell
+  yarn global add flow-typed
+  ```
 
 ### Setting up Dev
 
@@ -55,38 +76,32 @@ Here's a brief intro about what a developer must do in order to start developing
 the project further:
 
 ```shell
-git clone https://github.com/your/your-project.git
-cd your-project/
-packagemanager install
+git clone https://github.com/xiaofan2406/nidalee
+cd nidalee/
+yarn
 ```
 
-And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
+This will initialize the project with required dependencies.
 
-### Building
-
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here. for example:
+### Commands
 
 ```shell
-./configure
-make
-make install
+yarn dev # start webpack-dev-server with hot reload enabled for the documentation app
+
+yarn format # format all source code with prettier
+
+yarn test # start jest in watch mode
+
+yarn coverage # report coverage
+
+yarn build # create a minified production build for the library
+
+yarn docs # create a minified production build for the documentation app
+
+yarn start # start a localhost server serving the documentation app
 ```
 
-Here again you should state what actually happens when the code above gets
-executed.
-
-### Deploying / Publishing
-
-give instructions on how to build and release a new version
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-```shell
-packagemanager deploy your-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does.
+> TODO below
 
 ## Versioning
 
@@ -109,16 +124,3 @@ Give an example
 ## Style guide
 
 Explain your code style and show how to check it.
-
-## Api Reference
-
-If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
-
-## Database
-
-Explaining what database (and version) has been used. Provide download links.
-Documents your database design and schemas, relations etc...
-
-## Licensing
-
-State what the license is and how to find the text version of the license.
