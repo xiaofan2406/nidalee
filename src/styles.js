@@ -92,7 +92,7 @@ export const defaultRipple = css`
   }
   &:active {
     background-color: ${colors.black4};
-    background-size: 5%;
+    background-size: 0%;
     transition: background 0s;
   }
 `;

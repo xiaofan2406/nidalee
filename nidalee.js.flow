@@ -228,7 +228,16 @@ declare module 'nidalee' {
   declare class MenuItem extends React$PureComponent<MenuItemProps> {}
   declare export class Menu extends React$Component<MenuProps, MenuState> {
     static defaultProps: MenuDefaultProps;
-    static Item: MenuItem;
+    // Copy MenuItemProps because there are injected prop
+    static Item: React$ComponentType<{
+      +onActivate?: (itemkey?: string) => void,
+      +active?: boolean,
+      +itemKey?: string,
+      +children?: React.Node,
+      +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLUListElement>) => void,
+      +onClick?: (event: SyntheticMouseEvent<HTMLUListElement>) => void,
+      +className?: string,
+    }>;
   }
 
   declare export class Button extends React$Component<ButtonProps> {
