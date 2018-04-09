@@ -22,11 +22,6 @@ React UI components
 ## TODO
 
 * [ ] wanring solution
-* [ ] flow defs
-* [x] re-do button ripple affect
-* [ ] empty classname check
-* [ ] `children` isRequired?
-* [ ] `style` merge
 * [ ] utilize accessibility attributes
 * [ ] check component types
 * [ ] simple CSS animations
