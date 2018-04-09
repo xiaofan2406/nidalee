@@ -2,9 +2,19 @@
 import * as React from 'react';
 import styled from 'react-emotion';
 import Color from 'color';
-import { theme, fontSizes } from './styles';
+import { theme, fontSizes, baseRipple } from './styles';
 import { I } from './Icon';
 import Spinner from './Spinner';
+
+const darken = color =>
+  Color(color)
+    .darken(0.2)
+    .string();
+
+const lighten = color =>
+  Color(color)
+    .lighten(0.5)
+    .string();
 
 const EButton = styled.button`
   display: inline-flex;
@@ -15,10 +25,7 @@ const EButton = styled.button`
   cursor: pointer;
   user-select: none;
   &:focus {
-    background-color: ${({ color }) =>
-      Color(color)
-        .darken(0.2)
-        .string()};
+    background-color: ${({ color }) => darken(color)};
   }
 
   font-family: ${theme.fontFamily};
@@ -52,28 +59,13 @@ const EButton = styled.button`
       ? '0px 1px 3px 0px rgba(0, 0, 0, 0.4), 0px 2px 2px 0px rgba(0, 0, 0, 0.2), 0px 2px 0px 0px rgba(0, 0, 0, 0.1)'
       : 'unset'};
 
-  background-position: center;
-  transition: background 0.6s;
-  &:hover {
-    background: ${({ color }) => color}
-      radial-gradient(
-        circle,
-        transparent 1%,
-        ${({ color }) =>
-            Color(color)
-              .lighten(0.2)
-              .string()}
-          1%
-      )
-      center/15000%;
-  }
-  &:active {
-    background-color: ${({ color }) =>
-      Color(color)
-        .darken(0.2)
-        .string()};
-    background-size: 0%;
-    transition: background 0s;
+  ${baseRipple};
+  &:after {
+    background-image: radial-gradient(
+      circle,
+      ${({ color }) => lighten(color)} 10%,
+      transparent 10%
+    );
   }
 `;
 

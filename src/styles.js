@@ -83,17 +83,42 @@ export const spinAnimation = keyframes`
   }
 `;
 
-export const defaultRipple = css`
-  background-position: center;
-  transition: background 0.6s;
-  &:hover {
-    background: ${theme.eleBgColor}
-      radial-gradient(circle, transparent 1%, ${colors.black5} 1%) center/15000%;
+// https://github.com/mladenplavsic/css-ripple-effect
+export const baseRipple = css`
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.6s, opacity 1s;
   }
-  &:active {
-    background-color: ${colors.black4};
-    background-size: 0%;
-    transition: background 0s;
+
+  &:active:after {
+    transform: scale(0, 0);
+    opacity: 0.2;
+    transition: 0s;
+  }
+`;
+export const defaultRipple = css`
+  ${baseRipple};
+  &:after {
+    background-image: radial-gradient(
+      circle,
+      ${colors.black1} 10%,
+      transparent 10%
+    );
   }
 `;
 
