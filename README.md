@@ -35,7 +35,7 @@ React UI components
 * [ ] API documentation
 * [ ] browser list check
 
-## Installing / Getting started
+## Getting started
 
 * Install with `npm`
 
@@ -100,27 +100,3 @@ yarn docs # create a minified production build for the documentation app
 
 yarn start # start a localhost server serving the documentation app
 ```
-
-> TODO below
-
-## Versioning
-
-We can maybe use [SemVer](http://semver.org/) for versioning. For the versions available, see the [link to tags on this repository](/tags).
-
-## Configuration
-
-Here you should write what are all of the configurations a user can enter when
-using the project.
-
-## Tests
-
-Describe and show how to run the tests with code examples.
-Explain what these tests test and why.
-
-```shell
-Give an example
-```
-
-## Style guide
-
-Explain your code style and show how to check it.
