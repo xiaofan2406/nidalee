@@ -142,21 +142,19 @@ export type EditableAction = 'save' | 'cancel';
 export type EditableProps = {
   +value: string,
   +onSave: (value: string) => void,
+  +onCancel?: () => void,
+  +placeholder?: string,
 
-  +placeholder: string,
-  +className: string,
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,
 
-  +onCancel?: () => void,
+  +className?: string,
+  +onDoubleClick?: (event: MouseEvent) => void,
   +onKeyDown?: (event: KeyboardEvent) => void,
   +onBlur?: (event: FocusEvent) => void,
-  +onDoubleClick?: (event: MouseEvent) => void,
 }; // all other HTML `div` attributes are supported
 export type EditableDefaultProps = {|
-  +placeholder: string,
-  +className: string,
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,

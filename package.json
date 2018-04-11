@@ -20,7 +20,7 @@
       "prettier-check '{src,config,docs/src}/**/*.{js,mjs,json,md}'",
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "format": "prettier '{src,config,docs/src}/**/*.{js,mjs,json,md}' --write",
-    "test": "NODE_ENV=test jest --watch",
+    "test": "NODE_ENV=test jest --watch --updateSnapshot",
     "coverage": "NODE_ENV=test jest --coverage",
     "prebuild": "yarn lint && yarn flow && rm -rf dist",
     "build:commonjs":

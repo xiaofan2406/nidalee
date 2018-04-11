@@ -45,6 +45,7 @@ class EditableDemo extends React.Component<
                 editableValue: value,
               });
             }}
+            autoTrim
           />
           <h2>Single line editable</h2>
           <div>

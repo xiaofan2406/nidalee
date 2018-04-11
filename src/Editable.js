@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import { css, cx } from 'react-emotion';
-import { isEnter, isEsc } from './helpers';
+import { ENTER, ESC } from './helpers';
 import { theme, defaultFont, focusableElement } from './styles';
 
 const cssEditable = css`
@@ -18,15 +18,14 @@ const cssEditable = css`
     font-style: italic;
     color: ${theme.subTextColor};
   }
+
   &.isEditing {
     cursor: text;
   }
 `;
 
 class Editable extends React.Component<EditableProps, EditableState> {
-  static defaultProps: EditableDefaultProps = {
-    placeholder: '',
-    className: '',
+  static defaultProps = {
     autoTrim: false,
     blurAction: 'save',
     escAction: 'cancel',
@@ -50,9 +49,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   getValueToSave = () =>
     this.props.autoTrim
-      ? this.containerRef.current.innerText
-          .replace(/(?:\r\n|\r|\n)/g, ' ')
-          .trim()
+      ? this.containerRef.current.innerText.trim()
       : this.containerRef.current.innerText || '';
 
   // $FlowFixMe
@@ -60,6 +57,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   validateProps = () => {
     const { blurAction, escAction } = this.props;
+
     if (escAction === 'cancel' && blurAction === 'cancel') {
       console.warn(
         'Editable:',
@@ -77,6 +75,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   ensureCursorAtTheEnd = () => {
     const { isEditing } = this.state;
+
     if (isEditing) {
       this.containerRef.current.focus();
       const range = document.createRange();
@@ -90,6 +89,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   startEditing = () => {
     const { isEditing } = this.state;
+
     if (!isEditing) {
       this.setState({
         isEditing: true,
@@ -112,11 +112,13 @@ class Editable extends React.Component<EditableProps, EditableState> {
   handleCancel = () => {
     const { value, onCancel } = this.props;
     const { isEditing } = this.state;
+
     if (isEditing) {
       this.containerRef.current.innerText = value;
       this.setState({
         isEditing: false,
       });
+
       if (onCancel) {
         onCancel();
       }
@@ -125,6 +127,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   handleDoubleClick = (event: SyntheticMouseEvent<HTMLDivElement>) => {
     const { onDoubleClick } = this.props;
+
     this.startEditing();
 
     if (onDoubleClick) {
@@ -133,21 +136,27 @@ class Editable extends React.Component<EditableProps, EditableState> {
   };
 
   handleKeyDown = (event: SyntheticKeyboardEvent<HTMLDivElement>) => {
-    event.stopPropagation();
-    const { escAction } = this.props;
+    const { escAction, onKeyDown } = this.props;
 
-    if (isEnter(event)) {
+    event.stopPropagation();
+
+    if (event.which === ENTER) {
       this.startEditing();
     }
 
-    if (isEsc(event)) {
+    if (event.which === ESC) {
       this.handleAction(escAction);
+    }
+
+    if (onKeyDown) {
+      onKeyDown(event);
     }
   };
 
   handleBlur = (event: SyntheticFocusEvent<HTMLDivElement>) => {
-    event.stopPropagation();
     const { blurAction, onBlur } = this.props;
+
+    event.stopPropagation();
     this.handleAction(blurAction);
 
     if (onBlur) {
@@ -172,13 +181,12 @@ class Editable extends React.Component<EditableProps, EditableState> {
     const { isEditing } = this.state;
     return (
       <div
-        {...rest}
         tabIndex={0}
         role="textbox"
+        {...rest}
         placeholder={placeholder}
         className={cx([cssEditable, { isEditing }, className])}
         contentEditable={isEditing}
-        suppressContentEditableWarning={isEditing}
         onDoubleClick={this.handleDoubleClick}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
