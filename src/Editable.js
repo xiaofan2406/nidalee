@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import { css, cx } from 'react-emotion';
-import { ENTER, ESC } from './helpers';
+import { ENTER, ESC, warning } from './helpers';
 import { theme, defaultFont, focusableElement } from './styles';
 
 const cssEditable = css`
@@ -58,12 +58,11 @@ class Editable extends React.Component<EditableProps, EditableState> {
   validateProps = () => {
     const { blurAction, escAction } = this.props;
 
-    if (escAction === 'cancel' && blurAction === 'cancel') {
-      console.warn(
-        'Editable:',
-        'At least one of [`escAction`, `blurAction`] should be `save`.'
-      );
-    }
+    warning(
+      'Editable',
+      escAction === 'cancel' && blurAction === 'cancel',
+      'At least one of [`escAction`, `blurAction`] should be `save`.'
+    );
   };
 
   syncInnerHTML = () => {

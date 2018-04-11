@@ -3,12 +3,6 @@ import { mount } from 'enzyme';
 import { ENTER, ESC } from '../helpers';
 import Editable from '../Editable';
 
-const makeProps = (override = {}) => ({
-  value: 'some text',
-  onSave: () => {},
-  ...override,
-});
-
 beforeEach(() => {
   document.createRange = jest.fn(() => ({
     selectNodeContents: () => {},

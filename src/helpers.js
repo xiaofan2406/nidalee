@@ -19,3 +19,12 @@ export const getPixelProperty = (property: any) =>
   typeof property === 'string'
     ? property
     : typeof property === 'number' ? `${property}px` : 'auto';
+
+export const warning = (name: string, condition: boolean, msg: string) => {
+  if (process.env.NODE_ENV !== 'production') {
+    if (condition) {
+      const message = `${name}: ${msg}`;
+      console.error(message);
+    }
+  }
+};
