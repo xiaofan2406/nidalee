@@ -65,9 +65,9 @@ to list the required `peerDependencies`.
 
 * [Install `yarn`](https://yarnpkg.com/lang/en/docs/install/)
 
-* Add `flow-typed`
+* Add `flow-typed` and `surge`
   ```shell
-  yarn global add flow-typed
+  yarn global add flow-typed surge
   ```
 
 ### Setting up Dev

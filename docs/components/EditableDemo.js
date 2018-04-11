@@ -64,7 +64,6 @@ class EditableDemo extends React.Component<
             value=""
             placeholder="You cant save me lol"
             onSave={() => {}}
-            blurAction="cancel"
           />
         </Box>
 
