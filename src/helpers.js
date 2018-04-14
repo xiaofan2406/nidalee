@@ -18,7 +18,9 @@ export const validCssValue = (value: any): boolean %checks =>
 export const getPixelProperty = (property: any) =>
   typeof property === 'string'
     ? property
-    : typeof property === 'number' ? `${property}px` : 'auto';
+    : typeof property === 'number'
+      ? `${property}px`
+      : 'auto';
 
 export const warning = (name: string, condition: boolean, msg: string) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -28,3 +30,6 @@ export const warning = (name: string, condition: boolean, msg: string) => {
     }
   }
 };
+
+export const isBoolean = (value: any): boolean %checks =>
+  typeof value === 'boolean';

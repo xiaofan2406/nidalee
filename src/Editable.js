@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react';
 import { css, cx } from 'react-emotion';
-import { ENTER, ESC, warning } from './helpers';
+import { ENTER, ESC, warning, isBoolean } from './helpers';
 import { theme, defaultFont, focusableElement } from './styles';
 
 const cssEditable = css`
@@ -31,8 +31,14 @@ class Editable extends React.Component<EditableProps, EditableState> {
     escAction: 'cancel',
   };
 
+  static getDerivedStateFromProps(nextProps: EditableProps) {
+    return isBoolean(nextProps.editing)
+      ? { isEditing: nextProps.editing }
+      : null;
+  }
+
   state = {
-    isEditing: false,
+    isEditing: isBoolean(this.props.editing) ? this.props.editing : false,
   };
 
   componentDidMount() {
@@ -47,26 +53,37 @@ class Editable extends React.Component<EditableProps, EditableState> {
     this.ensureCursorAtTheEnd();
   }
 
-  getValueToSave = () =>
-    this.props.autoTrim
+  get isControlled(): boolean {
+    return isBoolean(this.props.editing);
+  }
+
+  get valueToSave(): string {
+    return this.props.autoTrim
       ? this.containerRef.current.innerText.trim()
       : this.containerRef.current.innerText || '';
+  }
 
   // $FlowFixMe
   containerRef = React.createRef();
 
   validateProps = () => {
-    const { blurAction, escAction } = this.props;
+    const { blurAction, escAction, toggleEditing } = this.props;
 
     warning(
       'Editable',
       escAction === 'cancel' && blurAction === 'cancel',
       'At least one of [`escAction`, `blurAction`] should be `save`.'
     );
+
+    warning(
+      'Editable',
+      this.isControlled && !toggleEditing,
+      '`toggleEditing` is required when the editing state is controlled'
+    );
   };
 
   syncInnerHTML = () => {
-    this.containerRef.current.innerHTML = this.props.value.replace(
+    this.containerRef.current.innerHTML = this.props.defaultValue.replace(
       /(?:\r\n|\r|\n)/g,
       '<br />'
     );
@@ -86,70 +103,61 @@ class Editable extends React.Component<EditableProps, EditableState> {
     }
   };
 
-  startEditing = () => {
-    const { isEditing } = this.state;
+  toggleIsEditing = (isEditing: boolean) => {
+    const { toggleEditing } = this.props;
+    if (
+      this.isControlled &&
+      toggleEditing &&
+      this.state.isEditing !== isEditing
+    ) {
+      toggleEditing(isEditing);
+    }
 
-    if (!isEditing) {
-      this.setState({
-        isEditing: true,
-      });
+    if (!this.isControlled && this.state.isEditing !== isEditing) {
+      this.setState({ isEditing });
     }
   };
 
   handleSave = () => {
     const { onSave } = this.props;
-    const { isEditing } = this.state;
 
-    if (isEditing) {
-      onSave(this.getValueToSave());
-      this.setState({
-        isEditing: false,
-      });
-    }
+    this.toggleIsEditing(false);
+    onSave(this.valueToSave);
   };
 
   handleCancel = () => {
-    const { value, onCancel } = this.props;
-    const { isEditing } = this.state;
+    const { defaultValue, onCancel } = this.props;
 
-    if (isEditing) {
-      this.containerRef.current.innerText = value;
-      this.setState({
-        isEditing: false,
-      });
+    this.containerRef.current.innerText = defaultValue;
+    this.toggleIsEditing(false);
 
-      if (onCancel) {
-        onCancel();
-      }
-    }
+    if (onCancel) onCancel();
   };
 
   handleDoubleClick = (event: SyntheticMouseEvent<HTMLDivElement>) => {
     const { onDoubleClick } = this.props;
 
-    this.startEditing();
+    this.toggleIsEditing(true);
 
-    if (onDoubleClick) {
-      onDoubleClick(event);
-    }
+    if (onDoubleClick) onDoubleClick(event);
   };
 
   handleKeyDown = (event: SyntheticKeyboardEvent<HTMLDivElement>) => {
     const { escAction, onKeyDown } = this.props;
 
     event.stopPropagation();
-
     if (event.which === ENTER) {
-      this.startEditing();
+      if (!this.state.isEditing) {
+        // prevent creating a new line when enter editing
+        event.preventDefault();
+      }
+      this.toggleIsEditing(true);
     }
-
     if (event.which === ESC) {
       this.handleAction(escAction);
     }
 
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
+    if (onKeyDown) onKeyDown(event);
   };
 
   handleBlur = (event: SyntheticFocusEvent<HTMLDivElement>) => {
@@ -158,23 +166,25 @@ class Editable extends React.Component<EditableProps, EditableState> {
     event.stopPropagation();
     this.handleAction(blurAction);
 
-    if (onBlur) {
-      onBlur(event);
-    }
+    if (onBlur) onBlur(event);
   };
 
   handleAction = (action: EditableAction) =>
-    action === 'save' ? this.handleSave() : this.handleCancel();
+    this.state.isEditing &&
+    (action === 'save' ? this.handleSave() : this.handleCancel());
 
   render() {
     const {
-      value,
+      defaultValue,
       onSave,
+      onCancel,
+      editing,
+      toggleEditing,
       placeholder,
-      className,
       autoTrim,
       blurAction,
       escAction,
+      className,
       ...rest
     } = this.props;
     const { isEditing } = this.state;

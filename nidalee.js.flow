@@ -140,9 +140,11 @@ export type PopoverState = {|
 
 export type EditableAction = 'save' | 'cancel';
 export type EditableProps = {
-  +value: string,
+  +defaultValue: string,
   +onSave: (value: string) => void,
   +onCancel?: () => void,
+  +editing?: boolean,
+  +toggleEditing?: (isEditing: boolean) => void,
   +placeholder?: string,
 
   +autoTrim: boolean,
