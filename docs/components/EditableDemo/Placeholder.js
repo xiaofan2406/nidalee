@@ -2,18 +2,13 @@
 import React from 'react';
 import { Editable } from 'nidalee';
 
-type UncontrolledProps = {};
-
-type UncontrolledState = {
+type PlaceholderState = {
   value: string,
 };
 
-class Uncontrolled extends React.Component<
-  UncontrolledProps,
-  UncontrolledState
-> {
+class Placeholder extends React.Component<{}, PlaceholderState> {
   state = {
-    value: 'Sed lacinia tincidunt nibh tincidunt diam',
+    value: '',
   };
 
   handleSave = (value: string) => {
@@ -25,12 +20,11 @@ class Uncontrolled extends React.Component<
     return (
       <Editable
         defaultValue={value}
+        placeholder="I am placeholder"
         onSave={this.handleSave}
-        autoTrim
-        escAction="save"
       />
     );
   }
 }
 
-export default Uncontrolled;
+export default Placeholder;
