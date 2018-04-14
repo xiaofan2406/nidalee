@@ -18,6 +18,7 @@ const cssMenuItem = css`
     flex: 1;
     text-decoration: none;
   }
+  &:hover,
   &.active {
     background-color: ${theme.subBgColor};
   }

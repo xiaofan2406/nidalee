@@ -41,12 +41,10 @@ export const theme = {
 
 export const baseContainer = css`
   padding: 12px 16px;
-  display: flex;
 `;
 
 export const baseArea = css`
   padding: 8px 12px;
-  display: flex;
 `;
 
 export const areaBackground = css`
@@ -102,7 +100,7 @@ export const baseRipple = css`
     background-position: 50%;
     transform: scale(10, 10);
     opacity: 0;
-    transition: transform 0.6s, opacity 1s;
+    transition: transform 0.5s, opacity 1s;
   }
 
   &:active:after {
