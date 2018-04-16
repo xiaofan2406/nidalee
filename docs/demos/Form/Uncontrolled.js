@@ -2,44 +2,33 @@
 import React from 'react';
 import { Box, FormField, Button, Input } from 'nidalee';
 
-type State = {
-  username: string,
+type UncontrolledState = {
   usernameStatus: 'error' | 'warning' | 'success' | '',
   usernameHelper: string,
-  password: string,
   passwordStatus: 'error' | 'warning' | 'success' | '',
   passwordHelper: string,
-  credit: string,
   creditStatus: 'error' | 'warning' | 'success' | '',
   creditHelper: string,
-  role: string,
   roleStatus: 'error' | 'warning' | 'success' | '',
   roleHelper: string,
 };
 
-class ControlledFormDemo extends React.Component<{}, State> {
-  state: State = {
-    username: '',
+class Uncontrolled extends React.Component<{}, UncontrolledState> {
+  state = {
     usernameStatus: '',
     usernameHelper: '',
-    password: '',
     passwordStatus: '',
     passwordHelper: '',
-    credit: '',
     creditStatus: '',
     creditHelper: '',
-    role: '',
     roleStatus: '',
     roleHelper: '',
   };
 
-  handleChange = (name: string) => (
-    event: SyntheticInputEvent<HTMLInputElement>
-  ) => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
+  username: ?HTMLInputElement;
+  password: ?HTMLInputElement;
+  credit: ?HTMLInputElement;
+  role: ?HTMLInputElement;
 
   render() {
     return (
@@ -51,8 +40,10 @@ class ControlledFormDemo extends React.Component<{}, State> {
           helperText={this.state.usernameHelper}
         >
           <Input
-            value={this.state.username}
-            onChange={this.handleChange('username')}
+            name="username"
+            innerRef={input => {
+              this.username = input;
+            }}
           />
         </FormField>
         <FormField
@@ -62,8 +53,10 @@ class ControlledFormDemo extends React.Component<{}, State> {
           helperText={this.state.passwordHelper}
         >
           <Input
-            value={this.state.password}
-            onChange={this.handleChange('password')}
+            name="password"
+            innerRef={input => {
+              this.password = input;
+            }}
           />
         </FormField>
         <FormField
@@ -73,9 +66,11 @@ class ControlledFormDemo extends React.Component<{}, State> {
           helperText={this.state.creditHelper}
         >
           <Input
+            name="credit"
             type="number"
-            value={this.state.credit}
-            onChange={this.handleChange('credit')}
+            innerRef={input => {
+              this.credit = input;
+            }}
           />
         </FormField>
         <FormField
@@ -85,9 +80,11 @@ class ControlledFormDemo extends React.Component<{}, State> {
           helperText={this.state.roleHelper}
         >
           <Input
+            name="role"
             type="number"
-            value={this.state.role}
-            onChange={this.handleChange('role')}
+            innerRef={input => {
+              this.role = input;
+            }}
           />
         </FormField>
         <Button
@@ -102,10 +99,10 @@ class ControlledFormDemo extends React.Component<{}, State> {
               roleHelper: 'Something you should know',
             });
             console.log({
-              username: this.state.username,
-              password: this.state.username,
-              credit: this.state.username,
-              role: this.state.username,
+              username: this.username && this.username.value,
+              password: this.password && this.password.value,
+              credit: this.credit && this.credit.value,
+              role: this.role && this.role.value,
             });
           }}
         >
@@ -114,18 +111,18 @@ class ControlledFormDemo extends React.Component<{}, State> {
         <Button
           onClick={() => {
             this.setState({
-              username: '',
               usernameHelper: '',
               usernameStatus: '',
-              password: '',
               passwordHelper: '',
               passwordStatus: '',
-              credit: '',
               creditHelper: '',
               creditStatus: '',
-              role: '',
               roleHelper: '',
             });
+            if (this.username) this.username.value = '';
+            if (this.password) this.password.value = '';
+            if (this.credit) this.credit.value = '';
+            if (this.role) this.role.value = '';
           }}
         >
           Clear
@@ -135,4 +132,4 @@ class ControlledFormDemo extends React.Component<{}, State> {
   }
 }
 
-export default ControlledFormDemo;
+export default Uncontrolled;

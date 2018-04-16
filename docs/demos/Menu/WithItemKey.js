@@ -2,11 +2,11 @@
 import * as React from 'react';
 import { Menu } from 'nidalee';
 
-type WithKeyProps = {};
+type WithItemKeyProps = {};
 
-type WithKeyState = {};
+type WithItemKeyState = {};
 
-class WithKey extends React.Component<WithKeyProps, WithKeyState> {
+class WithItemKey extends React.Component<WithItemKeyProps, WithItemKeyState> {
   state = {};
 
   render() {
@@ -26,4 +26,4 @@ class WithKey extends React.Component<WithKeyProps, WithKeyState> {
   }
 }
 
-export default WithKey;
+export default WithItemKey;

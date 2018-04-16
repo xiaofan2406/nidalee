@@ -1,6 +1,8 @@
 /* @flow */
+import Demo from './Demo';
+import SourceCode from './SourceCode';
 import Loader from './Loader';
 
-export { Loader };
+export { Demo, Loader, SourceCode };
 
-export default { Loader };
+export default { Demo, Loader, SourceCode };

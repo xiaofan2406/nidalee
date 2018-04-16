@@ -21,6 +21,13 @@ const Router = () => (
       })}
     />
     <Route
+      path="/inlineedit"
+      component={asyncLoad({
+        importer: () =>
+          import(/* webpackChunkName: "InlineEditDemo" */ './InlineEditDemo'),
+      })}
+    />
+    <Route
       path="/popover"
       component={asyncLoad({
         importer: () =>

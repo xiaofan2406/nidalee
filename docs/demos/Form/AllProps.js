@@ -2,7 +2,7 @@
 import React from 'react';
 import { Box, Button, FormField, Icon, Input } from 'nidalee';
 
-const AllStatesDemo = () => (
+const AllProps = () => (
   <Box width={480}>
     <FormField
       name="username"
@@ -41,4 +41,4 @@ const AllStatesDemo = () => (
   </Box>
 );
 
-export default AllStatesDemo;
+export default AllProps;

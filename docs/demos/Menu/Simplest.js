@@ -2,11 +2,9 @@
 import * as React from 'react';
 import { Menu } from 'nidalee';
 
-type WithoutKeyProps = {};
+type SimplestState = {};
 
-type WithoutKeyState = {};
-
-class WithoutKey extends React.Component<WithoutKeyProps, WithoutKeyState> {
+class Simplest extends React.Component<{}, SimplestState> {
   state = {};
 
   render() {
@@ -26,4 +24,4 @@ class WithoutKey extends React.Component<WithoutKeyProps, WithoutKeyState> {
   }
 }
 
-export default WithoutKey;
+export default Simplest;
