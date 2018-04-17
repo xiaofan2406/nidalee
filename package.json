@@ -33,7 +33,7 @@
     "predocs": "rm -rf ./docs/dist",
     "docs": "NODE_ENV=production webpack --config ./config/webpack.prod.js",
     "start": "node ./config/serveDocs.js",
-    "docs:publish": "surge -p ./docs/dist -d nidalee.surge.sh",
+    "docs:publish": "yarn docs && surge -p ./docs/dist -d nidalee.surge.sh",
     "prepublishOnly": "yarn build",
     "postpublish": "git push --follow-tags"
   },
