@@ -3,20 +3,6 @@ import * as React from 'react';
 import { css, cx } from 'react-emotion';
 import Icon from './Icon';
 
-type DualPanelIndex = 'first' | 'last' | 'both';
-type DualPanelDirection = 'vertical' | 'horizontal';
-
-type DualPanelProps = {
-  children: React.Node,
-  direction: DualPanelDirection,
-  initialPanel?: DualPanelIndex,
-  className?: string,
-};
-
-type DualPanelState = {
-  show: DualPanelIndex,
-};
-
 const cssDualPanel = css`
   display: flex;
 
@@ -69,10 +55,14 @@ class DualPanel extends React.Component<DualPanelProps, DualPanelState> {
     initialPanel: 'first',
     direction: 'vertical',
   };
-  static getDerivedStateFromProps(nextProps: DualPanelProps) {
-    return {
-      show: nextProps.initialPanel,
-    };
+
+  static getDerivedStateFromProps(
+    nextProps: DualPanelProps,
+    prevState: DualPanelState
+  ) {
+    return prevState.show !== nextProps.initialPanel
+      ? { show: nextProps.initialPanel }
+      : null;
   }
 
   state = {
@@ -102,7 +92,7 @@ class DualPanel extends React.Component<DualPanelProps, DualPanelState> {
       both: 'both',
     }[index]);
 
-  makeToggle = (index: DualPanelIndex) => () => {
+  makeToggleHandler = (index: DualPanelIndex) => () => {
     const { show } = this.state;
     if (show === index) {
       this.setState({
@@ -116,24 +106,30 @@ class DualPanel extends React.Component<DualPanelProps, DualPanelState> {
   };
 
   render() {
-    const { children, direction, className } = this.props;
+    const {
+      children,
+      direction,
+      initialPanel,
+      className,
+      ...rest
+    } = this.props;
     const { show } = this.state;
     const [first, last] = React.Children.toArray(children);
     return (
-      <div className={cx([cssDualPanel, show, direction, className])}>
+      <div {...rest} className={cx([cssDualPanel, show, direction, className])}>
         <div className="first-panel">{first}</div>
         <div className="toggles">
           <Icon
             type="solid"
             name={this.firstIcon}
             className="first"
-            onClick={this.makeToggle('first')}
+            onClick={this.makeToggleHandler('first')}
           />
           <Icon
             type="solid"
             name={this.lastIcon}
             className="last"
-            onClick={this.makeToggle('last')}
+            onClick={this.makeToggleHandler('last')}
           />
         </div>
         <div className="last-panel">{last}</div>

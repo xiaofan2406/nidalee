@@ -90,6 +90,22 @@ export type ButtonDefaultProps = {|
 // TODO list of all events
 export type StandardEvent = string;
 
+export type DualPanelIndex = 'first' | 'last' | 'both';
+export type DualPanelDirection = 'vertical' | 'horizontal';
+export type DualPanelProps = {
+  +children: React.Node,
+  +direction: DualPanelDirection,
+  +initialPanel?: DualPanelIndex,
+  +className?: string,
+}; // all other HTML `div` attributes are supported
+export type DualPanelDefaultProps = {|
+  +initialPanel: DualPanelIndex,
+  +direction: DualPanelDirection,
+|};
+export type DualPanelState = {|
+  show: DualPanelIndex,
+|};
+
 export type DialogPosition = 'top' | 'middle' | 'bottom';
 export type DialogProps = {
   +opener: React$Node,
@@ -242,6 +258,13 @@ declare module 'nidalee' {
 
   declare export class Button extends React$Component<ButtonProps> {
     static defaultProps: ButtonDefaultProps;
+  }
+
+  declare export class DualPanel extends React$Component<
+    DualPanelProps,
+    DualPanelState
+  > {
+    static defaultProps: DualPanelDefaultProps;
   }
 
   declare export class Dialog extends React$Component<
