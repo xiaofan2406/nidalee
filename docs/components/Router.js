@@ -42,6 +42,13 @@ const Router = () => (
       })}
     />
     <Route
+      path="/dualpanel"
+      component={asyncLoad({
+        importer: () =>
+          import(/* webpackChunkName: "DualPanelDemo" */ './DualPanelDemo'),
+      })}
+    />
+    <Route
       path="/card"
       component={asyncLoad({
         importer: () => import(/* webpackChunkName: "CardDemo" */ './CardDemo'),

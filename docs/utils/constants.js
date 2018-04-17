@@ -10,6 +10,7 @@ type NavLinkName =
   | 'Layout'
   | 'Card'
   | 'Menu'
+  | 'DualPanel'
   | 'Dialog';
 
 type NavLinkConfig = {
@@ -26,6 +27,7 @@ const demos: NavLinkName[] = [
   'Layout',
   'Card',
   'Menu',
+  'DualPanel',
   'Dialog',
 ];
 

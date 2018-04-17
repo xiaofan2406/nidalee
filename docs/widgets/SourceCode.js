@@ -1,5 +1,6 @@
 /* @flow */
 import * as React from 'react';
+import { DualPanel } from 'nidalee';
 import { CodeFetcher, ComponentFetcher } from 'factories';
 
 export type SourceCodeProps = {
@@ -24,15 +25,11 @@ class SourceCode extends React.Component<SourceCodeProps, SourceCodeState> {
 
   render() {
     const { codeFetcher, componentFetcher } = this.props;
-    const { expanded } = this.state;
     return (
-      <div>
+      <DualPanel>
         <ComponentFetcher fetcher={componentFetcher} />
-        <button onClick={this.handleToggle}>oo</button>
-        <div style={{ display: expanded ? 'block' : 'none' }}>
-          <CodeFetcher fetcher={codeFetcher} />
-        </div>
-      </div>
+        <CodeFetcher fetcher={codeFetcher} />
+      </DualPanel>
     );
   }
 }

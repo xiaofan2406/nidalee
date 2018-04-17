@@ -22,10 +22,10 @@ const Icon = ({ color, size, type, name, className, ...rest }: IconProps) => (
   />
 );
 
-Icon.defaultProps = ({
+Icon.defaultProps = {
   type: 'regular',
   name: '',
   size: 'regular',
-}: IconDefaultProps);
+};
 
 export default Icon;

@@ -12,6 +12,7 @@ import StickyHeader from './layout/StickyHeader';
 import Card from './Card';
 import Button from './Button';
 import Dialog from './Dialog';
+import DualPanel from './DualPanel';
 import Editable from './Editable';
 import FormField from './FormField';
 import Icon from './Icon';
@@ -36,6 +37,7 @@ export {
   Card,
   Button,
   Dialog,
+  DualPanel,
   Editable,
   FormField,
   Icon,
@@ -61,6 +63,7 @@ export default {
   Card,
   Button,
   Dialog,
+  DualPanel,
   Editable,
   FormField,
   Icon,
