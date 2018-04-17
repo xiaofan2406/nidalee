@@ -7,8 +7,8 @@ const CardDemo = () => (
   <Box display="flex" justifyContent="space-around" width="100%">
     <Demo
       // $FlowFixMe
-      codeLoader={() => import('!raw-loader!../demos/Card/Simplest.js')}
-      componentLoader={() => import('../demos/Card/Simplest.js')}
+      codeFetcher={() => import('!raw-loader!../demos/Card/Simplest.js')}
+      componentFetcher={() => import('../demos/Card/Simplest.js')}
       title="Simplest"
     />
   </Box>

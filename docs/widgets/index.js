@@ -1,7 +1,7 @@
 /* @flow */
 import Demo from './Demo';
-import SourceCode from './SourceCode';
 import Loader from './Loader';
+import SourceCode from './SourceCode';
 
 export { Demo, Loader, SourceCode };
 

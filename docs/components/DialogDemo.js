@@ -7,14 +7,14 @@ const DialogDemo = () => (
   <Box display="flex" justifyContent="space-around" width="100%">
     <Demo
       // $FlowFixMe
-      codeLoader={() => import('!raw-loader!../demos/Dialog/Controlled.js')}
-      componentLoader={() => import('../demos/Dialog/Controlled.js')}
+      codeFetcher={() => import('!raw-loader!../demos/Dialog/Controlled.js')}
+      componentFetcher={() => import('../demos/Dialog/Controlled.js')}
       title="Controlled"
     />
     <Demo
       // $FlowFixMe
-      codeLoader={() => import('!raw-loader!../demos/Dialog/Uncontrolled.js')}
-      componentLoader={() => import('../demos/Dialog/Uncontrolled.js')}
+      codeFetcher={() => import('!raw-loader!../demos/Dialog/Uncontrolled.js')}
+      componentFetcher={() => import('../demos/Dialog/Uncontrolled.js')}
       title="Uncontrolled"
     />
   </Box>

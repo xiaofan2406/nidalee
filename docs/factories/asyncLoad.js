@@ -1,40 +1,15 @@
 /* @flow */
 import * as React from 'react';
-
-type AsyncLoadState = {
-  Component: React.ComponentType<any> | null,
-};
+import ComponentFetcher from './ComponentFetcher';
 
 type AsyncLoadOptions = {
   importer: () => Promise<{ default: React.ComponentType<any> }>,
 };
 
-const asyncLoad = ({ importer }: AsyncLoadOptions): React.ComponentType<any> =>
-  class AsyncLoad extends React.Component<{}, AsyncLoadState> {
-    state = {
-      Component: null,
-    };
-
-    componentDidMount() {
-      importer()
-        .then(({ default: Component }) => {
-          if (!this.unmounted) {
-            this.setState({ Component });
-          }
-        })
-        .catch(console.error);
-    }
-
-    componentWillUnmount() {
-      this.unmounted = true;
-    }
-
-    unmounted: boolean = false;
-
-    render() {
-      const { Component } = this.state;
-      return Component ? <Component {...this.props} /> : null;
-    }
-  };
+const asyncLoad = ({
+  importer,
+}: AsyncLoadOptions): React.ComponentType<any> => props => (
+  <ComponentFetcher fetcher={importer} {...props} />
+);
 
 export default asyncLoad;

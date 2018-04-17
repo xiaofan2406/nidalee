@@ -4,8 +4,8 @@ import { Card } from 'nidalee';
 import SourceCode from './SourceCode';
 
 type DemoProps = {
-  codeLoader: () => Promise<{ default: string }>,
-  componentLoader: () => Promise<{ default: React.ComponentType<any> }>,
+  codeFetcher: () => Promise<{ default: string }>,
+  componentFetcher: () => Promise<{ default: React.ComponentType<any> }>,
   title: string,
 };
 
