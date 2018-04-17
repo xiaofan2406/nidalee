@@ -6,6 +6,7 @@ import { theme, colors } from '../styles';
 const Box = styled.div`
   display: ${({ display }) => display};
   flex-direction: ${({ flexDirection }) => flexDirection};
+  flex-wrap: ${({ flexWrap }) => flexWrap || 'wrap'};
   justify-content: ${({ justifyContent }) => justifyContent};
   align-items: ${({ alignItems }) => alignItems};
   padding: ${({ padding }) => padding || '0'};
