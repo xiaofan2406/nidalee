@@ -2,6 +2,7 @@ config/
 docs/
 flow-typed/
 src/
+dist/docs
 .babelrc.js
 .eslintrc.js
 .flowconfig

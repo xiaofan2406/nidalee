@@ -33,7 +33,7 @@
     "predocs": "rm -rf ./docs/dist",
     "docs": "NODE_ENV=production webpack --config ./config/webpack.prod.js",
     "start": "node ./config/serveDocs.js",
-    "docs:publish": "yarn docs && surge -p ./docs/dist -d nidalee.surge.sh",
+    "docs:publish": "yarn docs && surge -p ./dist/docs -d nidalee.surge.sh",
     "prepublishOnly": "yarn build",
     "postpublish": "git push --follow-tags"
   },
@@ -115,7 +115,7 @@
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^1.0.1",
-    "webpack": "^4.5.0",
+    "webpack": "^4.6.0",
     "webpack-cli": "^2.0.14",
     "webpack-dev-server": "^3.1.3"
   }

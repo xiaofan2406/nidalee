@@ -20,9 +20,13 @@ class InlineEditInput extends React.Component<InlineEditInputProps> {
     this.setCursorAtTheStart();
   }
 
+  get input(): HTMLInputElement {
+    return ((this.inputRef.current: any): HTMLInputElement);
+  }
+
   setCursorAtTheStart = () => {
-    this.inputRef.current.setSelectionRange(0, 0);
-    this.inputRef.current.focus();
+    this.input.setSelectionRange(0, 0);
+    this.input.focus();
   };
 
   // $FlowFixMe

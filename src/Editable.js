@@ -58,12 +58,16 @@ class Editable extends React.Component<EditableProps, EditableState> {
   }
 
   get valueToSave(): string {
-    return this.props.autoTrim
-      ? this.containerRef.current.innerText.trim()
-      : this.containerRef.current.innerText || '';
+    const { autoTrim } = this.props;
+    const text = this.container.innerText || '';
+
+    return autoTrim ? text.trim() : text;
   }
 
-  // $FlowFixMe
+  get container(): HTMLDivElement {
+    return ((this.containerRef.current: any): HTMLDivElement);
+  }
+
   containerRef = React.createRef();
 
   validateProps = () => {
@@ -83,7 +87,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
   };
 
   syncInnerHTML = () => {
-    this.containerRef.current.innerHTML = this.props.defaultValue.replace(
+    this.container.innerHTML = this.props.defaultValue.replace(
       /(?:\r\n|\r|\n)/g,
       '<br />'
     );
@@ -93,9 +97,9 @@ class Editable extends React.Component<EditableProps, EditableState> {
     const { isEditing } = this.state;
 
     if (isEditing) {
-      this.containerRef.current.focus();
+      this.container.focus();
       const range = document.createRange();
-      range.selectNodeContents(this.containerRef.current);
+      range.selectNodeContents(this.container);
       range.collapse(false);
       const sel = window.getSelection();
       sel.removeAllRanges();
@@ -128,7 +132,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
   handleCancel = () => {
     const { defaultValue, onCancel } = this.props;
 
-    this.containerRef.current.innerText = defaultValue;
+    this.container.innerText = defaultValue;
     this.toggleIsEditing(false);
 
     if (onCancel) onCancel();

@@ -78,7 +78,8 @@ export type ButtonProps = {
   +color: string,
   +showSpinner: boolean,
 
-  +innerRef?: (ref: ?HTMLButtonElement) => void,
+  +innerRef?: | { current: HTMLButtonElement }
+    | ((ref: ?HTMLButtonElement) => void),
 }; // all other HTML `button` attributes are supported
 export type ButtonDefaultProps = {|
   +primary: boolean,

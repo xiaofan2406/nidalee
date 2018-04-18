@@ -63,11 +63,15 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
     return typeof this.props.expand === 'boolean';
   }
 
+  get expander(): HTMLElement {
+    return ((this.expanderRef.current: any): HTMLElement);
+  }
+
   get styles(): {} {
     const { direction, zIndex } = this.props;
     return direction === 'bottom'
-      ? { top: this.expanderRef.current.offsetHeight, zIndex }
-      : { bottom: this.expanderRef.current.offsetHeight, zIndex };
+      ? { top: this.expander.offsetHeight, zIndex }
+      : { bottom: this.expander.offsetHeight, zIndex };
   }
 
   // $FlowFixMe

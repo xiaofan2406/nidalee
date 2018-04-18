@@ -27,19 +27,22 @@ class StickyHeader extends React.Component<HeaderProps> {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
+  get header(): HTMLDivElement {
+    return ((this.headerRef.current: any): HTMLDivElement);
+  }
+
   setOffset = () => {
-    this.offsetTop = this.header.current.offsetTop;
+    this.offsetTop = this.header.offsetTop;
   };
 
   offsetTop: number;
-  // $FlowFixMe
-  header = React.createRef();
+  headerRef = React.createRef();
 
   handleScroll = () => {
     if (window.pageYOffset >= this.offsetTop) {
-      this.header.current.classList.add('sticky');
+      this.header.classList.add('sticky');
     } else {
-      this.header.current.classList.remove('sticky');
+      this.header.classList.remove('sticky');
     }
   };
 
@@ -49,7 +52,7 @@ class StickyHeader extends React.Component<HeaderProps> {
       <header
         className={cx([cssStickyHeader, className])}
         {...rest}
-        ref={this.header}
+        ref={this.headerRef}
       >
         {children}
       </header>
