@@ -74,7 +74,6 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
       : { bottom: this.expander.offsetHeight, zIndex };
   }
 
-  // $FlowFixMe
   expanderRef = React.createRef();
 
   handleExpand = () => {

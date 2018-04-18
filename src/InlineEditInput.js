@@ -29,7 +29,6 @@ class InlineEditInput extends React.Component<InlineEditInputProps> {
     this.input.focus();
   };
 
-  // $FlowFixMe
   inputRef = React.createRef();
 
   handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {

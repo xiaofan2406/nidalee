@@ -3,8 +3,9 @@ import * as React from 'react';
 
 type WithOutsideClickProps = {
   +onOutsideClick: () => void,
-  // $FlowFixMe
-  +children: (ref: { current: HTMLElement }) => React.Element<any>,
+  +children: (
+    ref: { current: HTMLElement } | ((ref: ?HTMLElement) => void)
+  ) => React.Element<any>,
 };
 
 class WithOutsideClick extends React.Component<WithOutsideClickProps> {
@@ -24,7 +25,6 @@ class WithOutsideClick extends React.Component<WithOutsideClickProps> {
     return ((this.elementRef.current: any): HTMLElement);
   }
 
-  // $FlowFixMe
   elementRef = React.createRef();
 
   handleOutsideClick = (event: MouseEvent) => {

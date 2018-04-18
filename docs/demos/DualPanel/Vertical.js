@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 /* @flow */
 import * as React from 'react';
 import { DualPanel } from 'nidalee';
