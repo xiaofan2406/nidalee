@@ -2,12 +2,13 @@
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
 import { defaultFont } from './styles';
-import InlineEditInput from './InlineEditInput';
+import { ENTER, ESC, warning, isBoolean } from './helpers';
 
 const cssInlineEdit = css`
   ${defaultFont};
   position: relative;
   overflow: hidden;
+  outline: none;
 
   &.isEditing {
     display: inline-flex;
@@ -33,60 +34,184 @@ const cssInlineEdit = css`
   }
 `;
 
+const cssInlineEditInput = css`
+  ${defaultFont};
+  border: 0;
+  background-color: transparent;
+  outline: none;
+`;
+
 class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
-  state = {
-    isEditing: false,
+  static defaultProps = {
+    blurAction: 'save',
+    escAction: 'cancel',
   };
 
-  handleSave = (value: string) => {
-    const { onSave } = this.props;
-    const { isEditing } = this.state;
-    if (isEditing) {
-      onSave(value);
-      this.setState({
-        isEditing: false,
-      });
+  static getDerivedStateFromProps(nextProps: InlineEditProps) {
+    return isBoolean(nextProps.editing)
+      ? { isEditing: nextProps.editing }
+      : null;
+  }
+
+  state = {
+    isEditing: isBoolean(this.props.editing) ? this.props.editing : false,
+  };
+
+  componentDidMount() {
+    this.validateProps();
+  }
+
+  componentDidUpdate() {
+    this.validateProps();
+    this.focusInput();
+  }
+
+  get isControlled(): boolean {
+    return isBoolean(this.props.editing);
+  }
+
+  get input(): HTMLInputElement {
+    return ((this.inputRef.current: any): HTMLInputElement);
+  }
+
+  get valueToSave(): string {
+    return this.props.autoTrim ? this.input.value.trim() : this.input.value;
+  }
+
+  inputRef = React.createRef();
+
+  validateProps = () => {
+    const { blurAction, escAction, toggleEditing, editing } = this.props;
+
+    warning(
+      'InlineEdit',
+      escAction === 'cancel' && blurAction === 'cancel',
+      'At least one of [`escAction`, `blurAction`] should be `save`.'
+    );
+
+    warning(
+      'InlineEdit',
+      isBoolean(editing) && !toggleEditing,
+      '`toggleEditing` is recommended when editing state is controlled'
+    );
+  };
+
+  focusInput = () => {
+    if (this.state.isEditing) {
+      this.input.setSelectionRange(0, 0);
+      this.input.focus();
     }
   };
 
+  toggleIsEditing = (isEditing: boolean) => {
+    const { toggleEditing } = this.props;
+
+    if (isEditing !== this.state.isEditing) {
+      if (!this.isControlled) {
+        this.setState({ isEditing });
+      } else if (this.isControlled && toggleEditing) {
+        toggleEditing(isEditing);
+      }
+    }
+  };
+
+  // handleSave & handleCancel should only respond while is editing
+  handleSave = () => {
+    const { onSave } = this.props;
+
+    if (this.state.isEditing) {
+      this.toggleIsEditing(false);
+      onSave(this.valueToSave);
+    }
+  };
   handleCancel = () => {
-    const { isEditing } = this.state;
-    if (isEditing) {
-      this.setState({
-        isEditing: false,
-      });
+    const { onCancel } = this.props;
+
+    if (this.state.isEditing) {
+      this.toggleIsEditing(false);
+      if (onCancel) onCancel();
     }
   };
 
   handleSpanDoubleClick = (event: SyntheticMouseEvent<HTMLSpanElement>) => {
     const { onDoubleClick } = this.props;
-    const { isEditing } = this.state;
-    if (!isEditing) {
-      this.setState({
-        isEditing: true,
-      });
+    this.toggleIsEditing(true);
+    if (onDoubleClick) onDoubleClick(event);
+  };
+
+  handleSpanKeyDown = (event: SyntheticKeyboardEvent<HTMLDivElement>) => {
+    const { onKeyDown } = this.props;
+
+    event.stopPropagation();
+    if (event.which === ENTER) {
+      this.toggleIsEditing(true);
     }
 
-    if (onDoubleClick) {
-      onDoubleClick(event);
+    if (onKeyDown) onKeyDown(event);
+  };
+
+  handleInputKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+    const { escAction } = this.props;
+
+    if (event.which === ENTER) {
+      this.handleSave();
+    }
+
+    if (event.which === ESC) {
+      this.handleAction(escAction);
     }
   };
 
+  handleInputBlur = (event: SyntheticFocusEvent<HTMLSpanElement>) => {
+    const { blurAction } = this.props;
+
+    event.stopPropagation();
+    this.handleAction(blurAction);
+  };
+
+  handleAction = (action: EditableAction) =>
+    action === 'save' ? this.handleSave() : this.handleCancel();
+
   render() {
-    const { value, onSave, render, className, ...rest } = this.props;
+    const {
+      defaultValue,
+      onSave,
+      onCancel,
+
+      editing,
+      toggleEditing,
+
+      render,
+      autoTrim,
+      blurAction,
+      escAction,
+
+      className,
+      onDoubleClick,
+      onKeyDown,
+      ...rest
+    } = this.props;
     const { isEditing } = this.state;
+
     return (
       <span
+        tabIndex={0}
+        role="textbox"
         {...rest}
         className={cx([cssInlineEdit, { isEditing }, className])}
         onDoubleClick={this.handleSpanDoubleClick}
+        onKeyDown={this.handleSpanKeyDown}
       >
-        <span className="value">{render ? render(value) : value}</span>
+        <span className="value">
+          {render ? render(defaultValue) : defaultValue}
+        </span>
         {isEditing ? (
-          <InlineEditInput
-            defaultValue={value}
-            onSave={this.handleSave}
-            onCancel={this.handleCancel}
+          <input
+            ref={this.inputRef}
+            defaultValue={defaultValue}
+            className={cx([cssInlineEditInput])}
+            onKeyDown={this.handleInputKeyDown}
+            onBlur={this.handleInputBlur}
           />
         ) : null}
       </span>

@@ -13,10 +13,6 @@ class Controlled extends React.Component<{}, ControlledState> {
     value: 'Ut nisi justo, aliquet id feugiat vel et sagittis.',
   };
 
-  handleDoubleClick = () => {
-    this.setState({ isEditing: true });
-  };
-
   handleSave = (value: string) => {
     this.setState({ value });
   };
@@ -37,7 +33,6 @@ class Controlled extends React.Component<{}, ControlledState> {
         editing={isEditing}
         onSave={this.handleSave}
         toggleEditing={this.toggleEditing}
-        onDoubleClick={this.handleDoubleClick}
       />
     );
   }

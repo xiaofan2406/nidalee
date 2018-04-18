@@ -78,7 +78,8 @@ export type ButtonProps = {
   +color: string,
   +showSpinner: boolean,
 
-  +innerRef?: | { current: HTMLButtonElement }
+  +innerRef?:
+    | { current: HTMLButtonElement }
     | ((ref: ?HTMLButtonElement) => void),
 }; // all other HTML `button` attributes are supported
 export type ButtonDefaultProps = {|
@@ -156,29 +157,57 @@ export type PopoverState = {|
 |};
 
 export type EditableAction = 'save' | 'cancel';
-export type EditableProps = {
+export type ContentEditableProps = {
   +defaultValue: string,
-  +onSave: (value: string) => void,
-  +onCancel?: () => void,
-  +editing?: boolean,
-  +toggleEditing?: (isEditing: boolean) => void,
-  +placeholder?: string,
+  +onSave: (value: string) => mixed,
+  +onCancel?: () => mixed,
 
+  +editing?: boolean,
+  +toggleEditing?: (isEditing: boolean) => mixed,
+
+  +placeholder?: string,
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,
 
   +className?: string,
-  +onDoubleClick?: (event: MouseEvent) => void,
-  +onKeyDown?: (event: KeyboardEvent) => void,
-  +onBlur?: (event: FocusEvent) => void,
+  +onDoubleClick?: (event: SyntheticMouseEvent<HTMLDivElement>) => mixed,
+  +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLDivElement>) => mixed,
+  +onBlur?: (event: SyntheticFocusEvent<HTMLDivElement>) => mixed,
 }; // all other HTML `div` attributes are supported
-export type EditableDefaultProps = {|
+export type ContentEditableDefaultProps = {|
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,
 |};
-export type EditableState = {|
+export type ContentEditableState = {|
+  isEditing: boolean,
+|};
+
+export type InlineEditRender = (value: string) => React$Node;
+export type InlineEditProps = {
+  +defaultValue: string,
+  +onSave: (value: string) => void,
+  +onCancel?: () => void,
+
+  +editing?: boolean,
+  +toggleEditing?: (isEditing: boolean) => void,
+
+  +render?: InlineEditRender,
+  +autoTrim: boolean,
+  +blurAction: EditableAction,
+  +escAction: EditableAction,
+
+  +className?: string,
+  +onDoubleClick?: (event: SyntheticMouseEvent<HTMLSpanElement>) => void,
+  +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLSpanElement>) => void,
+}; // all other HTML `span` attributes are supported
+export type InlineEditDefaultProps = {|
+  +autoTrim: boolean,
+  +blurAction: EditableAction,
+  +escAction: EditableAction,
+|};
+export type InlineEditState = {|
   isEditing: boolean,
 |};
 
@@ -195,19 +224,6 @@ export type IconDefaultProps = {|
   +type: FAIconType,
   +name: string,
   +size: Size,
-|};
-
-export type InlineEditRender = (value: string) => React$Node;
-export type InlineEditProps = {
-  +value: string,
-  +onSave: (value: string) => void,
-
-  +render?: InlineEditRender,
-  +className?: string,
-  +onDoubleClick?: (event: SyntheticMouseEvent<HTMLSpanElement>) => void,
-}; // all other HTML `span` attributes are supported
-export type InlineEditState = {|
-  isEditing: boolean,
 |};
 
 export type InlineEditInputProps = {
@@ -276,10 +292,10 @@ declare module 'nidalee' {
   }
 
   declare export class Editable extends React$Component<
-    EditableProps,
-    EditableState
+    ContentEditableProps,
+    ContentEditableState
   > {
-    static defaultProps: EditableDefaultProps;
+    static defaultProps: ContentEditableDefaultProps;
   }
 
   declare export class Icon extends React$Component<IconProps> {
@@ -289,7 +305,9 @@ declare module 'nidalee' {
   declare export class InlineEdit extends React$Component<
     InlineEditProps,
     InlineEditState
-  > {}
+  > {
+    static defaultProps: InlineEditDefaultProps;
+  }
 
   declare export class Popover extends React$Component<
     PopoverProps,

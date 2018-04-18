@@ -1,10 +1,10 @@
 /* @flow */
 import React from 'react';
 import { css, cx } from 'react-emotion';
-import { ENTER, ESC, warning, isBoolean } from './helpers';
 import { theme, defaultFont, focusableElement } from './styles';
+import { ENTER, ESC, warning, isBoolean } from './helpers';
 
-const cssEditable = css`
+const cssContentEditable = css`
   ${defaultFont};
   ${focusableElement};
 
@@ -24,14 +24,17 @@ const cssEditable = css`
   }
 `;
 
-class Editable extends React.Component<EditableProps, EditableState> {
+class Editable extends React.Component<
+  ContentEditableProps,
+  ContentEditableState
+> {
   static defaultProps = {
     autoTrim: false,
     blurAction: 'save',
     escAction: 'cancel',
   };
 
-  static getDerivedStateFromProps(nextProps: EditableProps) {
+  static getDerivedStateFromProps(nextProps: ContentEditableProps) {
     return isBoolean(nextProps.editing)
       ? { isEditing: nextProps.editing }
       : null;
@@ -58,10 +61,9 @@ class Editable extends React.Component<EditableProps, EditableState> {
   }
 
   get valueToSave(): string {
-    const { autoTrim } = this.props;
     const text = this.container.innerText || '';
 
-    return autoTrim ? text.trim() : text;
+    return this.props.autoTrim ? text.trim() : text;
   }
 
   get container(): HTMLDivElement {
@@ -94,9 +96,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
   };
 
   ensureCursorAtTheEnd = () => {
-    const { isEditing } = this.state;
-
-    if (isEditing) {
+    if (this.state.isEditing) {
       this.container.focus();
       const range = document.createRange();
       range.selectNodeContents(this.container);
@@ -109,40 +109,39 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   toggleIsEditing = (isEditing: boolean) => {
     const { toggleEditing } = this.props;
-    if (
-      this.isControlled &&
-      toggleEditing &&
-      this.state.isEditing !== isEditing
-    ) {
-      toggleEditing(isEditing);
-    }
 
-    if (!this.isControlled && this.state.isEditing !== isEditing) {
-      this.setState({ isEditing });
+    if (isEditing !== this.state.isEditing) {
+      if (!this.isControlled) {
+        this.setState({ isEditing });
+      } else if (this.isControlled && toggleEditing) {
+        toggleEditing(isEditing);
+      }
     }
   };
 
+  // handleSave & handleCancel should only respond while is editing
   handleSave = () => {
     const { onSave } = this.props;
 
-    this.toggleIsEditing(false);
-    onSave(this.valueToSave);
+    if (this.state.isEditing) {
+      this.toggleIsEditing(false);
+      onSave(this.valueToSave);
+    }
   };
-
   handleCancel = () => {
     const { defaultValue, onCancel } = this.props;
 
-    this.container.innerText = defaultValue;
-    this.toggleIsEditing(false);
-
-    if (onCancel) onCancel();
+    if (this.state.isEditing) {
+      this.container.innerText = defaultValue;
+      this.toggleIsEditing(false);
+      if (onCancel) onCancel();
+    }
   };
 
   handleDoubleClick = (event: SyntheticMouseEvent<HTMLDivElement>) => {
     const { onDoubleClick } = this.props;
 
     this.toggleIsEditing(true);
-
     if (onDoubleClick) onDoubleClick(event);
   };
 
@@ -174,36 +173,39 @@ class Editable extends React.Component<EditableProps, EditableState> {
   };
 
   handleAction = (action: EditableAction) =>
-    this.state.isEditing &&
-    (action === 'save' ? this.handleSave() : this.handleCancel());
+    action === 'save' ? this.handleSave() : this.handleCancel();
 
   render() {
     const {
       defaultValue,
       onSave,
       onCancel,
+
       editing,
       toggleEditing,
+
       placeholder,
       autoTrim,
       blurAction,
       escAction,
+
       className,
       ...rest
     } = this.props;
     const { isEditing } = this.state;
+
     return (
       <div
+        ref={this.containerRef}
         tabIndex={0}
         role="textbox"
         {...rest}
         placeholder={placeholder}
-        className={cx([cssEditable, { isEditing }, className])}
+        className={cx([cssContentEditable, { isEditing }, className])}
         contentEditable={isEditing}
         onDoubleClick={this.handleDoubleClick}
         onKeyDown={this.handleKeyDown}
         onBlur={this.handleBlur}
-        ref={this.containerRef}
       />
     );
   }

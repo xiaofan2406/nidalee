@@ -3,11 +3,13 @@ import React from 'react';
 import { Box } from 'nidalee';
 import { Demo } from 'widgets';
 
-const EditableDemo = () => (
+const ContentEditableDemo = () => (
   <Box display="flex" justifyContent="space-around" width="100%">
     <Demo
-      // $FlowFixMe
-      codeFetcher={() => import('!raw-loader!../demos/Editable/Placeholder.js')}
+      codeFetcher={() =>
+        import(// $FlowFixMe
+        '!raw-loader!../demos/Editable/Placeholder.js')
+      }
       componentFetcher={() => import('../demos/Editable/Placeholder.js')}
       title="With Placeholder"
     />
@@ -22,12 +24,14 @@ const EditableDemo = () => (
     />
 
     <Demo
-      // $FlowFixMe
-      codeFetcher={() => import('!raw-loader!../demos/Editable/Controlled.js')}
+      codeFetcher={() =>
+        import(// $FlowFixMe
+        '!raw-loader!../demos/Editable/Controlled.js')
+      }
       componentFetcher={() => import('../demos/Editable/Controlled.js')}
       title="Controlled"
     />
   </Box>
 );
 
-export default EditableDemo;
+export default ContentEditableDemo;

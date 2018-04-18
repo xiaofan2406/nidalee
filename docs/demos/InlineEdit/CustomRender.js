@@ -23,7 +23,7 @@ class CustomRender extends React.Component<{}, CustomRenderState> {
     return (
       <div>
         <InlineEdit
-          value={imgSrc}
+          defaultValue={imgSrc}
           render={value => <img src={value} alt="avatar" />}
           onSave={this.handleSave}
         />&nbsp;is the most fun champion in League of Legends

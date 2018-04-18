@@ -11,9 +11,9 @@ import StickyHeader from './layout/StickyHeader';
 
 import Card from './Card';
 import Button from './Button';
+import Editable from './Editable';
 import Dialog from './Dialog';
 import DualPanel from './DualPanel';
-import Editable from './Editable';
 import FormField from './FormField';
 import Icon from './Icon';
 import InlineEdit from './InlineEdit';
@@ -36,9 +36,9 @@ export {
   StickyHeader,
   Card,
   Button,
+  Editable,
   Dialog,
   DualPanel,
-  Editable,
   FormField,
   Icon,
   InlineEdit,
@@ -62,9 +62,9 @@ export default {
   StickyHeader,
   Card,
   Button,
+  Editable,
   Dialog,
   DualPanel,
-  Editable,
   FormField,
   Icon,
   InlineEdit,
