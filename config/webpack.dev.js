@@ -68,6 +68,8 @@ module.exports = {
   performance: false,
   devServer: {
     compress: true,
+    contentBase: `${paths.appSrc}/assets`,
+    watchContentBase: true,
     historyApiFallback: {
       disableDotRule: true,
     },

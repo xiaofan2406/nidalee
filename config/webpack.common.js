@@ -2,7 +2,7 @@ const { paths } = require('./configs');
 
 module.exports = {
   resolve: {
-    extensions: ['.js', 'mjs', '.json'],
+    extensions: ['.js', '.mjs', '.json'],
     alias: {
       assets: `${paths.appSrc}/assets`,
       components: `${paths.appSrc}/components`,

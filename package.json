@@ -17,12 +17,13 @@
   "scripts": {
     "precommit": "lint-staged",
     "lint:eslint": "eslint src config docs",
-    "lint:prettier": "prettier-check '{src,config,docs}/**/*.{js,mjs,json,md}'",
+    "lint:prettier":
+      "prettier-check '{src,config,docs}/**/*.{js,mjs,json,css,md}'",
     "lint": "yarn lint:eslint && yarn lint:prettier",
-    "format": "prettier '{src,config,docs}/**/*.{js,mjs,json,md}' --write",
+    "format": "prettier '{src,config,docs}/**/*.{js,mjs,json,css,md}' --write",
     "test": "NODE_ENV=test jest --watch --updateSnapshot",
     "coverage": "NODE_ENV=test jest --coverage",
-    "prebuild": "yarn lint && yarn flow && rm -rf dist",
+    "prebuild": "yarn lint && yarn flow && rm -rf dist/es6 dist/commonjs",
     "build:commonjs":
       "NODE_ENV=production babel src --out-dir dist/commonjs --ignore 'src/**/__tests__/'",
     "build:es6":
@@ -30,7 +31,7 @@
     "build": "npm run build:commonjs && npm run build:es6",
     "dev":
       "NODE_ENV=development webpack-dev-server --config ./config/webpack.dev.js",
-    "predocs": "rm -rf ./docs/dist",
+    "predocs": "rm -rf ./dist/docs",
     "docs": "NODE_ENV=production webpack --config ./config/webpack.prod.js",
     "start": "node ./config/serveDocs.js",
     "docs:publish": "yarn docs && surge -p ./dist/docs -d nidalee.surge.sh",
@@ -115,7 +116,7 @@
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^1.0.1",
-    "webpack": "^4.6.0",
+    "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
     "webpack-dev-server": "^3.1.3"
   }

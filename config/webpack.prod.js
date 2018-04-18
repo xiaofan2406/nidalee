@@ -70,7 +70,6 @@ module.exports = {
           output: {
             comments: false,
             ascii_only: true,
-            ecma: 6,
           },
           mangle: {
             safari10: true,
