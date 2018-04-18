@@ -4,8 +4,8 @@ import * as React from 'react';
 type WithOutsideClickProps = {
   +onOutsideClick: () => void,
   +children: (
-    ref: { current: HTMLElement } | ((ref: ?HTMLElement) => void)
-  ) => React.Element<any>,
+    ref: { current: HTMLDivElement | null } | ((ref: ?HTMLDivElement) => void)
+  ) => React.Node,
 };
 
 class WithOutsideClick extends React.Component<WithOutsideClickProps> {
@@ -21,8 +21,8 @@ class WithOutsideClick extends React.Component<WithOutsideClickProps> {
     document.removeEventListener('click', this.handleOutsideClick);
   }
 
-  get element(): HTMLElement {
-    return ((this.elementRef.current: any): HTMLElement);
+  get element(): HTMLDivElement {
+    return ((this.elementRef.current: any): HTMLDivElement);
   }
 
   elementRef = React.createRef();
