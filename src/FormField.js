@@ -96,8 +96,8 @@ class FormField extends React.Component<FormFieldProps> {
     const { name, label, status, helperText, className } = this.props;
     const classNames = cx([
       cssFormField,
-      className,
       this.isStatusValid && status,
+      className,
     ]);
     return (
       <div className={classNames}>

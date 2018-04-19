@@ -19,7 +19,7 @@ const cssSection = css`
 `;
 
 const Section = ({ children, className, appMain, ...rest }: SectionProps) => (
-  <section className={cx([cssSection, className, { appMain }])} {...rest}>
+  <section className={cx([cssSection, { appMain }, className])} {...rest}>
     {children}
   </section>
 );

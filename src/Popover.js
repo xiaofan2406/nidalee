@@ -123,7 +123,7 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
         ...triggerProp,
         // TODO if expander is a element with `on${trigger}`, it will overwrite
         ...expander.props,
-        className: cx([expander.props.className, 'expander']),
+        className: cx(['expander', expander.props.className]),
         ref: this.expanderRef,
       })
     );
