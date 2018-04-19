@@ -43,8 +43,10 @@ const cssInlineEditInput = css`
 
 class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
   static defaultProps = {
+    autoTrim: false,
     blurAction: 'save',
     escAction: 'cancel',
+    inputProps: {},
   };
 
   static getDerivedStateFromProps(nextProps: InlineEditProps) {
@@ -185,6 +187,7 @@ class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
       autoTrim,
       blurAction,
       escAction,
+      inputProps,
 
       className,
       onDoubleClick,
@@ -208,8 +211,9 @@ class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
         {isEditing ? (
           <input
             ref={this.inputRef}
+            {...inputProps}
             defaultValue={defaultValue}
-            className={cx([cssInlineEditInput])}
+            className={cx([cssInlineEditInput, inputProps.className])}
             onKeyDown={this.handleInputKeyDown}
             onBlur={this.handleInputBlur}
           />

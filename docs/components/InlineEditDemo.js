@@ -22,6 +22,15 @@ const InlineEditDemo = () => (
       componentFetcher={() => import('../demos/InlineEdit/Uncontrolled.js')}
       title="Uncontrolled"
     />
+
+    <Demo
+      codeFetcher={() =>
+        import(// $FlowFixMe
+        '!raw-loader!../demos/InlineEdit/Controlled.js')
+      }
+      componentFetcher={() => import('../demos/InlineEdit/Controlled.js')}
+      title="Controlled"
+    />
   </Box>
 );
 

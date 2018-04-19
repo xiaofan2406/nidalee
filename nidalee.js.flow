@@ -184,6 +184,11 @@ export type ContentEditableState = {|
   isEditing: boolean,
 |};
 
+export type InlineEditInputProps = {
+  +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => mixed,
+  +onBlur?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => mixed,
+  +className?: string,
+}; // all other HTML `input` attributes are supported
 export type InlineEditRender = (value: string) => React$Node;
 export type InlineEditProps = {
   +defaultValue: string,
@@ -197,6 +202,7 @@ export type InlineEditProps = {
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,
+  +inputProps: InlineEditInputProps,
 
   +className?: string,
   +onDoubleClick?: (event: SyntheticMouseEvent<HTMLSpanElement>) => void,
@@ -206,6 +212,7 @@ export type InlineEditDefaultProps = {|
   +autoTrim: boolean,
   +blurAction: EditableAction,
   +escAction: EditableAction,
+  +inputProps: InlineEditInputProps,
 |};
 export type InlineEditState = {|
   isEditing: boolean,
@@ -225,16 +232,6 @@ export type IconDefaultProps = {|
   +name: string,
   +size: Size,
 |};
-
-export type InlineEditInputProps = {
-  +defaultValue: string,
-  +onSave: (value: string) => void,
-  +onCancel: () => void,
-
-  +onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => void,
-  +onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => void,
-  +className?: string,
-}; // all other HTML `input` attributes are supported
 
 export type Tag = string; // TODO all valid html tag?
 export type TooltipPosition = 'top' | 'left' | 'right' | 'bottom';
