@@ -42,5 +42,6 @@ module.exports = {
     'react/prefer-stateless-function': 0,
     'react/default-props-match-prop-types': 0, // flows got it
     'jsx-a11y/label-has-for': [2, { required: { every: ['name'] } }],
+    'flowtype/space-after-type-colon': 0,
   },
 };
