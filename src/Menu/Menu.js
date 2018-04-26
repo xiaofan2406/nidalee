@@ -6,7 +6,7 @@ import MenuItem from './MenuItem';
 const cssMenu = css`
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 12px 0;
 
   display: flex;
 

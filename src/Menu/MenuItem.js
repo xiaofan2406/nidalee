@@ -7,18 +7,11 @@ import { isEnter, darken } from '../helpers';
 const cssMenuItem = css`
   ${defaultFont};
   background-color: transparent;
-  padding: 0px 16px;
+  padding: 0;
   cursor: pointer;
   outline: none;
-  display: inline-flex;
-  & > a {
-    ${defaultFont};
-    padding: 12px 0;
-    flex: 1;
-    text-decoration: none;
-  }
+
   &:hover,
-  &:focus,
   &.active {
     background-color: ${theme.subBgColor};
   }
@@ -26,6 +19,10 @@ const cssMenuItem = css`
   &:active {
     background-color: ${darken(theme.eleBgColor, 0.1)};
   }
+`;
+
+const cssMenuItemContent = css`
+  padding: 8px 16px;
 `;
 
 class MenuItem extends React.PureComponent<MenuItemProps> {
@@ -70,7 +67,7 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
         onKeyDown={this.handleKeyDown}
         onClick={this.handleClick}
       >
-        {children}
+        <div className={cssMenuItemContent}>{children}</div>
       </li>
     );
   }
