@@ -38,11 +38,11 @@ class Menu extends React.Component<MenuProps, MenuState> {
   };
 
   render() {
-    const { className, children, direction } = this.props;
+    const { className, children, direction, ...rest } = this.props;
     const { activeItem } = this.state;
 
     return (
-      <ul className={cx([cssMenu, direction, className])}>
+      <ul {...rest} className={cx([cssMenu, direction, className])}>
         {React.Children.map(children, child =>
           React.cloneElement(child, {
             active: !!child.props.itemKey && activeItem === child.props.itemKey,

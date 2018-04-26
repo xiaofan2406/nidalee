@@ -1,12 +1,11 @@
 /* @flow */
 import * as React from 'react';
 import { css, cx } from 'react-emotion';
-import { defaultFont, defaultRipple, theme } from '../styles';
-import { isEnter } from '../helpers';
+import { defaultFont, theme } from '../styles';
+import { isEnter, darken } from '../helpers';
 
 const cssMenuItem = css`
   ${defaultFont};
-  ${defaultRipple};
   background-color: transparent;
   padding: 0px 16px;
   cursor: pointer;
@@ -19,8 +18,13 @@ const cssMenuItem = css`
     text-decoration: none;
   }
   &:hover,
+  &:focus,
   &.active {
     background-color: ${theme.subBgColor};
+  }
+
+  &:active {
+    background-color: ${darken(theme.eleBgColor, 0.1)};
   }
 `;
 

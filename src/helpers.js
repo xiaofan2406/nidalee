@@ -1,4 +1,6 @@
 /* @flow */
+import Color from 'color';
+
 export const ENTER = 13;
 export const ESC = 27;
 export const BACKSPACE = 8;
@@ -33,3 +35,13 @@ export const warning = (name: string, condition: boolean, msg: string) => {
 
 export const isBoolean = (value: any): boolean %checks =>
   typeof value === 'boolean';
+
+export const lighten = (color: string, scale: number = 0.2) =>
+  Color(color)
+    .lighten(scale)
+    .string();
+
+export const darken = (color: string, scale: number = 0.2) =>
+  Color(color)
+    .darken(scale)
+    .string();
