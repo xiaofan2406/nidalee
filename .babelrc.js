@@ -31,6 +31,15 @@ module.exports = {
   plugins: [
     ['babel-plugin-emotion', emotionConfig],
 
+    [
+      'babel-plugin-prismjs',
+      {
+        languages: ['tsx'],
+        plugins: ['normalize-whitespace'],
+        theme: 'twilight',
+      },
+    ],
+
     '@babel/plugin-proposal-class-properties',
 
     [

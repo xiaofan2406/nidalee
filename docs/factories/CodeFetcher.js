@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 /* @flow */
 import * as React from 'react';
+import Prism from 'prismjs';
 import getHTML from 'utils/prismjs';
 import Fetch from './Fetch';
 

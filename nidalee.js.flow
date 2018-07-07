@@ -97,7 +97,7 @@ export type DualPanelDirection = 'vertical' | 'horizontal';
 export type DualPanelProps = {
   +children: React.Node,
   +direction: DualPanelDirection,
-  +initialPanel?: DualPanelIndex,
+  +initialPanel: DualPanelIndex,
   +className?: string,
 }; // all other HTML `div` attributes are supported
 export type DualPanelDefaultProps = {|

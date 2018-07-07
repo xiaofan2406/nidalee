@@ -56,17 +56,8 @@ class DualPanel extends React.Component<DualPanelProps, DualPanelState> {
     direction: 'vertical',
   };
 
-  static getDerivedStateFromProps(
-    nextProps: DualPanelProps,
-    prevState: DualPanelState
-  ) {
-    return prevState.show !== nextProps.initialPanel
-      ? { show: nextProps.initialPanel }
-      : null;
-  }
-
   state = {
-    show: this.props.initialPanel || 'first',
+    show: this.props.initialPanel,
   };
 
   get firstIcon(): string {
