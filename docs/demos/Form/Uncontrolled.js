@@ -26,18 +26,31 @@ class Uncontrolled extends React.Component<{}, UncontrolledState> {
   };
 
   username: ?HTMLInputElement;
+
   password: ?HTMLInputElement;
+
   credit: ?HTMLInputElement;
+
   role: ?HTMLInputElement;
 
   render() {
+    const {
+      usernameStatus,
+      usernameHelper,
+      passwordStatus,
+      passwordHelper,
+      creditStatus,
+      creditHelper,
+      roleStatus,
+      roleHelper,
+    } = this.state;
     return (
       <Box>
         <FormField
           name="username"
           label="Username"
-          status={this.state.usernameStatus}
-          helperText={this.state.usernameHelper}
+          status={usernameStatus}
+          helperText={usernameHelper}
         >
           <Input
             name="username"
@@ -49,8 +62,8 @@ class Uncontrolled extends React.Component<{}, UncontrolledState> {
         <FormField
           name="password"
           label="Password"
-          status={this.state.passwordStatus}
-          helperText={this.state.passwordHelper}
+          status={passwordStatus}
+          helperText={passwordHelper}
         >
           <Input
             name="password"
@@ -62,8 +75,8 @@ class Uncontrolled extends React.Component<{}, UncontrolledState> {
         <FormField
           name="credit"
           label="Credit"
-          status={this.state.creditStatus}
-          helperText={this.state.creditHelper}
+          status={creditStatus}
+          helperText={creditHelper}
         >
           <Input
             name="credit"
@@ -76,8 +89,8 @@ class Uncontrolled extends React.Component<{}, UncontrolledState> {
         <FormField
           name="role"
           label="Role"
-          status={this.state.roleStatus}
-          helperText={this.state.roleHelper}
+          status={roleStatus}
+          helperText={roleHelper}
         >
           <Input
             name="role"

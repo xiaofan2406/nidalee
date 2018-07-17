@@ -41,7 +41,11 @@ module.exports = {
     'react/jsx-filename-extension': 0, // enfore all .js extension
     'react/prefer-stateless-function': 0,
     'react/default-props-match-prop-types': 0, // flows got it
+    'react/require-default-props': 0,
     'jsx-a11y/label-has-for': [2, { required: { every: ['name'] } }],
+    'react/jsx-one-expression-per-line': 0, // prettier takes care of it
+    'react/jsx-wrap-multilines': 0, // prettier takes care of it
+    'react/destructuring-assignment': 0,
     'flowtype/space-after-type-colon': 0,
   },
 };

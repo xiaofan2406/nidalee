@@ -9,6 +9,8 @@ type PortalProps = {
 };
 
 class Portal extends React.Component<PortalProps> {
+  overlay = document.createElement('div');
+
   static defaultProps = {
     zIndex: 100,
   };
@@ -29,8 +31,6 @@ class Portal extends React.Component<PortalProps> {
       document.body.removeChild(this.overlay);
     }
   }
-
-  overlay = document.createElement('div');
 
   render() {
     return createPortal(this.props.children, this.overlay);

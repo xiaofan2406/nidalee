@@ -1,4 +1,4 @@
-const { paths } = require('./configs');
+const paths = require('./paths');
 
 module.exports = {
   resolve: {

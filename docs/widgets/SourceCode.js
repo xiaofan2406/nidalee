@@ -18,9 +18,9 @@ class SourceCode extends React.Component<SourceCodeProps, SourceCodeState> {
   };
 
   handleToggle = () => {
-    this.setState({
-      expanded: !this.state.expanded,
-    });
+    this.setState(prevState => ({
+      expanded: !prevState.expanded,
+    }));
   };
 
   render() {

@@ -42,6 +42,14 @@ class Dialog extends React.Component<DialogProps, DialogState> {
     position: 'middle',
   };
 
+  state = {
+    isOpen: this.props.open || false,
+  };
+
+  get isControlled(): boolean {
+    return typeof this.props.open === 'boolean';
+  }
+
   static getDerivedStateFromProps(nextProps: DialogProps) {
     if (typeof nextProps.open === 'boolean') {
       return {
@@ -49,14 +57,6 @@ class Dialog extends React.Component<DialogProps, DialogState> {
       };
     }
     return null;
-  }
-
-  state = {
-    isOpen: this.props.open || false,
-  };
-
-  get isControlled(): boolean {
-    return typeof this.props.open === 'boolean';
   }
 
   handleOpen = () => {

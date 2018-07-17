@@ -28,17 +28,13 @@ class Editable extends React.Component<
   ContentEditableProps,
   ContentEditableState
 > {
+  containerRef = React.createRef();
+
   static defaultProps = {
     autoTrim: false,
     blurAction: 'save',
     escAction: 'cancel',
   };
-
-  static getDerivedStateFromProps(nextProps: ContentEditableProps) {
-    return isBoolean(nextProps.editing)
-      ? { isEditing: nextProps.editing }
-      : null;
-  }
 
   state = {
     isEditing: isBoolean(this.props.editing) ? this.props.editing : false,
@@ -70,7 +66,11 @@ class Editable extends React.Component<
     return ((this.containerRef.current: any): HTMLDivElement);
   }
 
-  containerRef = React.createRef();
+  static getDerivedStateFromProps(nextProps: ContentEditableProps) {
+    return isBoolean(nextProps.editing)
+      ? { isEditing: nextProps.editing }
+      : null;
+  }
 
   validateProps = () => {
     const { blurAction, escAction, toggleEditing } = this.props;
@@ -128,6 +128,7 @@ class Editable extends React.Component<
       onSave(this.valueToSave);
     }
   };
+
   handleCancel = () => {
     const { defaultValue, onCancel } = this.props;
 

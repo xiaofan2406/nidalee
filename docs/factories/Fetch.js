@@ -13,6 +13,8 @@ type FetchState = {
 };
 
 class Fetch extends React.Component<FetchProps, FetchState> {
+  unmounted: boolean = false;
+
   state = {
     result: null,
   };
@@ -24,8 +26,6 @@ class Fetch extends React.Component<FetchProps, FetchState> {
   componentWillUnmount() {
     this.unmounted = true;
   }
-
-  unmounted: boolean = false;
 
   fetch = async () => {
     const { fetcher } = this.props;

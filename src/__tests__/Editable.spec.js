@@ -134,20 +134,25 @@ test('additional double click, blur and keyDown event are also triggered', () =>
 describe('when editing state is controlled', () => {
   class Parent extends React.Component {
     state = { isEditing: true, value: '' };
+
     handleSave = value => {
       this.setState({ isEditing: true, value });
     };
+
     handleCancel = () => {
       this.setState({ isEditing: false });
     };
+
     toggleEditing = isEditing => {
       this.setState({ isEditing });
     };
+
     render() {
+      const { value, isEditing } = this.state;
       return (
         <Editable
-          defaultValue={this.state.value}
-          editing={this.state.isEditing}
+          defaultValue={value}
+          editing={isEditing}
           toggleEditing={this.toggleEditing}
           onSave={this.handleSave}
         />

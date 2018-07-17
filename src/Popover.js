@@ -39,21 +39,14 @@ const cssPopover = css`
 `;
 
 class Popover extends React.Component<PopoverProps, PopoverState> {
+  expanderRef = React.createRef();
+
   static defaultProps: PopoverDefaultProps = {
     trigger: 'onClick',
     align: 'right',
     direction: 'bottom',
     zIndex: 2,
   };
-
-  static getDerivedStateFromProps(nextProps: PopoverProps) {
-    if (typeof nextProps.expand === 'boolean') {
-      return {
-        isExpanded: nextProps.expand,
-      };
-    }
-    return null;
-  }
 
   state = {
     isExpanded: this.props.expand || false,
@@ -74,7 +67,14 @@ class Popover extends React.Component<PopoverProps, PopoverState> {
       : { bottom: this.expander.offsetHeight, zIndex };
   }
 
-  expanderRef = React.createRef();
+  static getDerivedStateFromProps(nextProps: PopoverProps) {
+    if (typeof nextProps.expand === 'boolean') {
+      return {
+        isExpanded: nextProps.expand,
+      };
+    }
+    return null;
+  }
 
   handleExpand = () => {
     const { onExpand } = this.props;

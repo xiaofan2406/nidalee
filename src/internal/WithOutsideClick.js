@@ -9,6 +9,8 @@ type WithOutsideClickProps = {
 };
 
 class WithOutsideClick extends React.Component<WithOutsideClickProps> {
+  elementRef = React.createRef();
+
   componentDidMount() {
     document.addEventListener('click', this.handleOutsideClick);
   }
@@ -24,8 +26,6 @@ class WithOutsideClick extends React.Component<WithOutsideClickProps> {
   get element(): HTMLDivElement {
     return ((this.elementRef.current: any): HTMLDivElement);
   }
-
-  elementRef = React.createRef();
 
   handleOutsideClick = (event: MouseEvent) => {
     const { onOutsideClick } = this.props;

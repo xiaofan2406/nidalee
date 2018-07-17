@@ -33,6 +33,7 @@ class MenuItem extends React.PureComponent<MenuItemProps> {
       onClick(event);
     }
   };
+
   handleKeyDown = (event: SyntheticKeyboardEvent<HTMLUListElement>) => {
     if (isEnter(event)) {
       this.handleActivate();

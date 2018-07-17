@@ -21,29 +21,29 @@ React UI components
 
 ## Built With
 
-* [React](https://reactjs.org)
-* [Emotion](https://github.com/tkh44/emotion)
-* [Flow](https://flow.org/en)
+- [React](https://reactjs.org)
+- [Emotion](https://github.com/tkh44/emotion)
+- [Flow](https://flow.org/en)
 
 ## TODO
 
-* [ ] wanring solution
-* [ ] utilize accessibility attributes
-* [ ] check component types
-* [ ] simple CSS animations
-* [ ] maybe a smart way to handle darkness level
-* [ ] API documentation
-* [ ] browser list check
+- [ ] wanring solution
+- [ ] utilize accessibility attributes
+- [ ] check component types
+- [ ] simple CSS animations
+- [ ] maybe a smart way to handle darkness level
+- [ ] API documentation
+- [ ] browser list check
 
 ## Getting started
 
-* Install with `npm`
+- Install with `npm`
 
 ```shell
 npm install --save nidalee
 ```
 
-* Install with `yarn`
+- Install with `yarn`
 
 ```shell
 yarn add nidalee
@@ -63,9 +63,9 @@ to list the required `peerDependencies`.
 
 ### Prerequisites
 
-* [Install `yarn`](https://yarnpkg.com/lang/en/docs/install/)
+- [Install `yarn`](https://yarnpkg.com/lang/en/docs/install/)
 
-* Add `flow-typed` and `surge`
+- Add `flow-typed` and `surge`
   ```shell
   yarn global add flow-typed surge
   ```

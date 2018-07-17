@@ -42,18 +42,14 @@ const cssInlineEditInput = css`
 `;
 
 class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
+  inputRef = React.createRef();
+
   static defaultProps = {
     autoTrim: false,
     blurAction: 'save',
     escAction: 'cancel',
     inputProps: {},
   };
-
-  static getDerivedStateFromProps(nextProps: InlineEditProps) {
-    return isBoolean(nextProps.editing)
-      ? { isEditing: nextProps.editing }
-      : null;
-  }
 
   state = {
     isEditing: isBoolean(this.props.editing) ? this.props.editing : false,
@@ -80,7 +76,11 @@ class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
     return this.props.autoTrim ? this.input.value.trim() : this.input.value;
   }
 
-  inputRef = React.createRef();
+  static getDerivedStateFromProps(nextProps: InlineEditProps) {
+    return isBoolean(nextProps.editing)
+      ? { isEditing: nextProps.editing }
+      : null;
+  }
 
   validateProps = () => {
     const { blurAction, escAction, toggleEditing, editing } = this.props;
@@ -126,6 +126,7 @@ class InlineEdit extends React.Component<InlineEditProps, InlineEditState> {
       onSave(this.valueToSave);
     }
   };
+
   handleCancel = () => {
     const { onCancel } = this.props;
 
