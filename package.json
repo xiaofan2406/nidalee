@@ -19,7 +19,6 @@
   "module": "dist/es6",
   "sideEffects": false,
   "scripts": {
-    "precommit": "lint-staged",
     "lint:eslint": "eslint src config docs",
     "lint:prettier": "prettier-check '{src,config,docs}/**/*.{js,mjs,json,css,md}'",
     "lint": "yarn lint:eslint && yarn lint:prettier",
@@ -37,6 +36,11 @@
     "docs:publish": "yarn docs && surge -p ./dist/docs -d nidalee.surge.sh",
     "prepublishOnly": "yarn build",
     "postpublish": "git push --follow-tags"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{js,mjs,json,css,md}": [
@@ -79,7 +83,7 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
-    "babel-loader": "^8.0.0-beta.4",
+    "babel-loader": "^8.0.4",
     "babel-plugin-emotion": "^9.2.6",
     "babel-plugin-prismjs": "^1.0.2",
     "css-loader": "^1.0.0",
@@ -87,20 +91,20 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
     "escape-string-regexp": "^1.0.5",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-prettier": "^2.9.0",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
     "eslint-import-resolver-webpack": "^0.10.1",
-    "eslint-loader": "^2.0.0",
-    "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.12.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.10.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-flowtype": "^2.50.3",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "file-loader": "^1.1.11",
     "filemanager-webpack-plugin": "^1.0.27",
     "flow-bin": "^0.76.0",
     "html-webpack-plugin": "^3.2.0",
-    "husky": "^0.14.3",
+    "husky": "^1.1.1",
     "jest": "^23.6.0",
     "jest-emotion": "^9.2.6",
     "json-loader": "^0.5.7",
