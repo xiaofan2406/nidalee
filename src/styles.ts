@@ -1,4 +1,3 @@
-/* @flow */
 import { css, keyframes } from 'react-emotion';
 
 export const colors = {
@@ -14,7 +13,7 @@ export const colors = {
   green1: '#23d160',
 };
 
-export const fontSizes: { [key: Size]: number } = {
+export const fontSizes: Record<Size, number> = {
   small: 12,
   regular: 14,
   large: 18,

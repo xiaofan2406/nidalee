@@ -1,5 +1,5 @@
 module.exports = {
-  collectCoverageFrom: ['src/**/*.{ts,tsx}', 'test/**/*.{ts,tsx}'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.spec.{ts,tsx,js,mjs}'],
   setupTestFrameworkScriptFile: '<rootDir>/config/jestFrameworkSetup.js',
   testMatch: ['<rootDir>/src/**/*.spec.{ts,tsx,js,mjs}'],
   testEnvironment: 'jsdom',

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot matches 1`] = `
+.emotion-1 {
+  display: inline-block;
+}
+
+.emotion-0 {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #008fff;
+  border-bottom-color: transparent;
+  border-radius: 100%;
+  background: transparent;
+  -webkit-animation: animation-1ih4a76-spinAnimation 0.75s 0s infinite linear both;
+  animation: animation-1ih4a76-spinAnimation 0.75s 0s infinite linear both;
+}
+
+<div
+  class="emotion-1"
+>
+  <div
+    class="emotion-0"
+  />
+</div>
+`;
