@@ -2,6 +2,7 @@
   "name": "nidalee",
   "version": "0.0.16",
   "author": "Xiaofan Wu (https://github.com/xiaofan2406)",
+  "description": "React UI framework",
   "keywords": [
     "nidalee",
     "react",
@@ -15,8 +16,9 @@
   "engines": {
     "node": ">=8"
   },
-  "main": "dist/commonjs",
-  "module": "dist/es6",
+  "main": "dist/cjs/nidalee.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/umd/nidalee.min.js",
   "sideEffects": false,
   "scripts": {
     "lint:eslint": "eslint '**/*.js' --ignore-path .gitignore",
@@ -48,14 +50,14 @@
     "Firefox >= 54",
     "Edge >= 15"
   ],
+  "peerDependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
   "dependencies": {
     "color": "^3.0.0",
     "emotion": "^9.2.12",
     "react-emotion": "^9.2.12"
-  },
-  "peerDependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -63,24 +65,21 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
-    "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/react": "^16.4.16",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
-    "enzyme-to-json": "^3.3.4",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "flow-bin": "^0.82.0",
     "husky": "^1.1.1",
     "jest": "^23.6.0",
+    "jest-dom": "^2.0.3",
     "jest-emotion": "^9.2.11",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
@@ -89,6 +88,17 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-hot-loader": "^4.3.11",
-    "react-test-renderer": "^16.5.2"
+    "react-test-renderer": "^16.5.2",
+    "react-testing-library": "^5.2.0",
+    "rollup": "^0.66.4",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-terser": "^3.0.0",
+    "rollup-plugin-typescript": "^1.0.0",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.1"
   }
 }

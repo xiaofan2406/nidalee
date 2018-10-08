@@ -1,12 +1,11 @@
 const env = process.env.NODE_ENV;
 
 const isTest = env === 'test'; // used for testing lib src
-const isDevelopment = env === 'development'; // used for running docs app
-const isProduction = env === 'production'; // used for build docs app and compile lib src
+const isProduction = env === 'production'; // used for rollup build
 
-if (!isTest && !isDevelopment && !isProduction) {
+if (!isTest && !isProduction) {
   throw new Error(
-    `Invalid NODE_ENV "${env}". Use only from ["test", "development", "production"]`
+    `Invalid NODE_ENV "${env}". Use only from ["test", "production"]`
   );
 }
 
@@ -25,7 +24,7 @@ module.exports = {
       },
     ],
     ['@babel/preset-react', { useBuiltIns: true }],
-    '@babel/preset-flow',
+    '@babel/preset-typescript',
   ],
   plugins: [
     ['babel-plugin-emotion', emotionConfig],

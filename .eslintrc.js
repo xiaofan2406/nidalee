@@ -5,16 +5,6 @@ module.exports = {
     node: true,
     jest: true,
   },
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: './config/webpack.common.js',
-      },
-      node: {
-        extensions: ['.js', '.mjs', '.json'],
-      },
-    },
-  },
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
@@ -24,28 +14,39 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['react', 'flowtype'],
-  extends: ['plugin:flowtype/recommended', 'airbnb', 'prettier'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.ts', '.tsx', '.js', '.mjs'],
+      },
+    },
+  },
+  plugins: ['react'],
+  extends: ['airbnb', 'prettier'],
   rules: {
     'no-console': 0,
     'global-require': 0,
     'no-param-reassign': [2, { props: false }],
     'no-underscore-dangle': [2, { allowAfterThis: true }],
     'no-nested-ternary': 0,
-    'import/extensions': [
-      2,
-      'always',
-      { js: 'never', mjs: 'never', json: 'never' },
-    ],
     'import/no-extraneous-dependencies': 0, // allow import devDependencies
-    'react/jsx-filename-extension': 0, // enfore all .js extension
-    'react/prefer-stateless-function': 0,
-    'react/default-props-match-prop-types': 0, // flows got it
-    'react/require-default-props': 0,
+    'import/prefer-default-export': 0,
     'jsx-a11y/label-has-for': [2, { required: { every: ['name'] } }],
+    'react/sort-comp': 0,
+    'react/jsx-filename-extension': 0, // enforce all .js extension
+    'react/prefer-stateless-function': 0,
+    'react/require-default-props': 0, // allow undefined as prop value
     'react/jsx-one-expression-per-line': 0, // prettier takes care of it
     'react/jsx-wrap-multilines': 0, // prettier takes care of it
-    'react/destructuring-assignment': 0,
-    'flowtype/space-after-type-colon': 0,
+    'react/destructuring-assignment': 0, // cannot init state with props
+    'react/forbid-prop-types': 0, // allow object, array PropTypes
+    'react/button-has-type': [
+      2,
+      {
+        button: true,
+        submit: true,
+        reset: true,
+      },
+    ],
   },
 };
