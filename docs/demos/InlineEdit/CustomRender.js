@@ -26,7 +26,8 @@ class CustomRender extends React.Component<{}, CustomRenderState> {
           defaultValue={imgSrc}
           render={value => <img src={value} alt="avatar" />}
           onSave={this.handleSave}
-        />&nbsp;is the most fun champion in League of Legends
+        />
+        &nbsp;is the most fun champion in League of Legends
       </div>
     );
   }

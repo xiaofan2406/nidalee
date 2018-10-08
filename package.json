@@ -19,10 +19,10 @@
   "module": "dist/es6",
   "sideEffects": false,
   "scripts": {
-    "lint:eslint": "eslint src config docs",
-    "lint:prettier": "prettier-check '{src,config,docs}/**/*.{js,mjs,json,css,md}'",
+    "lint:eslint": "eslint '**/*.js' --ignore-path .gitignore",
+    "lint:prettier": "prettier-check '**/*.{js,json,ts,tsx,md}' --ignore-path .gitignore",
     "lint": "yarn lint:eslint && yarn lint:prettier",
-    "format": "prettier '{src,config,docs}/**/*.{js,mjs,json,css,md}' --write",
+    "format": "prettier '**/*.{js,json,ts,tsx,md}' --write --ignore-path .gitignore",
     "test": "NODE_ENV=test jest --watch --updateSnapshot",
     "coverage": "NODE_ENV=test jest --coverage",
     "prebuild": "yarn lint && yarn flow && rm -rf dist/es6 dist/commonjs",
@@ -43,7 +43,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,mjs,json,css,md}": [
+    "*.{js,json,ts,tsx,md}": [
       "prettier --write",
       "git add"
     ]
@@ -64,8 +64,8 @@
   ],
   "dependencies": {
     "color": "^3.0.0",
-    "emotion": "^9.2.6",
-    "react-emotion": "^9.2.6"
+    "emotion": "^9.2.12",
+    "react-emotion": "^9.2.12"
   },
   "peerDependencies": {
     "react": "^16.4.1",
@@ -84,11 +84,11 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
-    "babel-plugin-emotion": "^9.2.6",
+    "babel-plugin-emotion": "^9.2.11",
     "babel-plugin-prismjs": "^1.0.2",
     "css-loader": "^1.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.3.4",
     "escape-string-regexp": "^1.0.5",
     "eslint": "^5.6.1",
@@ -100,33 +100,33 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "file-loader": "^1.1.11",
-    "filemanager-webpack-plugin": "^1.0.27",
-    "flow-bin": "^0.76.0",
+    "file-loader": "^2.0.0",
+    "filemanager-webpack-plugin": "^2.0.5",
+    "flow-bin": "^0.82.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^1.1.1",
     "jest": "^23.6.0",
-    "jest-emotion": "^9.2.6",
+    "jest-emotion": "^9.2.11",
     "json-loader": "^0.5.7",
-    "lint-staged": "^7.2.0",
-    "mini-css-extract-plugin": "^0.4.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.0",
-    "prettier": "^1.13.7",
+    "lint-staged": "^7.3.0",
+    "mini-css-extract-plugin": "^0.4.3",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "prettier": "^1.14.3",
     "prettier-check": "^2.0.0",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
     "raw-loader": "^0.5.1",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-hot-loader": "^4.3.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-hot-loader": "^4.3.11",
     "react-router-dom": "^4.3.1",
-    "react-test-renderer": "^16.4.1",
-    "serve": "^9.2.0",
-    "style-loader": "^0.21.0",
-    "uglifyjs-webpack-plugin": "^1.2.7",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.16.1",
-    "webpack-cli": "3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "react-test-renderer": "^16.5.2",
+    "serve": "^10.0.2",
+    "style-loader": "^0.23.0",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
   }
 }

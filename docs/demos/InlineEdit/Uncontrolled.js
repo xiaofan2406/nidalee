@@ -22,10 +22,8 @@ class Uncontrolled extends React.Component<{}, UncontrolledState> {
     return (
       <div>
         Next year I am going to&nbsp;
-        <InlineEdit
-          defaultValue={destination}
-          onSave={this.handleSave}
-        />&nbsp;for travel
+        <InlineEdit defaultValue={destination} onSave={this.handleSave} />
+        &nbsp;for travel
       </div>
     );
   }

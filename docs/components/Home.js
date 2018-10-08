@@ -45,7 +45,8 @@ const Home = () => (
       </Button>
 
       <Button>
-        <Icon name="camera" type="solid" />Authenticate
+        <Icon name="camera" type="solid" />
+        Authenticate
       </Button>
 
       <Button

@@ -9,7 +9,8 @@ class LayoutDemo extends React.Component<{}> {
         <h2>LayoutDemo</h2>
         <Section height="420px" width={400}>
           <div>
-            huge banner<br />
+            huge banner
+            <br />
             <br />
             <br />
             <br />
