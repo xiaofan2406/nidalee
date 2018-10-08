@@ -21,34 +21,15 @@ module.exports = {
       {
         targets: { node: 'current' },
         useBuiltIns: 'usage',
-        modules:
-          isDevelopment || process.env.MODULE === 'es6' ? false : 'commonjs',
+        modules: isTest ? 'commonjs' : false,
       },
     ],
-    ['@babel/preset-react', { development: !isProduction, useBuiltIns: true }],
+    ['@babel/preset-react', { useBuiltIns: true }],
     '@babel/preset-flow',
   ],
   plugins: [
     ['babel-plugin-emotion', emotionConfig],
-
-    [
-      'babel-plugin-prismjs',
-      {
-        languages: ['tsx'],
-        plugins: ['normalize-whitespace'],
-        theme: 'twilight',
-      },
-    ],
-
     '@babel/plugin-proposal-class-properties',
-
-    [
-      '@babel/plugin-proposal-object-rest-spread',
-      { loose: true, useBuiltIns: true },
-    ],
-
-    '@babel/plugin-syntax-dynamic-import',
-
-    isDevelopment && 'react-hot-loader/babel',
-  ].filter(Boolean),
+    '@babel/plugin-proposal-object-rest-spread',
+  ],
 };
