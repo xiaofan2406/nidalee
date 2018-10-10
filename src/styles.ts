@@ -20,7 +20,7 @@ export const fontSizes: Record<Size, number> = {
 };
 
 export const theme = {
-  textColor: '#ffffff',
+  textColor: 'rgba(0,0,0,0.85)',
   subTextColor: 'rgba(255, 255, 255, 0.72)',
   fontSize: fontSizes.regular,
   fontFamily: '"Open Sans", sans-serif',
