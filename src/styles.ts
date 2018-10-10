@@ -1,6 +1,7 @@
 import { css, keyframes } from 'react-emotion';
 
 export const colors = {
+  white: '#fff',
   blue1: '#349ef1',
   blue2: '#008fff',
   black1: '#131313',
@@ -21,11 +22,13 @@ export const fontSizes: Record<Size, number> = {
 
 export const theme = {
   textColor: 'rgba(0,0,0,0.85)',
+  textColorInverse: colors.white,
+
   subTextColor: 'rgba(255, 255, 255, 0.72)',
   fontSize: fontSizes.regular,
   fontFamily: '"Open Sans", sans-serif',
 
-  bgColor: colors.black1,
+  bgColor: colors.white,
   areaBgColor: colors.black2,
   boxBgColor: colors.black3,
   eleBgColor: colors.black4,
