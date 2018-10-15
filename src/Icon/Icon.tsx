@@ -2,7 +2,8 @@ import * as React from 'react';
 import { css, cx } from 'react-emotion';
 import { theme } from '../styles';
 
-export interface IconProps extends React.HTMLAttributes<HTMLElement> {
+// TODO extends React.HTMLAttributes<HTMLElement>, but skip docz
+export interface IconProps {
   type?: FontAwesomeType;
   name?: string;
   size?: Size;

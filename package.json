@@ -31,7 +31,9 @@
     "prebuild": "yarn type-check && yarn lint && rm -rf dist",
     "build:cjs": "NODE_ENV=production MODULE=cjs babel src --out-dir dist/cjs --extensions '.ts,.tsx'",
     "build:esm": "NODE_ENV=production babel src --out-dir dist/esm --extensions '.ts,.tsx'",
-    "build": "yarn build:cjs && yarn build:esm"
+    "build": "yarn build:cjs && yarn build:esm",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
   },
   "husky": {
     "hooks": {

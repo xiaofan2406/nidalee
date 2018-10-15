@@ -4,8 +4,8 @@ import Spinner from '../Spinner';
 import { fontSizes, theme } from '../styles';
 import { lighten } from '../utils';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+// TODO extends React.ButtonHTMLAttributes<HTMLButtonElement>, but skip docz
+export interface ButtonProps {
   size?: Size;
   color?: string;
   className?: string;
