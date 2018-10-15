@@ -32,8 +32,8 @@
     "build:cjs": "NODE_ENV=production MODULE=cjs babel src --out-dir dist/cjs --extensions '.ts,.tsx'",
     "build:esm": "NODE_ENV=production babel src --out-dir dist/esm --extensions '.ts,.tsx'",
     "build": "yarn build:cjs && yarn build:esm",
-    "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "docs:dev": "docz dev",
+    "docs:build": "docz build"
   },
   "husky": {
     "hooks": {
@@ -41,9 +41,14 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,ts,tsx,md}": [
-      "prettier --write",
-      "git add"
+    "linters": {
+      "*.{js,json,ts,tsx,md}": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/docs/**/*"
     ]
   },
   "prettier": {
