@@ -28,12 +28,7 @@ export const theme = {
   fontSize: fontSizes.regular,
   fontFamily: '"Open Sans", sans-serif',
 
-  bgColor: colors.white,
-  areaBgColor: colors.black2,
-  boxBgColor: colors.black3,
-  eleBgColor: colors.black4,
-  subBgColor: colors.black5,
-  borderColor: colors.black5,
+  eleBgColor: colors.black3,
 
   primaryColor: colors.blue2,
   colorDanger: colors.red1,
@@ -49,25 +44,11 @@ export const baseArea = css`
   padding: 8px 12px;
 `;
 
-export const areaBackground = css`
-  background-color: ${theme.areaBgColor};
-`;
-
 export const defaultFont = css`
   font-family: ${theme.fontFamily};
   font-size: ${theme.fontSize}px;
   color: ${theme.textColor};
   line-height: 1.4;
-`;
-
-export const focusableElement = css`
-  background-color: ${theme.eleBgColor};
-  border: 1px solid ${theme.borderColor};
-  outline: none;
-  &:focus,
-  &:active {
-    border-color: ${theme.primaryColor};
-  }
 `;
 
 export const outline = css`
@@ -80,56 +61,6 @@ export const spinAnimation = keyframes`
   }
   100% {
     transform: rotate(360deg)
-  }
-`;
-
-export const tooltip = css`
-  [data-nidalee-tt] {
-    position: relative;
-    display: inline-block;
-  }
-  [data-nidalee-tt]::after {
-    content: attr(data-nidalee-tt);
-    background: ${theme.eleBgColor};
-    font-size: ${fontSizes.small}px;
-    color: ${theme.textColor};
-    line-height: 1.4;
-    text-align: center;
-
-    position: absolute;
-    left: 50%;
-    top: -6px;
-    transform: translateX(-50%) translateY(-100%);
-
-    border-radius: 2px;
-    pointer-events: none;
-    padding: 6px 12px;
-    white-space: nowrap;
-    z-index: 99;
-    opacity: 0;
-  }
-  [data-nidalee-ttp='left']::after {
-    left: 0%;
-    top: 50%;
-    margin-left: -8px;
-    transform: translateX(-100%) translateY(-50%);
-  }
-  [data-nidalee-ttp='top']::after {
-    left: 50%;
-  }
-  [data-nidalee-ttp='bottom']::after {
-    top: 100%;
-    margin-top: 8px;
-    transform: translateX(-50%) translateY(0%);
-  }
-  [data-nidalee-ttp='right']::after {
-    left: 100%;
-    top: 50%;
-    margin-left: 8px;
-    transform: translateX(0%) translateY(-50%);
-  }
-  [data-nidalee-tt]:hover::after {
-    opacity: 1;
   }
 `;
 
