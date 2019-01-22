@@ -24,7 +24,7 @@ export const theme = {
   textColor: 'rgba(0,0,0,0.85)',
   textColorInverse: colors.white,
 
-  subTextColor: 'rgba(255, 255, 255, 0.72)',
+  subTextColor: 'rgba(0,0,0,0.3)',
   fontSize: fontSizes.regular,
   fontFamily: '"Open Sans", sans-serif',
 

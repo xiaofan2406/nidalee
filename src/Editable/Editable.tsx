@@ -68,13 +68,13 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
   componentDidMount() {
     this.validateProps();
-    this.syncInnerHTML();
+    this.syncInnerHTML(this.props.defaultValue);
     this.ensureCursorAtTheEnd();
   }
 
   componentDidUpdate() {
     this.validateProps();
-    this.syncInnerHTML();
+    this.syncInnerHTML(this.contentToSave);
     this.ensureCursorAtTheEnd();
   }
 
@@ -82,7 +82,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
     return isBoolean(this.props.editing);
   }
 
-  get valueToSave() {
+  get contentToSave() {
     const text = this.containerRef.current!.innerText || '';
 
     return this.props.autoTrim ? text.trim() : text;
@@ -104,8 +104,8 @@ class Editable extends React.Component<EditableProps, EditableState> {
     );
   };
 
-  syncInnerHTML = () => {
-    this.containerRef.current!.innerHTML = this.props.defaultValue!.replace(
+  syncInnerHTML = (toSync: string = '') => {
+    this.containerRef.current!.innerHTML = toSync!.replace(
       /(?:\r\n|\r|\n)/g,
       '<br />'
     );
@@ -141,7 +141,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
 
     if (this.state.isEditing) {
       this.toggleIsEditing(false);
-      onSave(this.valueToSave);
+      onSave(this.contentToSave);
     }
   };
 
