@@ -86,9 +86,8 @@ const Button: React.SFC<ButtonProps> = ({
           scale={1.5}
         />
       ) : null}
-      {React.Children.map(
-        children,
-        child => (typeof child === 'string' ? <span>{child}</span> : child)
+      {React.Children.map(children, child =>
+        typeof child === 'string' ? <span>{child}</span> : child
       )}
     </button>
   );

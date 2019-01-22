@@ -23,9 +23,9 @@
     "type-check": "tsc --noEmit",
     "lint:tslint": "tslint 'src/**/*.{ts,tsx}' -c tslint.json",
     "lint:eslint": "eslint '**/*.js' --ignore-path .gitignore",
-    "lint:prettier": "prettier-check '**/*.{js,json,ts,tsx,md}' --ignore-path .gitignore",
+    "lint:prettier": "prettier-check '**/*.{js,json,ts,tsx,md,mdx}' --ignore-path .gitignore",
     "lint": "yarn lint:tslint && yarn lint:eslint && yarn lint:prettier",
-    "format": "prettier '**/*.{js,json,ts,tsx,md}' --write --ignore-path .gitignore",
+    "format": "prettier '**/*.{js,json,ts,tsx,md,mdx}' --write --ignore-path .gitignore",
     "test": "NODE_ENV=test jest --watch --updateSnapshot",
     "coverage": "NODE_ENV=test jest --coverage",
     "prebuild": "yarn type-check && yarn lint && rm -rf dist",
@@ -43,7 +43,7 @@
   },
   "lint-staged": {
     "linters": {
-      "*.{js,json,ts,tsx,md}": [
+      "*.{js,json,ts,tsx,md,mdx}": [
         "prettier --write",
         "git add"
       ]
@@ -93,12 +93,12 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "husky": "^1.1.2",
+    "husky": "^1.3.1",
     "jest": "^23.6.0",
     "jest-dom": "^2.1.0",
     "jest-emotion": "^9.2.11",
-    "lint-staged": "^7.3.0",
-    "prettier": "^1.14.3",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.16.0",
     "prettier-check": "^2.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
@@ -106,8 +106,8 @@
     "react-test-renderer": "^16.5.2",
     "react-testing-library": "^5.2.0",
     "surge": "^0.20.1",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.15.0",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.1.3"
   }
 }

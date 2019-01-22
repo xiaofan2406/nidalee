@@ -129,8 +129,8 @@ class Editable extends React.Component<EditableProps, EditableState> {
     if (this.isControlled && toggleEditing) {
       toggleEditing(isEditing);
     } else {
-      this.setState(
-        prevState => (prevState.isEditing === isEditing ? null : { isEditing })
+      this.setState(prevState =>
+        prevState.isEditing === isEditing ? null : { isEditing }
       );
     }
   };

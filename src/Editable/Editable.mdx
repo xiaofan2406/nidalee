@@ -2,8 +2,8 @@
 name: Editable
 ---
 
-import { Playground, PropsTable } from 'docz'
-import Editable from './Editable'
+import { Playground, PropsTable } from 'docz';
+import Editable from './Editable';
 
 # Editable
 
@@ -14,5 +14,9 @@ import Editable from './Editable'
 ## Basic usage
 
 <Playground>
-  <Editable defaultValue="sdaf" placeholder="I am placeholder" onSave={console.log} />
+  <Editable
+    defaultValue="sdaf"
+    placeholder="I am placeholder"
+    onSave={console.log}
+  />
 </Playground>
