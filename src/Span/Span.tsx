@@ -1,5 +1,5 @@
+import { css } from '@emotion/core';
 import * as React from 'react';
-import { css, cx } from 'react-emotion';
 import { fontSizes, theme } from '../styles';
 
 // TODO extends React.HTMLAttributes<HTMLSpanElement>, but skip docz
@@ -142,11 +142,11 @@ const Span: React.SFC<SpanProps> = ({
     <span
       {...tooltipProps}
       {...rest}
-      className={cx(
-        { [cssTooltip]: hasTooltip },
-        hasTooltip ? getPositionCss(tooltipPosition) : '',
-        className
-      )}
+      css={[
+        hasTooltip && cssTooltip,
+        hasTooltip && getPositionCss(tooltipPosition),
+        className,
+      ]}
     >
       {children}
     </span>

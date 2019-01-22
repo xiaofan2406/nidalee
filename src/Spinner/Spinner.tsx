@@ -1,5 +1,5 @@
+import { css } from '@emotion/core';
 import React, { SFC } from 'react';
-import { css, cx } from 'react-emotion';
 import { spinAnimation, theme } from '../styles';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -30,16 +30,13 @@ const Spinner: SFC<SpinnerProps> = ({
 
   return (
     <div
-      className={cx([
-        css`
-          display: inline-block;
-        `,
-        className,
-      ])}
+      css={css`
+        display: inline-block;
+      `}
       {...rest}
     >
       <div
-        className={css`
+        css={css`
           width: ${size!}px;
           height: ${size!}px;
           border: ${borderSize}px solid ${color};

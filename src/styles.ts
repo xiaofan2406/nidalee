@@ -1,4 +1,4 @@
-import { css, keyframes } from 'react-emotion';
+import { css, keyframes } from '@emotion/core';
 
 export const colors = {
   white: '#fff',

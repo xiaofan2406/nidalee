@@ -10,12 +10,11 @@ if (!isTest && !isProduction) {
   );
 }
 
-const emotionConfig = isProduction
-  ? { hoist: true }
-  : { sourceMap: true, autoLabel: true };
+const emotionConfig = isProduction ? {} : { sourceMap: true };
 
 module.exports = {
   presets: [
+    '@babel/preset-env',
     [
       '@babel/preset-env',
       {
@@ -28,7 +27,6 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   plugins: [
-    ['babel-plugin-emotion', emotionConfig],
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-object-rest-spread',
   ],

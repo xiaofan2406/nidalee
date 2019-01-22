@@ -1,5 +1,5 @@
+import { css } from '@emotion/core';
 import * as React from 'react';
-import { css, cx } from 'react-emotion';
 import { theme } from '../styles';
 
 // TODO extends React.HTMLAttributes<HTMLElement>, but skip docz
@@ -23,16 +23,18 @@ const Icon: React.SFC<IconProps> = ({
 }) => {
   return (
     <i
-      color={color}
-      className={cx([
-        css`
-          margin: 0 2px;
-          color: ${color};
-          font-size: ${sizeMap(size!)}px;
-        `,
-        name && type && `fa${type[0]} fa-${name}`,
-        className,
-      ])}
+      css={css`
+        margin: 0 2px;
+        color: ${color};
+        font-size: ${sizeMap(size!)}px;
+      `}
+      className={
+        className ||
+        [name && type && `fa${type[0]}`, name && type && `fa-${name}`]
+          .filter(Boolean)
+          .join(' ')
+          .trim()
+      }
       {...rest}
     />
   );

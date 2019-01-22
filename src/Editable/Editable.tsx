@@ -1,5 +1,5 @@
+import { css } from '@emotion/core';
 import * as React from 'react';
-import { css, cx } from 'react-emotion';
 import { defaultFont, theme } from '../styles';
 import { ENTER_KEY, ESC_KEY, isBoolean, warning } from '../utils';
 
@@ -16,10 +16,10 @@ const cssEditable = css`
     font-style: italic;
     color: ${theme.subTextColor};
   }
+`;
 
-  &.isEditing {
-    cursor: text;
-  }
+const cssIsEditing = css`
+  cursor: text;
 `;
 
 export type EditableAction = 'save' | 'cancel';
@@ -228,7 +228,7 @@ class Editable extends React.Component<EditableProps, EditableState> {
         role="textbox"
         {...rest}
         placeholder={placeholder}
-        className={cx([cssEditable, { isEditing }, className])}
+        css={[cssEditable, isEditing && cssIsEditing, className]}
         contentEditable={isEditing}
         onDoubleClick={this.handleDoubleClick}
         onKeyDown={this.handleKeyDown}

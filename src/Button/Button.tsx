@@ -1,5 +1,5 @@
+import { css } from '@emotion/core';
 import * as React from 'react';
-import { css, cx } from 'react-emotion';
 import Spinner from '../Spinner';
 import { fontSizes, theme } from '../styles';
 import { lighten } from '../utils';
@@ -27,56 +27,53 @@ const Button: React.SFC<ButtonProps> = ({
   const lightenedColor = lighten(color!);
   return (
     <button
-      className={cx(
-        css`
-          display: inline-flex;
-          align-items: center;
-          vertical-align: bottom;
+      css={css`
+        display: inline-flex;
+        align-items: center;
+        vertical-align: bottom;
 
+        outline: none;
+        cursor: pointer;
+        user-select: none;
+        &:hover,
+        &:focus {
           outline: none;
-          cursor: pointer;
-          user-select: none;
-          &:hover,
-          &:focus {
-            outline: none;
-            border-color: ${lightenedColor};
-            background-color: ${lightenedColor};
-            color: ${theme.textColorInverse};
-          }
-
-          &:active {
-            outline: none;
-            border-color: ${color};
-            background-color: ${color};
-            box-shadow: 0px 0px 2px 0px ${color};
-          }
-
-          font-family: ${theme.fontFamily};
-          font-size: ${fontSize}px;
-          line-height: 1.2;
-
-          height: ${height}px;
-          padding: 0.6em 0.8em;
-          margin: 0px 8px 0px 0px;
-
-          border-radius: 2px;
-          border: 1px solid ${color};
+          border-color: ${lightenedColor};
+          background-color: ${lightenedColor};
           color: ${theme.textColorInverse};
-          background-color: ${color};
+        }
 
-          & > * {
-            margin-left: 0px;
-            margin-right: 6px;
-            &:last-child {
-              margin-right: 0px;
-            }
-            &:first-child {
-              margin-left: 0px;
-            }
+        &:active {
+          outline: none;
+          border-color: ${color};
+          background-color: ${color};
+          box-shadow: 0px 0px 2px 0px ${color};
+        }
+
+        font-family: ${theme.fontFamily};
+        font-size: ${fontSize}px;
+        line-height: 1.2;
+
+        height: ${height}px;
+        padding: 0.6em 0.8em;
+        margin: 0px 8px 0px 0px;
+
+        border-radius: 2px;
+        border: 1px solid ${color};
+        color: ${theme.textColorInverse};
+        background-color: ${color};
+
+        & > * {
+          margin-left: 0px;
+          margin-right: 6px;
+          &:last-child {
+            margin-right: 0px;
           }
-        `,
-        className
-      )}
+          &:first-child {
+            margin-left: 0px;
+          }
+        }
+      `}
       {...rest}
     >
       {showSpinner ? (
