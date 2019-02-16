@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 import * as React from 'react';
-import Spinner from '../Spinner';
+import Spinner from '../Spinner/Spinner';
 import { fontSizes, theme } from '../styles';
 import { lighten } from '../utils';
 
@@ -77,11 +77,7 @@ const Button: React.SFC<ButtonProps> = ({
       {...rest}
     >
       {showSpinner ? (
-        <Spinner
-          color={theme.textColorInverse}
-          size={fontSize + 2}
-          scale={1.5}
-        />
+        <Spinner color={theme.textColorInverse} size={fontSize} scale={1.5} />
       ) : null}
       {React.Children.map(children, child =>
         typeof child === 'string' ? <span>{child}</span> : child

@@ -10,24 +10,33 @@ if (!isTest && !isProduction) {
   );
 }
 
-const emotionConfig = isProduction ? {} : { sourceMap: true };
+const presetEnvConfig = isTest
+  ? {
+      targets: { node: 'current' },
+    }
+  : {
+      useBuiltIns: 'usage',
+      modules: cjs ? 'commonjs' : false,
+    };
 
 module.exports = {
   presets: [
-    '@babel/preset-env',
-    [
-      '@babel/preset-env',
-      {
-        targets: { node: 'current' },
-        useBuiltIns: 'usage',
-        modules: cjs || isTest ? 'commonjs' : false,
-      },
-    ],
-    ['@babel/preset-react', { useBuiltIns: true }],
+    ['@babel/preset-env', presetEnvConfig],
+
+    ['@babel/preset-react', { development: !isProduction, useBuiltIns: true }],
+
     '@babel/preset-typescript',
+
+    [
+      '@emotion/babel-preset-css-prop',
+      { autoLabel: true, labelFormat: '[local]' },
+    ],
   ],
   plugins: [
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-object-rest-spread',
+    '@babel/plugin-transform-destructuring',
+
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
+
+    ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
   ],
 };

@@ -1,6 +1,9 @@
 module.exports = {
   collectCoverageFrom: ['<rootDir>/src/**/*.spec.{ts,tsx,js,mjs}'],
-  setupTestFrameworkScriptFile: '<rootDir>/config/jestFrameworkSetup.js',
+  setupFilesAfterEnv: [
+    'react-testing-library/cleanup-after-each',
+    'jest-dom/extend-expect',
+  ],
   testMatch: ['<rootDir>/src/**/*.spec.{ts,tsx,js,mjs}'],
   testEnvironment: 'jsdom',
   testURL: 'http://localhost',

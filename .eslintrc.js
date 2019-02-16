@@ -22,7 +22,7 @@ module.exports = {
     },
   },
   plugins: ['react'],
-  extends: ['airbnb', 'prettier'],
+  extends: ['airbnb', 'prettier', 'prettier/react'],
   rules: {
     'no-console': 0,
     'global-require': 0,
@@ -36,8 +36,6 @@ module.exports = {
     'react/jsx-filename-extension': 0, // enforce all .js extension
     'react/prefer-stateless-function': 0,
     'react/require-default-props': 0, // allow undefined as prop value
-    'react/jsx-one-expression-per-line': 0, // prettier takes care of it
-    'react/jsx-wrap-multilines': 0, // prettier takes care of it
     'react/destructuring-assignment': 0, // cannot init state with props
     'react/forbid-prop-types': 0, // allow object, array PropTypes
     'react/button-has-type': [

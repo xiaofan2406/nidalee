@@ -1,64 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button component matches snapshot 1`] = `
-.emotion-0 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  vertical-align: bottom;
-  outline: none;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-family: "Open Sans",sans-serif;
-  font-size: 14px;
-  line-height: 1.2;
-  height: 36px;
-  padding: 0.6em 0.8em;
-  margin: 0px 8px 0px 0px;
-  border-radius: 2px;
-  border: 1px solid #008fff;
-  color: #fff;
-  background-color: #008fff;
-}
-
-.emotion-0:hover,
-.emotion-0:focus {
-  outline: none;
-  border-color: hsl(206.39999999999998,100%,60%);
-  background-color: hsl(206.39999999999998,100%,60%);
-  color: #fff;
-}
-
-.emotion-0:active {
-  outline: none;
-  border-color: #008fff;
-  background-color: #008fff;
-  box-shadow: 0px 0px 2px 0px #008fff;
-}
-
-.emotion-0 > * {
-  margin-left: 0px;
-  margin-right: 6px;
-}
-
-.emotion-0 > *:last-child {
-  margin-right: 0px;
-}
-
-.emotion-0 > *:first-child {
-  margin-left: 0px;
-}
-
 <button
-  class="emotion-0"
+  class="css-sabna4-Button"
 >
   <span>
     Click

@@ -10,8 +10,7 @@ test('snapshot matches', () => {
 
 test('the border width will not exceed half of the size', () => {
   const { container } = render(<Spinner size={120} scale={7} />);
-  expect(container.firstChild.firstChild).toHaveStyleRule(
-    'border',
-    `60px solid ${theme.primaryColor}`
+  expect(container.firstChild.firstChild).toHaveStyle(
+    `border: 60px solid ${theme.primaryColor}`
   );
 });

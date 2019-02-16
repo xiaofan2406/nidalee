@@ -1,27 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`snapshot matches with className 1`] = `
-.emotion-0 {
-  margin: 0 2px;
-  color: #008fff;
-  font-size: 16px;
-}
-
 <i
-  class="emotion-0 fas fa-arrow-up"
-  color="#008fff"
+  class="fas fa-arrow-up css-13h5fv5-Icon"
 />
 `;
 
 exports[`snapshot matches with type and name 1`] = `
-.emotion-0 {
-  margin: 0 2px;
-  color: #008fff;
-  font-size: 16px;
-}
-
 <i
-  class="emotion-0 fas fa-arrow-up"
-  color="#008fff"
+  class="fas fa-arrow-up css-13h5fv5-Icon"
 />
 `;
