@@ -18,6 +18,7 @@
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "typings": "dist/typings",
   "sideEffects": false,
   "scripts": {
     "type-check": "tsc --noEmit",
@@ -31,7 +32,8 @@
     "prebuild": "yarn type-check && yarn lint && rm -rf dist",
     "build:cjs": "NODE_ENV=production MODULE=cjs babel src --out-dir dist/cjs --extensions '.ts,.tsx'",
     "build:esm": "NODE_ENV=production babel src --out-dir dist/esm --extensions '.ts,.tsx'",
-    "build": "yarn build:cjs && yarn build:esm",
+    "build:typings": "tsc -p ./tsconfig.build.json",
+    "build": "yarn build:cjs && yarn build:esm && yarn build:typings",
     "dev": "docz dev",
     "docs:build": "docz build",
     "docs:release": "surge -p ./dist/docs -d nidalee.surge.sh"
