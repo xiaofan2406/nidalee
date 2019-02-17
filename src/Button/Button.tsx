@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import Spinner from '../Spinner/Spinner';
-import { fontSizes, theme } from '../styles';
+import { fontSizes, theme, noFirefoxOutline } from '../styles';
 import { lighten } from '../utils';
 
 // TODO extends React.ButtonHTMLAttributes<HTMLButtonElement>, but skip docz
@@ -51,6 +51,7 @@ const Button: React.SFC<ButtonProps> = ({
           box-shadow: 0px 0px 2px 0px ${color};
         }
 
+        ${noFirefoxOutline};
         font-family: ${theme.fontFamily};
         font-size: ${fontSize}px;
         line-height: 1.2;

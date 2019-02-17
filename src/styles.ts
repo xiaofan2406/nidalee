@@ -85,3 +85,10 @@ export const verticalScroll = css`
     background-color: rgba(0, 0, 0, 0.61);
   }
 `;
+
+// remove firefox dotted outline
+export const noFirefoxOutline = css`
+  &::-moz-focus-inner {
+    border: 0;
+  }
+`;
