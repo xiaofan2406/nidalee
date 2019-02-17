@@ -27,10 +27,7 @@ module.exports = {
 
     '@babel/preset-typescript',
 
-    [
-      '@emotion/babel-preset-css-prop',
-      { autoLabel: true, labelFormat: '[local]' },
-    ],
+    '@emotion/babel-preset-css-prop',
   ],
   plugins: [
     '@babel/plugin-transform-destructuring',

@@ -10,6 +10,7 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx|js|mjs)$': 'babel-jest',
   },
+  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx|js|mjs)$'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'mjs', 'json'],
   coverageThreshold: {
     global: {

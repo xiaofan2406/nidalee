@@ -1,5 +1,5 @@
+import React from 'react';
 import { css } from '@emotion/core';
-import * as React from 'react';
 import { fontSizes, theme } from '../styles';
 
 // TODO extends React.HTMLAttributes<HTMLSpanElement>, but skip docz

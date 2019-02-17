@@ -1,5 +1,5 @@
+import React from 'react';
 import { css } from '@emotion/core';
-import * as React from 'react';
 import { defaultFont, theme } from '../styles';
 import { ENTER_KEY, ESC_KEY, isBoolean, warning } from '../utils';
 

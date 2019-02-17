@@ -8,7 +8,8 @@
     "object-literal-sort-keys": false,
     "interface-name": false,
     "array-type": [true, "array"],
-    "no-console": false
+    "no-console": false,
+    "ordered-imports": false
   },
   "rulesDirectory": []
 }
