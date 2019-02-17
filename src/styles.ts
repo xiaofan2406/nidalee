@@ -1,7 +1,7 @@
 import { css, keyframes } from '@emotion/core';
 
 export const colors = {
-  white: '#fff',
+  white: '#ffffff',
   blue1: '#349ef1',
   blue2: '#008fff',
   black1: '#131313',

@@ -22,6 +22,9 @@ export const warning = (name: string, condition: boolean, msg: string) => {
   }
 };
 
+// tslint:disable-next-line
+export const noop = () => {};
+
 export const ENTER_KEY = 13;
 export const ESC_KEY = 27;
 export const BACKSPACE_KEY = 8;

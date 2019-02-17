@@ -5,7 +5,8 @@ import { fontSizes, theme } from '../styles';
 import { lighten } from '../utils';
 
 // TODO extends React.ButtonHTMLAttributes<HTMLButtonElement>, but skip docz
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size;
   color?: string;
   className?: string;

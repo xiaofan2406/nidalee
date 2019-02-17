@@ -1,0 +1,53 @@
+---
+name: Dialog
+---
+
+import { Playground, PropsTable } from 'docz';
+import Dialog from './Dialog';
+import Button from '../Button/Button';
+
+# Dialog
+
+## Props
+
+<PropsTable of={Dialog} />
+
+## Usage
+
+#### Basic
+
+<Playground>
+  {() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    return (
+      <>
+        <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+        {isOpen ? (
+          <Dialog onClose={() => setIsOpen(false)}>
+            Basic dialog
+          </Dialog>
+        ) : null}
+      </>
+    );
+  }}
+
+</Playground>
+
+#### Dialog has a max height
+
+<Playground>
+  {() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    return (
+      <>
+        <Button onClick={() => setIsOpen(true)}>Open Dialog, max height</Button>
+        {isOpen ? (
+          <Dialog onClose={() => setIsOpen(false)} style={{ overflow: 'auto' }}>
+            <div style={{ height: 1200 }}>Now you see me</div>
+            <div style={{ height: 1200 }}>Lots more content</div>
+          </Dialog>
+        ) : null}
+      </>
+    );
+  }}
+</Playground>
