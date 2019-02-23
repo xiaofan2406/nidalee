@@ -1,19 +1,14 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { createPortal } from 'react-dom';
 
-interface PortalProps {
+export interface PortalProps {
   children: React.ReactNode;
-  className?: string;
 }
 
-const Portal: React.SFC<PortalProps> = ({ children, className }) => {
-  const overlayRef = React.useRef({} as HTMLDivElement);
-  overlayRef.current = document.createElement('div');
+const Portal: FunctionComponent<PortalProps> = ({ children }) => {
+  const overlayRef = React.useRef(document.createElement('div'));
 
   React.useEffect(() => {
-    if (className) {
-      overlayRef.current.className = className;
-    }
     document.body.appendChild(overlayRef.current);
 
     return () => {

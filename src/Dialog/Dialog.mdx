@@ -51,3 +51,21 @@ import Button from '../Button/Button';
     );
   }}
 </Playground>
+
+#### Prevent click away
+
+<Playground>
+  {() => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    return (
+      <>
+        <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+        {isOpen ? (
+          <Dialog>
+            <Button onClick={() => setIsOpen(false)}>Close Dialog</Button>
+          </Dialog>
+        ) : null}
+      </>
+    );
+  }}
+</Playground>

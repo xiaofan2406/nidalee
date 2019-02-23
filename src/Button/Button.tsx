@@ -62,6 +62,7 @@ const Button: FunctionComponent<ButtonProps> = ({
         color: ${theme.textColorInverse};
         background-color: ${color};
       `}
+      type="button"
       {...rest}
     >
       {children}

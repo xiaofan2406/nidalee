@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import { css } from '@emotion/core';
 import Portal from '../Portal/Portal';
 
-interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
-  onClose?: () => void;
-
-  /* Prevent the dialog from closing on click away */
-  preventClickAway?: boolean;
+export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+  onClose?: () => void;
+  overlayProps?: React.HTMLAttributes<HTMLDivElement>;
 }
 
 const overlayCss = css`
@@ -27,26 +25,33 @@ const dialogCss = css`
   max-height: calc(100vh - 48px - 48px);
 `;
 
-const Dialog: React.FC<DialogProps> = ({
+const Dialog: FunctionComponent<DialogProps> = ({
   onClose,
-  preventClickAway,
   children,
+  overlayProps,
   ...dialogDivProps
 }) => {
-  const overlayProps = preventClickAway ? {} : { onClick: onClose };
+  const overlayDivClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (overlayProps!.onClick) {
+      overlayProps!.onClick(event);
+    }
+    if (onClose) {
+      onClose();
+    }
+  };
 
   const dialogDivClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     if (dialogDivProps.onClick) {
       dialogDivProps.onClick(event);
     }
-    if (!preventClickAway) {
+    if (onClose) {
       event.stopPropagation();
     }
   };
 
   return (
     <Portal>
-      <div css={overlayCss} {...overlayProps}>
+      <div css={overlayCss} {...overlayProps} onClick={overlayDivClickHandler}>
         <div
           css={dialogCss}
           {...dialogDivProps}
@@ -60,7 +65,7 @@ const Dialog: React.FC<DialogProps> = ({
 };
 
 Dialog.defaultProps = {
-  preventClickAway: false,
+  overlayProps: {},
 };
 
 export default Dialog;
