@@ -1,10 +1,17 @@
-/* @flow */
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render, fireEvent } from 'react-testing-library';
 import Button from './Button';
 
-test('Button component matches snapshot', () => {
-  const { container } = render(<Button>Click</Button>);
+it('takes html button props', () => {
+  const onClick = jest.fn();
+  const { getByText } = render(<Button onClick={onClick}>Click</Button>);
 
-  expect(container.firstChild).toMatchSnapshot();
+  fireEvent.click(getByText('Click'));
+  expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+it('sets background color', () => {
+  const { getByText } = render(<Button color="red">Click</Button>);
+
+  expect(getByText('Click')).toHaveStyle('background-color: red');
 });

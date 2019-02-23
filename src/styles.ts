@@ -14,10 +14,10 @@ export const colors = {
   green1: '#23d160',
 };
 
-export const fontSizes: Record<Size, number> = {
+export const fontSizes: Record<'small' | 'regular' | 'large', number> = {
   small: 12,
   regular: 14,
-  large: 18,
+  large: 20,
 };
 
 export const theme = {

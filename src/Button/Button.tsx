@@ -1,31 +1,28 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { css } from '@emotion/core';
-import Spinner from '../Spinner/Spinner';
 import { fontSizes, theme, noFirefoxOutline } from '../styles';
 import { lighten } from '../utils';
 
-// TODO extends React.ButtonHTMLAttributes<HTMLButtonElement>, but skip docz
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  size?: Size;
+  children: React.ReactNode;
+  size?: 'small' | 'regular' | 'large';
   color?: string;
-  className?: string;
-  showSpinner?: boolean;
 }
 
-const heightMap = (size: Size) => ({ small: 24, regular: 36, large: 48 }[size]);
+const heightMap = (size: ButtonProps['size']) =>
+  ({ small: 28, regular: 36, large: 48 }[size!]);
 
-const Button: React.SFC<ButtonProps> = ({
+const Button: FunctionComponent<ButtonProps> = ({
   children,
   size,
   color,
-  className,
-  showSpinner,
   ...rest
 }) => {
   const height = heightMap(size!);
   const fontSize = fontSizes[size!];
   const lightenedColor = lighten(color!);
+
   return (
     <button
       css={css`
@@ -64,26 +61,10 @@ const Button: React.SFC<ButtonProps> = ({
         border: 1px solid ${color};
         color: ${theme.textColorInverse};
         background-color: ${color};
-
-        & > * {
-          margin-left: 0px;
-          margin-right: 6px;
-          &:last-child {
-            margin-right: 0px;
-          }
-          &:first-child {
-            margin-left: 0px;
-          }
-        }
       `}
       {...rest}
     >
-      {showSpinner ? (
-        <Spinner color={theme.textColorInverse} size={fontSize} scale={1.5} />
-      ) : null}
-      {React.Children.map(children, child =>
-        typeof child === 'string' ? <span>{child}</span> : child
-      )}
+      {children}
     </button>
   );
 };
@@ -91,7 +72,6 @@ const Button: React.SFC<ButtonProps> = ({
 Button.defaultProps = {
   size: 'regular',
   color: theme.primaryColor,
-  showSpinner: false,
 };
 
 export default Button;
