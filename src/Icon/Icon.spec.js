@@ -2,12 +2,18 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import Icon from './Icon';
 
-test('snapshot matches with type and name', () => {
-  const { container } = render(<Icon type="solid" name="arrow-up" />);
-  expect(container.firstChild).toMatchSnapshot();
+it('has the correct fa classes with type and name', () => {
+  const { getByTestId } = render(
+    <Icon type="solid" name="arrow-up" data-testid="icon" />
+  );
+
+  expect(getByTestId('icon')).toHaveClass('fas fa-arrow-up');
 });
 
-test('snapshot matches with className', () => {
-  const { container } = render(<Icon className="fas fa-arrow-up" />);
-  expect(container.firstChild).toMatchSnapshot();
+it('has the correct fa classes with className', () => {
+  const { getByTestId } = render(
+    <Icon className="fas fa-arrow-up" data-testid="icon" />
+  );
+
+  expect(getByTestId('icon')).toHaveClass('fas fa-arrow-up');
 });

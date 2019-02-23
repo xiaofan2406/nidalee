@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { css } from '@emotion/core';
 import { theme } from '../styles';
 
-// TODO extends React.HTMLAttributes<HTMLElement>, but skip docz
-export interface IconProps {
-  type?: FontAwesomeType;
+export interface IconProps extends React.HTMLAttributes<HTMLElement> {
+  type?: 'solid' | 'regular' | 'light' | 'brands';
   name?: string;
-  size?: Size;
   className?: string;
+  size?: 'small' | 'regular' | 'large';
   color?: string;
 }
 
-const sizeMap = (size: Size) => ({ small: 14, regular: 16, large: 20 }[size]);
+const sizeMap = (size: IconProps['size']) =>
+  ({ small: 12, regular: 16, large: 24 }[size!]);
 
-const Icon: React.SFC<IconProps> = ({
+const Icon: FunctionComponent<IconProps> = ({
   color,
   size,
   type,
@@ -21,6 +21,7 @@ const Icon: React.SFC<IconProps> = ({
   className,
   ...rest
 }) => {
+  // TODO assert on 1 type of usage: className or type&name
   return (
     <i
       css={css`
@@ -42,7 +43,6 @@ const Icon: React.SFC<IconProps> = ({
 
 Icon.defaultProps = {
   type: 'regular',
-  name: '',
   size: 'regular',
   color: theme.primaryColor,
 };
