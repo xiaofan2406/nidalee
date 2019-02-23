@@ -1,5 +1,5 @@
+import React, { FunctionComponent } from 'react';
 import { css } from '@emotion/core';
-import React, { SFC } from 'react';
 import { spinAnimation, theme } from '../styles';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -17,28 +17,27 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: string;
 }
 
-const Spinner: SFC<SpinnerProps> = ({
+const cssSpinner = css`
+  display: inline-block;
+`;
+
+const Spinner: FunctionComponent<SpinnerProps> = ({
   size,
   scale,
   color,
-  className,
   ...rest
 }) => {
-  const maxBorder = size! / 2;
-  const scaledBorder = (size! * scale!) / 10;
+  const sizeValue = size!;
+  const maxBorder = sizeValue / 2;
+  const scaledBorder = (sizeValue * scale!) / 10;
   const borderSize = scaledBorder >= maxBorder ? maxBorder : scaledBorder;
 
   return (
-    <div
-      css={css`
-        display: inline-block;
-      `}
-      {...rest}
-    >
+    <div css={cssSpinner} {...rest}>
       <div
         css={css`
-          width: ${size!}px;
-          height: ${size!}px;
+          width: ${sizeValue}px;
+          height: ${sizeValue}px;
           border: ${borderSize}px solid ${color};
           border-bottom-color: transparent;
           border-radius: 100%;

@@ -2,8 +2,7 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { fontSizes, theme } from '../styles';
 
-// TODO extends React.HTMLAttributes<HTMLSpanElement>, but skip docz
-export interface SpanProps {
+export interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
   tooltip: string;
   children: React.ReactNode;
   tooltipPosition?: 'top' | 'left' | 'right' | 'bottom';
