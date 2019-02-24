@@ -1,0 +1,21 @@
+---
+name: InlineEdit
+---
+
+import { Playground, PropsTable } from 'docz';
+import InlineEdit from './InlineEdit';
+
+# InlineEdit
+
+## Props
+
+<PropsTable of={InlineEdit} />
+
+## Basic usage
+
+<Playground>
+  {() => {
+    const [value, setValue] = React.useState('Hello World!');
+    return <InlineEdit value={value} onSave={setValue} />;
+  }}
+</Playground>
