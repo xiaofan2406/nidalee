@@ -14,9 +14,15 @@ import Editable from './Editable';
 ## Basic usage
 
 <Playground>
-  <Editable
-    defaultValue="sdaf"
-    placeholder="I am placeholder"
-    onSave={console.log}
-  />
+  {() => {
+    const [value, setValue] = React.useState('Hello\nWorld!');
+    return (
+      <Editable
+        value={value}
+        placeholder="I am placeholder"
+        onSave={setValue}
+        autoTrim
+      />
+    );
+  }}
 </Playground>

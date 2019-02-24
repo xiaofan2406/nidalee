@@ -1,5 +1,5 @@
 module.exports = {
-  collectCoverageFrom: ['<rootDir>/src/**/*.spec.{ts,tsx,js,mjs}'],
+  collectCoverageFrom: ['src/**/*.spec.{ts,tsx,js,mjs}'],
   setupFilesAfterEnv: [
     'react-testing-library/cleanup-after-each',
     'jest-dom/extend-expect',

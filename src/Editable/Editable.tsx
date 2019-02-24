@@ -1,241 +1,178 @@
-import React from 'react';
+import React, {
+  FunctionComponent,
+  useRef,
+  useState,
+  MouseEventHandler,
+  KeyboardEventHandler,
+  FocusEventHandler,
+  useEffect,
+} from 'react';
 import { css } from '@emotion/core';
 import { defaultFont, theme } from '../styles';
-import { ENTER_KEY, ESC_KEY, isBoolean, warning } from '../utils';
+import { ENTER_KEY, ESC_KEY } from '../utils';
+import {
+  useValidateProps,
+  ensureCursorAtTheEnd,
+  getValue,
+  syncInnerHTML,
+} from './helpers';
+
+export type EditableAction = 'save' | 'cancel';
+
+export interface EditableProps {
+  value: string;
+  onSave: (value: string) => void;
+  onCancel?: () => void;
+  autoTrim?: boolean;
+  placeholder?: string;
+
+  escAction?: EditableAction;
+  blurAction?: EditableAction;
+  onDoubleClick?: MouseEventHandler;
+  onKeyDown?: KeyboardEventHandler;
+  onBlur?: FocusEventHandler;
+}
 
 const cssEditable = css`
   ${defaultFont};
-
   padding: 12px 16px;
   min-height: 46px;
 
   cursor: default;
-
+  border: 1px solid #e8e8e8;
   &:empty:before {
     content: attr(placeholder);
     font-style: italic;
     color: ${theme.subTextColor};
   }
+
+  &:focus {
+    outline: none;
+    border-color: ${theme.primaryColor};
+  }
 `;
 
-const cssIsEditing = css`
+const cssEditing = css`
   cursor: text;
 `;
 
-export type EditableAction = 'save' | 'cancel';
+const Editable: FunctionComponent<EditableProps> = ({
+  value,
+  placeholder,
+  onSave,
+  onCancel,
+  autoTrim,
+  escAction,
+  blurAction,
+  onDoubleClick,
+  onKeyDown,
+  onBlur,
+  ...rest
+}) => {
+  useValidateProps(escAction!, blurAction!);
 
-export interface EditableProps {
-  defaultValue?: string;
-  placeholder?: string;
-  editing?: boolean;
-  toggleEditing?: (isEditing: boolean) => void;
-  onSave: (value: string) => void;
-  onCancel: () => void;
-  blurAction: EditableAction;
-  escAction: EditableAction;
-  autoTrim: boolean;
+  const editableRef = useRef() as React.RefObject<HTMLDivElement>;
 
-  className?: string;
-  onDoubleClick?: React.MouseEventHandler;
-  onKeyDown?: React.KeyboardEventHandler;
-  onBlur?: React.FocusEventHandler;
-}
+  useEffect(() => {
+    syncInnerHTML(editableRef, autoTrim ? value.trim() : value);
+    if (isEditing) {
+      ensureCursorAtTheEnd(editableRef);
+    }
+  });
 
-interface EditableState {
-  isEditing: boolean;
-}
+  const [isEditing, setIsEditing] = useState(false);
 
-class Editable extends React.Component<EditableProps, EditableState> {
-  containerRef: React.RefObject<HTMLDivElement> = React.createRef();
-
-  static defaultProps = {
-    defaultValue: '',
-    placeholder: '',
-    autoTrim: false,
-    blurAction: 'save',
-    escAction: 'cancel',
-  };
-
-  static getDerivedStateFromProps(nextProps: EditableProps) {
-    return isBoolean(nextProps.editing)
-      ? { isEditing: nextProps.editing }
-      : null;
-  }
-
-  state: EditableState = {
-    isEditing: isBoolean(this.props.editing) ? this.props.editing : false,
-  };
-
-  componentDidMount() {
-    this.validateProps();
-    this.syncInnerHTML(this.props.defaultValue);
-    this.ensureCursorAtTheEnd();
-  }
-
-  componentDidUpdate() {
-    this.validateProps();
-    this.syncInnerHTML(this.contentToSave);
-    this.ensureCursorAtTheEnd();
-  }
-
-  get isControlled() {
-    return isBoolean(this.props.editing);
-  }
-
-  get contentToSave() {
-    const text = this.containerRef.current!.innerText || '';
-
-    return this.props.autoTrim ? text.trim() : text;
-  }
-
-  validateProps = () => {
-    const { blurAction, escAction, toggleEditing } = this.props;
-
-    warning(
-      'Editable',
-      escAction === 'cancel' && blurAction === 'cancel',
-      'At least one of [`escAction`, `blurAction`] should be `save`.'
-    );
-
-    warning(
-      'Editable',
-      this.isControlled && !toggleEditing,
-      '`toggleEditing` is required when the editing state is controlled'
-    );
-  };
-
-  syncInnerHTML = (toSync: string = '') => {
-    this.containerRef.current!.innerHTML = toSync!.replace(
-      /(?:\r\n|\r|\n)/g,
-      '<br />'
-    );
-  };
-
-  ensureCursorAtTheEnd = () => {
-    if (this.state.isEditing) {
-      this.containerRef.current!.focus();
-      const range = document.createRange();
-      range.selectNodeContents(this.containerRef.current!);
-      range.collapse(false);
-      const sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
+  const handleSave = () => {
+    if (isEditing) {
+      const currentValue = getValue(editableRef, autoTrim);
+      onSave(currentValue);
+      setIsEditing(false);
     }
   };
 
-  toggleIsEditing = (isEditing: boolean) => {
-    const { toggleEditing } = this.props;
-
-    if (this.isControlled && toggleEditing) {
-      toggleEditing(isEditing);
-    } else {
-      this.setState(prevState =>
-        prevState.isEditing === isEditing ? null : { isEditing }
-      );
-    }
-  };
-
-  // handleSave should only respond while is editing
-  handleSave = () => {
-    const { onSave } = this.props;
-
-    if (this.state.isEditing) {
-      this.toggleIsEditing(false);
-      onSave(this.contentToSave);
-    }
-  };
-
-  // handleCancel should only respond while is editing
-  handleCancel = () => {
-    const { defaultValue, onCancel } = this.props;
-
-    if (this.state.isEditing) {
-      this.containerRef.current!.innerText = defaultValue!;
-      this.toggleIsEditing(false);
-
+  const handleCancel = () => {
+    if (isEditing) {
       if (onCancel) {
         onCancel();
       }
+
+      setIsEditing(false);
     }
   };
 
-  handleDoubleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const { onDoubleClick } = this.props;
-
-    this.toggleIsEditing(true);
+  const handleDoubleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (onDoubleClick) {
       onDoubleClick(event);
     }
+
+    if (!isEditing) {
+      setIsEditing(true);
+    }
   };
 
-  handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const { escAction, onKeyDown } = this.props;
-
-    event.stopPropagation();
-    if (event.which === ENTER_KEY) {
-      if (!this.state.isEditing) {
-        // prevent creating a new line when enter editing
-        event.preventDefault();
-      }
-      this.toggleIsEditing(true);
+  const handleAction = (action: EditableAction) => {
+    switch (action) {
+      case 'save':
+        handleSave();
+        break;
+      case 'cancel':
+        handleCancel();
+        break;
+      default:
+        break;
     }
-    if (event.which === ESC_KEY) {
-      this.handleAction(escAction);
-    }
+  };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (onKeyDown) {
       onKeyDown(event);
     }
-  };
 
-  handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
-    const { blurAction, onBlur } = this.props;
-
-    event.stopPropagation();
-    this.handleAction(blurAction);
-
-    if (onBlur) {
-      onBlur(event);
+    switch (event.which) {
+      case ENTER_KEY:
+        if (!isEditing) {
+          // prevent creating a new line when enter editing
+          event.preventDefault();
+        }
+        setIsEditing(true);
+        break;
+      case ESC_KEY:
+        handleAction(escAction!);
+        break;
+      default:
+        break;
     }
   };
 
-  handleAction = (action: EditableAction) =>
-    action === 'save' ? this.handleSave() : this.handleCancel();
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (onBlur) {
+      onBlur(event);
+    }
 
-  render() {
-    const {
-      defaultValue,
-      onSave,
-      onCancel,
+    handleAction(blurAction!);
+  };
 
-      editing,
-      toggleEditing,
+  return (
+    <div
+      ref={editableRef}
+      tabIndex={0}
+      role="textbox"
+      css={[cssEditable, isEditing && cssEditing]}
+      {...rest}
+      placeholder={placeholder}
+      contentEditable={isEditing}
+      onDoubleClick={handleDoubleClick}
+      onKeyDown={handleKeyDown}
+      onBlur={handleBlur}
+    />
+  );
+};
 
-      placeholder,
-      autoTrim,
-      blurAction,
-      escAction,
-
-      className,
-      ...rest
-    } = this.props;
-    const { isEditing } = this.state;
-
-    return (
-      <div
-        ref={this.containerRef}
-        tabIndex={0}
-        role="textbox"
-        {...rest}
-        placeholder={placeholder}
-        css={[cssEditable, isEditing && cssIsEditing, className]}
-        contentEditable={isEditing}
-        onDoubleClick={this.handleDoubleClick}
-        onKeyDown={this.handleKeyDown}
-        onBlur={this.handleBlur}
-      />
-    );
-  }
-}
+Editable.defaultProps = {
+  placeholder: '',
+  autoTrim: false,
+  blurAction: 'save',
+  escAction: 'cancel',
+};
 
 export default Editable;

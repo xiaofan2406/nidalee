@@ -36,23 +36,11 @@ export const theme = {
   colorSuccess: colors.green1,
 };
 
-export const baseContainer = css`
-  padding: 12px 16px;
-`;
-
-export const baseArea = css`
-  padding: 8px 12px;
-`;
-
 export const defaultFont = css`
   font-family: ${theme.fontFamily};
   font-size: ${theme.fontSize}px;
   color: ${theme.textColor};
   line-height: 1.4;
-`;
-
-export const outline = css`
-  outline: 1px solid ${theme.primaryColor};
 `;
 
 export const spinAnimation = keyframes`
