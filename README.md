@@ -19,29 +19,13 @@ React UI components
 [prettier-badge]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square
 [prettier]: https://github.com/prettier/prettier
 
-## Built With
-
-- [React](https://reactjs.org)
-- [Emotion](https://github.com/tkh44/emotion)
-- [Flow](https://flow.org/en)
-
 ## TODO
 
-- [ ] wanring solution
 - [ ] utilize accessibility attributes
-- [ ] check component types
 - [ ] simple CSS animations
-- [ ] maybe a smart way to handle darkness level
 - [ ] API documentation
-- [ ] browser list check
 
 ## Getting started
-
-- Install with `npm`
-
-```shell
-npm install --save nidalee
-```
 
 - Install with `yarn`
 
@@ -54,21 +38,12 @@ It will add `nidalee` to your project's dependency.
 You will also need to ensure that the correct `peerDependencies` are installed. Use
 
 ```shell
-npm info nidalee peerDependencies
+yarn info nidalee peerDependencies
 ```
 
 to list the required `peerDependencies`.
 
 ## Developing
-
-### Prerequisites
-
-- [Install `yarn`](https://yarnpkg.com/lang/en/docs/install/)
-
-- Add `flow-typed` and `surge`
-  ```shell
-  yarn global add flow-typed surge
-  ```
 
 ### Setting up Dev
 
@@ -81,12 +56,12 @@ cd nidalee/
 yarn
 ```
 
-This will initialize the project with required dependencies.
+This will initialize the project with required dependencies for development.
 
 ### Commands
 
 ```shell
-yarn dev # start webpack-dev-server with hot reload enabled for the documentation app
+yarn dev # start docz dev server for the documentation app
 
 yarn format # format all source code with prettier
 
@@ -96,7 +71,5 @@ yarn coverage # report coverage
 
 yarn build # create a minified production build for the library
 
-yarn docs # create a minified production build for the documentation app
-
-yarn start # start a localhost server serving the documentation app
+yarn docs:build # create a minified production build for the documentation app
 ```
