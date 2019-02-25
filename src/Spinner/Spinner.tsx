@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import { spinAnimation, theme } from '../styles';
 
@@ -21,12 +21,7 @@ const cssSpinner = css`
   display: inline-block;
 `;
 
-const Spinner: FunctionComponent<SpinnerProps> = ({
-  size,
-  scale,
-  color,
-  ...rest
-}) => {
+const Spinner: FC<SpinnerProps> = ({ size, scale, color, ...rest }) => {
   const sizeValue = size!;
   const maxBorder = sizeValue / 2;
   const scaledBorder = (sizeValue * scale!) / 10;

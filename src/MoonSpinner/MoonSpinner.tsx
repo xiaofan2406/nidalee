@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import { theme, spinAnimation } from '../styles';
 
@@ -7,7 +7,7 @@ interface MoonSpinnerProps {
   color?: string;
 }
 
-const MoonSpinner: FunctionComponent<MoonSpinnerProps> = ({ size, color }) => {
+const MoonSpinner: FC<MoonSpinnerProps> = ({ size, color }) => {
   const sizeValue = size!;
   const speed = 0.85;
 

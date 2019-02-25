@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useRef } from 'react';
+import React, { FC, useState, useRef } from 'react';
 import { css } from '@emotion/core';
 import { defaultFont } from '../styles';
 import { ENTER_KEY, ESC_KEY, warning, isBoolean } from '../utils';
@@ -59,7 +59,7 @@ const cssInlineEditInput = css`
   outline: none;
 `;
 
-const InlineEdit: FunctionComponent<InlineEditProps> = ({
+const InlineEdit: FC<InlineEditProps> = ({
   value,
   onSave,
   onCancel,

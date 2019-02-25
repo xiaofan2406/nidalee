@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import { theme } from '../styles';
 
@@ -13,7 +13,7 @@ export interface IconProps extends React.HTMLAttributes<HTMLElement> {
 const sizeMap = (size: IconProps['size']) =>
   ({ small: 12, regular: 16, large: 24 }[size!]);
 
-const Icon: FunctionComponent<IconProps> = ({
+const Icon: FC<IconProps> = ({
   color,
   size,
   type,

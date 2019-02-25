@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { css } from '@emotion/core';
 import Portal from '../Portal/Portal';
 
@@ -25,7 +25,7 @@ const dialogCss = css`
   max-height: calc(100vh - 48px - 48px);
 `;
 
-const Dialog: FunctionComponent<DialogProps> = ({
+const Dialog: FC<DialogProps> = ({
   onClose,
   children,
   overlayProps,

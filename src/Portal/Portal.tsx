@@ -1,11 +1,11 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { createPortal } from 'react-dom';
 
 export interface PortalProps {
   children: React.ReactNode;
 }
 
-const Portal: FunctionComponent<PortalProps> = ({ children }) => {
+const Portal: FC<PortalProps> = ({ children }) => {
   const overlayRef = React.useRef(document.createElement('div'));
 
   React.useEffect(() => {

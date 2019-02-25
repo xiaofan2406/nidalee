@@ -1,5 +1,5 @@
 import React, {
-  FunctionComponent,
+  FC,
   useRef,
   useState,
   MouseEventHandler,
@@ -56,7 +56,7 @@ const cssEditing = css`
   cursor: text;
 `;
 
-const Editable: FunctionComponent<EditableProps> = ({
+const Editable: FC<EditableProps> = ({
   value,
   placeholder,
   onSave,

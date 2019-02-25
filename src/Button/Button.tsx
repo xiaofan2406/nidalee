@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import { fontSizes, theme, noFirefoxOutline } from '../styles';
 import { lighten } from '../utils';
@@ -13,12 +13,7 @@ export interface ButtonProps
 const heightMap = (size: ButtonProps['size']) =>
   ({ small: 28, regular: 36, large: 48 }[size!]);
 
-const Button: FunctionComponent<ButtonProps> = ({
-  children,
-  size,
-  color,
-  ...rest
-}) => {
+const Button: FC<ButtonProps> = ({ children, size, color, ...rest }) => {
   const height = heightMap(size!);
   const fontSize = fontSizes[size!];
   const lightenedColor = lighten(color!);
