@@ -13,10 +13,15 @@ export interface ButtonProps
 const heightMap = (size: ButtonProps['size']) =>
   ({ small: 28, regular: 36, large: 48 }[size!]);
 
-const Button: FC<ButtonProps> = ({ children, size, color, ...rest }) => {
-  const height = heightMap(size!);
-  const fontSize = fontSizes[size!];
-  const lightenedColor = lighten(color!);
+const Button: FC<ButtonProps> = ({
+  children,
+  size = 'regular',
+  color = theme.primaryColor,
+  ...rest
+}) => {
+  const height = heightMap(size);
+  const fontSize = fontSizes[size];
+  const lightenedColor = lighten(color);
 
   return (
     <button
@@ -63,11 +68,6 @@ const Button: FC<ButtonProps> = ({ children, size, color, ...rest }) => {
       {children}
     </button>
   );
-};
-
-Button.defaultProps = {
-  size: 'regular',
-  color: theme.primaryColor,
 };
 
 export default Button;

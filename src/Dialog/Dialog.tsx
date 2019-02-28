@@ -26,14 +26,14 @@ const dialogCss = css`
 `;
 
 const Dialog: FC<DialogProps> = ({
-  onClose,
   children,
-  overlayProps,
+  onClose,
+  overlayProps = {},
   ...dialogDivProps
 }) => {
   const overlayDivClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (overlayProps!.onClick) {
-      overlayProps!.onClick(event);
+    if (overlayProps.onClick) {
+      overlayProps.onClick(event);
     }
     if (onClose) {
       onClose();
@@ -62,10 +62,6 @@ const Dialog: FC<DialogProps> = ({
       </div>
     </Portal>
   );
-};
-
-Dialog.defaultProps = {
-  overlayProps: {},
 };
 
 export default Dialog;

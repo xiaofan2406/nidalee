@@ -58,18 +58,18 @@ const cssEditing = css`
 
 const Editable: FC<EditableProps> = ({
   value,
-  placeholder,
+  placeholder = '',
   onSave,
   onCancel,
-  autoTrim,
-  escAction,
-  blurAction,
+  autoTrim = false,
+  escAction = 'cancel',
+  blurAction = 'save',
   onDoubleClick,
   onKeyDown,
   onBlur,
   ...rest
 }) => {
-  useValidateProps(escAction!, blurAction!);
+  useValidateProps(escAction, blurAction);
 
   const editableRef = useRef() as React.RefObject<HTMLDivElement>;
 
@@ -137,7 +137,7 @@ const Editable: FC<EditableProps> = ({
         setIsEditing(true);
         break;
       case ESC_KEY:
-        handleAction(escAction!);
+        handleAction(escAction);
         break;
       default:
         break;
@@ -149,7 +149,7 @@ const Editable: FC<EditableProps> = ({
       onBlur(event);
     }
 
-    handleAction(blurAction!);
+    handleAction(blurAction);
   };
 
   return (
@@ -166,13 +166,6 @@ const Editable: FC<EditableProps> = ({
       onBlur={handleBlur}
     />
   );
-};
-
-Editable.defaultProps = {
-  placeholder: '',
-  autoTrim: false,
-  blurAction: 'save',
-  escAction: 'cancel',
 };
 
 export default Editable;

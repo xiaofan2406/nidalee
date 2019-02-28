@@ -64,11 +64,9 @@ const InlineEdit: FC<InlineEditProps> = ({
   onSave,
   onCancel,
   children,
-  escAction,
-  blurAction,
-
-  inputProps,
-
+  escAction = 'cancel',
+  blurAction = 'save',
+  inputProps = {},
   onKeyDown,
   onDoubleClick,
   ...rest
@@ -77,8 +75,8 @@ const InlineEdit: FC<InlineEditProps> = ({
   const inputRef = useRef() as React.RefObject<HTMLInputElement>;
 
   const handleSave = () => {
-    if (isEditing) {
-      onSave(inputRef.current!.value);
+    if (isEditing && inputRef.current) {
+      onSave(inputRef.current.value);
       setIsEditing(false);
     }
   };
@@ -124,8 +122,8 @@ const InlineEdit: FC<InlineEditProps> = ({
   };
 
   const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (inputProps!.onKeyDown) {
-      inputProps!.onKeyDown(event);
+    if (inputProps.onKeyDown) {
+      inputProps.onKeyDown(event);
     }
 
     switch (event.which) {
@@ -133,7 +131,7 @@ const InlineEdit: FC<InlineEditProps> = ({
         handleSave();
         break;
       case ESC_KEY:
-        handleAction(escAction!);
+        handleAction(escAction);
         break;
       default:
         break;
@@ -141,11 +139,11 @@ const InlineEdit: FC<InlineEditProps> = ({
   };
 
   const handleInputBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (inputProps!.onBlur) {
-      inputProps!.onBlur(event);
+    if (inputProps.onBlur) {
+      inputProps.onBlur(event);
     }
 
-    handleAction(blurAction!);
+    handleAction(blurAction);
   };
 
   return (
@@ -170,12 +168,6 @@ const InlineEdit: FC<InlineEditProps> = ({
       ) : null}
     </span>
   );
-};
-
-InlineEdit.defaultProps = {
-  blurAction: 'save',
-  escAction: 'cancel',
-  inputProps: {},
 };
 
 export default InlineEdit;

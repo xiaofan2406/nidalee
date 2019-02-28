@@ -14,9 +14,9 @@ const sizeMap = (size: IconProps['size']) =>
   ({ small: 12, regular: 16, large: 24 }[size!]);
 
 const Icon: FC<IconProps> = ({
-  color,
-  size,
-  type,
+  color = theme.primaryColor,
+  size = 'regular',
+  type = 'regular',
   name,
   className,
   ...rest
@@ -27,7 +27,7 @@ const Icon: FC<IconProps> = ({
       css={css`
         margin: 0 2px;
         color: ${color};
-        font-size: ${sizeMap(size!)}px;
+        font-size: ${sizeMap(size)}px;
       `}
       className={
         className ||
@@ -39,12 +39,6 @@ const Icon: FC<IconProps> = ({
       {...rest}
     />
   );
-};
-
-Icon.defaultProps = {
-  type: 'regular',
-  size: 'regular',
-  color: theme.primaryColor,
 };
 
 export default Icon;

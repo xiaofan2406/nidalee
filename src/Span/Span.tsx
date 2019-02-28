@@ -124,7 +124,7 @@ const getPositionCss = (position: SpanProps['tooltipPosition']) => {
 
 const Span: React.SFC<SpanProps> = ({
   tooltip,
-  tooltipPosition,
+  tooltipPosition = 'top',
   children,
   className,
   ...rest
@@ -150,10 +150,6 @@ const Span: React.SFC<SpanProps> = ({
       {children}
     </span>
   );
-};
-
-Span.defaultProps = {
-  tooltipPosition: 'top',
 };
 
 export default Span;

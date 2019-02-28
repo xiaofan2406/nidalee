@@ -21,18 +21,22 @@ const cssSpinner = css`
   display: inline-block;
 `;
 
-const Spinner: FC<SpinnerProps> = ({ size, scale, color, ...rest }) => {
-  const sizeValue = size!;
-  const maxBorder = sizeValue / 2;
-  const scaledBorder = (sizeValue * scale!) / 10;
+const Spinner: FC<SpinnerProps> = ({
+  size = 60,
+  scale = 1,
+  color = theme.primaryColor,
+  ...rest
+}) => {
+  const maxBorder = size / 2;
+  const scaledBorder = (size * scale) / 10;
   const borderSize = scaledBorder >= maxBorder ? maxBorder : scaledBorder;
 
   return (
     <div css={cssSpinner} {...rest}>
       <div
         css={css`
-          width: ${sizeValue}px;
-          height: ${sizeValue}px;
+          width: ${size}px;
+          height: ${size}px;
           border: ${borderSize}px solid ${color};
           border-bottom-color: transparent;
           border-radius: 100%;
@@ -42,12 +46,6 @@ const Spinner: FC<SpinnerProps> = ({ size, scale, color, ...rest }) => {
       />
     </div>
   );
-};
-
-Spinner.defaultProps = {
-  size: 60,
-  scale: 1,
-  color: theme.primaryColor,
 };
 
 export default Spinner;

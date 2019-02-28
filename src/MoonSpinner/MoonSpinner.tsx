@@ -7,8 +7,10 @@ interface MoonSpinnerProps {
   color?: string;
 }
 
-const MoonSpinner: FC<MoonSpinnerProps> = ({ size, color }) => {
-  const sizeValue = size!;
+const MoonSpinner: FC<MoonSpinnerProps> = ({
+  size = 60,
+  color = theme.primaryColor,
+}) => {
   const speed = 0.85;
 
   return (
@@ -26,8 +28,8 @@ const MoonSpinner: FC<MoonSpinnerProps> = ({ size, color }) => {
       >
         <div
           css={css`
-            width: ${sizeValue / 10}px;
-            height: ${sizeValue / 10}px;
+            width: ${size / 10}px;
+            height: ${size / 10}px;
             border-radius: 100%;
 
             animation: ${spinAnimation} ${speed}s 0s infinite linear;
@@ -36,26 +38,21 @@ const MoonSpinner: FC<MoonSpinnerProps> = ({ size, color }) => {
             background-color: ${color};
             opacity: 0.8;
             position: absolute;
-            top: ${sizeValue / 2 - sizeValue / 20}px;
+            top: ${size / 2 - size / 20}px;
           `}
         />
         <div
           css={css`
-            width: ${sizeValue}px;
-            height: ${sizeValue}px;
+            width: ${size}px;
+            height: ${size}px;
             border-radius: 100%;
-            border: ${sizeValue / 10}px solid ${color};
+            border: ${size / 10}px solid ${color};
             opacity: 0.1;
           `}
         />
       </div>
     </div>
   );
-};
-
-MoonSpinner.defaultProps = {
-  size: 60,
-  color: theme.primaryColor,
 };
 
 export default MoonSpinner;
