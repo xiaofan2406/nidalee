@@ -2,10 +2,10 @@
 coverage/
 docs/
 src/
-.babelrc.js
 .eslintrc.js
 .gitignore
 .travis.yml
+babel.config.js
 CODE_OF_CONDUCT.md
 doczrc.js
 jest.config.js

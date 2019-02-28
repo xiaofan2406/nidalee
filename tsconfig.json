@@ -7,6 +7,9 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationDir": "./dist/typings",
+    "skipLibCheck": true,
     "jsx": "react",
     "strict": true
   },
