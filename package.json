@@ -2,7 +2,7 @@
   "name": "nidalee",
   "version": "0.0.17",
   "author": "Xiaofan Wu (https://github.com/xiaofan2406)",
-  "description": "React UI framework",
+  "description": "Nidalee UI framework for React",
   "keywords": [
     "nidalee",
     "react",
@@ -14,47 +14,42 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=8"
+    "node": ">=14",
+    "npm": ">=7"
   },
-  "module": "dist/esm/index.js",
-  "typings": "dist/typings",
-  "sideEffects": false,
   "scripts": {
     "type-check": "tsc --noEmit",
-    "lint:tslint": "tslint 'src/**/*.{ts,tsx}' -c tslint.json",
-    "lint:eslint": "eslint '**/*.js' --ignore-path .gitignore",
-    "lint:prettier": "prettier-check '**/*.{js,json,ts,tsx,md,mdx}' --ignore-path .gitignore",
-    "lint": "yarn lint:tslint && yarn lint:eslint && yarn lint:prettier",
-    "format": "prettier '**/*.{js,json,ts,tsx,md,mdx}' --write --ignore-path .gitignore",
-    "test": "NODE_ENV=test jest --watch --updateSnapshot",
-    "coverage": "NODE_ENV=test jest --coverage",
-    "prebuild": "yarn type-check && yarn lint && rm -rf dist",
-    "build:esm": "NODE_ENV=production MODULE=esm babel src --out-dir dist/esm --extensions '.ts,.tsx'",
-    "build:typings": "tsc --emitDeclarationOnly",
-    "build": "yarn build:esm && yarn build:typings",
-    "dev": "docz dev",
-    "docs:build": "docz build",
-    "docs:release": "surge -p ./dist/docs -d nidalee.surge.sh"
+    "format": "prettier '**/*.{js,jsx,json,ts,tsx,md,mdx}' --write --ignore-path .gitignore",
+    "lint:eslint": "eslint '**/*.{ts,tsx,js,jsx}' --ignore-path .gitignore",
+    "lint:prettier": "prettier '**/*.{js,jsx,json,ts,tsx,md,mdx}' --check --ignore-path .gitignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "prepare": "husky install",
+    "build": "tsc && vite build"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/nidalee.umd.js",
+  "module": "./dist/nidalee.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/nidalee.es.js",
+      "require": "./dist/nidalee.umd.js"
     }
   },
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
   "lint-staged": {
-    "linters": {
-      "*.{js,json,ts,tsx,md,mdx}": [
-        "prettier --write",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "**/docs/**/*"
+    "*.{js,jsx,json,ts,tsx,md,mdx}": [
+      "prettier --write"
     ]
   },
   "prettier": {
     "singleQuote": true,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "bracketSpacing": false
   },
   "browserslist": [
     "Chrome >= 60",
@@ -63,52 +58,17 @@
     "Firefox >= 54",
     "Edge >= 15"
   ],
-  "peerDependencies": {
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
-  },
-  "dependencies": {
-    "@emotion/core": "^10.0.7",
-    "color": "^3.1.0"
-  },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
-    "@emotion/babel-preset-css-prop": "^10.0.7",
-    "@types/color": "^3.0.0",
-    "@types/react": "^16.8.5",
-    "@types/react-dom": "^16.8.2",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.1.0",
-    "docz": "^0.13.7",
-    "docz-theme-default": "^0.13.7",
-    "eslint": "^5.14.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "husky": "^1.3.1",
-    "ip": "^1.1.5",
-    "jest": "^24.1.0",
-    "jest-dom": "^3.1.2",
-    "jest-emotion": "^10.0.7",
-    "lint-staged": "^8.1.4",
-    "prettier": "^1.16.4",
-    "prettier-check": "^2.0.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-test-renderer": "^16.8.3",
-    "react-testing-library": "^6.0.0",
-    "surge": "^0.20.1",
-    "tslint": "^5.13.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.3333"
+    "@types/node": "^16.7.1",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@vitejs/plugin-react-refresh": "^1.3.1",
+    "eslint": "^7.32.0",
+    "eslint-config-free": "^1.0.1",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.2",
+    "vite": "^2.4.4"
   }
 }

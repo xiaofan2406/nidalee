@@ -1,9 +1,0 @@
-export { default as Button } from './Button/Button';
-export { default as Dialog } from './Dialog/Dialog';
-export { default as Editable } from './Editable/Editable';
-export { default as Icon } from './Icon/Icon';
-export { default as InlineEdit } from './InlineEdit/InlineEdit';
-export { default as MoonSpinner } from './MoonSpinner/MoonSpinner';
-export { default as Portal } from './Portal/Portal';
-export { default as Span } from './Span/Span';
-export { default as Spinner } from './Spinner/Spinner';

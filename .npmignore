@@ -1,16 +1,5 @@
-.docz/
-coverage/
-docs/
+.husky
 src/
 .eslintrc.js
 .gitignore
-.travis.yml
-babel.config.js
 CODE_OF_CONDUCT.md
-doczrc.js
-jest.config.js
-tsconfig.build.json
-tsconfig.json
-tslint.json
-yarn.lock
-yarn-error.log

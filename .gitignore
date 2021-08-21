@@ -1,43 +1,5 @@
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Packages #
-############
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Logs #
-########
-*.log
-
-# OS generated files #
-######################
+node_modules
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Node specific #
-#################
-node_modules/
-
-# App specific #
-################
-.docz/
-coverage/
-dist/
+dist
+dist-ssr
+*.local
