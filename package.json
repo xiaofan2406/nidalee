@@ -24,7 +24,9 @@
     "lint:prettier": "prettier '**/*.{js,jsx,json,ts,tsx,md,mdx}' --check --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "prepare": "husky install",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "files": [
     "dist"
@@ -64,18 +66,26 @@
     "Edge >= 15"
   ],
   "devDependencies": {
+    "@babel/core": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@storybook/addon-actions": "^6.4.0-alpha.30",
+    "@storybook/addon-essentials": "^6.4.0-alpha.30",
+    "@storybook/addon-links": "^6.4.0-alpha.30",
+    "@storybook/react": "^6.4.0-alpha.30",
     "@types/node": "^16.7.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@vitejs/plugin-react-refresh": "^1.3.1",
+    "babel-loader": "^8.2.2",
     "eslint": "^7.32.0",
     "eslint-config-free": "^1.0.1",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
+    "storybook-builder-vite": "^0.0.12",
     "typescript": "^4.3.2",
     "vite": "^2.4.4"
-  }
+  },
+  "dependencies": {}
 }
