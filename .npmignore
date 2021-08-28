@@ -3,3 +3,5 @@ src/
 .eslintrc.js
 .gitignore
 CODE_OF_CONDUCT.md
+tsconfig.json
+vite.config.js

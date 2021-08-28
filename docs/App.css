@@ -1,0 +1,22 @@
+:root {
+  --doc-sidebar-width: 240px;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.layout {
+  height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: var(--doc-sidebar-width);
+}
+
+.content {
+  background-color: #151515;
+  width: calc(100vw - var(--doc-sidebar-width));
+  height: 100vh;
+}

@@ -1,0 +1,25 @@
+:root {
+  font-size: 14px;
+
+  --ndl-outline: 1px solid #6c757d;
+
+  --ndl-black-1: #494949;
+  --ndl-black-2: #434343;
+  --ndl-black-3: #3e3e3e;
+  --ndl-black-4: #383838;
+  --ndl-black-5: #323232;
+  --ndl-black-6: #2d2d2d;
+  --ndl-black-7: #272727;
+  --ndl-black-8: #222222;
+  --ndl-black-9: #1c1c1c;
+
+  --ndl-accent-1: #6faefd;
+  --ndl-accent-2: #539efd;
+  --ndl-accent-3: #388efc;
+  --ndl-accent-4: #1c7ffc;
+  --ndl-accent-5: #0470f8;
+  --ndl-accent-6: #0363dd;
+  --ndl-accent-7: #0357c1;
+  --ndl-accent-8: #034eae;
+  --ndl-accent-9: #02479f;
+}
