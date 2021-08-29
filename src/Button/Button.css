@@ -33,4 +33,9 @@
       background-color: var(--ndl-accent-6);
     }
   }
+
+  &:disabled {
+    /* look */
+    pointer-events: none;
+  }
 }

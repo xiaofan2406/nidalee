@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export type PortalProps = {
+export interface PortalProps {
   children: React.ReactNode;
   containerRef?: React.RefObject<HTMLDivElement | null>;
-};
+}
 
 export const Portal = ({children, containerRef}: PortalProps) => {
   const [state, setState] = React.useState({});

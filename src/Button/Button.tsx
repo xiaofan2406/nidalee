@@ -2,21 +2,22 @@ import * as React from 'react';
 
 import './Button.css';
 
-export type ButtonProps = {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   accented?: boolean;
-};
+}
 
-export const Button = React.forwardRef<
-  HTMLButtonElement,
-  ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
->(function Button({accented, ...rest}, ref) {
-  return (
-    <button
-      type="button"
-      {...rest}
-      ref={ref}
-      data-ndl-button=""
-      data-accented={accented ? '' : undefined}
-    />
-  );
-});
+// https://www.w3.org/TR/wai-aria-practices-1.1/#button
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button({accented, ...rest}, ref) {
+    return (
+      <button
+        type="button"
+        {...rest}
+        ref={ref}
+        data-ndl-button=""
+        data-accented={accented ? '' : undefined}
+      />
+    );
+  }
+);

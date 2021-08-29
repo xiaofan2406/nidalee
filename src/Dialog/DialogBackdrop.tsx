@@ -6,15 +6,16 @@ import {useRestoreFocus, useTrapFocus} from '../hooks';
 import {DialogContentProps, DialogContent} from './DialogContent';
 import './DialogBackdrop.css';
 
-export type DialogBackdropProps = {
+export interface DialogBackdropProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactElement<DialogContentProps, typeof DialogContent>;
   onDismiss?: () => void;
   dismissOnBackdropClick?: boolean;
-};
+}
 
 export const DialogBackdrop = React.forwardRef<
   HTMLDivElement,
-  DialogBackdropProps & React.HTMLAttributes<HTMLDivElement>
+  DialogBackdropProps
 >(function DialogBackdrop(props, ref) {
   const {onDismiss, children, dismissOnBackdropClick, ...rest} = props;
   const contentRef = React.useRef<HTMLDivElement | null>(null);
