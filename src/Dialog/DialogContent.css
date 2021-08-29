@@ -1,0 +1,5 @@
+[data-ndl-dialog] {
+  &:focus-within {
+    outline: none;
+  }
+}

@@ -9,7 +9,7 @@ export type ButtonProps = {
 export const Button = React.forwardRef<
   HTMLButtonElement,
   ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>
->(function Button({children, accented, ...rest}, ref) {
+>(function Button({accented, ...rest}, ref) {
   return (
     <button
       type="button"
@@ -17,8 +17,6 @@ export const Button = React.forwardRef<
       ref={ref}
       data-ndl-button=""
       data-accented={accented ? '' : undefined}
-    >
-      {children}
-    </button>
+    />
   );
 });

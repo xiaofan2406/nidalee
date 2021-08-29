@@ -9,15 +9,13 @@ export type BoxProps = {
 export const Box = React.forwardRef<
   HTMLDivElement,
   BoxProps & React.HTMLAttributes<HTMLDivElement>
->(function Box({children, raised, ...rest}, ref) {
+>(function Box({raised, ...rest}, ref) {
   return (
     <div
       data-ndl-box=""
       data-raised={raised ? '' : undefined}
       ref={ref}
       {...rest}
-    >
-      {children}
-    </div>
+    />
   );
 });

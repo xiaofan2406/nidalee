@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {Box, Button, Dialog} from '../../src';
+import {Box, Button, Dialog, DialogBackdrop, DialogContent} from '../../src';
 
-function DialogDemo() {
-  const [show, setShow] = React.useState(true);
+export function Demo1() {
+  const [show, setShow] = React.useState(false);
   const [count, setCount] = React.useState(1);
   const [nested, setNested] = React.useState(false);
 
@@ -17,12 +17,7 @@ function DialogDemo() {
   return (
     <Box>
       {!show ? null : (
-        <Dialog
-          onDismiss={() => setShow(false)}
-          onKeyDown={(event) => {
-            console.log('outside keydown', event.key);
-          }}
-        >
+        <Dialog dismissOnBackdropClick onDismiss={() => setShow(false)}>
           <Box style={{height: 400, width: 400}}>
             <p tabIndex={-1} ref={ref}>
               some other data
@@ -91,5 +86,55 @@ function DialogDemo() {
     </Box>
   );
 }
+export function Demo2() {
+  const [show, setShow] = React.useState(false);
+  const [count, setCount] = React.useState(1);
 
-export default DialogDemo;
+  const ref = React.useRef<HTMLParagraphElement>(null);
+
+  return (
+    <Box>
+      {!show ? null : (
+        <DialogBackdrop
+          onDismiss={() => setShow(false)}
+          onKeyDown={(event) => {
+            console.log('outside keydown', event.key);
+          }}
+        >
+          <DialogContent
+            onKeyDown={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <Box style={{height: 400, width: 400}}>
+              <p tabIndex={-1} ref={ref}>
+                some other data
+              </p>
+            </Box>
+            Dialog content
+            <Button onClick={() => setCount((prev) => prev + 1)}>
+              Count: {count}
+            </Button>
+            <input />
+            <Button
+              onClick={() => {
+                setShow(false);
+              }}
+            >
+              Close
+            </Button>
+          </DialogContent>
+        </DialogBackdrop>
+      )}
+
+      <Button
+        onClick={() => {
+          setShow((prev) => !prev);
+        }}
+      >
+        Toggle
+      </Button>
+      <Button>Does nothing</Button>
+    </Box>
+  );
+}
