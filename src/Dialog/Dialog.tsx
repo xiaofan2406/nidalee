@@ -2,13 +2,12 @@ import * as React from 'react';
 
 import {Box} from '../Box';
 import {Portal} from '../Portal';
-import {useCombinedRef, useTrapFocus} from '../hooks';
+import {useCombinedRef, useRestoreFocus, useTrapFocus} from '../hooks';
 
 import './Dialog.css';
 
 export type DialogProps = {
-  isOpen: boolean;
-  onDismiss: () => void;
+  onDismiss?: () => void;
   dismissOnBackdropClick?: boolean;
   backdropProps?: React.HTMLAttributes<HTMLDivElement>;
 };
@@ -19,29 +18,23 @@ export const Dialog = React.forwardRef<
   DialogProps & React.HTMLAttributes<HTMLDivElement>
 >(
   (
-    {
-      isOpen,
-      onDismiss,
-      children,
-      dismissOnBackdropClick,
-      backdropProps = {},
-      ...rest
-    },
+    {onDismiss, children, dismissOnBackdropClick, backdropProps = {}, ...rest},
     ref
   ) => {
     const dialogInternalRef = React.useRef<HTMLDivElement>(null);
     const dialogRef = useCombinedRef<HTMLDivElement>(ref, dialogInternalRef);
 
+    // Order of the following three hooks is important
+    // ensure the dialog focus to work correctly
+    useRestoreFocus();
     React.useLayoutEffect(() => {
-      if (isOpen && dialogRef?.current) {
+      if (dialogRef?.current) {
         dialogRef.current.focus();
       }
-    }, [isOpen, dialogRef]);
+    }, [dialogRef]);
+    useTrapFocus(dialogRef);
 
-    // Order is important, ensure the dialog gains focus first
-    useTrapFocus(dialogRef, isOpen);
-
-    return isOpen ? (
+    return (
       <Portal>
         <Box
           {...backdropProps}
@@ -51,8 +44,17 @@ export const Dialog = React.forwardRef<
             if (backdropProps.onClick) {
               backdropProps.onClick(event);
             }
-            if (dismissOnBackdropClick) return onDismiss();
+            if (dismissOnBackdropClick && onDismiss) return onDismiss();
             dialogRef.current?.focus();
+          }}
+          onKeyDown={(event) => {
+            if (rest.onKeyDown) {
+              rest.onKeyDown(event);
+            }
+            if (event.key === 'Escape' && onDismiss) {
+              event.stopPropagation();
+              onDismiss();
+            }
           }}
         >
           <Box
@@ -69,19 +71,11 @@ export const Dialog = React.forwardRef<
                 rest.onClick(event);
               }
             }}
-            onKeyDown={(event) => {
-              if (rest.onKeyDown) {
-                rest.onKeyDown(event);
-              }
-              if (event.key === 'Escape') {
-                onDismiss();
-              }
-            }}
           >
             {children}
           </Box>
         </Box>
       </Portal>
-    ) : null;
+    );
   }
 );

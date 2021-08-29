@@ -47,12 +47,8 @@ export function useCombinedRef<T>(
   return targetRef;
 }
 
-export function useTrapFocus(
-  containerRef: React.RefObject<HTMLElement>,
-  ...deps: Array<unknown>
-) {
+export function useTrapFocus(containerRef: React.RefObject<HTMLElement>) {
   React.useLayoutEffect(() => {
-    console.log(containerRef.current);
     if (!containerRef.current) return;
 
     const focusableSelector = [
@@ -73,16 +69,12 @@ export function useTrapFocus(
 
     // prevent the parent itself being tabbed onto
     const first = (
-      containerRef.current.activeElement === containerRef.current
+      document.activeElement === containerRef.current
         ? candidates[0]
         : document.activeElement
     ) as HTMLElement;
     const last = candidates[candidates.length - 1] as HTMLElement;
 
-    console.log({
-      first,
-      candidates,
-    });
     const trapFocus = (event: KeyboardEvent) => {
       if (event.key !== 'Tab') return;
 
@@ -105,8 +97,17 @@ export function useTrapFocus(
     target.addEventListener('keydown', trapFocus);
 
     return () => {
-      console.log('cleanup');
       target.removeEventListener('keydown', trapFocus);
     };
-  }, [containerRef, ...deps]);
+  }, [containerRef]);
+}
+
+export function useRestoreFocus() {
+  React.useLayoutEffect(() => {
+    let target = document.activeElement as HTMLElement;
+
+    return () => {
+      target.focus();
+    };
+  }, []);
 }
