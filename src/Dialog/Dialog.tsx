@@ -1,50 +1,87 @@
 import * as React from 'react';
-import Portal from '../Portal/Portal';
+
+import {Box} from '../Box';
+import {Portal} from '../Portal';
+import {useCombinedRef, useTrapFocus} from '../hooks';
+
 import './Dialog.css';
 
-type DialogProps = {
-  children: React.ReactNode;
-  onClose?: () => void;
-  overlayProps?: React.HTMLAttributes<HTMLDivElement>;
+export type DialogProps = {
+  isOpen: boolean;
+  onDismiss: () => void;
+  dismissOnBackdropClick?: boolean;
+  backdropProps?: React.HTMLAttributes<HTMLDivElement>;
 };
 
-const Dialog = ({
-  children,
-  onClose,
-  overlayProps = {},
-  ...dialogDivProps
-}: DialogProps & React.HTMLAttributes<HTMLDivElement>) => {
-  const overlayDivClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (overlayProps.onClick) {
-      overlayProps.onClick(event);
-    }
-    if (onClose) {
-      onClose();
-    }
-  };
+// https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
+export const Dialog = React.forwardRef<
+  HTMLDivElement,
+  DialogProps & React.HTMLAttributes<HTMLDivElement>
+>(
+  (
+    {
+      isOpen,
+      onDismiss,
+      children,
+      dismissOnBackdropClick,
+      backdropProps = {},
+      ...rest
+    },
+    ref
+  ) => {
+    const dialogInternalRef = React.useRef<HTMLDivElement>(null);
+    const dialogRef = useCombinedRef<HTMLDivElement>(ref, dialogInternalRef);
 
-  const dialogDivClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (dialogDivProps.onClick) {
-      dialogDivProps.onClick(event);
-    }
-    if (onClose) {
-      event.stopPropagation();
-    }
-  };
+    React.useLayoutEffect(() => {
+      if (isOpen && dialogRef?.current) {
+        dialogRef.current.focus();
+      }
+    }, [isOpen, dialogRef]);
 
-  return (
-    <Portal>
-      <div data-ndl-overlay {...overlayProps} onClick={overlayDivClickHandler}>
-        <div
-          data-ndl-dialog
-          {...dialogDivProps}
-          onClick={dialogDivClickHandler}
+    // Order is important, ensure the dialog gains focus first
+    useTrapFocus(dialogRef, isOpen);
+
+    return isOpen ? (
+      <Portal>
+        <Box
+          {...backdropProps}
+          data-ndl-backdrop=""
+          tabIndex={-1}
+          onClick={(event) => {
+            if (backdropProps.onClick) {
+              backdropProps.onClick(event);
+            }
+            if (dismissOnBackdropClick) return onDismiss();
+            dialogRef.current?.focus();
+          }}
         >
-          {children}
-        </div>
-      </div>
-    </Portal>
-  );
-};
-
-export default Dialog;
+          <Box
+            {...rest}
+            role="dialog"
+            aria-modal="true"
+            data-ndl-dialog=""
+            raised
+            ref={dialogRef}
+            tabIndex={-1}
+            onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+              event.stopPropagation();
+              if (rest.onClick) {
+                rest.onClick(event);
+              }
+            }}
+            onKeyDown={(event) => {
+              if (rest.onKeyDown) {
+                rest.onKeyDown(event);
+              }
+              if (event.key === 'Escape') {
+                onDismiss();
+              }
+            }}
+          >
+            {children}
+          </Box>
+        </Box>
+      </Portal>
+    ) : null;
+  }
+);

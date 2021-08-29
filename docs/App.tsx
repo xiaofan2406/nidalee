@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 import ButtonDoc from './pages/ButtonDoc.mdx';
 import BoxDoc from './pages/BoxDoc.mdx';
 import DialogDoc from './pages/DialogDoc.mdx';
+import PortalDoc from './pages/PortalDoc.mdx';
 import {Box} from '../src';
 import './App.css';
 
@@ -22,6 +23,9 @@ function App() {
             <li>
               <Link to="/dialog">Dialog</Link>
             </li>
+            <li>
+              <Link to="/portal">Portal</Link>
+            </li>
           </ul>
         </Box>
         <Box className="content">
@@ -35,6 +39,9 @@ function App() {
 
             <Route path="/dialog">
               <DialogDoc />
+            </Route>
+            <Route path="/portal">
+              <PortalDoc />
             </Route>
           </Switch>
         </Box>

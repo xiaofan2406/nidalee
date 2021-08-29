@@ -1,45 +1,29 @@
 import * as React from 'react';
-import {Dialog, Box, Button, Portal} from '../../src';
+import {Box, Button, Dialog} from '../../src';
 
 function DialogDemo() {
-  const ref1 = React.useRef<HTMLDivElement>(null);
-  const ref2 = React.useRef<HTMLDivElement>(null);
-
-  const [which, setWhich] = React.useState<
-    React.RefObject<HTMLDivElement> | undefined
-  >(ref1);
   const [show, setShow] = React.useState(true);
-
   const [count, setCount] = React.useState(1);
+
+  const ref = React.useRef<HTMLParagraphElement>(null);
+
+  React.useLayoutEffect(() => {
+    if (ref?.current) {
+      ref.current.focus();
+    }
+  }, []);
+
   return (
-    <>
-      {show ? <Portal containerRef={which}>Portal content</Portal> : null}
-      <span ref={ref1}>I am the first ref</span>
-      <Box>
-        <Button
-          onClick={() => {
-            setWhich(ref1);
-            setShow(true);
-          }}
-        >
-          Go to 1
+    <Box>
+      <Dialog isOpen={show} onDismiss={() => setShow(false)}>
+        <p tabIndex={-1} ref={ref}>
+          some other data
+        </p>
+        Dialog content
+        <Button onClick={() => setCount((prev) => prev + 1)}>
+          Count: {count}
         </Button>
-        <Button
-          onClick={() => {
-            setWhich(ref2);
-            setShow(true);
-          }}
-        >
-          Go to 2
-        </Button>
-        <Button
-          onClick={() => {
-            setWhich(undefined);
-            setShow(true);
-          }}
-        >
-          Go to body
-        </Button>
+        <input />
         <Button
           onClick={() => {
             setShow(false);
@@ -47,17 +31,16 @@ function DialogDemo() {
         >
           Close
         </Button>
+      </Dialog>
 
-        <Button
-          onClick={() => {
-            setCount((prev) => prev + 1);
-          }}
-        >
-          {count}
-        </Button>
-      </Box>
-      <footer ref={ref2}>I am the second ref</footer>
-    </>
+      <Button
+        onClick={() => {
+          setShow((prev) => !prev);
+        }}
+      >
+        Toggle
+      </Button>
+    </Box>
   );
 }
 

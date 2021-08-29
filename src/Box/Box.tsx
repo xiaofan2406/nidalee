@@ -1,14 +1,15 @@
 import * as React from 'react';
+
 import './Box.css';
 
-type BoxProps = {
+export type BoxProps = {
   raised?: boolean;
 };
 
-const Box = React.forwardRef<
+export const Box = React.forwardRef<
   HTMLDivElement,
   BoxProps & React.HTMLAttributes<HTMLDivElement>
->(({children, raised, ...rest}, ref) => {
+>(function Box({children, raised, ...rest}, ref) {
   return (
     <div
       data-ndl-box=""
@@ -20,5 +21,3 @@ const Box = React.forwardRef<
     </div>
   );
 });
-
-export default Box;
