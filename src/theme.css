@@ -1,8 +1,6 @@
 :root {
   font-size: 14px;
 
-  --ndl-outline: 1px solid #6c757d;
-
   --ndl-black-1: #494949;
   --ndl-black-2: #434343;
   --ndl-black-3: #3e3e3e;
@@ -22,4 +20,6 @@
   --ndl-accent-7: #0357c1;
   --ndl-accent-8: #034eae;
   --ndl-accent-9: #02479f;
+
+  --ndl-outline: 1px solid var(--ndl-black-6);
 }

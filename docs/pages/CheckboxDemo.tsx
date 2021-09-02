@@ -10,13 +10,16 @@ export function Demo1() {
     'partial' as 'checked' | 'unchecked' | 'partial'
   );
 
+  const [check3, setChecked3] = React.useState(
+    'unchecked' as 'checked' | 'unchecked' | 'partial'
+  );
+
   return (
     <>
       <Checkbox
         label="Subscribe"
         value={check1}
         onChange={(next) => {
-          console.log(next);
           setChecked1(next);
         }}
       />
@@ -25,8 +28,16 @@ export function Demo1() {
         label="Select all"
         value={check2}
         onChange={(next) => {
-          console.log(next);
           setChecked2(next);
+        }}
+      />
+      <Checkbox
+        allowPartial
+        disabled
+        label={<div>select</div>}
+        value={check3}
+        onChange={(next) => {
+          setChecked3(next);
         }}
       />
     </>

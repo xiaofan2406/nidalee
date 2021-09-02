@@ -3,10 +3,12 @@ import * as React from 'react';
 import {CheckIcon} from './CheckIcon';
 import {MinusIcon} from './MinusIcon';
 import './Checkbox.css';
+import {warn} from '../utils';
 
 interface CheckboxBaseProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
   label?: React.ReactNode;
+  disabled?: boolean;
 }
 
 export type CheckboxDualValue = 'checked' | 'unchecked';
@@ -48,29 +50,53 @@ const ariaCheckValue: {
   unchecked: 'false',
 };
 
+// https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox
 export const Checkbox = React.forwardRef<HTMLDivElement, CheckBoxProps>(
   function Checkbox(props, ref) {
-    const {children, label, onChange, value, onClick, allowPartial, ...rest} =
-      props;
+    const {
+      children,
+      label,
+      disabled,
+      onChange,
+      value,
+      onClick,
+      onKeyDown,
+      allowPartial,
+      ...rest
+    } = props;
+
+    warn(!label, 'Checkbox', 'accessibility: label is required');
+
+    const switchValue = () => {
+      // using `props.` so that typescript can infer the type correctly
+      if (props.allowPartial) {
+        props.onChange(valueMixedStateMap[props.value]);
+      } else {
+        props.onChange(valueStateMap[props.value]);
+      }
+    };
 
     return (
       <div
         {...rest}
         ref={ref}
         data-ndl-checkbox=""
-        tabIndex={0}
+        tabIndex={disabled ? -1 : 0}
         role="checkbox"
         aria-checked={ariaCheckValue[value]}
+        aria-disabled={disabled}
         onClick={(event) => {
           if (onClick) {
             onClick(event);
           }
-
-          // need to use props. here so that typescript can infer the type correctly
-          if (props.allowPartial === true) {
-            props.onChange(valueMixedStateMap[props.value]);
-          } else {
-            props.onChange(valueStateMap[props.value]);
+          switchValue();
+        }}
+        onKeyDown={(event) => {
+          if (onKeyDown) {
+            onKeyDown(event);
+          }
+          if (event.key === ' ' || event.key === 'Enter') {
+            switchValue();
           }
         }}
       >
