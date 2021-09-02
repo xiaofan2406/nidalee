@@ -35,7 +35,7 @@
   }
 
   &:disabled {
-    /* look */
+    /* TODO look */
     pointer-events: none;
   }
 }

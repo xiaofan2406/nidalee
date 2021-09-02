@@ -1,0 +1,21 @@
+[data-ndl-editable] {
+  padding: 12px 16px;
+  min-height: 46px;
+  cursor: default;
+  border: 1px solid #e8e8e8;
+
+  &:empty:before {
+    content: attr(placeholder);
+    font-style: italic;
+    color: gray;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: gray;
+  }
+
+  &[data-state-editing] {
+    cursor: text;
+  }
+}

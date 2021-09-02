@@ -1,0 +1,33 @@
+[data-ndl-checkbox] {
+  display: flex;
+
+  &[aria-checked='true'],
+  &[aria-checked='mixed'] {
+    & [data-ndl-checkbox-tick] {
+      border-color: var(--ndl-accent-3);
+      background-color: var(--ndl-accent-3);
+    }
+  }
+
+  &[aria-checked='false'] {
+    & [data-ndl-checkbox-tick] {
+      border-color: #fff;
+      background-color: black;
+    }
+  }
+
+  &:disabled {
+    /* TODO look */
+    pointer-events: none;
+  }
+}
+
+[data-ndl-checkbox-tick] {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border-width: 2px;
+  border-style: solid;
+  margin-right: 1rem;
+}

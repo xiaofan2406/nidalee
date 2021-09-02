@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
-import ButtonDoc from './pages/ButtonDoc.mdx';
 import BoxDoc from './pages/BoxDoc.mdx';
+import ButtonDoc from './pages/ButtonDoc.mdx';
+import CheckboxDoc from './pages/CheckboxDoc.mdx';
 import DialogDoc from './pages/DialogDoc.mdx';
 import PortalDoc from './pages/PortalDoc.mdx';
 import {Box} from '../src';
@@ -21,6 +22,9 @@ function App() {
               <Link to="/button">Button</Link>
             </li>
             <li>
+              <Link to="/checkbox">Checkbox</Link>
+            </li>
+            <li>
               <Link to="/dialog">Dialog</Link>
             </li>
             <li>
@@ -36,7 +40,9 @@ function App() {
             <Route path="/button">
               <ButtonDoc />
             </Route>
-
+            <Route path="/checkbox">
+              <CheckboxDoc />
+            </Route>
             <Route path="/dialog">
               <DialogDoc />
             </Route>
