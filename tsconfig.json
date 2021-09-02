@@ -13,8 +13,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "types": ["vite/client"]
+    "jsx": "react"
   },
   "include": ["./src", "./docs"]
 }
