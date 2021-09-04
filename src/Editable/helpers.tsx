@@ -28,8 +28,10 @@ export const ensureCursorAtTheEnd = (ref: React.RefObject<HTMLDivElement>) => {
   range.selectNodeContents(ref.current!);
   range.collapse(false);
   const sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
+  if (sel) {
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
 };
 
 export const syncInnerHTML = (
