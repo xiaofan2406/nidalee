@@ -33,6 +33,7 @@
   "files": [
     "dist"
   ],
+  "types": "./dist/index.d.ts",
   "main": "./dist/nidalee.umd.js",
   "module": "./dist/nidalee.es.js",
   "exports": {
