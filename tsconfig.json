@@ -15,7 +15,7 @@
     "noEmit": true,
     "jsx": "react",
     "paths": {
-      "nidalee": ["./src/index.ts"]
+      "nidalee": ["./src"]
     }
   },
   "include": ["./src", "./docs"]

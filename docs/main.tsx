@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import '../src/reset.css';
-import '../src/theme.css';
+import 'nidalee/reset.css';
+import 'nidalee/theme.css';
 
 import {App} from './App';
 

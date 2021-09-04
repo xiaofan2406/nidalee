@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import {Box} from '../Box';
-import {Portal} from '../Portal';
+import {Box} from '../Box/Box';
+import {Portal} from '../Portal/Portal';
 import {useRestoreFocus, useTrapFocus} from '../hooks';
 import {DialogContentProps, DialogContent} from './DialogContent';
 import './DialogBackdrop.css';

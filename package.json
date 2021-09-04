@@ -18,14 +18,17 @@
     "npm": ">=7"
   },
   "scripts": {
-    "type-check": "tsc --noEmit",
     "format": "prettier '**/*.{js,jsx,json,ts,tsx,md,mdx}' --write --ignore-path .gitignore",
     "lint:eslint": "eslint '**/*.{ts,tsx,js,jsx}' --ignore-path .gitignore",
     "lint:prettier": "prettier '**/*.{js,jsx,json,ts,tsx,md,mdx}' --check --ignore-path .gitignore",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "prepare": "husky install",
     "dev": "vite",
-    "build": "tsc && vite build"
+    "type-check": "tsc --noEmit --project tsconfig.build.json",
+    "build:src": "npm run type-check && vite build",
+    "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.build.json",
+    "build": "npm run build:src && npm run build:declaration",
+    "postbuild": "node ./scripts/postBuild.js"
   },
   "files": [
     "dist"

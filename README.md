@@ -19,18 +19,12 @@ React UI components
 [prettier-badge]: https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square
 [prettier]: https://github.com/prettier/prettier
 
-## TODO
-
-- [ ] utilize accessibility attributes
-- [ ] simple CSS animations
-- [ ] API documentation
-
 ## Getting started
 
-- Install with `yarn`
+- Install
 
 ```shell
-yarn add nidalee
+npm install nidalee
 ```
 
 It will add `nidalee` to your project's dependency.
@@ -38,10 +32,26 @@ It will add `nidalee` to your project's dependency.
 You will also need to ensure that the correct `peerDependencies` are installed. Use
 
 ```shell
-yarn info nidalee peerDependencies
+npm info nidalee peerDependencies
 ```
 
 to list the required `peerDependencies`.
+
+- Usage
+
+In your React app entry file, you should have something like this
+
+```jsx
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+
+import 'nidalee/styles.css';
+import 'nidalee/theme.css';
+
+import MainApp from './MainApp';
+
+ReactDOM.render(<MainApp />, document.getElementById('root'));
+```
 
 ## Developing
 
@@ -53,7 +63,7 @@ the project further:
 ```shell
 git clone https://github.com/xiaofan2406/nidalee
 cd nidalee/
-yarn
+npm install
 ```
 
 This will initialize the project with required dependencies for development.
@@ -61,15 +71,15 @@ This will initialize the project with required dependencies for development.
 ### Commands
 
 ```shell
-yarn dev # start docz dev server for the documentation app
+npm dev # start vite dev server for the documentation app
 
-yarn format # format all source code with prettier
+npm format # format all source code with prettier
 
-yarn test # start jest in watch mode
+npm test # start jest in watch mode
 
-yarn coverage # report coverage
+npm coverage # report coverage
 
-yarn build # create a minified production build for the library
+npm build # create a minified production build for the library
 
-yarn docs:build # create a minified production build for the documentation app
+npm docs:build # create a minified production build for the documentation app
 ```
