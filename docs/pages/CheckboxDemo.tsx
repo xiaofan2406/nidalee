@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Checkbox} from '../../src';
+import {Checkbox} from 'nidalee';
 
 export function Demo1() {
   const [check1, setChecked1] = React.useState(

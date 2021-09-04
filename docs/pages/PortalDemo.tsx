@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Box, Button, Portal} from '../../src';
+import {Box, Button, Portal} from 'nidalee';
 
 function PortalDemo() {
   const ref1 = React.useRef<HTMLDivElement>(null);

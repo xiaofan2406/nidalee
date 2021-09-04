@@ -16,6 +16,11 @@ export default defineConfig({
       rehypePlugins: [],
     }),
   ],
+  resolve: {
+    alias: {
+      nidalee: resolve(__dirname, 'src'),
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

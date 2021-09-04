@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Box, Button, Dialog, DialogBackdrop, DialogContent} from '../../src';
+import {Box, Button, Dialog, DialogBackdrop, DialogContent} from 'nidalee';
 
 export function Demo1() {
   const [show, setShow] = React.useState(false);
