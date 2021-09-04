@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import {CheckIcon} from './CheckIcon';
 import {MinusIcon} from './MinusIcon';
-import './Checkbox.css';
 import {warn} from '../utils';
+import './Checkbox.css';
 
 interface CheckboxBaseProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
@@ -65,7 +65,9 @@ export const Checkbox = React.forwardRef<HTMLDivElement, CheckBoxProps>(
       ...rest
     } = props;
 
-    warn(!label, 'Checkbox', 'accessibility: label is required');
+    if (process.env.NODE_ENV !== 'production') {
+      warn(!label, 'Checkbox', `'label' is required for accessibility.`);
+    }
 
     const switchValue = () => {
       // using `props.` so that typescript can infer the type correctly

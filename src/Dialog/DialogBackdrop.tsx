@@ -3,6 +3,7 @@ import * as React from 'react';
 import {Box} from '../Box/Box';
 import {Portal} from '../Portal/Portal';
 import {useRestoreFocus, useTrapFocus} from '../hooks';
+import {warn} from '../utils';
 import {DialogContentProps, DialogContent} from './DialogContent';
 import './DialogBackdrop.css';
 
@@ -17,7 +18,14 @@ export const DialogBackdrop = React.forwardRef<
   HTMLDivElement,
   DialogBackdropProps
 >(function DialogBackdrop(props, ref) {
-  const {onDismiss, children, dismissOnBackdropClick, ...rest} = props;
+  const {
+    onDismiss,
+    children,
+    dismissOnBackdropClick,
+    onClick,
+    onKeyDown,
+    ...rest
+  } = props;
   const contentRef = React.useRef<HTMLDivElement | null>(null);
 
   // Order of the following three hooks is important
@@ -32,8 +40,12 @@ export const DialogBackdrop = React.forwardRef<
 
   const child = React.Children.only(children);
 
-  if (child.type !== DialogContent) {
-    console.log('throw type error');
+  if (process.env.NODE_ENV !== 'production') {
+    warn(
+      child.type !== DialogContent,
+      'DialogBackdrop',
+      `Expecting a single 'DialogContent' element as children.`
+    );
   }
 
   return (
@@ -44,14 +56,14 @@ export const DialogBackdrop = React.forwardRef<
         tabIndex={-1}
         ref={ref}
         onClick={(event) => {
-          if (rest.onClick) {
-            rest.onClick(event);
+          if (onClick) {
+            onClick(event);
           }
           if (dismissOnBackdropClick && onDismiss) return onDismiss();
         }}
         onKeyDown={(event) => {
-          if (rest.onKeyDown) {
-            rest.onKeyDown(event);
+          if (onKeyDown) {
+            onKeyDown(event);
           }
           if (event.key === 'Escape' && onDismiss) {
             onDismiss();

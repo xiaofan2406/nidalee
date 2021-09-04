@@ -1,11 +1,7 @@
 import * as React from 'react';
 import {useCombinedRef} from '../hooks';
-import {
-  useValidateProps,
-  ensureCursorAtTheEnd,
-  getValue,
-  syncInnerHTML,
-} from './helpers';
+import {warn} from '../utils';
+import {ensureCursorAtTheEnd, getValue, syncInnerHTML} from './helpers';
 
 export type EditableAction = 'save' | 'cancel';
 
@@ -38,7 +34,14 @@ export const Editable = React.forwardRef<HTMLDivElement, EditableProps>(
       onBlur,
       ...rest
     } = props;
-    useValidateProps(escAction, blurAction);
+
+    if (process.env.NODE_ENV !== 'production') {
+      warn(
+        escAction === 'cancel' && blurAction === 'cancel',
+        'Editable',
+        'At least one of [`escAction`, `blurAction`] should be `save`.'
+      );
+    }
 
     const internalRef = React.useRef<HTMLDivElement | null>(null);
     const editableRef = useCombinedRef(internalRef, ref);

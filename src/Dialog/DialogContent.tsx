@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {Box} from '../Box/Box';
+import {warn} from '../utils';
 import './DialogContent.css';
 
 export interface DialogContentProps
@@ -30,8 +31,12 @@ export const DialogContent = React.forwardRef<
         if (onKeyDown) {
           onKeyDown(event);
         }
-        if (event.key === 'Escape' && event.isPropagationStopped()) {
-          console.log('throw error here');
+        if (process.env.NODE_ENV !== 'production') {
+          warn(
+            event.key === 'Escape' && event.isPropagationStopped(),
+            'DialogContent',
+            `'onKeyDown' has 'event.stopPropagation()', which can break Dialog functionalities.`
+          );
         }
       }}
     />

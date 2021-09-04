@@ -1,19 +1,4 @@
 import * as React from 'react';
-import {EditableAction} from './Editable';
-import {warn} from '../utils';
-
-export const useValidateProps = (
-  escAction: EditableAction,
-  blurAction: EditableAction
-) => {
-  React.useEffect(() => {
-    warn(
-      escAction === 'cancel' && blurAction === 'cancel',
-      'Editable',
-      'At least one of [`escAction`, `blurAction`] should be `save`.'
-    );
-  }, [escAction, blurAction]);
-};
 
 export const getValue = (
   ref: React.RefObject<HTMLDivElement>,
