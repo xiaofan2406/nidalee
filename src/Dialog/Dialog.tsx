@@ -1,32 +1,22 @@
 import * as React from 'react';
 
-import {DialogBackdrop} from './DialogBackdrop';
-import {DialogContent} from './DialogContent';
+import {DialogBackdrop, DialogBackdropProps} from './DialogBackdrop';
+import {DialogContent, DialogContentProps} from './DialogContent';
 
-export interface DialogProps extends React.HTMLAttributes<HTMLDivElement> {
-  onDismiss?: () => void;
-  dismissOnBackdropClick?: boolean;
-  backdropProps?: React.HTMLAttributes<HTMLDivElement>;
-}
+export interface DialogProps
+  extends Omit<DialogBackdropProps, 'children'>,
+    DialogContentProps {}
 
 // https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal
-export const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
-  function Dialog(props, ref) {
-    const {
-      onDismiss,
-      dismissOnBackdropClick,
-      backdropProps = {},
-      ...dialogContentProps
-    } = props;
+export const Dialog = (props: DialogProps) => {
+  const {onDismiss, preventBackdropDismiss = false, ...rest} = props;
 
-    return (
-      <DialogBackdrop
-        {...backdropProps}
-        onDismiss={onDismiss}
-        dismissOnBackdropClick={dismissOnBackdropClick}
-      >
-        <DialogContent {...dialogContentProps} ref={ref} />
-      </DialogBackdrop>
-    );
-  }
-);
+  return (
+    <DialogBackdrop
+      onDismiss={onDismiss}
+      preventBackdropDismiss={preventBackdropDismiss}
+    >
+      <DialogContent {...rest} />
+    </DialogBackdrop>
+  );
+};

@@ -1,8 +1,7 @@
 import * as React from 'react';
 
-import {Box} from '../Box/Box';
-import {Portal} from '../Portal/Portal';
-import {useRestoreFocus, useTrapFocus} from '../hooks';
+import {Box} from '../Box';
+import {Portal} from '../Portal';
 import {warn} from '../utils';
 import {DialogContentProps, DialogContent} from './DialogContent';
 import './DialogBackdrop.css';
@@ -11,32 +10,18 @@ export interface DialogBackdropProps
   extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactElement<DialogContentProps, typeof DialogContent>;
   onDismiss?: () => void;
-  dismissOnBackdropClick?: boolean;
+  preventBackdropDismiss?: boolean;
 }
 
-export const DialogBackdrop = React.forwardRef<
-  HTMLDivElement,
-  DialogBackdropProps
->(function DialogBackdrop(props, ref) {
+export const DialogBackdrop = (props: DialogBackdropProps) => {
   const {
-    onDismiss,
     children,
-    dismissOnBackdropClick,
+    onDismiss,
+    preventBackdropDismiss = false,
     onClick,
     onKeyDown,
     ...rest
   } = props;
-  const contentRef = React.useRef<HTMLDivElement | null>(null);
-
-  // Order of the following three hooks is important
-  // ensure the dialogContent focus to work correctly
-  useRestoreFocus();
-  React.useLayoutEffect(() => {
-    if (contentRef?.current) {
-      contentRef.current.focus();
-    }
-  }, [contentRef]);
-  useTrapFocus(contentRef);
 
   const child = React.Children.only(children);
 
@@ -54,12 +39,13 @@ export const DialogBackdrop = React.forwardRef<
         {...rest}
         data-ndl-backdrop=""
         tabIndex={-1}
-        ref={ref}
         onClick={(event) => {
           if (onClick) {
             onClick(event);
           }
-          if (dismissOnBackdropClick && onDismiss) return onDismiss();
+          if (!preventBackdropDismiss && onDismiss) {
+            onDismiss();
+          }
         }}
         onKeyDown={(event) => {
           if (onKeyDown) {
@@ -70,8 +56,8 @@ export const DialogBackdrop = React.forwardRef<
           }
         }}
       >
-        {React.cloneElement(child, {ref: contentRef})}
+        {child}
       </Box>
     </Portal>
   );
-});
+};

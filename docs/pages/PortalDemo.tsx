@@ -2,11 +2,11 @@ import * as React from 'react';
 import {Box, Button, Portal} from 'nidalee';
 
 function PortalDemo() {
-  const ref1 = React.useRef<HTMLDivElement>(null);
-  const ref2 = React.useRef<HTMLDivElement>(null);
+  const ref1 = React.useRef<HTMLDivElement | null>(null);
+  const ref2 = React.useRef<HTMLDivElement | null>(null);
 
   const [which, setWhich] = React.useState<
-    React.RefObject<HTMLDivElement> | undefined
+    React.RefObject<HTMLDivElement | null> | undefined
   >(ref1);
   const [show, setShow] = React.useState(true);
 

@@ -1,25 +1,35 @@
 import * as React from 'react';
 
-import {Box} from '../Box/Box';
+import {Box} from '../Box';
+import {useRestoreFocus, useTrapFocus} from '../hooks';
 import {warn} from '../utils';
 import './DialogContent.css';
 
 export interface DialogContentProps
   extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const DialogContent = React.forwardRef<
-  HTMLDivElement,
-  DialogContentProps
->(function DialogContent(props, ref) {
+export const DialogContent = (props: DialogContentProps) => {
   const {onClick, onKeyDown, ...rest} = props;
+  const contentRef = React.useRef<HTMLDivElement | null>(null);
+
+  // Order of the following three hooks is important
+  // ensure the dialogContent focus to work correctly
+  useRestoreFocus();
+  React.useLayoutEffect(() => {
+    if (contentRef?.current) {
+      contentRef.current.focus();
+    }
+  }, [contentRef]);
+  useTrapFocus(contentRef);
+
   return (
     <Box
       raised
       {...rest}
       role="dialog"
-      aria-modal="true"
       data-ndl-dialog=""
-      ref={ref}
+      aria-modal="true"
+      ref={contentRef}
       tabIndex={-1}
       onClick={(event: React.MouseEvent<HTMLDivElement>) => {
         event.stopPropagation();
@@ -41,4 +51,4 @@ export const DialogContent = React.forwardRef<
       }}
     />
   );
-});
+};
