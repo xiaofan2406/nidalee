@@ -1,15 +1,15 @@
 :root {
   font-size: 14px;
 
-  --ndl-black-1: #494949;
-  --ndl-black-2: #434343;
-  --ndl-black-3: #3e3e3e;
-  --ndl-black-4: #383838;
-  --ndl-black-5: #323232;
-  --ndl-black-6: #2d2d2d;
-  --ndl-black-7: #272727;
-  --ndl-black-8: #222222;
-  --ndl-black-9: #1c1c1c;
+  /* --ndl-black-1: #494949;
+  --ndl-black-2: #e0e0e0;
+  --ndl-black-3: #c2c2c2;
+  --ndl-black-4: #a4a4a4; */
+  --ndl-black-5: #393939;
+  --ndl-black-6: #313131;
+  --ndl-black-7: #292929;
+  --ndl-black-8: #212121;
+  --ndl-black-9: #181818;
 
   --ndl-accent-1: #6faefd;
   --ndl-accent-2: #539efd;

@@ -11,11 +11,11 @@
   align-items: center;
 
   &:hover {
-    background-color: var(--ndl-black-5);
+    background-color: var(--ndl-black-6);
   }
 
   &:active {
-    background-color: var(--ndl-black-6);
+    background-color: var(--ndl-black-7);
   }
 
   &:focus-visible {

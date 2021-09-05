@@ -2,6 +2,7 @@ import * as React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import {routes, components} from './routes';
+import './App.css';
 
 export const App = () => {
   return (

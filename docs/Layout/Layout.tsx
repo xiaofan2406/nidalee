@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import {Box} from 'nidalee';
 
 import {components} from '../routes';
-import './Layout.css';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,8 +10,8 @@ interface LayoutProps {
 
 export const Layout = ({children}: LayoutProps) => {
   return (
-    <Box className="layout">
-      <Box className="sidebar">
+    <Box className="h-screen flex">
+      <Box className="w-80">
         <span>Nidalee</span>
 
         <div>Components</div>
@@ -24,7 +23,9 @@ export const Layout = ({children}: LayoutProps) => {
           ))}
         </ul>
       </Box>
-      <Box className="content">{children}</Box>
+      <Box base className="h-full w-full">
+        {children}
+      </Box>
     </Box>
   );
 };

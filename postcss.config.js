@@ -1,8 +1,7 @@
 module.exports = {
-  plugins: [
-    require('postcss-simple-vars'),
-    require('postcss-preset-env')({
-      stage: 0,
-    }),
-  ],
+  plugins: {
+    tailwindcss: {},
+    'postcss-simple-vars': {},
+    'postcss-preset-env': {stage: 0},
+  },
 };
