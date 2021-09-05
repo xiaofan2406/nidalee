@@ -1,5 +1,6 @@
 import {withLayout} from './Layout';
 import Intro from './pages/Intro.mdx';
+import AnchorPage from './pages/AnchorPage.mdx';
 import BoxPage from './pages/BoxPage.mdx';
 import ButtonPage from './pages/ButtonPage.mdx';
 import CheckboxPage from './pages/CheckboxPage.mdx';
@@ -11,6 +12,7 @@ export const routes = [
 ];
 
 export const components = [
+  {title: 'Anchor', children: withLayout(AnchorPage)},
   {title: 'Box', children: withLayout(BoxPage)},
   {title: 'Button', children: withLayout(ButtonPage)},
   {title: 'Checkbox', children: withLayout(CheckboxPage)},
