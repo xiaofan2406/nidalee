@@ -51,63 +51,59 @@ const ariaCheckValue: {
 };
 
 // https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox
-export const Checkbox = React.forwardRef<HTMLDivElement, CheckBoxProps>(
-  function Checkbox(props, ref) {
-    const {
-      children,
-      label,
-      disabled,
-      onChange,
-      value,
-      onClick,
-      onKeyDown,
-      allowPartial,
-      ...rest
-    } = props;
+export const Checkbox = (props: CheckBoxProps) => {
+  const {
+    label,
+    disabled,
+    onChange,
+    value,
+    onClick,
+    onKeyDown,
+    allowPartial,
+    ...rest
+  } = props;
 
-    if (process.env.NODE_ENV !== 'production') {
-      warn(!label, 'Checkbox', `'label' is required for accessibility.`);
-    }
-
-    const switchValue = () => {
-      // using `props.` so that typescript can infer the type correctly
-      if (props.allowPartial) {
-        props.onChange(valueMixedStateMap[props.value]);
-      } else {
-        props.onChange(valueStateMap[props.value]);
-      }
-    };
-
-    return (
-      <div
-        {...rest}
-        ref={ref}
-        data-ndl-checkbox=""
-        tabIndex={disabled ? -1 : 0}
-        role="checkbox"
-        aria-checked={ariaCheckValue[value]}
-        aria-disabled={disabled}
-        onClick={(event) => {
-          if (onClick) {
-            onClick(event);
-          }
-          switchValue();
-        }}
-        onKeyDown={(event) => {
-          if (onKeyDown) {
-            onKeyDown(event);
-          }
-          if (event.key === ' ' || event.key === 'Enter') {
-            switchValue();
-          }
-        }}
-      >
-        <div data-ndl-checkbox-tick="">
-          {value === 'checked' ? <CheckIcon width={16} height={16} /> : null}
-          {value === 'partial' ? <MinusIcon width={16} height={16} /> : null}
-        </div>
-        {typeof label === 'string' ? <span>{label}</span> : label}
-      </div>
-    );
+  if (process.env.NODE_ENV !== 'production') {
+    warn(!label, 'Checkbox', `'label' is required for accessibility.`);
   }
-);
+
+  const switchValue = () => {
+    // using `props.` so that typescript can infer the type correctly
+    if (props.allowPartial) {
+      props.onChange(valueMixedStateMap[props.value]);
+    } else {
+      props.onChange(valueStateMap[props.value]);
+    }
+  };
+
+  return (
+    <div
+      {...rest}
+      data-ndl-checkbox=""
+      tabIndex={disabled ? -1 : 0}
+      role="checkbox"
+      aria-checked={ariaCheckValue[value]}
+      aria-disabled={disabled}
+      onClick={(event) => {
+        if (onClick) {
+          onClick(event);
+        }
+        switchValue();
+      }}
+      onKeyDown={(event) => {
+        if (onKeyDown) {
+          onKeyDown(event);
+        }
+        if (event.key === ' ' || event.key === 'Enter') {
+          switchValue();
+        }
+      }}
+    >
+      <div data-ndl-checkbox-tick="">
+        {value === 'checked' ? <CheckIcon width={16} height={16} /> : null}
+        {value === 'partial' ? <MinusIcon width={16} height={16} /> : null}
+      </div>
+      {typeof label === 'string' ? <span>{label}</span> : label}
+    </div>
+  );
+};

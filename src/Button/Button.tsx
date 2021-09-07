@@ -8,16 +8,13 @@ export interface ButtonProps
 }
 
 // https://www.w3.org/TR/wai-aria-practices-1.1/#button
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button({accented, ...rest}, ref) {
-    return (
-      <button
-        type="button"
-        {...rest}
-        ref={ref}
-        data-ndl-button=""
-        data-accented={accented ? '' : undefined}
-      />
-    );
-  }
-);
+export const Button = ({accented, ...rest}: ButtonProps) => {
+  return (
+    <button
+      type="button"
+      {...rest}
+      data-ndl-button=""
+      data-accented={accented ? '' : undefined}
+    />
+  );
+};

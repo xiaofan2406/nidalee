@@ -31,7 +31,7 @@ export const DialogContent = (props: DialogContentProps) => {
       aria-modal="true"
       ref={contentRef}
       tabIndex={-1}
-      onClick={(event: React.MouseEvent<HTMLDivElement>) => {
+      onClick={(event) => {
         event.stopPropagation();
         if (onClick) {
           onClick(event);
