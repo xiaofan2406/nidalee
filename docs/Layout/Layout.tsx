@@ -10,10 +10,9 @@ interface LayoutProps {
 
 export const Layout = ({children}: LayoutProps) => {
   return (
-    <Box className="h-screen flex">
-      <Box className="w-80">
+    <Box layer="root" className="h-screen flex">
+      <Box layer="base" className="w-80">
         <span>Nidalee</span>
-
         <div>Components</div>
         <ul>
           {components.map((entry) => (
@@ -23,9 +22,7 @@ export const Layout = ({children}: LayoutProps) => {
           ))}
         </ul>
       </Box>
-      <Box base className="h-full w-full">
-        {children}
-      </Box>
+      <Box className="h-full w-full">{children}</Box>
     </Box>
   );
 };

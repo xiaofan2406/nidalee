@@ -24,7 +24,7 @@ export const DialogContent = (props: DialogContentProps) => {
 
   return (
     <Box
-      raised
+      layer="raised"
       {...rest}
       role="dialog"
       data-ndl-dialog=""

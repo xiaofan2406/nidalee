@@ -2,23 +2,16 @@ import * as React from 'react';
 
 import './Box.css';
 
+export type BoxLayer = 'root' | 'default' | 'base' | 'raised';
+
 export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
-  raised?: boolean;
-  base?: boolean;
+  layer?: BoxLayer;
 }
 
 export const Box = React.forwardRef<HTMLDivElement, BoxProps>(function Box(
   props,
   ref
 ) {
-  const {raised, base, ...rest} = props;
-  return (
-    <div
-      {...rest}
-      ref={ref}
-      data-ndl-box=""
-      data-raised={raised ? '' : undefined}
-      data-base={base ? '' : undefined}
-    />
-  );
+  const {layer = 'default', ...rest} = props;
+  return <div {...rest} ref={ref} data-ndl-box="" data-box-layer={layer} />;
 });

@@ -1,13 +1,17 @@
 [data-ndl-box] {
-  background-color: var(--ndl-black-8);
   color: #fff;
 
-  &[data-raised] {
-    background-color: rgba(26, 26, 26, 0.9);
-    backdrop-filter: blur(5px);
-  }
-
-  &[data-base] {
+  &[data-box-layer='root'] {
     background-color: var(--ndl-black-9);
+  }
+  &[data-box-layer='default'] {
+    background-color: transparent;
+  }
+  &[data-box-layer='base'] {
+    background-color: var(--ndl-black-8);
+  }
+  &[data-box-layer='raised'] {
+    /* TODO */
+    background-color: rgba(26, 26, 26, 0.9);
   }
 }

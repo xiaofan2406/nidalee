@@ -18,7 +18,7 @@ export function Demo1() {
     <Box>
       {!show ? null : (
         <Dialog onDismiss={() => setShow(false)}>
-          <Box style={{height: 400, width: 400}}>
+          <Box className="w-64 h-64">
             <p tabIndex={-1} ref={ref}>
               some other data
             </p>
