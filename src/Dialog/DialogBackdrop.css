@@ -5,8 +5,8 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: var(--ndl-black-7);
-
+  background-color: var(--ndl-black-6t);
+  backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;

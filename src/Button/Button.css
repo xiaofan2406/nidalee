@@ -1,6 +1,8 @@
 [data-ndl-button] {
-  background-color: var(--ndl-black-8);
-  color: #fff;
+  background-color: var(--ndl-black-7);
+  color: var(--ndl-white);
+
+  border: 1px solid var(--ndl-black-6);
   border-radius: 2px;
 
   padding: 0.5rem 1rem;
@@ -11,11 +13,11 @@
   align-items: center;
 
   &:hover {
-    background-color: var(--ndl-black-6);
+    background-color: var(--ndl-black-5);
   }
 
   &:active {
-    background-color: var(--ndl-black-7);
+    background-color: var(--ndl-black-6);
   }
 
   &:focus-visible {
@@ -35,7 +37,7 @@
   }
 
   &:disabled {
-    /* TODO look */
+    opacity: 0.6;
     pointer-events: none;
   }
 }

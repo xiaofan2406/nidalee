@@ -1,14 +1,27 @@
 :root {
   font-size: 14px;
 
-  /* --ndl-black-1: #494949;
-  --ndl-black-2: #e0e0e0;
+  --ndl-black-1: #494949;
+  --ndl-black-1t: #494949eb;
+  /*--ndl-black-2: #e0e0e0;
   --ndl-black-3: #c2c2c2;
-  --ndl-black-4: #a4a4a4; */
+  --ndl-black-4: #a4a4a4;*/
   --ndl-black-5: #393939;
+  --ndl-black-5t: #393939eb;
+
+  /* hover, focus */
   --ndl-black-6: #313131;
+  --ndl-black-6t: #313131eb;
+
+  /* active, border */
   --ndl-black-7: #292929;
+  --ndl-black-7t: #292929eb;
+
+  /* base */
   --ndl-black-8: #212121;
+  --ndl-black-8t: #212121eb;
+
+  /* root */
   --ndl-black-9: #181818;
 
   --ndl-accent-1: #6faefd;
@@ -21,5 +34,7 @@
   --ndl-accent-8: #034eae;
   --ndl-accent-9: #02479f;
 
-  --ndl-outline: 1px solid #fff;
+  --ndl-white: #fff;
+
+  --ndl-outline: 1px solid var(--ndl-white);
 }

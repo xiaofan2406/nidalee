@@ -1,11 +1,12 @@
-$tickSize: 20px;
-$backgroundSize: 48px;
+$tickSize: 1.5rem;
+$backgroundSize: 3.5rem;
 $offset: calc(($backgroundSize - $tickSize) * -1 / 2);
 
 [data-ndl-checkbox] {
-  display: flex;
+  display: inline-flex;
+  vertical-align: middle;
   position: relative;
-  margin: calc($offset * -1 + 4px);
+  margin: calc($offset * -1 + 2px);
 
   &[aria-checked='true'],
   &[aria-checked='mixed'] {
@@ -17,8 +18,8 @@ $offset: calc(($backgroundSize - $tickSize) * -1 / 2);
 
   &[aria-checked='false'] {
     & [data-ndl-checkbox-tick] {
-      border-color: #fff;
-      background-color: black;
+      border-color: var(--ndl-white);
+      background-color: var(--ndl-black-9);
     }
   }
 
@@ -37,7 +38,7 @@ $offset: calc(($backgroundSize - $tickSize) * -1 / 2);
     &::before {
       content: ' ';
       position: absolute;
-      background-color: var(--ndl-black-4);
+      background-color: var(--ndl-black-6);
       border-radius: 50%;
       left: $offset;
       top: $offset;
@@ -60,6 +61,8 @@ $offset: calc(($backgroundSize - $tickSize) * -1 / 2);
 
 [data-ndl-checkbox-tick] {
   display: inline-flex;
+  justify-content: center;
+  align-items: center;
   width: $tickSize;
   height: $tickSize;
   border-radius: 2px;

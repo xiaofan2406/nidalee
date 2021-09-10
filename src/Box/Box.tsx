@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './Box.css';
 
-export type BoxLayer = 'root' | 'default' | 'base' | 'raised';
+export type BoxLayer = 'root' | 'default' | 'base';
 
 export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   layer?: BoxLayer;

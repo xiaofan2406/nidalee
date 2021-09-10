@@ -24,12 +24,12 @@ export const DialogContent = (props: DialogContentProps) => {
 
   return (
     <Box
-      layer="raised"
       {...rest}
-      role="dialog"
       data-ndl-dialog=""
-      aria-modal="true"
+      layer="base"
       ref={contentRef}
+      role="dialog"
+      aria-modal="true"
       tabIndex={-1}
       onClick={(event) => {
         event.stopPropagation();

@@ -22,7 +22,7 @@ export const Layout = ({children}: LayoutProps) => {
           ))}
         </ul>
       </Box>
-      <Box className="h-full w-full">{children}</Box>
+      <Box className="h-full w-full p-6">{children}</Box>
     </Box>
   );
 };

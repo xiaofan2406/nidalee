@@ -80,10 +80,10 @@ export const Checkbox = (props: CheckBoxProps) => {
     <div
       {...rest}
       data-ndl-checkbox=""
-      tabIndex={disabled ? -1 : 0}
       role="checkbox"
       aria-checked={ariaCheckValue[value]}
       aria-disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
       onClick={(event) => {
         if (onClick) {
           onClick(event);
