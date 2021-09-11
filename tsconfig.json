@@ -18,5 +18,5 @@
       "nidalee": ["./src"]
     }
   },
-  "include": ["./src", "./docs"]
+  "include": ["./src", "./docs", "./scripts/jestSetup.ts"]
 }
