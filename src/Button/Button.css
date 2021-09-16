@@ -1,39 +1,45 @@
-[data-ndl-button] {
-  background-color: var(--ndl-black-7);
-  color: var(--ndl-white);
-
-  border: 1px solid var(--ndl-black-6);
-  border-radius: 2px;
-
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-
+.ndl-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
 
-  &:hover {
-    background-color: var(--ndl-black-5);
+  font-size: 1rem;
+  color: var(--ndl-white);
+  border-radius: 2px;
+
+  &.mode-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--ndl-black-7);
+
+    &:hover {
+      background-color: var(--ndl-black-5);
+    }
+
+    &:active {
+      background-color: var(--ndl-black-6);
+    }
+
+    &.accented {
+      background-color: var(--ndl-accent-8);
+
+      &:hover {
+        background-color: var(--ndl-accent-5);
+      }
+
+      &:active {
+        background-color: var(--ndl-accent-6);
+      }
+    }
   }
 
-  &:active {
-    background-color: var(--ndl-black-6);
+  &.mode-text {
+    &.accented {
+      color: var(--ndl-accent-4);
+    }
   }
 
   &:focus-visible {
     outline: var(--ndl-outline);
-  }
-
-  &[data-accented] {
-    background-color: var(--ndl-accent-8);
-
-    &:hover {
-      background-color: var(--ndl-accent-5);
-    }
-
-    &:active {
-      background-color: var(--ndl-accent-6);
-    }
   }
 
   &:disabled {

@@ -1,10 +1,10 @@
-[data-ndl-box] {
+.ndl-box {
   color: var(--ndl-white);
 
-  &[data-box-layer='root'] {
+  &.layer-root {
     background-color: var(--ndl-black-9);
   }
-  &[data-box-layer='base'] {
+  &.layer-base {
     background-color: var(--ndl-black-8);
   }
 }

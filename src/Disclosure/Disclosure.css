@@ -1,0 +1,12 @@
+.ndl-disclosure {
+  &[aria-expanded='true'] {
+    & .chevron {
+      transform: none;
+    }
+  }
+
+  & .chevron {
+    transform: rotate(-90deg);
+    transition: all 200ms ease;
+  }
+}

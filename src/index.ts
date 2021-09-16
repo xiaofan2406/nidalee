@@ -5,5 +5,6 @@ export * from './Box';
 export * from './Button';
 export * from './Checkbox';
 export * from './Dialog';
+export * from './Disclosure';
 export * from './Portal';
 export * from './hooks';

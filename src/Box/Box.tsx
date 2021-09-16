@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import {cx} from '../utils';
 import './Box.css';
 
 export type BoxLayer = 'root' | 'default' | 'base';
@@ -12,6 +13,12 @@ export const Box = React.forwardRef<HTMLDivElement, BoxProps>(function Box(
   props,
   ref
 ) {
-  const {layer = 'default', ...rest} = props;
-  return <div {...rest} ref={ref} data-ndl-box="" data-box-layer={layer} />;
+  const {layer = 'default', className, ...rest} = props;
+  return (
+    <div
+      {...rest}
+      className={cx('ndl-box', `layer-${layer}`, className)}
+      ref={ref}
+    />
+  );
 });

@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import {CheckIcon} from './CheckIcon';
-import {MinusIcon} from './MinusIcon';
+import {Check, Minus} from 'react-feather';
 import {warn} from '../utils';
 import './Checkbox.css';
 
@@ -100,8 +99,8 @@ export const Checkbox = (props: CheckBoxProps) => {
       }}
     >
       <div data-ndl-checkbox-tick="">
-        {value === 'checked' ? <CheckIcon width={16} height={16} /> : null}
-        {value === 'partial' ? <MinusIcon width={16} height={16} /> : null}
+        {value === 'checked' ? <Check size={16} /> : null}
+        {value === 'partial' ? <Minus size={16} /> : null}
       </div>
       {typeof label === 'string' ? <span>{label}</span> : label}
     </div>

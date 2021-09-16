@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import {cx} from '../utils';
 import './Anchor.css';
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -7,12 +8,17 @@ interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 export const Anchor = (props: AnchorProps) => {
-  const {children, target, ...rest} = props;
+  const {children, target, className, ...rest} = props;
 
   const relProps = target === '_blank' ? {rel: 'noopener noreferrer'} : {};
 
   return (
-    <a target={target} {...relProps} {...rest} data-ndl-anchor="">
+    <a
+      {...relProps}
+      {...rest}
+      target={target}
+      className={cx('ndl-anchor', className)}
+    >
       {children}
     </a>
   );

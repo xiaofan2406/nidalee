@@ -4,34 +4,69 @@ import userEvent from '@testing-library/user-event';
 
 import {Button} from './Button';
 
-it('has data-ndl-button attribute', () => {
-  render(<Button>testButton</Button>);
-
-  expect(screen.getByText('testButton')).toHaveAttribute('data-ndl-button');
+it('renders button mode by default', () => {
+  render(<Button data-testid="button">Click</Button>);
+  const button = screen.getByTestId('button');
+  expect(button).toHaveClass('ndl-button');
+  expect(button).toHaveClass('mode-button');
 });
 
-it('has type="button" by default', () => {
-  render(<Button>testButton</Button>);
-
-  expect(screen.getByText('testButton')).toHaveAttribute('type', 'button');
-});
-
-it('type is overwritable', () => {
-  render(<Button type="submit">testButton</Button>);
-
-  expect(screen.getByText('testButton')).toHaveAttribute('type', 'submit');
-});
-
-it('accented prop adds data-accented attribute', () => {
-  render(<Button accented>testButton</Button>);
-
-  expect(screen.getByText('testButton')).toHaveAttribute('data-accented');
+it('adds additional class', () => {
+  render(
+    <Button data-testid="button" className="more">
+      Click
+    </Button>
+  );
+  const button = screen.getByTestId('button');
+  expect(button).toHaveClass('ndl-button');
+  expect(button).toHaveClass('more');
 });
 
 it('takes html button props', () => {
   const onClick = jest.fn();
-  render(<Button onClick={onClick}>testButton</Button>);
-  userEvent.click(screen.getByText('testButton'));
+  render(
+    <Button data-testid="button" onClick={onClick}>
+      Click
+    </Button>
+  );
+  expect(onClick).toHaveBeenCalledTimes(0);
 
+  userEvent.click(screen.getByTestId('button'));
   expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+it('has type="button" by default', () => {
+  render(<Button data-testid="button">Click</Button>);
+  const button = screen.getByTestId('button');
+  expect(button).toHaveAttribute('type', 'button');
+});
+
+it('can overwrite type prop', () => {
+  render(
+    <Button data-testid="button" type="submit">
+      Click
+    </Button>
+  );
+  const button = screen.getByTestId('button');
+  expect(button).toHaveAttribute('type', 'submit');
+});
+
+it('has accented class', () => {
+  render(
+    <Button data-testid="button" accented>
+      Click
+    </Button>
+  );
+  const button = screen.getByTestId('button');
+  expect(button).toHaveClass('accented');
+});
+
+it('has text mode class', () => {
+  render(
+    <Button data-testid="button" mode="text">
+      Click
+    </Button>
+  );
+  const button = screen.getByTestId('button');
+  expect(button).toHaveClass('mode-text');
 });

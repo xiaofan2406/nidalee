@@ -1,4 +1,4 @@
-[data-ndl-anchor] {
+.ndl-anchor {
   cursor: pointer;
   color: var(--ndl-accent-4);
 
