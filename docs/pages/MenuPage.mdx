@@ -1,0 +1,130 @@
+import {Box, Button, Menu, MenuItem, MenuButton} from 'nidalee';
+import {Demo1, Demo2} from './MenuDemo';
+
+# Menu
+
+<Button>Click 1</Button>
+
+## Vertical Placement
+
+<Box className="p-4">
+
+<Menu
+  className="m-2"
+  menuButton={<MenuButton>Right</MenuButton>}
+  placement="right"
+>
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+<Menu
+  className="m-2"
+  menuButton={<MenuButton>Left</MenuButton>}
+  placement="left"
+>
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+<Menu className="m-2" menuButton={<MenuButton>Top</MenuButton>} placement="top">
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+<Menu
+  className="m-2"
+  menuButton={<MenuButton>Bottom</MenuButton>}
+  placement="bottom"
+>
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+</Box>
+
+## Horizontal Placement
+
+<Box className="p-4">
+
+<Menu
+  className="m-2"
+  menuButton={<MenuButton>Right</MenuButton>}
+  placement="right"
+  orientation="horizontal"
+>
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+<Menu
+  className="m-2"
+  menuButton={<MenuButton>Left</MenuButton>}
+  placement="left"
+  orientation="horizontal"
+>
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+<Menu
+  className="m-2"
+  menuButton={<MenuButton>Top</MenuButton>}
+  placement="top"
+  orientation="horizontal"
+>
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+<Menu
+  className="m-2"
+  menuButton={<MenuButton>Bottom</MenuButton>}
+  placement="bottom"
+  orientation="horizontal"
+>
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+</Box>
+
+## Without MenuButton
+
+<Menu className="m-2" orientation="horizontal">
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+<Menu className="m-2" orientation="vertical">
+  <MenuItem id="1">item 1</MenuItem>
+  <MenuItem id="2">item 2</MenuItem>
+  <MenuItem id="3">item 3</MenuItem>
+</Menu>
+
+#### Vertical Menu
+
+<Demo1 />
+
+<Button>Click 2</Button>
+
+#### Horizontal Menu, no button
+
+<Demo2 />
+
+<Button>Click 3</Button>
+
+## Notes
+
+- only 1 item inside a menu is tabable
+- arrow key for nav
+- arrow key opens menu based on placement

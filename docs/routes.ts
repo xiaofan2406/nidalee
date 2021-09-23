@@ -6,6 +6,7 @@ import ButtonPage from './pages/ButtonPage.mdx';
 import CheckboxPage from './pages/CheckboxPage.mdx';
 import DialogPage from './pages/DialogPage.mdx';
 import DisclosurePage from './pages/DisclosurePage.mdx';
+import MenuPage from './pages/MenuPage.mdx';
 import PortalPage from './pages/PortalPage.mdx';
 
 export const routes = [
@@ -19,6 +20,7 @@ export const components = [
   {title: 'Checkbox', children: withLayout(CheckboxPage)},
   {title: 'Dialog', children: withLayout(DialogPage)},
   {title: 'Disclosure', children: withLayout(DisclosurePage)},
+  {title: 'Menu', children: withLayout(MenuPage)},
   {title: 'Portal', children: withLayout(PortalPage)},
 ].map((entry) => ({
   ...entry,

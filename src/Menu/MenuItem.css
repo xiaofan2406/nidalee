@@ -1,0 +1,8 @@
+.ndl-menu-item {
+  &:focus-within {
+    background-color: var(--ndl-black-5);
+  }
+  &:focus-visible {
+    outline: none;
+  }
+}

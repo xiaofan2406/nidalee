@@ -1,0 +1,34 @@
+.ndl-menu {
+  display: inline-flex;
+  position: relative;
+
+  &.placement-bottom {
+    flex-direction: column;
+  }
+
+  &.placement-top {
+    flex-direction: column-reverse;
+  }
+
+  &.placement-left {
+    flex-direction: row;
+  }
+
+  &.placement-right {
+    flex-direction: row-reverse;
+  }
+}
+
+.ndl-menu-list {
+  display: flex;
+  /* position: absolute; */
+  background-color: var(--ndl-black-8);
+
+  &[aria-orientation='horizontal'] {
+    flex-direction: row;
+  }
+
+  &[aria-orientation='vertical'] {
+    flex-direction: column;
+  }
+}
