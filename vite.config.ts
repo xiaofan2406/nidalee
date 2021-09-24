@@ -1,21 +1,10 @@
 import {resolve} from 'path';
 import {defineConfig} from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
-import mdx from 'vite-plugin-mdx';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    reactRefresh(),
-    mdx({
-      // passed to `@mdx-js/mdx`
-      // See https://mdxjs.com/advanced/plugins
-      remarkPlugins: [
-        // E.g. `remark-frontmatter`
-      ],
-      rehypePlugins: [],
-    }),
-  ],
+  plugins: [reactRefresh()],
   resolve: {
     alias: {
       nidalee: resolve(__dirname, 'src'),

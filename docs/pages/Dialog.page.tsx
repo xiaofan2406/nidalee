@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Box, Button, Dialog, DialogBackdrop, DialogContent} from 'nidalee';
 
-export function Demo1() {
+const Demo1 = () => {
   const [show, setShow] = React.useState(false);
   const [count, setCount] = React.useState(1);
   const [nested, setNested] = React.useState(false);
@@ -84,4 +84,23 @@ export function Demo1() {
       <Button>Does nothing</Button>
     </Box>
   );
-}
+};
+
+const DialogPage = () => {
+  return (
+    <>
+      <Demo1 />
+      <h2>Note</h2>
+      <p>
+        if nested dialog has controls to close its parent dialog, the focus will
+        break
+      </p>
+    </>
+  );
+};
+
+export default DialogPage;
+
+export const info = {
+  category: 'components',
+};

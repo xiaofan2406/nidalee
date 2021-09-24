@@ -1,26 +1,40 @@
-import {withLayout} from './Layout';
-import Intro from './pages/Intro.mdx';
-import AnchorPage from './pages/AnchorPage.mdx';
-import BoxPage from './pages/BoxPage.mdx';
-import ButtonPage from './pages/ButtonPage.mdx';
-import CheckboxPage from './pages/CheckboxPage.mdx';
-import DialogPage from './pages/DialogPage.mdx';
-import DisclosurePage from './pages/DisclosurePage.mdx';
-import PortalPage from './pages/PortalPage.mdx';
+interface _PageFile {
+  default: () => JSX.Element;
+  info: {title?: string; category?: string; path?: string};
+}
 
-export const routes = [
-  {title: 'Intro', path: '/', children: withLayout(Intro)},
-];
+interface PageFile {
+  default: () => JSX.Element;
+  info: {title: string; category: string; path: string};
+}
 
-export const components = [
-  {title: 'Anchor', children: withLayout(AnchorPage)},
-  {title: 'Box', children: withLayout(BoxPage)},
-  {title: 'Button', children: withLayout(ButtonPage)},
-  {title: 'Checkbox', children: withLayout(CheckboxPage)},
-  {title: 'Dialog', children: withLayout(DialogPage)},
-  {title: 'Disclosure', children: withLayout(DisclosurePage)},
-  {title: 'Portal', children: withLayout(PortalPage)},
-].map((entry) => ({
-  ...entry,
-  path: `/components/${entry.title.toLowerCase()}`,
-}));
+const pagesFiles = import.meta.globEager('/docs/**/*.page.tsx') as {
+  [key: string]: _PageFile;
+};
+export const pages = Object.keys(pagesFiles).reduce((reduced, next) => {
+  const nextPage = pagesFiles[next];
+  const category = nextPage.info.category || '_root';
+  const files = reduced[category] || [];
+
+  const title =
+    nextPage.info.title ||
+    (() => {
+      const parts = next.split('/');
+      return parts[parts.length - 1].replace('.page.tsx', '');
+    })();
+
+  const path =
+    nextPage.info.path || category === '_root'
+      ? `/${title.toLowerCase()}`
+      : `/${category.toLowerCase()}/${title.toLowerCase()}`;
+
+  return {
+    ...reduced,
+    [category]: [
+      ...files,
+      {...nextPage, info: {...nextPage.info, category, title, path}},
+    ],
+  };
+}, {} as {[key: string]: PageFile[]});
+
+export const order = ['_root', 'components'];

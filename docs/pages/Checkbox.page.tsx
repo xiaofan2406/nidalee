@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Checkbox} from 'nidalee';
 
-export function Demo1() {
+const Demo1 = () => {
   const [check1, setChecked1] = React.useState(
     'checked' as 'checked' | 'unchecked'
   );
@@ -42,4 +42,18 @@ export function Demo1() {
       />
     </>
   );
-}
+};
+
+const CheckboxPage = () => {
+  return (
+    <>
+      <Demo1 />
+    </>
+  );
+};
+
+export default CheckboxPage;
+
+export const info = {
+  category: 'components',
+};

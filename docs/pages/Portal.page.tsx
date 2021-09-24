@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Box, Button, Portal} from 'nidalee';
 
-function PortalDemo() {
+const Demo1 = () => {
   const ref1 = React.useRef<HTMLDivElement | null>(null);
   const ref2 = React.useRef<HTMLDivElement | null>(null);
 
@@ -59,6 +59,18 @@ function PortalDemo() {
       <footer ref={ref2}>I am the second ref</footer>
     </>
   );
-}
+};
 
-export default PortalDemo;
+const PortalPage = () => {
+  return (
+    <>
+      <Demo1 />
+    </>
+  );
+};
+
+export default PortalPage;
+
+export const info = {
+  category: 'components',
+};
