@@ -1,0 +1,27 @@
+import React from 'react';
+import {render, screen} from '@testing-library/react';
+
+import {__Name__} from './__Name__';
+
+it('renders with default class', () => {
+  render(<__Name__ data-testid="target">target</__Name__>);
+  const target = screen.getByTestId('target');
+  expect(target).toHaveClass('ndl-__name__');
+});
+
+it('adds additional class', () => {
+  render(
+    <__Name__ data-testid="target" className="more">
+      target
+    </__Name__>
+  );
+  const target = screen.getByTestId('target');
+  expect(target).toHaveClass('ndl-__name__');
+  expect(target).toHaveClass('more');
+});
+
+it('takes html div props', () => {
+  render(<__Name__ data-testid="target">testButton</__Name__>);
+  const target = screen.getByTestId('target');
+  expect(target).toHaveAttribute('href', '#');
+});

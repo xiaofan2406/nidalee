@@ -25,6 +25,7 @@
     "prepare": "husky install",
     "test": "NODE_ENV=test jest --watch --updateSnapshot",
     "coverage": "NODE_ENV=test jest --coverage",
+    "new": "node ./scripts/generator/main",
     "dev": "vite",
     "type-check": "tsc --noEmit --project tsconfig.build.json",
     "build:src": "npm run type-check && vite build",
