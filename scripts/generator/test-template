@@ -1,10 +1,11 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import {__Name__} from './__Name__';
 
 it('renders with default class', () => {
-  render(<__Name__ data-testid="target">target</__Name__>);
+  render(<__Name__ data-testid="target">__Name__</__Name__>);
   const target = screen.getByTestId('target');
   expect(target).toHaveClass('ndl-__name__');
 });
@@ -12,7 +13,7 @@ it('renders with default class', () => {
 it('adds additional class', () => {
   render(
     <__Name__ data-testid="target" className="more">
-      target
+      __Name__
     </__Name__>
   );
   const target = screen.getByTestId('target');
@@ -21,7 +22,13 @@ it('adds additional class', () => {
 });
 
 it('takes html div props', () => {
-  render(<__Name__ data-testid="target">testButton</__Name__>);
+  const onClick = jest.fn();
+  render(
+    <__Name__ data-testid="target" onClick={onClick}>
+      __Name__
+    </__Name__>
+  );
   const target = screen.getByTestId('target');
-  expect(target).toHaveAttribute('href', '#');
+  userEvent.click(target);
+  expect(onClick).toHaveBeenCalledTimes(1);
 });
