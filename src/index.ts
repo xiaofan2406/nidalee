@@ -8,3 +8,4 @@ export * from './Dialog';
 export * from './Disclosure';
 export * from './Portal';
 export * from './hooks';
+export * from './Tag';
