@@ -24,9 +24,10 @@ export const pages = Object.keys(pagesFiles).reduce((reduced, next) => {
     })();
 
   const path =
-    nextPage.info.path || category === '_root'
+    nextPage.info.path ||
+    (category === '_root'
       ? `/${title.toLowerCase()}`
-      : `/${category.toLowerCase()}/${title.toLowerCase()}`;
+      : `/${category.toLowerCase()}/${title.toLowerCase()}`);
 
   return {
     ...reduced,

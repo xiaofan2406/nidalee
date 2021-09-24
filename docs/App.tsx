@@ -9,7 +9,8 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        {order
+        {[...order]
+          .reverse()
           .map((category) => {
             const pageFiles = pages[category];
             return pageFiles.map((pageFile) => (
