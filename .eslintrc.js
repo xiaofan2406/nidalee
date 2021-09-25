@@ -10,4 +10,9 @@ module.exports = {
       extends: ['plugin:testing-library/react', 'plugin:jest-dom/recommended'],
     },
   ],
+
+  rules: {
+    'import/namespace': [2, {allowComputed: true}],
+    'import/export': 0,
+  },
 };

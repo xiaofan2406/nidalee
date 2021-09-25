@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {X} from 'react-feather';
 
+import {IconButton} from '../IconButton';
 import {cbx, cx} from '../utils';
 import './Tag.css';
 
@@ -46,18 +46,17 @@ export const Tag = (props: TagProps) => {
     >
       {children}
       {onRemove ? (
-        <div
+        <IconButton
           className="ndl-tag-remove"
-          role="button"
-          aria-label="Remove"
+          label="Remove"
+          name="x"
+          size={18}
           tabIndex={-1}
           onClick={(event) => {
             event.stopPropagation();
             onRemove();
           }}
-        >
-          <X size={20} />
-        </div>
+        />
       ) : null}
     </div>
   );

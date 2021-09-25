@@ -19,3 +19,10 @@ export function cbx<T extends React.SyntheticEvent<HTMLElement, Event>>(
     }
   };
 }
+
+export function startCase(str: string) {
+  const parts = str.split('-');
+  return parts
+    .map(([start, ...rest]) => [start.toUpperCase()].concat(rest).join(''))
+    .join('');
+}
