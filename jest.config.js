@@ -27,12 +27,12 @@ module.exports = {
     '[/\\\\]node_modules[/\\\\].+\\.(ts|tsx|js|jsx|mjs|cjs)$',
     '^.+\\.module\\.css$',
   ],
-  coverageThreshold: {
-    global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
-    },
-  },
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 80,
+  //     functions: 80,
+  //     lines: 80,
+  //     statements: 80,
+  //   },
+  // },
 };
