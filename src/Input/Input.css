@@ -1,14 +1,12 @@
 .ndl-input {
-  & > input {
-    padding: 0.5rem 0;
-    border-radius: 4px;
-    background-color: unset;
-    border: 1px solid var(--ndl-black-5);
-    display: inline-flex;
-    align-items: center;
+  padding: 0.5rem 0;
+  border-radius: 4px;
+  background-color: unset;
+  border: 1px solid var(--ndl-black-5);
+  display: inline-flex;
+  align-items: center;
 
-    &:focus-visible {
-      outline: var(--ndl-outline);
-    }
+  &:focus-visible {
+    outline: var(--ndl-outline);
   }
 }
