@@ -11,9 +11,5 @@ export interface InputProps
 export const Input = (props: InputProps) => {
   const {className, ...rest} = props;
 
-  return (
-    <div className={cx('ndl-input', className)}>
-      <input {...rest} />
-    </div>
-  );
+  return <input className={cx('ndl-input', className)} {...rest} />;
 };
