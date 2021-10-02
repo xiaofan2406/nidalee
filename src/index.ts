@@ -10,3 +10,4 @@ export * from './IconButton';
 export * from './Portal';
 export * from './hooks';
 export * from './Tag';
+export * from './Input';
