@@ -13,10 +13,20 @@ export interface IconButtonProps extends Omit<ButtonProps, 'children'> {
   label?: string;
   color?: string;
   size?: number;
+  circle?: boolean;
 }
 
 export const IconButton = (props: IconButtonProps) => {
-  const {className, style, name, label, size = 20, color, ...rest} = props;
+  const {
+    className,
+    style,
+    name,
+    label,
+    size = 20,
+    color,
+    circle,
+    ...rest
+  } = props;
 
   const iconName = startCase(name) as IconName;
   const IconTag = icons[iconName];
@@ -25,7 +35,7 @@ export const IconButton = (props: IconButtonProps) => {
     <Button
       {...rest}
       aria-label={label}
-      className={cx('ndl-icon-button', className)}
+      className={cx('ndl-icon-button', circle && 'circle', className)}
       style={{...style, padding: `${(size * 0.6) / 20}rem`}}
     >
       <IconTag size={size} color={color} role="img" />

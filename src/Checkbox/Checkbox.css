@@ -65,7 +65,7 @@ $offset: calc(($backgroundSize - $tickSize) * -1 / 2);
   align-items: center;
   width: $tickSize;
   height: $tickSize;
-  border-radius: 2px;
+  border-radius: 1px;
   border-width: 2px;
   border-style: solid;
   margin-right: 1.5rem;

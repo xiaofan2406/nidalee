@@ -31,6 +31,13 @@ it('takes Button props', () => {
   expect(onClick).toHaveBeenCalledTimes(1);
 });
 
+it('has circle class', () => {
+  render(<IconButton name="x" data-testid="target" circle />);
+  const target = screen.getByTestId('target');
+  expect(target).toHaveClass('ndl-icon-button');
+  expect(target).toHaveClass('circle');
+});
+
 it('forwards the size & color prop to svg', () => {
   render(<IconButton name="x" data-testid="target" color="red" size={36} />);
   const svg = screen.queryByRole('img');

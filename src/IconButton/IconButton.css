@@ -1,4 +1,5 @@
 .ndl-icon-button {
-  border-radius: 100%;
-  vertical-align: base;
+  &.circle {
+    border-radius: 100%;
+  }
 }

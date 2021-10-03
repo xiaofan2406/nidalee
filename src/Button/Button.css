@@ -5,7 +5,7 @@
 
   font-size: 1rem;
   color: var(--ndl-white);
-  border-radius: 2px;
+  border-radius: 1px;
 
   &.mode-button {
     padding: 0.5rem 1rem;
