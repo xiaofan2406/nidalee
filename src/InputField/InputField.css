@@ -1,0 +1,35 @@
+.ndl-input-field {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.5rem;
+
+  & .ndl-input-field-label {
+    margin-bottom: 0.5rem;
+  }
+
+  & .ndl-input-field-input {
+    display: flex;
+    border-radius: 1px;
+    border: 1px solid var(--ndl-black-5);
+
+    & > .ndl-input {
+      flex: 1;
+      border: unset;
+      border-radius: unset;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    &:focus-within {
+      outline: var(--ndl-outline);
+    }
+  }
+
+  & .ndl-input-field-error {
+    margin-top: 0.2rem;
+    font-size: 0.9rem;
+  }
+}
