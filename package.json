@@ -14,8 +14,8 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=14",
-    "npm": ">=7"
+    "node": "^14 || ^16",
+    "npm": "^8"
   },
   "scripts": {
     "format": "prettier '**/*.{js,jsx,json,ts,tsx,md,mdx}' --write --ignore-path .gitignore",
@@ -31,7 +31,8 @@
     "build:src": "npm run type-check && vite build",
     "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.build.json",
     "build": "npm run build:src && npm run build:declaration",
-    "postbuild": "node ./scripts/postBuild.js"
+    "postbuild": "node ./scripts/postBuild.js",
+    "postpublish": "git push && git push --tags"
   },
   "files": [
     "dist"
