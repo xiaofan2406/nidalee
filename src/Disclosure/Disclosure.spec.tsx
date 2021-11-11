@@ -93,7 +93,7 @@ it('toggles the visibility of the content', () => {
   expect(screen.queryByTestId('content')).not.toBeInTheDocument();
 
   userEvent.click(screen.getByTestId('disclosure'));
-  expect(screen.queryByTestId('content')).toBeInTheDocument();
+  expect(screen.getByTestId('content')).toBeValid();
 
   userEvent.click(screen.getByTestId('disclosure'));
   expect(screen.queryByTestId('content')).not.toBeInTheDocument();
