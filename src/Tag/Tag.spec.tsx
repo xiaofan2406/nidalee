@@ -71,7 +71,7 @@ it('renders a remove icon when hovered and when onRemove is given', () => {
       Tag
     </Tag>
   );
-  expect(screen.queryByLabelText('Remove')).toBeInTheDocument();
+  expect(screen.getByLabelText('Remove')).toBeValid();
 });
 
 it('triggers onRemove when clicking the remove icon', () => {
