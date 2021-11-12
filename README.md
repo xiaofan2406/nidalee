@@ -45,7 +45,7 @@ In your React app entry file, you should have something like this
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import 'nidalee/styles.css';
+import 'nidalee/style.css';
 import 'nidalee/theme.css';
 
 import MainApp from './MainApp';

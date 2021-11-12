@@ -26,7 +26,7 @@ npm run build
 
   - `dist/nidalee.es.js`
   - `dist/nidalee.umd.js`
-  - `dist/styles.css`
+  - `dist/style.css`
 
 - Build declaration files
 

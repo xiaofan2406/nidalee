@@ -44,7 +44,10 @@
     ".": {
       "import": "./dist/nidalee.es.js",
       "require": "./dist/nidalee.umd.js"
-    }
+    },
+    "./style.css": "./dist/style.css",
+    "./theme.css": "./dist/theme.css",
+    "./reset.css": "./dist/reset.css"
   },
   "peerDependencies": {
     "react": "^17.0.2",
