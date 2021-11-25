@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "github>xiaofan2406/renovate-config"
-  ]
+  "extends": ["github>xiaofan2406/renovate-config"]
 }
