@@ -1,5 +1,5 @@
 {
   "extends": [
-    "config:base"
+    "github>xiaofan2406/renovate-config"
   ]
 }
