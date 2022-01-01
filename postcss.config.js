@@ -1,7 +1,10 @@
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    'postcss-simple-vars': {},
-    'postcss-preset-env': {stage: 0},
-  },
+  plugins: [
+    require('tailwindcss/nesting')(require('postcss-nesting')),
+    require('tailwindcss'),
+    require('postcss-preset-env')({
+      stage: 0,
+      features: {'nesting-rules': false},
+    }),
+  ],
 };
