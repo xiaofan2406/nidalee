@@ -8,6 +8,8 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+const absoluteUrl = (url: string) => (url.startsWith('/') ? url : `/${url}`);
+
 export const Layout = ({children}: LayoutProps) => {
   return (
     <Box layer="root" className="h-screen flex">
@@ -23,7 +25,9 @@ export const Layout = ({children}: LayoutProps) => {
                 {pages[category].map((pageFile) => {
                   return (
                     <li key={pageFile.info.path}>
-                      <Link to={pageFile.info.path}>{pageFile.info.title}</Link>
+                      <Link to={absoluteUrl(pageFile.info.path)}>
+                        {pageFile.info.title}
+                      </Link>
                     </li>
                   );
                 })}
