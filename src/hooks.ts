@@ -111,3 +111,49 @@ export function useRestoreFocus() {
     };
   }, []);
 }
+
+export function useLockBodyScroll() {
+  React.useLayoutEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, []);
+}
+
+export const useCallBackRef = (callback?: Function) => {
+  const callbackRef = React.useRef(callback);
+
+  React.useLayoutEffect(() => {
+    callbackRef.current = callback;
+  });
+
+  return callbackRef;
+};
+
+export function useOnClickOutside(
+  ref: React.RefObject<HTMLElement>,
+  handler?: (event: TouchEvent | MouseEvent) => void
+) {
+  const handlerRef = useCallBackRef(handler);
+
+  React.useEffect(() => {
+    const listener = (event: TouchEvent | MouseEvent) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
+        return;
+      }
+
+      handlerRef.current?.(event);
+    };
+
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+
+    return () => {
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+    };
+  }, [ref, handlerRef]);
+}
