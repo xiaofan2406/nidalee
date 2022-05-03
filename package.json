@@ -99,7 +99,7 @@
     "lint-staged": "^12.3.5",
     "postcss": "^8.4.13",
     "postcss-nesting": "^10.1.4",
-    "postcss-preset-env": "^7.4.2",
+    "postcss-preset-env": "^7.5.0",
     "postcss-simple-vars": "^6.0.3",
     "prettier": "^2.6.2",
     "react-router-dom": "^6.3.0",
