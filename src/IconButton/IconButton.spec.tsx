@@ -1,6 +1,5 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {render, screen} from 'testUtils';
 
 import {IconButton} from './IconButton';
 
@@ -20,14 +19,14 @@ it('adds additional class', () => {
   expect(target).toHaveClass('more');
 });
 
-it('takes Button props', () => {
+it('takes Button props', async () => {
   const onClick = jest.fn();
-  render(
+  const {user} = render(
     <IconButton name="x" data-testid="target" accented onClick={onClick} />
   );
   const target = screen.getByTestId('target');
   expect(target).toHaveClass('accented');
-  userEvent.click(target);
+  await user.click(target);
   expect(onClick).toHaveBeenCalledTimes(1);
 });
 

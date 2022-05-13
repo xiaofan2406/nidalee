@@ -1,6 +1,5 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {render, screen} from 'testUtils';
 
 import {Disclosure} from './Disclosure';
 
@@ -33,9 +32,9 @@ it('adds additional class', () => {
   expect(disclosure).toHaveClass('more');
 });
 
-it('takes html button props', () => {
+it('takes html button props', async () => {
   const onDoubleClick = jest.fn();
-  render(
+  const {user} = render(
     <Disclosure
       data-testid="disclosure"
       content={<div data-testid="content">some content</div>}
@@ -46,13 +45,13 @@ it('takes html button props', () => {
   );
   expect(onDoubleClick).toHaveBeenCalledTimes(0);
 
-  userEvent.dblClick(screen.getByTestId('disclosure'));
+  await user.dblClick(screen.getByTestId('disclosure'));
   expect(onDoubleClick).toHaveBeenCalledTimes(1);
 });
 
-it('forwards the onClick event', () => {
+it('forwards the onClick event', async () => {
   const onClick = jest.fn();
-  render(
+  const {user} = render(
     <Disclosure
       data-testid="disclosure"
       content={<div data-testid="content">some content</div>}
@@ -63,7 +62,7 @@ it('forwards the onClick event', () => {
   );
   expect(onClick).toHaveBeenCalledTimes(0);
 
-  userEvent.click(screen.getByTestId('disclosure'));
+  await user.click(screen.getByTestId('disclosure'));
   expect(onClick).toHaveBeenCalledTimes(1);
 });
 
@@ -81,8 +80,8 @@ it('cannot have type=submit', () => {
   expect(disclosure).toHaveAttribute('type', 'button');
 });
 
-it('toggles the visibility of the content', () => {
-  render(
+it('toggles the visibility of the content', async () => {
+  const {user} = render(
     <Disclosure
       data-testid="disclosure"
       content={<div data-testid="content">some content</div>}
@@ -92,15 +91,15 @@ it('toggles the visibility of the content', () => {
   );
   expect(screen.queryByTestId('content')).not.toBeInTheDocument();
 
-  userEvent.click(screen.getByTestId('disclosure'));
+  await user.click(screen.getByTestId('disclosure'));
   expect(screen.getByTestId('content')).toBeValid();
 
-  userEvent.click(screen.getByTestId('disclosure'));
+  await user.click(screen.getByTestId('disclosure'));
   expect(screen.queryByTestId('content')).not.toBeInTheDocument();
 });
 
-it('has the aria-expanded attribute based on the content visibility', () => {
-  render(
+it('has the aria-expanded attribute based on the content visibility', async () => {
+  const {user} = render(
     <Disclosure
       data-testid="disclosure"
       content={<div data-testid="content">some content</div>}
@@ -113,13 +112,13 @@ it('has the aria-expanded attribute based on the content visibility', () => {
     'false'
   );
 
-  userEvent.click(screen.getByTestId('disclosure'));
+  await user.click(screen.getByTestId('disclosure'));
   expect(screen.getByTestId('disclosure')).toHaveAttribute(
     'aria-expanded',
     'true'
   );
 
-  userEvent.click(screen.getByTestId('disclosure'));
+  await user.click(screen.getByTestId('disclosure'));
   expect(screen.getByTestId('disclosure')).toHaveAttribute(
     'aria-expanded',
     'false'
