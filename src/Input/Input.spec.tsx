@@ -1,6 +1,5 @@
-import React from 'react';
-import {render, screen} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import * as React from 'react';
+import {render, screen} from 'testUtils';
 
 import {Input} from './Input';
 
@@ -17,10 +16,10 @@ it('adds additional class', () => {
   expect(target).toHaveClass('more');
 });
 
-it('takes html input props', () => {
+it('takes html input props', async () => {
   const onClick = jest.fn();
-  render(<Input data-testid="target" onClick={onClick} />);
+  const {user} = render(<Input data-testid="target" onClick={onClick} />);
   const target = screen.getByTestId('target');
-  userEvent.click(target);
+  await user.click(target);
   expect(onClick).toHaveBeenCalledTimes(1);
 });

@@ -27,6 +27,9 @@ module.exports = {
     '[/\\\\]node_modules[/\\\\].+\\.(ts|tsx|js|jsx|mjs|cjs)$',
     '^.+\\.module\\.css$',
   ],
+  moduleNameMapper: {
+    '^testUtils(.*)$': '<rootDir>/scripts/testUtils$1',
+  },
   // coverageThreshold: {
   //   global: {
   //     branches: 80,

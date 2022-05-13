@@ -1,6 +1,5 @@
 import React from 'react';
-import {render, screen, cleanup} from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import {render, screen, cleanup} from 'testUtils';
 
 import {Tag} from './Tag';
 
@@ -24,15 +23,15 @@ it('adds additional class', () => {
   expect(target).toHaveClass('more');
 });
 
-it('takes html div props', () => {
+it('takes html div props', async () => {
   const onClick = jest.fn();
-  render(
+  const {user} = render(
     <Tag data-testid="target" onClick={onClick}>
       Tag
     </Tag>
   );
   const target = screen.getByTestId('target');
-  userEvent.click(target);
+  await user.click(target);
   expect(onClick).toHaveBeenCalledTimes(1);
 });
 
@@ -74,22 +73,22 @@ it('renders a remove icon when hovered and when onRemove is given', () => {
   expect(screen.getByLabelText('Remove')).toBeValid();
 });
 
-it('triggers onRemove when clicking the remove icon', () => {
+it('triggers onRemove when clicking the remove icon', async () => {
   const onRemove = jest.fn();
-  render(
+  const {user} = render(
     <Tag data-testid="target" onRemove={onRemove}>
       Tag
     </Tag>
   );
   const target = screen.getByLabelText('Remove');
 
-  userEvent.click(target);
+  await user.click(target);
   expect(onRemove).toHaveBeenCalledTimes(1);
 });
 
-it('triggers onActivate on space and enter key', () => {
+it('triggers onActivate on space and enter key', async () => {
   const onActivate = jest.fn();
-  render(
+  const {user} = render(
     <Tag data-testid="target" onActivate={onActivate}>
       Tag
     </Tag>
@@ -97,27 +96,27 @@ it('triggers onActivate on space and enter key', () => {
   screen.getByTestId('target').focus();
   expect(onActivate).toHaveBeenCalledTimes(0);
 
-  userEvent.keyboard('[Enter]');
+  await user.keyboard('[Enter]');
   expect(onActivate).toHaveBeenCalledTimes(1);
-  userEvent.keyboard('[Space]');
+  await user.keyboard('[Space]');
   expect(onActivate).toHaveBeenCalledTimes(2);
 });
 
-it('triggers onActivate on tag click', () => {
+it('triggers onActivate on tag click', async () => {
   const onActivate = jest.fn();
-  render(
+  const {user} = render(
     <Tag data-testid="target" onActivate={onActivate}>
       Tag
     </Tag>
   );
   const target = screen.getByTestId('target');
-  userEvent.click(target);
+  await user.click(target);
   expect(onActivate).toHaveBeenCalledTimes(1);
 });
 
-it('triggers onRemove on delete and backspace', () => {
+it('triggers onRemove on delete and backspace', async () => {
   const onRemove = jest.fn();
-  render(
+  const {user} = render(
     <Tag data-testid="target" onRemove={onRemove}>
       Tag
     </Tag>
@@ -125,8 +124,8 @@ it('triggers onRemove on delete and backspace', () => {
   screen.getByTestId('target').focus();
   expect(onRemove).toHaveBeenCalledTimes(0);
 
-  userEvent.keyboard('[Delete]');
+  await user.keyboard('[Delete]');
   expect(onRemove).toHaveBeenCalledTimes(1);
-  userEvent.keyboard('[Backspace]');
+  await user.keyboard('[Backspace]');
   expect(onRemove).toHaveBeenCalledTimes(2);
 });

@@ -15,7 +15,8 @@
     "noEmit": true,
     "jsx": "react",
     "paths": {
-      "nidalee": ["./src"]
+      "nidalee": ["./src"],
+      "testUtils": ["./scripts/testUtils"]
     }
   },
   "include": ["./src", "./docs", "./scripts/jestSetup.ts"]

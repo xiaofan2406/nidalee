@@ -11,6 +11,15 @@ module.exports = {
     },
   ],
 
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [['testUtils', './scripts/testUtils']],
+        extensions: ['.ts', '.js', '.jsx', '.json'],
+      },
+    },
+  },
+
   rules: {
     'import/namespace': [2, {allowComputed: true}],
     'import/export': 0,
