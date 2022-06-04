@@ -109,6 +109,6 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
-    "react-feather": "^2.0.9"
+    "react-feather": "^2.0.10"
   }
 }
