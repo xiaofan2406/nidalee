@@ -50,8 +50,8 @@
     "./reset.css": "./dist/reset.css"
   },
   "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "lint-staged": {
     "*.{js,jsx,json,ts,tsx,md,mdx}": [
