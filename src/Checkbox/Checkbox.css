@@ -1,12 +1,14 @@
-$tickSize: 1.5rem;
-$backgroundSize: 3.5rem;
-$offset: calc(($backgroundSize - $tickSize) * -1 / 2);
+:root {
+  --checkbox-tick-size: 1.5rem;
+  --checkbox-background-size: 3.5rem;
+  --checkbox-offset: calc((var(--checkbox-background-size) - var(--checkbox-tick-size)) * -1 / 2);
+}
 
 [data-ndl-checkbox] {
   display: inline-flex;
   vertical-align: middle;
   position: relative;
-  margin: calc($offset * -1 + 2px);
+  margin: calc(var(--checkbox--offset) * -1 + 2px);
 
   &[aria-checked='true'],
   &[aria-checked='mixed'] {
@@ -36,14 +38,14 @@ $offset: calc(($backgroundSize - $tickSize) * -1 / 2);
     outline: none;
 
     &::before {
-      content: ' ';
+      content: '';
       position: absolute;
       background-color: var(--ndl-black-6);
       border-radius: 50%;
-      left: $offset;
-      top: $offset;
-      width: $backgroundSize;
-      height: $backgroundSize;
+      left: var(--checkbox-offset);
+      top: var(--checkbox-offset);
+      width: var(--checkbox-background-size);
+      height: var(--checkbox-background-size);
       z-index: 0;
       animation: fade-in 0.5s ease;
     }
@@ -63,11 +65,11 @@ $offset: calc(($backgroundSize - $tickSize) * -1 / 2);
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: $tickSize;
-  height: $tickSize;
+  width: var(--checkbox-tick-size);
+  height: var(--checkbox-tick-size);
   border-radius: 1px;
   border-width: 2px;
   border-style: solid;
-  margin-right: 1.5rem;
+  margin-right: 1rem;
   z-index: 1;
 }
