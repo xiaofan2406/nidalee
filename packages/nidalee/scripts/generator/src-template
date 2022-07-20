@@ -1,0 +1,14 @@
+import {cx} from '../utils';
+import './__Name__.css';
+
+export interface __Name__Props extends React.HTMLAttributes<HTMLDivElement> {}
+
+export const __Name__ = (props: __Name__Props) => {
+  const {children, className, ...rest} = props;
+
+  return (
+    <div {...rest} className={cx('ndl-__name__', className)}>
+      {children}
+    </div>
+  );
+};
