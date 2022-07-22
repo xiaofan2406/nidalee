@@ -1,10 +1,13 @@
 import {join} from 'path';
-import {defineConfig} from 'vite';
+import {defineConfig, splitVendorChunkPlugin} from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode}) => ({
-  plugins: [react()],
+  plugins: [react(), splitVendorChunkPlugin()],
+  optimizeDeps: {
+    entries: ['nidalee'],
+  },
   resolve: {
     ...(mode === 'development'
       ? {
@@ -13,5 +16,11 @@ export default defineConfig(({mode}) => ({
           },
         }
       : {}),
+  },
+  server: {
+    open: true,
+  },
+  preview: {
+    open: true,
   },
 }));

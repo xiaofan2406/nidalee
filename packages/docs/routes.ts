@@ -8,7 +8,7 @@ interface PageFile {
   info: {title: string; category: string; path: string};
 }
 
-const pagesFiles = import.meta.globEager('./**/*.page.tsx') as {
+const pagesFiles = import.meta.glob('./**/*.page.tsx', {eager: true}) as {
   [key: string]: _PageFile;
 };
 export const pages = Object.keys(pagesFiles).reduce((reduced, next) => {

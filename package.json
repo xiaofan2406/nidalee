@@ -1,5 +1,5 @@
 {
-  "name": "nidalee",
+  "name": "nidalee-monorepo",
   "version": "0.0.0",
   "author": "Xiaofan Wu (https://github.com/xiaofan2406)",
   "description": "Nidalee UI framework for React",
@@ -29,8 +29,10 @@
     "new": "node ./scripts/generator/main",
     "test": "npm run test -w ./packages/nidalee",
     "coverage": "npm run coverage -w ./packages/nidalee",
+    "clean": "turbo run clean --parallel",
     "dev": "turbo run dev --parallel",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "preview": "turbo run preview"
   },
   "lint-staged": {
     "*.{js,jsx,json,ts,tsx,md,mdx,css}": [
