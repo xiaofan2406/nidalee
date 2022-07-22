@@ -4,8 +4,10 @@
   "author": "Xiaofan Wu (https://github.com/xiaofan2406)",
   "description": "Nidalee Docs App",
   "scripts": {
+    "clean": "rm -rf ./.turbo ./dist ./node_modules",
     "dev": "vite",
-    "clean": "rm -rf ./node_modules"
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",

@@ -12,6 +12,13 @@
     },
     "dev": {
       "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "preview": {
+      "dependsOn": ["build"],
+      "cache": false
     }
   }
 }

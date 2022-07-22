@@ -18,6 +18,7 @@
     "npm": "^8"
   },
   "scripts": {
+    "clean": "rm -rf ./.turbo ./dist ./coverage",
     "test": "jest --watch --updateSnapshot",
     "coverage": "jest --coverage",
     "build": "tsup",
