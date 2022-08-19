@@ -1,8 +1,8 @@
 const path = require('path');
 const {readFile, writeFile, appendFile, mkdir} = require('fs/promises');
 
-const pagePath = path.join(__dirname, '../../docs/pages');
-const srcPath = path.join(__dirname, '../../src');
+const pagePath = path.join(__dirname, '../../packages/docs/pages');
+const srcPath = path.join(__dirname, '../../packages/nidalee/src');
 
 async function main(...args) {
   if (args.length < 3) {
