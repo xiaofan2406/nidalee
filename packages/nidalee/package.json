@@ -70,8 +70,8 @@
     "eslint-plugin-testing-library": "^5.10.2",
     "jest": "^29.4.3",
     "jest-environment-jsdom": "^29.4.3",
-    "postcss": "^8.4.21",
-    "postcss-preset-env": "^8.0.1",
+    "postcss": "^8.4.23",
+    "postcss-preset-env": "^8.3.2",
     "tsconfig": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
