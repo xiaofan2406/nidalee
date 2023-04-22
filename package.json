@@ -50,8 +50,8 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.4",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "eslint": "^8.39.0",
     "eslint-config-free": "^1.5.10",
     "husky": "^8.0.3",
