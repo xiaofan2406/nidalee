@@ -22,19 +22,21 @@
     "test": "jest --watch --updateSnapshot",
     "coverage": "jest --coverage",
     "build": "tsup",
+    "predev": "mkdir -p dist & node ./scripts/postBuild.js",
     "dev": "tsup --watch",
     "postbuild": "node ./scripts/postBuild.js"
   },
   "files": [
     "dist"
   ],
+  "type": "module",
   "types": "./dist/index.d.ts",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./style.css": "./dist/index.css",
     "./theme.css": "./dist/theme.css",

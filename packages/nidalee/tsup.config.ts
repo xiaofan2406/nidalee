@@ -1,12 +1,12 @@
 import {defineConfig} from 'tsup';
 
-export default defineConfig({
+export default defineConfig((options) => ({
   entry: ['src/index.ts'],
-  splitting: false,
+  // splitting: false,
   sourcemap: false,
-  clean: true,
-  external: ['react', 'react-dom'],
+  clean: !options.watch,
+  // external: ['react', 'react-dom'],
   dts: true,
   format: ['cjs', 'esm'],
-  inject: ['scripts/importReact.js'],
-});
+  // inject: ['scripts/importReact.js'],
+}));

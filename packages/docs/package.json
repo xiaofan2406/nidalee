@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "type": "module",
   "dependencies": {
     "nidalee": "*",
     "react": "^18.2.0",
