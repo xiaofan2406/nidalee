@@ -5,7 +5,7 @@ import {Button, ButtonProps} from '../Button';
 import {cx} from '../utils';
 import './Disclosure.css';
 
-interface DisclosureProps extends ButtonProps {
+interface DisclosureProps extends Omit<ButtonProps, 'content'> {
   content: React.ReactNode;
 }
 
