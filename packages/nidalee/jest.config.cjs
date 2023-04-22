@@ -20,9 +20,9 @@ module.exports = {
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': [
       'babel-jest',
-      {configFile: './scripts/babel.jest.js'},
+      {configFile: './scripts/babel.jest.cjs'},
     ],
-    '^.+\\.css$': '<rootDir>/scripts/cssTransform.js',
+    '^.+\\.css$': '<rootDir>/scripts/cssTransform.cjs',
   },
   transformIgnorePatterns: [
     '[/\\\\]node_modules[/\\\\].+\\.(ts|tsx|js|jsx|mjs|cjs)$',

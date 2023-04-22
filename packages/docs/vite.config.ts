@@ -1,4 +1,3 @@
-import {join} from 'path';
 import {defineConfig, splitVendorChunkPlugin} from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -7,15 +6,6 @@ export default defineConfig(({mode}) => ({
   plugins: [react(), splitVendorChunkPlugin()],
   optimizeDeps: {
     entries: ['nidalee'],
-  },
-  resolve: {
-    ...(mode === 'development'
-      ? {
-          alias: {
-            nidalee: join(__dirname, '../nidalee/src'),
-          },
-        }
-      : {}),
   },
   server: {
     open: true,

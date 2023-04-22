@@ -1,5 +1,8 @@
-const fs = require('fs/promises');
-const path = require('path');
+import {copyFile} from 'fs/promises';
+import {resolve} from 'path';
+import {fileURLToPath} from 'url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // async function renameBundleCss() {
 //   const oldName = path.resolve(__dirname, '../dist/style.css');
@@ -10,16 +13,16 @@ const path = require('path');
 // }
 
 async function copyThemeCss() {
-  const source = path.resolve(__dirname, '../src/theme.css');
-  const dest = path.resolve(__dirname, '../dist/theme.css');
-  await fs.copyFile(source, dest);
+  const source = resolve(__dirname, '../src/theme.css');
+  const dest = resolve(__dirname, '../dist/theme.css');
+  await copyFile(source, dest);
   console.log('Copy theme css done.');
 }
 
 async function copyResetCss() {
-  const source = path.resolve(__dirname, '../src/reset.css');
-  const dest = path.resolve(__dirname, '../dist/reset.css');
-  await fs.copyFile(source, dest);
+  const source = resolve(__dirname, '../src/reset.css');
+  const dest = resolve(__dirname, '../dist/reset.css');
+  await copyFile(source, dest);
   console.log('Copy reset css done.');
 }
 
