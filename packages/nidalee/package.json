@@ -22,6 +22,7 @@
     "test": "jest --watch --updateSnapshot",
     "coverage": "jest --coverage",
     "build": "tsup",
+    "dev": "tsup --watch",
     "postbuild": "node ./scripts/postBuild.js"
   },
   "files": [
