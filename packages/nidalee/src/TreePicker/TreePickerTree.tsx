@@ -3,10 +3,11 @@ import {useState, useEffect} from 'react';
 import {useIsUnmountedRef} from '../hooks';
 import {useTreePicker} from './TreePickerContext';
 import './TreePickerTree.css';
+import {TreePickerNodeNode} from './TreePickerNode';
 
 export interface TreePickerTreeProps {
   placeholder: React.ReactNode;
-  resolveNodes: () => Promise<unknown[]>;
+  resolveNodes: () => Promise<TreePickerNodeNode[]>;
 }
 
 export const TreePickerTree = ({

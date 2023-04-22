@@ -6,30 +6,32 @@ import {
   useReducer,
   useRef,
 } from 'react';
+import {TreePickerNodeNode} from './TreePickerNode';
 
 type ReducerState = {
-  paths: unknown[];
-  nodes: unknown[];
+  paths: TreePickerNodeNode[];
+  nodes: TreePickerNodeNode[];
   search: string;
   treeRef: TreeRef;
 };
 
-export interface TreePickerContextState {
+export interface TreePickerContextValue {
   state: ReducerState;
   backTo: (nodeId: string) => void;
-  goTo: (nodes: unknown[], node: unknown) => void;
-  searchTo: (nodes: unknown[], search: string) => void;
+  goTo: (nodes: TreePickerNodeNode[], node?: TreePickerNodeNode) => void;
+  searchTo: (nodes?: TreePickerNodeNode[], search?: string) => void;
   expandIdRef: React.MutableRefObject<string | undefined>;
-  renderNode: (node: unknown, index: number) => React.ReactNode;
+  renderNode: (node: TreePickerNodeNode, index: number) => React.ReactNode;
 }
 
-const TreePickerContext = createContext({} as TreePickerContextState);
+const TreePickerContext = createContext({} as TreePickerContextValue);
 
 export const useTreePicker = () => useContext(TreePickerContext);
 
-export const getPathKey = (paths) => paths.map((entry) => entry.id).join('_');
+export const getPathKey = (paths: TreePickerNodeNode[]) =>
+  paths.map((entry) => entry.id).join('_');
 
-type TreeRef = React.MutableRefObject<Map<string, unknown[]>>;
+type TreeRef = React.MutableRefObject<Map<string, TreePickerNodeNode[]>>;
 
 const createInitState = (treeRef: TreeRef): ReducerState => {
   treeRef.current = new Map();
@@ -37,9 +39,9 @@ const createInitState = (treeRef: TreeRef): ReducerState => {
 };
 
 type ActionType =
-  | {type: 'backTo'; nodeId: string}
-  | {type: 'goTo'; nodes: unknown[]; node: unknown}
-  | {type: 'search'; nodes: unknown[]; search: string};
+  | {type: 'backTo'; nodeId: TreePickerNodeNode['id']}
+  | {type: 'goTo'; nodes: TreePickerNodeNode[]; node?: TreePickerNodeNode}
+  | {type: 'search'; nodes?: TreePickerNodeNode[]; search?: string};
 
 const reducer = (state: ReducerState, action: ActionType): ReducerState => {
   switch (action.type) {
@@ -51,10 +53,11 @@ const reducer = (state: ReducerState, action: ActionType): ReducerState => {
             state.paths.findIndex((entry) => entry.id === action.nodeId) + 1
           )
         : [];
-      const pathKey = getPathKey(newPaths);
 
-      if (!state.treeRef.current.has(pathKey)) {
-        // eslint-disable-next-line no-console
+      const pathKey = getPathKey(newPaths);
+      const nodes = state.treeRef.current.get(pathKey);
+
+      if (!nodes) {
         console.error('unexpected node id: ', action.nodeId);
         return state;
       }
@@ -62,7 +65,7 @@ const reducer = (state: ReducerState, action: ActionType): ReducerState => {
       return {
         ...state,
         paths: newPaths,
-        nodes: state.treeRef.current.get(pathKey),
+        nodes,
       };
     }
 
@@ -82,7 +85,7 @@ const reducer = (state: ReducerState, action: ActionType): ReducerState => {
     }
 
     case 'search': {
-      if (action.search) {
+      if (action.search && action.nodes) {
         return {
           ...state,
           search: action.search,
@@ -91,10 +94,13 @@ const reducer = (state: ReducerState, action: ActionType): ReducerState => {
       }
 
       const pathKey = getPathKey(state.paths);
-
       const nodes = state.treeRef.current.get(pathKey);
 
-      console.log({pathKey, nodes});
+      if (!nodes) {
+        console.error('unexpected error when clearing search:');
+        return state;
+      }
+
       return {...state, search: '', nodes};
     }
 
@@ -105,7 +111,7 @@ const reducer = (state: ReducerState, action: ActionType): ReducerState => {
 
 export interface TreePickerContextProviderProps {
   children: React.ReactNode;
-  renderNode: (node: unknown, index: number) => React.ReactNode;
+  renderNode: (node: TreePickerNodeNode, index: number) => React.ReactNode;
 }
 
 export const TreePickerContextProvider = ({
@@ -113,7 +119,7 @@ export const TreePickerContextProvider = ({
   renderNode,
 }: TreePickerContextProviderProps) => {
   // [stringPath]: nodes keep track which paths map to which nodes
-  const treeRef = useRef<Map<string, unknown[]>>(new Map());
+  const treeRef = useRef<Map<string, TreePickerNodeNode[]>>(new Map());
   // keep tracking the latest expanding node
   const expandIdRef = useRef<string>();
   const [state, dispatch] = useReducer(reducer, treeRef, createInitState);
@@ -122,13 +128,19 @@ export const TreePickerContextProvider = ({
     dispatch({type: 'backTo', nodeId});
   }, []);
 
-  const goTo = useCallback((nodes: unknown[], node: unknown) => {
-    dispatch({type: 'goTo', nodes, node});
-  }, []);
+  const goTo = useCallback(
+    (nodes: TreePickerNodeNode[], node?: TreePickerNodeNode) => {
+      dispatch({type: 'goTo', nodes, node});
+    },
+    []
+  );
 
-  const searchTo = useCallback((nodes: unknown[], search: string) => {
-    dispatch({type: 'search', nodes, search});
-  }, []);
+  const searchTo = useCallback(
+    (nodes?: TreePickerNodeNode[], search?: string) => {
+      dispatch({type: 'search', nodes, search});
+    },
+    []
+  );
 
   const value = useMemo(
     () => ({state, backTo, goTo, searchTo, expandIdRef, renderNode}),

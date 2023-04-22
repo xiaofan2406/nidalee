@@ -6,9 +6,13 @@ import {Input} from '../Input';
 import {useTreePicker} from './TreePickerContext';
 import {InputField} from '../InputField';
 import {Loader, Search} from 'react-feather';
+import {TreePickerNodeNode} from './TreePickerNode';
 
 export interface TreePickerSearchProps {
-  resolveNodes: (searchText: string, activeNode: unknown) => Promise<unknown[]>;
+  resolveNodes: (
+    searchText: string,
+    activeNode: TreePickerNodeNode
+  ) => Promise<TreePickerNodeNode[]>;
 }
 
 export const TreePickerSearch = ({

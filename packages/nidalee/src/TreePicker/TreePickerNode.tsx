@@ -7,30 +7,39 @@ import {useIsUnmountedRef} from '../hooks';
 import {useTreePicker} from './TreePickerContext';
 import './TreePickerNode.css';
 
-const TreePickerNodeContext = createContext({level: 0});
+type TreePickerNodeContextValue = {
+  node: TreePickerNodeNode;
+  expand: (nodes: TreePickerNodeNode[]) => void;
+  expanded: boolean;
+  replace: (nodes: TreePickerNodeNode[]) => void;
+  level: number;
+};
+
+const TreePickerNodeContext = createContext({
+  level: 0,
+} as TreePickerNodeContextValue);
 
 export const useTreePickerNode = () => useContext(TreePickerNodeContext);
 
-export interface TreePickerNodeProps {
-  children: React.ReactNode;
+export type TreePickerNodeNode = {
   id: string;
   label: string;
-  data: object;
+  [key: string]: unknown;
+};
+
+export interface TreePickerNodeProps {
+  children: React.ReactNode;
+  node: TreePickerNodeNode;
 }
 
-export const TreePickerNode = ({
-  children,
-  id,
-  label,
-  data,
-}: TreePickerNodeProps) => {
+export const TreePickerNode = ({children, node}: TreePickerNodeProps) => {
   const {goTo} = useTreePicker();
   const {level} = useTreePickerNode();
-  const [subNodes, setSubNodes] = useState([]);
+  const [subNodes, setSubNodes] = useState<TreePickerNodeNode[]>([]);
   const [expanded, setExpanded] = useState(false);
 
   const expand = useCallback(
-    (nodes) => {
+    (nodes: TreePickerNodeNode[]) => {
       if (!expanded) {
         setSubNodes(nodes);
         setExpanded(true);
@@ -43,23 +52,21 @@ export const TreePickerNode = ({
   );
 
   const replace = useCallback(
-    (nodes) => {
-      goTo(nodes, {id, label, data});
+    (nodes: TreePickerNodeNode[]) => {
+      goTo(nodes, node);
     },
-    [goTo, id, label, data]
+    [goTo, node]
   );
 
   const value = useMemo(
     () => ({
-      id,
-      label,
-      data,
+      node,
       expand,
       expanded,
       replace,
       level: level + 1,
     }),
-    [expand, expanded, replace, id, label, data, level]
+    [expand, expanded, replace, node, level]
   );
 
   return (
@@ -75,7 +82,7 @@ export const TreePickerNode = ({
 };
 
 export interface TreePickerNodeBranchProps {
-  nodes: unknown[];
+  nodes: TreePickerNodeNode[];
 }
 
 export const TreePickerNodeBranch = ({nodes}: TreePickerNodeBranchProps) => {
@@ -109,7 +116,7 @@ const TreePickerNodeContent = ({
 export interface TreePickerNodeExpandProps
   extends Omit<IconButtonProps, 'type'> {
   type: 'replace' | 'expand';
-  resolveNodes: () => Promise<unknown[]>;
+  resolveNodes: () => Promise<TreePickerNodeNode[]>;
   className: string;
 }
 
@@ -122,7 +129,7 @@ export const TreePickerNodeExpand = ({
 }: TreePickerNodeExpandProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const {state, expandIdRef} = useTreePicker();
-  const {id, expand, replace, expanded} = useTreePickerNode();
+  const {node, expand, replace, expanded} = useTreePickerNode();
   const isUnmountedRef = useIsUnmountedRef();
 
   const expandIcon = expanded ? 'minimize-2' : 'maximize-2';
@@ -135,8 +142,9 @@ export const TreePickerNodeExpand = ({
       onClick={async (event) => {
         if (!resolveNodes) return onClick?.(event);
 
-        expandIdRef.current = id;
-        const resultFunc = type || (state.search ? expand : replace);
+        expandIdRef.current = node.id;
+        const typeFunc = type === 'expand' ? expand : replace;
+        const resultFunc = typeFunc || (state.search ? expand : replace);
 
         setIsLoading(true);
         try {
@@ -144,7 +152,11 @@ export const TreePickerNodeExpand = ({
           // ignore falsy nodes
           // or when user click 2 different expands, ignore the first click
           // or if node is unmounted
-          if (!nodes || expandIdRef.current !== id || isUnmountedRef.current)
+          if (
+            !nodes ||
+            expandIdRef.current !== node.id ||
+            isUnmountedRef.current
+          )
             return onClick?.(event);
 
           resultFunc(nodes);

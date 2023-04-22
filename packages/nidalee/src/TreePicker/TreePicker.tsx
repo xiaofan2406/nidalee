@@ -1,4 +1,7 @@
-import {TreePickerContextProvider} from './TreePickerContext';
+import {
+  TreePickerContextProvider,
+  TreePickerContextValue,
+} from './TreePickerContext';
 import {TreePickerTree} from './TreePickerTree';
 import {TreePickerNode} from './TreePickerNode';
 import {TreePickerNav} from './TreePickerNav';
@@ -8,7 +11,7 @@ import './TreePicker.css';
 
 export interface TreePickerProps {
   children: React.ReactNode;
-  renderNode: (node: unknown, index: number) => React.ReactNode;
+  renderNode: TreePickerContextValue['renderNode'];
 }
 
 export const TreePicker = ({children, renderNode}: TreePickerProps) => {

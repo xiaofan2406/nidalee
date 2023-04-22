@@ -11,7 +11,7 @@ export const TreePickerNav = ({rootLabel = 'All'}: TreePickerNavProps) => {
 
   return (
     <div>
-      <pre>{JSON.stringify(state.path)}</pre>
+      <pre>{JSON.stringify(state.paths)}</pre>
       {/* <Breadcrumb
         className="test"
         rootNode={rootNode}

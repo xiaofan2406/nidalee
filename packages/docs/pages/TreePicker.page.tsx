@@ -46,6 +46,7 @@ const Demo1 = () => {
         )
       }
     >
+      <TreePicker.Nav />
       <TreePicker.Tree resolveNodes={getPosts} />
     </TreePicker>
   );
