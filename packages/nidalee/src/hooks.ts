@@ -9,14 +9,12 @@ export function useForceRender() {
   return forceRender;
 }
 
-export function useIsMounted() {
+export function useIsUnmountedRef() {
   const ref = useRef(false);
 
   useEffect(() => {
-    ref.current = true;
-
     return () => {
-      ref.current = false;
+      ref.current = true;
     };
   }, []);
 

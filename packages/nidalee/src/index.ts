@@ -9,4 +9,5 @@ export * from './Input';
 export * from './InputField';
 export * from './Portal';
 export * from './Tag';
+export * from './TreePicker';
 export * from './hooks';

@@ -1,0 +1,6 @@
+.ndl-tree-picker {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

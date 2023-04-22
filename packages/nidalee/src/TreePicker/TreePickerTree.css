@@ -1,0 +1,8 @@
+.tree-picker-tree {
+  display: flex;
+  flex-direction: column;
+
+  & .tree-picker-node:first-child {
+    border-top: 1px solid $color-border-base;
+  }
+}

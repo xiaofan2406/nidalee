@@ -1,0 +1,38 @@
+.tree-picker-node {
+  border-bottom: 1px solid $color-border-base;
+}
+
+.tree-picker-node-item {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 12px;
+}
+
+.tree-picker-node-content {
+  flex: 1;
+}
+
+.tree-picker-node-expand {
+  margin: 0;
+
+  &.aui--button.aui-borderless:hover {
+    border-color: transparent;
+  }
+}
+
+.tree-picker-node-add {
+  margin: 0;
+}
+
+.tree-picker-node-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tree-picker-node-branch {
+  & .tree-picker-node:last-child {
+    border-bottom: 0;
+  }
+}
