@@ -111,3 +111,23 @@ export function useRestoreFocus() {
     };
   }, []);
 }
+
+export function useBooleanToggle(defaultValue: boolean | (() => boolean)) {
+  const [value, setValue] = useState(defaultValue);
+
+  const toggle = useCallback(() => setValue((prev) => !prev), []);
+  const on = useCallback(() => setValue(true), []);
+  const off = useCallback(() => setValue(false), []);
+
+  return [value, {toggle, on, off}] as const;
+}
+
+export const useFnRef = <T>(fn: T) => {
+  const ref = useRef(fn);
+
+  useLayoutEffect(() => {
+    ref.current = fn;
+  });
+
+  return ref;
+};

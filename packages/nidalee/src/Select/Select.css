@@ -1,0 +1,15 @@
+.ndl-select {
+  position: relative;
+}
+
+.ndl-select-options {
+  position: absolute;
+}
+
+.ndl-select-option {
+  border: 1px solid red;
+
+  &.highlighted {
+    background-color: red;
+  }
+}

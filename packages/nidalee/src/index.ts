@@ -10,3 +10,4 @@ export * from './InputField';
 export * from './Portal';
 export * from './Tag';
 export * from './hooks';
+export * from './Select';
