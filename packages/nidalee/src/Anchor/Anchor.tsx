@@ -1,4 +1,3 @@
-import {cx} from '../utils';
 import './Anchor.css';
 
 interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -6,17 +5,23 @@ interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 export const Anchor = (props: AnchorProps) => {
-  const {children, target, className, ...rest} = props;
+  const {children, target, rel, ...rest} = props;
 
-  const relProps = target === '_blank' ? {rel: 'noopener noreferrer'} : {};
+  const relProps =
+    target === '_blank'
+      ? {
+          rel: [
+            ...new Set([
+              'noopener',
+              'noreferrer',
+              ...(rel ? rel.split(' ') : []),
+            ]),
+          ].join(' '),
+        }
+      : {rel: [...new Set(rel ? rel.split(' ') : [])].join(' ')};
 
   return (
-    <a
-      {...relProps}
-      {...rest}
-      target={target}
-      className={cx('ndl-anchor', className)}
-    >
+    <a {...relProps} {...rest} target={target} data-ndl-anchor="">
       {children}
     </a>
   );

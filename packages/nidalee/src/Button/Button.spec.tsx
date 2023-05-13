@@ -5,19 +5,8 @@ import {Button} from './Button';
 it('renders button mode by default', () => {
   render(<Button data-testid="button">Click</Button>);
   const button = screen.getByTestId('button');
-  expect(button).toHaveClass('ndl-button');
-  expect(button).toHaveClass('mode-button');
-});
-
-it('adds additional class', () => {
-  render(
-    <Button data-testid="button" className="more">
-      Click
-    </Button>
-  );
-  const button = screen.getByTestId('button');
-  expect(button).toHaveClass('ndl-button');
-  expect(button).toHaveClass('more');
+  expect(button).toHaveAttribute('data-ndl-button', '');
+  expect(button).toHaveAttribute('data-ndl-button-variant', 'button');
 });
 
 it('takes html button props', async () => {
@@ -49,22 +38,22 @@ it('can overwrite type prop', () => {
   expect(button).toHaveAttribute('type', 'submit');
 });
 
-it('has accented class', () => {
+it('has accented attribute', () => {
   render(
     <Button data-testid="button" accented>
       Click
     </Button>
   );
   const button = screen.getByTestId('button');
-  expect(button).toHaveClass('accented');
+  expect(button).toHaveAttribute('data-ndl-accented', '');
 });
 
-it('has text mode class', () => {
+it('has text variant attribute', () => {
   render(
-    <Button data-testid="button" mode="text">
+    <Button data-testid="button" variant="text">
       Click
     </Button>
   );
   const button = screen.getByTestId('button');
-  expect(button).toHaveClass('mode-text');
+  expect(button).toHaveAttribute('data-ndl-button-variant', 'text');
 });

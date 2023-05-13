@@ -5,22 +5,10 @@ import {Box} from './Box';
 it('renders default box layer', () => {
   render(<Box data-testid="box">box</Box>);
   const box = screen.getByTestId('box');
-  expect(box).toHaveClass('ndl-box');
-  expect(box).toHaveClass('layer-default');
+  expect(box).toHaveAttribute('data-ndl-box', '');
 });
 
-it('adds additional class', () => {
-  render(
-    <Box data-testid="box" className="more">
-      box
-    </Box>
-  );
-  const box = screen.getByTestId('box');
-  expect(box).toHaveClass('ndl-box');
-  expect(box).toHaveClass('more');
-});
-
-it('takes html Box props', () => {
+it('takes html div props', () => {
   render(
     <Box data-testid="box" tabIndex={0}>
       testButton
@@ -30,14 +18,14 @@ it('takes html Box props', () => {
   expect(box).toHaveAttribute('tabIndex', '0');
 });
 
-it('has base layer class', () => {
+it('has base layer attribute', () => {
   render(
     <Box data-testid="box" layer="base">
       box
     </Box>
   );
   const box = screen.getByTestId('box');
-  expect(box).toHaveClass('layer-base');
+  expect(box).toHaveAttribute('data-ndl-box', 'base');
 });
 
 it('has root layer class', () => {
@@ -47,5 +35,5 @@ it('has root layer class', () => {
     </Box>
   );
   const box = screen.getByTestId('box');
-  expect(box).toHaveClass('layer-root');
+  expect(box).toHaveAttribute('data-ndl-box', 'root');
 });

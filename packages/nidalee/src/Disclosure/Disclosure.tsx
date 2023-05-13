@@ -2,7 +2,6 @@ import {useState} from 'react';
 import {ChevronDown} from 'react-feather';
 
 import {Button, ButtonProps} from '../Button';
-import {cx} from '../utils';
 import './Disclosure.css';
 
 interface DisclosureProps extends Omit<ButtonProps, 'content'> {
@@ -10,8 +9,12 @@ interface DisclosureProps extends Omit<ButtonProps, 'content'> {
 }
 
 // https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure
-export const Disclosure = (props: DisclosureProps) => {
-  const {content, children, className, onClick, ...rest} = props;
+export const Disclosure = ({
+  content,
+  children,
+  onClick,
+  ...rest
+}: DisclosureProps) => {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -19,8 +22,8 @@ export const Disclosure = (props: DisclosureProps) => {
       <Button
         {...rest}
         type="button"
-        mode="text"
-        className={cx('ndl-disclosure', className)}
+        variant="text"
+        data-ndl-disclosure=""
         aria-expanded={visible ? 'true' : 'false'}
         onClick={(event) => {
           if (onClick) {

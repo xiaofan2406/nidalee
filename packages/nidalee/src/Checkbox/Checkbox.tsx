@@ -82,18 +82,14 @@ export const Checkbox = (props: CheckBoxProps) => {
       aria-disabled={disabled}
       tabIndex={disabled ? -1 : 0}
       onClick={(event) => {
-        if (onClick) {
-          onClick(event);
-        }
         switchValue();
+        onClick?.(event);
       }}
       onKeyDown={(event) => {
-        if (onKeyDown) {
-          onKeyDown(event);
-        }
         if (event.key === ' ' || event.key === 'Enter') {
           switchValue();
         }
+        onKeyDown?.(event);
       }}
     >
       <div data-ndl-checkbox-tick="">

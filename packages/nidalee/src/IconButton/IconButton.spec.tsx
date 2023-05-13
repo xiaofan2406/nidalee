@@ -2,20 +2,14 @@ import {render, screen} from 'testUtils';
 
 import {IconButton} from './IconButton';
 
-it('renders with default class', () => {
+it('renders with default size', () => {
   render(<IconButton name="x" data-testid="target" />);
   const target = screen.getByTestId('target');
-  expect(target).toHaveClass('ndl-icon-button');
+  expect(target).toHaveAttribute('data-ndl-icon-button', '');
+
   const svg = screen.queryByRole('img');
   expect(svg).toHaveAttribute('width', '20');
   expect(svg).toHaveAttribute('height', '20');
-});
-
-it('adds additional class', () => {
-  render(<IconButton name="x" data-testid="target" className="more" />);
-  const target = screen.getByTestId('target');
-  expect(target).toHaveClass('ndl-icon-button');
-  expect(target).toHaveClass('more');
 });
 
 it('takes Button props', async () => {
@@ -24,16 +18,16 @@ it('takes Button props', async () => {
     <IconButton name="x" data-testid="target" accented onClick={onClick} />
   );
   const target = screen.getByTestId('target');
-  expect(target).toHaveClass('accented');
+  expect(target).toHaveAttribute('data-ndl-accented');
+
   await user.click(target);
   expect(onClick).toHaveBeenCalledTimes(1);
 });
 
-it('has circle class', () => {
+it('has circle attribute', () => {
   render(<IconButton name="x" data-testid="target" circle />);
   const target = screen.getByTestId('target');
-  expect(target).toHaveClass('ndl-icon-button');
-  expect(target).toHaveClass('circle');
+  expect(target).toHaveAttribute('data-ndl-icon-button-circle', '');
 });
 
 it('forwards the size & color prop to svg', () => {

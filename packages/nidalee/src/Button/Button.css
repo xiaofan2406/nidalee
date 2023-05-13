@@ -1,4 +1,4 @@
-.ndl-button {
+[data-ndl-button] {
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -7,37 +7,6 @@
   color: var(--ndl-white);
   border-radius: 1px;
 
-  &.mode-button {
-    padding: 0.5rem 1rem;
-    background-color: var(--ndl-black-7);
-
-    &:hover {
-      background-color: var(--ndl-black-5);
-    }
-
-    &:active {
-      background-color: var(--ndl-black-6);
-    }
-
-    &.accented {
-      background-color: var(--ndl-accent-8);
-
-      &:hover {
-        background-color: var(--ndl-accent-5);
-      }
-
-      &:active {
-        background-color: var(--ndl-accent-6);
-      }
-    }
-  }
-
-  &.mode-text {
-    &.accented {
-      color: var(--ndl-accent-4);
-    }
-  }
-
   &:focus-visible {
     outline: var(--ndl-outline);
   }
@@ -45,5 +14,36 @@
   &:disabled {
     opacity: 0.6;
     pointer-events: none;
+  }
+}
+
+[data-ndl-button-variant='text'] {
+  &[data-ndl-accented] {
+    color: var(--ndl-accent-4);
+  }
+}
+
+[data-ndl-button-variant='button'] {
+  padding: 0.5rem 1rem;
+  background-color: var(--ndl-black-7);
+
+  &:hover {
+    background-color: var(--ndl-black-5);
+  }
+
+  &:active {
+    background-color: var(--ndl-black-6);
+  }
+
+  &[data-ndl-accented] {
+    background-color: var(--ndl-accent-8);
+
+    &:hover {
+      background-color: var(--ndl-accent-5);
+    }
+
+    &:active {
+      background-color: var(--ndl-accent-6);
+    }
   }
 }

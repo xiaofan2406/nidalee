@@ -12,23 +12,8 @@ it('renders a text button with content hidden by default', () => {
     </Disclosure>
   );
   const disclosure = screen.getByTestId('disclosure');
-  expect(disclosure).toHaveClass('ndl-disclosure');
+  expect(disclosure).toHaveAttribute('data-ndl-disclosure', '');
   expect(screen.queryByTestId('content')).not.toBeInTheDocument();
-});
-
-it('adds additional class', () => {
-  render(
-    <Disclosure
-      data-testid="disclosure"
-      content={<div data-testid="content">some content</div>}
-      className="more"
-    >
-      Toggle
-    </Disclosure>
-  );
-  const disclosure = screen.getByTestId('disclosure');
-  expect(disclosure).toHaveClass('ndl-disclosure');
-  expect(disclosure).toHaveClass('more');
 });
 
 it('takes html button props', async () => {
@@ -91,7 +76,7 @@ it('toggles the visibility of the content', async () => {
   expect(screen.queryByTestId('content')).not.toBeInTheDocument();
 
   await user.click(screen.getByTestId('disclosure'));
-  expect(screen.getByTestId('content')).toBeValid();
+  expect(screen.getByTestId('content')).toBeInTheDocument();
 
   await user.click(screen.getByTestId('disclosure'));
   expect(screen.queryByTestId('content')).not.toBeInTheDocument();
