@@ -15,7 +15,7 @@
   "license": "MIT",
   "engines": {
     "node": "^v18.16.0",
-    "npm": "^9.5.1"
+    "npm": "^9.7.1"
   },
   "scripts": {
     "clean": "rm -rf ./.turbo ./dist ./coverage",
