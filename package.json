@@ -55,8 +55,8 @@
     "eslint": "^8.42.0",
     "eslint-config-free": "^1.5.10",
     "husky": "^8.0.3",
-    "jest": "^29.5.0",
-    "jest-environment-jsdom": "^29.5.0",
+    "jest": "^29.6.4",
+    "jest-environment-jsdom": "^29.6.4",
     "lint-staged": "^14.0.1",
     "prettier": "^2.8.8",
     "turbo": "^1.10.3"
