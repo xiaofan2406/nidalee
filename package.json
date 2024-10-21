@@ -59,6 +59,6 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^14.0.1",
     "prettier": "^2.8.8",
-    "turbo": "^1.10.15"
+    "turbo": "^2.2.3"
   }
 }
