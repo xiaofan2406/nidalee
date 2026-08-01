@@ -12,8 +12,8 @@
   "type": "module",
   "dependencies": {
     "nidalee": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.25",
